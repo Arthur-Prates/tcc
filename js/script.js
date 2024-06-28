@@ -74,7 +74,7 @@ function mostrarProcessando() {
     divProcessando.style.left = "50%";
     divProcessando.style.transform = "translate(-50%, -50%)";
     // divProcessando.innerHTML = '<img src="../img/loading.gif" width="80px" alt="Processando..." title="Processando...">';
-    divProcessando.innerHTML = '<lottie-player autoplay loop mode="normal" src="./img/loadingjson.json" style="width: 140px;"></lottie-player>'
+    divProcessando.innerHTML = '<dotlottie-player autoplay loop mode="normal" src="./img/loadingjson.json" style="width: 140px;"></dotlottie-player>'
     document.body.appendChild(divProcessando);
 }
 
