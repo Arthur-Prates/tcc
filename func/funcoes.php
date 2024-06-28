@@ -470,6 +470,27 @@ function deletarCadastro($tabela, $NomeDoCampoId, $id)
     }
     $conn = null;
 }
+function alterarItemGlobal($tabela, $comando, $identificar, $id)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("UPDATE $tabela SET $comando WHERE  $identificar = $id ;");
+//        $sqlLista->bindValue(1, $comando, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
 
 function alterar1Item($tabela, $campo, $valor, $identificar, $id)
 {
