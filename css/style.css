@@ -176,5 +176,16 @@ body {
     transition: 0.2s all;
 }
 .dropdown-item:hover{
-    color:#272626 !important;
+    color: #ffffff !important;
+}
+
+img {
+    object-fit: contain;
+    width: 200px;
+    height: 380px;
+}
+.nomeProduto{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
