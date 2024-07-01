@@ -38,6 +38,14 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 <div class="container">
     <div class="row">
+        <?php
+        $tabelaProdutos = listarTabela('*','epi');
+        foreach ($tabelaProdutos as $item){
+            $nome = $item -> nome;
+            $certificado = $item -> certificado;
+            $
+        }
+        ?>
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
             <div class="card">
                 <div class="imgProduto">
@@ -50,60 +58,6 @@ if (!empty($_SESSION['idFuncionario'])) {
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Nº CA: 45414</li>
-                </ul>
-                <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
-            <div class="card">
-                <div class="imgProduto">
-
-                <img src="./img/produtos/luva-de-seguranca.jpg" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title nomeProduto">Luva de segurança</h5>
-                    <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Nº CA: 40174</li>
-                </ul>
-                <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
-            <div class="card">
-                <div class="imgProduto">
-
-                <img src="./img/produtos/cinturao-tipo-paraquedista.jpg" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title nomeProduto">Cinturão tipo paraquedista</h5>
-                    <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Nº CA: 46159</li>
-                </ul>
-                <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
-            <div class="card">
-                <div class="imgProduto">
-
-                <img src="./img/produtos/sapato-sem-cadarco.jpg" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title nomeProduto">Sapato de segurança</h5>
-                    <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Nº CA: 44350</li>
                 </ul>
                 <div class="card-body text-center">
                     <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>

@@ -1,7 +1,7 @@
 <?php
-include_once('./config/conexao.php');
-include_once('./config/constantes.php');
-include_once('./func/funcoes.php');
+include_once('../config/conexao.php');
+include_once('../config/constantes.php');
+include_once('../func/funcoes.php');
 ?>
 
 <!doctype html>
@@ -18,7 +18,7 @@ include_once('./func/funcoes.php');
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
 
@@ -27,7 +27,7 @@ include_once('./func/funcoes.php');
 <body class="">
 
 <div class="position-absolute top-50 start-50 translate-middle">
-    <dotlottie-player autoplay loop mode="normal" src="./img/erro/erro-404.json"
+    <dotlottie-player autoplay loop mode="normal" src="../img/erro/erro-404.json"
                       style="width: 500px;"></dotlottie-player>
 </div>
 

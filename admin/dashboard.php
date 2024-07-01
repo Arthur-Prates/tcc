@@ -49,18 +49,6 @@ include_once('nav.php')
 <div class="container">
     <div id='show' class='show'>
 
-        <?php
-        $url = (isset($_GET['url'])) ? $_GET['url']:'dashboard.php';
-        $url = array_filter(explode('/',$url));
-
-        $file = $url[0].'.php';
-
-        if(is_file($file)){
-            include $file;
-        }else{
-            include '404.php';
-        }
-        ?>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
