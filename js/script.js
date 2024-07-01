@@ -227,3 +227,20 @@ function alertError(msg) {
     }).showToast();
 
 }
+
+function postCarrinho(produto) {
+    fetch('carrinho.php', {
+        method: 'POST', headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }, body: 'controle=' + encodeURIComponent(produto),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alertSuccess(data.message, '#30B27F')
+            } else {
+                alertError('Erro, produto não adicionado!')
+            }
+
+        })
+}

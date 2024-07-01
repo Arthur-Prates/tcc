@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruda:wght@400..900&family=Sedgwick+Ave+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -8,14 +9,17 @@ body {
     font-weight: 500;
     font-style: normal;
 }
-.cinza{
+
+.cinza {
     background-color: #272626 !important;
     color: white !important;
 }
-.cinza::placeholder{
+
+.cinza::placeholder {
     color: white !important;
 
 }
+
 .erroBonito {
     color: #ffffff;
     background-color: rgba(126, 0, 0, 0.55);
@@ -51,7 +55,7 @@ body {
     display: flex;
     align-items: center;
     padding-left: 30px;
-    color: #00bfff;
+    color: #ffffff;
 }
 
 .title::before {
@@ -73,7 +77,7 @@ body {
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: #00bfff;
+    background-color: #ffffff;
 }
 
 .message,
@@ -131,7 +135,7 @@ body {
 
 .form label .input:focus + span,
 .form label .input:valid + span {
-    color: #00bfff;
+    color: #ffffff;
     top: 0px;
     font-size: 0.7em;
     font-weight: 600;
@@ -149,11 +153,11 @@ body {
     color: #fff;
     font-size: 16px;
     transform: .3s ease;
-    background-color: #00bfff;
+    background-color: #575757;
 }
 
 .submit:hover {
-    background-color: #00bfff96;
+    background-color: rgba(42, 42, 42, 0.59);
 }
 
 @keyframes pulse {
@@ -167,25 +171,55 @@ body {
         opacity: 0;
     }
 }
-.dropdown-menu{
+
+.dropdown-menu {
     background-color: #272626 !important;
-   
+
 }
-.dropdown-item{
-    color:white !important;
+
+.dropdown-item {
+    color: white !important;
     transition: 0.2s all;
 }
-.dropdown-item:hover{
+
+.dropdown-item:hover {
     color: #ffffff !important;
 }
 
-img {
-    object-fit: contain;
-    width: 200px;
-    height: 380px;
+.imgProduto {
+    object-fit: cover;
+    /*width: px;*/
+    height: 300px;
+
 }
-.nomeProduto{
+
+@media (min-width: 768px) {
+    .imgProduto {
+
+        height: 380px;
+    }
+
+}
+@media (max-width: 991px) {
+    .qtdSacola{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+.nomeProduto {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.margemEntreSacolaEForm{
+    margin-right: 10px;
+}
+
+.qtdDeItensNoCarrinho{
+    background-color: #940000;
+    border-radius: 5px;
 }

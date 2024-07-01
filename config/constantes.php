@@ -11,13 +11,14 @@ define('TITULOSITE','CONFEITARIA');
 define('TEMPOFALHA','15');
 define('TENTATIVAFALHA','3');
 define('DATATIMEATUAL', date("Y-m-d H:i:s"));
+define('DATAATUAL', date("Y-m-d"));
 
 $servidorLocal = true;
 if ($servidorLocal) {
     define('HOST', 'localhost');
     define('USER', 'root');
     define('PASS', '');
-    define('DBNAME', '');
+    define('DBNAME', 'tcc');
 } else {
     define('HOST', '');
     define('USER', '');
