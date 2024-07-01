@@ -34,55 +34,16 @@ if (!empty($_SESSION['idFuncionario'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg cinza" data-bs-theme="dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">SAFETECH</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Início</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        <span class="mdi mdi-account-circle-outline"></span>
-                    </a>
-                    <?php
-                    if ($idFuncionario == null) {
-                        ?>
-                        <ul class="dropdown-menu ">
-                            <li class=""><a class="dropdown-item" href="#">Fazer login</a></li>
-                        </ul>
-
-                        <?php
-                    } else {
-                        ?>
-                        <ul class="dropdown-menu ">
-                            <li class=""><a class="dropdown-item" href="#">Meu perfil</a></li>
-                            <li class=""><a class="dropdown-item" href="#">Meus aluguéis</a></li>
-                        </ul>
-                        <?php
-                    }
-                    ?>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Pesquisar EPI" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-    </div>
-</nav>
+<?php include_once ('navbar.php')?>
 
 <div class="container">
     <div class="row">
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
             <div class="card">
+                <div class="imgProduto">
+
                 <img src="./img/produtos/capacete-classe-a.jpg" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title nomeProduto">Capacete classe A</h5>
                     <p class="card-text"></p>
@@ -91,13 +52,16 @@ if (!empty($_SESSION['idFuncionario'])) {
                     <li class="list-group-item">Nº CA: 45414</li>
                 </ul>
                 <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar a sacola</button>
+                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
                 </div>
             </div>
         </div>
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
             <div class="card">
+                <div class="imgProduto">
+
                 <img src="./img/produtos/luva-de-seguranca.jpg" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title nomeProduto">Luva de segurança</h5>
                     <p class="card-text"></p>
@@ -106,13 +70,16 @@ if (!empty($_SESSION['idFuncionario'])) {
                     <li class="list-group-item">Nº CA: 40174</li>
                 </ul>
                 <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar a sacola</button>
+                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
                 </div>
             </div>
         </div>
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
             <div class="card">
+                <div class="imgProduto">
+
                 <img src="./img/produtos/cinturao-tipo-paraquedista.jpg" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title nomeProduto">Cinturão tipo paraquedista</h5>
                     <p class="card-text"></p>
@@ -121,13 +88,16 @@ if (!empty($_SESSION['idFuncionario'])) {
                     <li class="list-group-item">Nº CA: 46159</li>
                 </ul>
                 <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar a sacola</button>
+                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
                 </div>
             </div>
         </div>
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
             <div class="card">
+                <div class="imgProduto">
+
                 <img src="./img/produtos/sapato-sem-cadarco.jpg" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title nomeProduto">Sapato de segurança</h5>
                     <p class="card-text"></p>
@@ -136,7 +106,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                     <li class="list-group-item">Nº CA: 44350</li>
                 </ul>
                 <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success">Adicionar a sacola</button>
+                    <button class="btn btn-sm btn-success">Adicionar ao carrinho</button>
                 </div>
             </div>
         </div>
