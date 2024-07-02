@@ -9,7 +9,7 @@ $dados = filter_input(INPUT_POST, 'idepi', FILTER_SANITIZE_NUMBER_INT);
 if (!isset($_SESSION['pedidoscarrinho'])) {
     $_SESSION['pedidoscarrinho'] = array();
 }
-
+$produtoADD = false;
 $produto = listarItemExpecifico('*', 'epi', 'idepi', $dados);
 if ($produto !== 'vazio') {
     foreach ($produto as $item) {
@@ -18,24 +18,34 @@ if ($produto !== 'vazio') {
         $foto = $item->foto;
         $codigo = $item->certificado;
 
-        array_push(
-            $_SESSION['pedidoscarrinho'],
-            array(
-                'idproduto' => $id,
-                'nome' => $nomeEpi,
-                'foto' => $foto,
-                'certificado' => $codigo,
-                'quantidade' => 1
-            )
-        );
-        $carrinho = $_SESSION['pedidoscarrinho'];
-        $qtd = $carrinho['quantidade'];
-        if ($qtd == $dados) {
-            $carrinho['quantidade'] = $carrinho['quantidade'] + 1;
-       }
+        foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
+            if ($produtoCarrinho['idproduto'] == $id) {
+                $produtoCarrinho['quantidade'] += 1;
+                $produtoADD = true;
+                break;
+            }
+        }
+        if (!$produtoADD) {
+            array_push(
+                $_SESSION['pedidoscarrinho'],
+                array(
+                    'idproduto' => $id,
+                    'nome' => $nomeEpi,
+                    'foto' => $foto,
+                    'certificado' => $codigo,
+                    'quantidade' => 1
+                )
+            );
+        }
+
 
     }
-    echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!"]);
+    if ($produtoADD) {
+        echo json_encode(['success' => true, 'message' => "Quantidade do produto aumentada!"]);
+    } else {
+        echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!"]);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!"]);
 }
-
 
