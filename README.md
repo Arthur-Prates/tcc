@@ -1,4 +1,4 @@
-https://prod.liveshare.vsengsaas.visualstudio.com/join?8BA70FF7DF041A937CDDDCF1D5BE30490010
+https://prod.liveshare.vsengsaas.visualstudio.com/join?9F0B218B3E03767553369C72DB992AFAE373
 <h1 align="center" style="display: inline_block">
   
   Bem vindo a Pasta Base
