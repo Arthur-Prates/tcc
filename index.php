@@ -43,7 +43,7 @@ if (!empty($_SESSION['idFuncionario'])) {
         foreach ($tabelaProdutos as $item){
             $nome = $item -> nome;
             $certificado = $item -> certificado;
-            $
+
         }
         ?>
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">

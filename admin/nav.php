@@ -12,20 +12,21 @@
     
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Menu
           </a>
           <ul class="dropdown-menu ">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#" onclick="carregarConteudo('listarEpi')">EPI'S</a></li>
+              <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="carregarConteudo('listarAluguel')">Aluguel</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#" onclick="carregarConteudo('listarUsuario')">Usuário</a></li>
           </ul>
         </li>
        
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2 cinza" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
       </form>
     </div>
   </div>

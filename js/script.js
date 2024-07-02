@@ -89,7 +89,7 @@ function esconderProcessando() {
 }
 
 function carregarConteudo(controle) {
-    fetch('controle.php', {
+    fetch('../controle.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         }, body: 'controle=' + encodeURIComponent(controle),

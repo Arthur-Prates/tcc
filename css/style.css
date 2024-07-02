@@ -223,3 +223,10 @@ body {
     background-color: #940000;
     border-radius: 5px;
 }
+
+section{
+    position: relative;
+    width: 100%;
+    
+;
+}
