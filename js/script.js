@@ -236,18 +236,20 @@ function postCarrinho(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             if (data.success) {
                 alertSuccess(data.message, '#30B27F')
             } else {
                 alertError(data.message)
             }
-
+            setTimeout(function (){
+                window.location.reload()
+            },1240)
         })
-        .catch(error => {
-            console.error('Erro:', error);
-            alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
-        });
+        // .catch(error => {
+        //     console.error('Erro:', error);
+        //     alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
+        // });
 }
 
 function removeCarrinho(produto) {
@@ -258,19 +260,44 @@ function removeCarrinho(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             if (data.success) {
                 alertSuccess(data.message, '#30B27F')
             } else {
                 alertError(data.message)
             }
-
+            setTimeout(function (){
+                window.location.reload()
+            },1240)
         })
         .catch(error => {
             console.error('Erro:', error);
             alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
         });
+}
 
+function excluirItem(id){
+    fetch('removerItem.php', {
+        method: 'POST', headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }, body: 'idepi=' + encodeURIComponent(id),
+    })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data)
+            if (data.success) {
+                alertSuccess(data.message, '#30B27F')
+            } else {
+                alertError(data.message)
+            }
+            setTimeout(function (){
+                window.location.reload()
+            },1240)
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
+        });
 }
 
 function limparCarrinho(option) {
@@ -283,15 +310,44 @@ function limparCarrinho(option) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
+            if (data.success) {
+                alertSuccess(data.message, '#30B27F');
+            } else {
+                alertError(data.message);
+            }
+            setTimeout(function (){
+                window.location.reload()
+            },1240)
+        })
+    .catch(error => {
+        // console.error('Erro:', error);
+        alertError('Ocorreu um erro ao tentar limpar o carrinho.');
+    });
+}
+
+function redireciona(link){
+    window.location.href = link;
+}
+
+function realizarAluguel(){
+    fetch('addBanco.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data);
             if (data.success) {
                 alertSuccess(data.message, '#30B27F');
             } else {
                 alertError(data.message);
             }
         })
-    // .catch(error => {
-    //     // console.error('Erro:', error);
-    //     alertError('Ocorreu um erro ao tentar limpar o carrinho.');
-    // });
+        .catch(error => {
+            // console.error('Erro:', error);
+            alertError('Ocorreu um erro ao realizar aluguel!');
+        });
 }

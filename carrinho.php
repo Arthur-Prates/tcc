@@ -33,7 +33,10 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 </head>
 
 <body>
-<?php include_once('navbar.php') ?>
+<?php include_once('navbar.php');
+
+
+?>
 
 <div class="container">
     <?php
@@ -42,7 +45,9 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
         <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="mt-3">Itens para alugar</h3>
-            <button class="btn btn-sm btn-danger" type="button" id="btnLimparCarrinho" onclick="limparCarrinho('apagar')">Limpar carrinho</button>
+            <button class="btn btn-sm btn-danger" type="button" id="btnLimparCarrinho"
+                    onclick="limparCarrinho('apagar')">Limpar carrinho
+            </button>
         </div>
         <?php
     }
@@ -50,11 +55,9 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     <div class="row">
         <div class="col-12">
             <?php
-            if (isset($_SESSION['pedidoscarrinho'])) {
-                $tabelaCarrinho = $_SESSION['pedidoscarrinho'];
-            }
-            if (!empty($tabelaCarrinho) && isset($tabelaCarrinho)) {
-                foreach ($tabelaCarrinho as $itemEpi) {
+            if (!empty($_SESSION['pedidoscarrinho']) && isset($_SESSION['pedidoscarrinho'])) {
+                foreach ($_SESSION['pedidoscarrinho'] as $indice => $itemEpi) {
+                    $indiceItem = $indice;
                     $nome = $itemEpi['nome'];
                     $id = $itemEpi['idproduto'];
                     $foto = $itemEpi['foto'];
@@ -64,18 +67,30 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     ?>
                     <div class="row mt-5">
                         <div class="col-lg-2 col-4">
-                            <img src="./img/produtos/<?php echo $foto ?>" alt="" width="100%">
+                            <img src="./img/produtos/<?php echo $foto ?>" alt="<?php echo $nome ?>" class=""
+                                 width="100%">
                         </div>
                         <div class="col-lg-8 col-8">
                             <h4><?php echo $nome ?></h4>
                             <p>Número CA: <?php echo $certificado ?></p>
+                            <p class="mt-3" id="qtdMD">Quantidade: <?php echo $qtd ?></p>
                         </div>
                         <div class="col-lg-2 col-12 qtdSacola text-center">
-                            <p class="mt-3">Quantidade: <?php echo $qtd?></p>
-                            <div>
-                                <button class="btn btn-sm btn-outline-primary" type="button" onclick="postCarrinho('<?php echo $id?>')">+</button>
-                                <button class="btn btn-sm btn-outline-danger" type="button" onclick="removeCarrinho('<?php echo $id?>')">-</button>
-                                <p class="text-decoration-underline">Remover</p>
+                            <p class="mt-3" id="qtdLG">Quantidade: <?php echo $qtd ?></p>
+                            <div class="">
+                                <div class="w-100">
+                                    <button class="btn btn-sm btn-outline-success btnMaisEMenos" type="button"
+                                            onclick="postCarrinho('<?php echo $id ?>')">+
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-warning btnMaisEMenos" type="button"
+                                            onclick="removeCarrinho('<?php echo $id ?>')">-
+                                    </button>
+                                </div>
+
+                                <button class="btn btn-sm btn-outline-secondary mt-2 w-100"
+                                        onclick="excluirItem('<?php echo $indice ?>')">
+                                    Remover
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -84,27 +99,42 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     <?php
                 }
                 ?>
-                <div class="row mb-5">
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div>
-                            <label for="dataInicioAluguel">Selecione a data de início do aluguel</label>
-                            <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control"
-                                   value="<?php echo DATAATUAL ?>">
+                <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
+                    <div class="row mb-5">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div>
+                                <label for="dataInicioAluguel">Selecione a data de início do aluguel</label>
+                                <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control"
+                                       value="<?php echo DATAATUAL ?>">
+                            </div>
+                            <div class="mt-4">
+                                <label for="dataFimAluguel">Selecione a data de término do aluguel</label>
+                                <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control">
+                            </div>
                         </div>
-                        <div class="mt-4">
-                            <label for="dataFimAluguel">Selecione a data de término do aluguel</label>
-                            <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control">
+                        <div class="col-lg-6 col-md-6 col-12 ">
+                            <div class="d-flex justify-content-end">
+                                <?php
+                                if (isset($_SESSION['idFuncionario'])) {
+                                    ?>
+                                    <button class="btn btn-success btn-sm" id="btnConcluirAluguel"
+                                            name="btnConcluirAluguel" onclick="realizarAluguel()">
+                                        Concluir aluguel
+                                    </button>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <button class="btn btn-success btn-sm" id="btnConcluirAluguel"
+                                            name="btnConcluirAluguel" onclick="redireciona('logar.php')">
+                                        Concluir aluguel
+                                    </button>
+                                    <?php
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-12 ">
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-success btn-sm" id="btnConcluirAluguel" name="btnConcluirAluguel">
-                                Concluir aluguel
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
+                </form>
                 <?php
             } else {
                 ?>

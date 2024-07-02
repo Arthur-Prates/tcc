@@ -112,7 +112,27 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
     }
     $conn = null;
 }
+function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $id1, $id2,$campoExpecifico,$valorCampo, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 WHERE $campoExpecifico = ? ORDER BY $ordem $tipoOrdem");
+        $sqlLista->bindValue(1, $valorCampo, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return False;
 
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
 function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $ordem, $tipoOrdem)
 {
     $conn = conectar();
@@ -125,6 +145,28 @@ function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tab
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         }
         return False;
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
+function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4,$campoExpecifico,$valorCampo, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON a.$idA3 = d.$idD4 WHERE $campoExpecifico = ?  ORDER BY $ordem $tipoOrdem");
+        $sqlLista->bindValue(1, $valorCampo, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
 
     } catch (PDOException $e) {
         echo 'Exception -> ';

@@ -186,28 +186,36 @@ body {
     color: #ffffff !important;
 }
 
-.imgProduto {
-    object-fit: cover;
-    /*width: px;*/
-    height: 300px;
 
-}
 
 @media (min-width: 768px) {
-    .imgProduto {
-
-        height: 380px;
-    }
 
 }
 @media (max-width: 991px) {
-    .qtdSacola{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+
+    #qtdMD{
+        display: block;
+    }
+    #qtdLG{
+        display: none;
+    }
+    .btnMaisEMenos{
+        width: 40%;
+        margin: 10px;
     }
 }
-
+@media (min-width: 992px){
+    #qtdMD{
+        display: none;
+    }
+    #qtdLG{
+        display: block;
+    }
+    .btnMaisEMenos{
+        width: 35%;
+        margin: 5px;
+    }
+}
 
 .nomeProduto {
     white-space: nowrap;
@@ -222,4 +230,17 @@ body {
 .qtdDeItensNoCarrinho{
     background-color: #940000;
     border-radius: 5px;
+}
+.overflowTable {
+    overflow-x: scroll !important;
+    /*text-overflow: ellipsis !important;*/
+    white-space: nowrap;
+    /*direction: ltr;*/
+
+}
+.tableNaoVazada{
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+    direction: ltr;
 }
