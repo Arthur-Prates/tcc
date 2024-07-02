@@ -9,7 +9,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     $idFuncionario = null;
 }
 
-
+//unset($_SESSION['pedidoscarrinho']);
 ?>
 
 <!doctype html>
@@ -33,69 +33,101 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 </head>
 
 <body>
-<?php include_once ('navbar.php')?>
+<?php include_once('navbar.php') ?>
 
 <div class="container">
-    <h3 class="mt-3">Itens para alugar</h3>
+    <?php
+    if (isset($_SESSION['pedidoscarrinho'])) {
+        ?>
+        <div class="d-flex justify-content-between align-items-center">
+
+            <h3 class="mt-3">Itens para alugar</h3>
+            <button class="btn btn-sm btn-danger" type="button" id="btnLimparCarrinho" onclick="limparCarrinho('apagar')">Limpar carrinho</button>
+        </div>
+        <?php
+    }
+    ?>
     <div class="row">
         <div class="col-12">
-            <div class="row mt-5">
-                <div class="col-lg-2 col-4">
-                    <img src="./img/produtos/cinturao-tipo-paraquedista.jpg" alt="" width="100%">
-                </div>
-                <div class="col-lg-8 col-8">
-                    <h4>Cinturão do tipo paraquedista</h4>
-                    <p>Número CA: 46159</p>
-                </div>
-                <div class="col-lg-2 col-12 qtdSacola text-center">
-                    <p class="mt-3">Quantidade: 1</p>
-                    <div>
-                        <button class="btn btn-sm btn-outline-primary">+</button>
-                        <button class="btn btn-sm btn-outline-danger">-</button>
-                        <p class="text-decoration-underline">Remover</p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row mt-5">
-                <div class="col-lg-2 col-4">
-                    <img src="./img/produtos/luva-de-seguranca.jpg" alt="" width="100%">
-                </div>
-                <div class="col-lg-8 col-8">
-                    <h4>Luvas de segurança</h4>
-                    <p>Número CA: 40174</p>
-                </div>
-                <div class="col-lg-2 col-12 qtdSacola text-center">
-                    <p class="mt-3">Quantidade: 1</p>
-                    <div>
-                        <button class="btn btn-sm btn-outline-primary">+</button>
-                        <button class="btn btn-sm btn-outline-danger">-</button>
-                        <p class="text-decoration-underline">Remover</p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div>
-                        <label for="dataInicioAluguel">Selecione a data de início do aluguel</label>
-                        <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control" value="<?php echo DATAATUAL?>">
-                    </div>
-                    <div class="mt-4">
-                        <label for="dataFimAluguel">Selecione a data de término do aluguel</label>
-                        <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12 ">
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-success btn-sm" id="btnConcluirAluguel" id="btnConcluirAluguel">
-                            Concluir aluguel
-                        </button>
-                    </div>
+            <?php
+            if (isset($_SESSION['pedidoscarrinho'])) {
+                $tabelaCarrinho = $_SESSION['pedidoscarrinho'];
+                echo '<pre>';
+                print_r($tabelaCarrinho);
+                echo '</pre>';
+            }
+            $f = 0;
+            if (!empty($tabelaCarrinho) && isset($tabelaCarrinho)) {
+                foreach ($tabelaCarrinho as $itemEpi) {
 
+                    $nome = $itemEpi['nome'];
+                    $id = $itemEpi['idproduto'];
+                    $foto = $itemEpi['foto'];
+                    $certificado = $itemEpi['certificado'];
+                    $qtd = $itemEpi['quantidade']
+
+                    ?>
+                    <div class="row mt-5">
+                        <div class="col-lg-2 col-4">
+                            <img src="./img/produtos/<?php echo $foto ?>" alt="" width="100%">
+                        </div>
+                        <div class="col-lg-8 col-8">
+                            <h4><?php echo $nome ?></h4>
+                            <p>Número CA: <?php echo $certificado ?></p>
+                        </div>
+                        <div class="col-lg-2 col-12 qtdSacola text-center">
+                            <p class="mt-3">Quantidade: <?php echo $qtd?></p>
+                            <div>
+                                <button class="btn btn-sm btn-outline-primary" type="button" onclick="postCarrinho('<?php echo $id?>')">+</button>
+                                <button class="btn btn-sm btn-outline-danger" type="button" onclick="removeCarrinho('<?php echo $id?>','<?php echo  $f?>')">-</button>
+                                <p class="text-decoration-underline">Remover</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+
+                    <?php
+                    $f =  $f+1;
+                }
+                ?>
+                <div class="row mb-5">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div>
+                            <label for="dataInicioAluguel">Selecione a data de início do aluguel</label>
+                            <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control"
+                                   value="<?php echo DATAATUAL ?>">
+                        </div>
+                        <div class="mt-4">
+                            <label for="dataFimAluguel">Selecione a data de término do aluguel</label>
+                            <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12 ">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-success btn-sm" id="btnConcluirAluguel" name="btnConcluirAluguel">
+                                Concluir aluguel
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </div>
+                <?php
+            } else {
+                ?>
+                <div class="d-flex justify-content-center align-items-center mt-5">
+                    <dotlottie-player src="https://lottie.host/f626c217-5dd4-4bd3-8bba-b85b46b06cb5/h13sx3Lc2a.json"
+                                      background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                                      autoplay></dotlottie-player>
+                    <p class="fs-1">O seu carrinho está vazio!</p>
+                </div>
+                <?php
+            }
+
+            ?>
+
+        </
+        >
     </div>
 </div>
 

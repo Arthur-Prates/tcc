@@ -229,18 +229,69 @@ function alertError(msg) {
 }
 
 function postCarrinho(produto) {
-    fetch('carrinho.php', {
+    fetch('addCarrinho.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'controle=' + encodeURIComponent(produto),
+        }, body: 'idepi=' + encodeURIComponent(produto),
     })
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             if (data.success) {
                 alertSuccess(data.message, '#30B27F')
             } else {
-                alertError('Erro, produto não adicionado!')
+                alertError(data.message)
             }
 
         })
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
+        });
+}
+
+function removeCarrinho(produto, f) {
+    fetch('removeCarrinho.php', {
+        method: 'POST', headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }, body: 'idepi=' + encodeURIComponent(produto) + '&num=' + encodeURIComponent(f),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if (data.success) {
+                alertSuccess(data.message, '#30B27F')
+            } else {
+                alertError(data.message)
+            }
+
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
+        });
+
+}
+
+function limparCarrinho(option) {
+    fetch('apagarCarrinho.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'option=' + encodeURIComponent(option),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                alertSuccess(data.message, '#30B27F');
+            } else {
+                alertError(data.message);
+            }
+        })
+    // .catch(error => {
+    //     // console.error('Erro:', error);
+    //     alertError('Ocorreu um erro ao tentar limpar o carrinho.');
+    // });
 }

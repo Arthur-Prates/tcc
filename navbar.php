@@ -49,7 +49,16 @@ if (!empty($_SESSION['idFuncionario'])) {
             </ul>
             <a href="carrinho.php" class="text-decoration-none text-white margemEntreSacolaEForm">
 
-                <i class="bi bi-cart4 fs-5"></i><span> Carrinho</span><sup class="qtdDeItensNoCarrinho">2</sup>
+                <i class="bi bi-cart4 fs-5"></i><span> Carrinho</span><sup class="qtdDeItensNoCarrinho">
+                    <?php
+                    if (isset($_SESSION['pedidoscarrinho'])) {
+                        $cont = count($_SESSION['pedidoscarrinho']);
+                    } else {
+                        $cont = 0;
+                    }
+                    echo $cont;
+                    ?>
+                </sup>
             </a>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Pesquisar EPI" aria-label="Search">
