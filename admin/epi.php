@@ -1,8 +1,11 @@
 <?php
 
 ?>
+<div class="teste mt-5">
+    <button type="button" class="btn btn-dark" style="float: right">Cadastrar</button>
+</div>
 <table class="table table-hover table-bordered border-dark mt-5">
-    <thead class="table-dark ">
+    <thead class="table-dark">
     <tr>
         <th scope="col" style="width: 10%;">#</th>
         <th scope="col" style="width: 40%;">Epi</th>
