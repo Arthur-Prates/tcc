@@ -43,14 +43,9 @@ if (!empty($_SESSION['idFuncionario'])) {
         foreach ($tabelaProdutos as $item){
             $nome = $item -> nome;
             $certificado = $item -> certificado;
-<<<<<<< HEAD
 
-        }
-=======
             $foto = $item -> foto;
             $id = $item -> idepi;
-
->>>>>>> da3ef1348baff7bb4dcb1b6781a29652abd15030
         ?>
         <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
             <div class="card">

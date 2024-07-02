@@ -1,12 +1,13 @@
 <?php
 
 ?>
-<table class="table table-hover table-bordered border-dark">
-    <thead>
+<table class="table table-hover table-bordered border-dark mt-5">
+    <thead class="table-dark ">
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">Epi</th>
-        <th scope="col">Certificado</th>
+        <th scope="col" style="width: 10%;">#</th>
+        <th scope="col" style="width: 40%;">Epi</th>
+        <th scope="col" style="width: 40%;">Certificado</th>
+        <th scope="col" style="width: 10%;">Ação</th>
     </tr>
     </thead>
     <tbody>
@@ -25,6 +26,13 @@
                 <th scope="row"><?php echo $contar?></th>
                 <td><?php echo $nome?></td>
                 <td><?php echo $certificado?></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-eye"></i></button>
+                        <button type="button" class="btn btn-outline-success"><i class="bi bi-pen"></i></button>
+                        <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                    </div>
+                </td>
             </tr>
             <?php
             ++$contar;
