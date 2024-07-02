@@ -52,9 +52,14 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             <?php
             if (isset($_SESSION['pedidoscarrinho'])) {
                 $tabelaCarrinho = $_SESSION['pedidoscarrinho'];
+                echo '<pre>';
+                print_r($tabelaCarrinho);
+                echo '</pre>';
             }
+            $f = 0;
             if (!empty($tabelaCarrinho) && isset($tabelaCarrinho)) {
                 foreach ($tabelaCarrinho as $itemEpi) {
+
                     $nome = $itemEpi['nome'];
                     $id = $itemEpi['idproduto'];
                     $foto = $itemEpi['foto'];
@@ -74,14 +79,16 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             <p class="mt-3">Quantidade: <?php echo $qtd?></p>
                             <div>
                                 <button class="btn btn-sm btn-outline-primary" type="button" onclick="postCarrinho('<?php echo $id?>')">+</button>
-                                <button class="btn btn-sm btn-outline-danger" type="button" onclick="removeCarrinho('<?php echo $id?>')">-</button>
+                                <button class="btn btn-sm btn-outline-danger" type="button" onclick="removeCarrinho('<?php echo $id?>','<?php echo  $f?>')">-</button>
                                 <p class="text-decoration-underline">Remover</p>
                             </div>
+
                         </div>
                     </div>
                     <hr>
 
                     <?php
+                    $f =  $f+1;
                 }
                 ?>
                 <div class="row mb-5">
