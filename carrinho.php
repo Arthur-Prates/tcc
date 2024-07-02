@@ -9,7 +9,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     $idFuncionario = null;
 }
 
-
+//unset($_SESSION['pedidoscarrinho']);
 ?>
 
 <!doctype html>
@@ -42,7 +42,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
         <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="mt-3">Itens para alugar</h3>
-            <button class="btn btn-sm btn-danger" onclick="limparCarrinho()">Limpar carrinho</button>
+            <button class="btn btn-sm btn-danger" type="button" id="btnLimparCarrinho" onclick="limparCarrinho('apagar')">Limpar carrinho</button>
         </div>
         <?php
     }
@@ -59,6 +59,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     $id = $itemEpi['idproduto'];
                     $foto = $itemEpi['foto'];
                     $certificado = $itemEpi['certificado'];
+                    $qtd = $itemEpi['quantidade']
 
                     ?>
                     <div class="row mt-5">
@@ -70,10 +71,10 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             <p>Número CA: <?php echo $certificado ?></p>
                         </div>
                         <div class="col-lg-2 col-12 qtdSacola text-center">
-                            <p class="mt-3">Quantidade: 1</p>
+                            <p class="mt-3">Quantidade: <?php echo $qtd?></p>
                             <div>
-                                <button class="btn btn-sm btn-outline-primary">+</button>
-                                <button class="btn btn-sm btn-outline-danger">-</button>
+                                <button class="btn btn-sm btn-outline-primary" type="button" onclick="postCarrinho('<?php echo $id?>')">+</button>
+                                <button class="btn btn-sm btn-outline-danger" type="button" onclick="removeCarrinho('<?php echo $id?>')">-</button>
                                 <p class="text-decoration-underline">Remover</p>
                             </div>
                         </div>
@@ -83,7 +84,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     <?php
                 }
                 ?>
-                <div class="row">
+                <div class="row mb-5">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div>
                             <label for="dataInicioAluguel">Selecione a data de início do aluguel</label>

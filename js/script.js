@@ -236,30 +236,62 @@ function postCarrinho(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
             if (data.success) {
                 alertSuccess(data.message, '#30B27F')
             } else {
-                alertError('Erro, produto não adicionado!')
+                alertError(data.message)
             }
 
         })
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
+        });
 }
 
-function limparCarrinho(){
-    fetch('apagarCarrinho.php', {
+function removeCarrinho(produto) {
+    fetch('removeCarrinho.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'idepi=' + encodeURIComponent(),
+        }, body: 'idepi=' + encodeURIComponent(produto),
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
             if (data.success) {
                 alertSuccess(data.message, '#30B27F')
             } else {
-                alertError('Erro, produto não adicionado!')
+                alertError(data.message)
             }
 
         })
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
+        });
+
+}
+
+function limparCarrinho(option) {
+    fetch('apagarCarrinho.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'option=' + encodeURIComponent(option),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                alertSuccess(data.message, '#30B27F');
+            } else {
+                alertError(data.message);
+            }
+        })
+    // .catch(error => {
+    //     // console.error('Erro:', error);
+    //     alertError('Ocorreu um erro ao tentar limpar o carrinho.');
+    // });
 }
