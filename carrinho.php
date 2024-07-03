@@ -40,7 +40,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 
 <div class="container">
     <?php
-    if (isset($_SESSION['pedidoscarrinho'])) {
+    if (isset($_SESSION['pedidoscarrinho']) && !empty($_SESSION['pedidoscarrinho'])) {
         ?>
         <div class="d-flex justify-content-between align-items-center">
 
@@ -87,7 +87,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     </button>
                                 </div>
 
-                                <button class="btn btn-sm btn-outline-secondary mt-2 w-100"
+                                <button class="btn btn-sm btn-outline-secondary mt-2 btnRemover"
                                         onclick="excluirItem('<?php echo $indice ?>')">
                                     Remover
                                 </button>
@@ -102,30 +102,44 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
                     <div class="row mb-5">
                         <div class="col-lg-6 col-md-6 col-12">
-                            <div>
-                                <label for="dataInicioAluguel">Selecione a data de início do aluguel</label>
+                            <div class="mt-4">
+                                <label for="dataInicioAluguel">Selecione a data de início do aluguel:</label>
                                 <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control"
-                                       value="<?php echo DATAATUAL ?>">
+                                       value="<?php echo DATAATUAL ?>" required="required">
                             </div>
                             <div class="mt-4">
-                                <label for="dataFimAluguel">Selecione a data de término do aluguel</label>
-                                <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control">
+                                <label for="addPrioridade" class="label-control">Selecione a prioridade:</label>
+                                <select name="addPrioridade" id="addPrioridade" class="form-control" required="required">
+                                    <option value="BAIXA" selected>Baixa</option>
+                                    <option value="MEDIA">Média</option>
+                                    <option value="ALTA">Alta</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 ">
-                            <div class="d-flex justify-content-end">
+                            <div class="mt-4">
+                                <label for="dataFimAluguel">Selecione a data de término do aluguel:</label>
+                                <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control" required="required" value="<?php echo DATAATUAL ?>">
+                            </div>
+                            <div class="input-group mt-4">
+                                <span class="input-group-text">Observação</span>
+                                <textarea class="form-control" aria-label="With textarea" name="addObservacao" id="addObservacao"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-center mt-4">
                                 <?php
                                 if (isset($_SESSION['idFuncionario'])) {
                                     ?>
-                                    <button class="btn btn-success btn-sm" id="btnConcluirAluguel"
-                                            name="btnConcluirAluguel" onclick="realizarAluguel()">
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnConcluirAluguel" type="submit"
+                                            name="btnConcluirAluguel" onclick="realizarAluguel('frmCarrinho','addAluguel','btnConcluirAluguel')">
                                         Concluir aluguel
                                     </button>
                                     <?php
                                 } else {
                                     ?>
-                                    <button class="btn btn-success btn-sm" id="btnConcluirAluguel"
-                                            name="btnConcluirAluguel" onclick="redireciona('logar.php')">
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnLogin" type="button"
+                                            name="btnLogin" onclick="redireciona('logar.php')">
                                         Concluir aluguel
                                     </button>
                                     <?php

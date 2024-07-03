@@ -300,17 +300,17 @@ function excluirItem(id){
         });
 }
 
-function limparCarrinho(option) {
-    fetch('apagarCarrinho.php', {
+function limparCarrinho() {
+    fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'option=' + encodeURIComponent(option),
+        body: 'controle=' + encodeURIComponent('limparCarrinho'),
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
+            console.log(data);
             if (data.success) {
                 alertSuccess(data.message, '#30B27F');
             } else {
@@ -318,7 +318,7 @@ function limparCarrinho(option) {
             }
             setTimeout(function (){
                 window.location.reload()
-            },1240)
+            },1500)
         })
     .catch(error => {
         // console.error('Erro:', error);
@@ -330,24 +330,42 @@ function redireciona(link){
     window.location.href = link;
 }
 
-function realizarAluguel(){
-    fetch('addBanco.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data);
-            if (data.success) {
-                alertSuccess(data.message, '#30B27F');
-            } else {
-                alertError(data.message);
-            }
+function realizarAluguel(formulario,addEditDel,botoes){
+    const formDados = document.getElementById(formulario);
+    let formEnviado = false;
+    const submitHandler = function (event) {
+        event.preventDefault();
+
+        botoes.disabled = true;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        formData.append('controle', addEditDel);
+
+        fetch('controle.php', {
+            method: 'POST',
+            body: formData,
         })
-        .catch(error => {
-            // console.error('Erro:', error);
-            alertError('Ocorreu um erro ao realizar aluguel!');
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                formEnviado = true;
+                if (data.success) {
+                    alertSuccess(data.message, '#1B7E00');
+                    formDados.removeEventListener('submit', submitHandler);
+                    setTimeout(function (){
+                        window.location.href = 'index.php'
+                    },1500)
+                } else {
+                    alertError(data.message);
+                    formDados.removeEventListener('submit', submitHandler);
+                }
+            })
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
+    };
+    formDados.addEventListener('submit', submitHandler);
+
 }

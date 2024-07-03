@@ -12,9 +12,9 @@ $retornoValidar = verificarSenhaCriptografada('*', 'usuario', 'email', $email, '
 
 if ($retornoValidar) {
     if ($retornoValidar == 'usuario') {
-        echo json_encode(['success' => false, 'message' => 'Úsuario invalido']);
+        echo json_encode(['success' => false, 'message' => 'Usuário inválido']);
     } else if ($retornoValidar == 'senha') {
-        echo json_encode(['success' => false, 'message' => 'Senha invalida!']);
+        echo json_encode(['success' => false, 'message' => 'Senha inválida!']);
     } else {
         $_SESSION['idFuncionario'] = $retornoValidar->idusuario;
         $_SESSION['nome'] = $retornoValidar->nomeUsuario;
@@ -22,5 +22,5 @@ if ($retornoValidar) {
         echo json_encode(['success' => true, 'message' => "Logado com sucesso!"]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Usuario e Senha invalidos!']);
+    echo json_encode(['success' => false, 'message' => 'Usuário e Senha inválidos!']);
 }

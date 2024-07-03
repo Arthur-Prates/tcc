@@ -203,6 +203,10 @@ body {
         width: 40%;
         margin: 10px;
     }
+    .btnRemover{
+        width: 85%;
+    }
+
 }
 @media (min-width: 992px){
     #qtdMD{
@@ -215,6 +219,12 @@ body {
         width: 35%;
         margin: 5px;
     }
+    .btnRemover{
+        width: 75%;
+    }
+}
+.btnConcluirAluguel{
+    width: 90%;
 }
 
 .nomeProduto {
