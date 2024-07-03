@@ -8,19 +8,19 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 $email = $dados['email'];
 $senha = $dados['senha'];
-$retornoValidar = verificarSenhaCriptografada('*', 'adm', 'email', $email, 'senha', $senha, 'ativo', 'A');
+$retornoValidar = verificarSenhaCriptografada('*', 'usuario', 'email', $email, 'senha', $senha, 'ativo', 'A');
 
 if ($retornoValidar) {
     if ($retornoValidar == 'usuario') {
-        echo json_encode(['success' => false, 'message' => 'Úsuario invalido']);
+        echo json_encode(['success' => false, 'message' => 'Usuário inválido']);
     } else if ($retornoValidar == 'senha') {
-        echo json_encode(['success' => false, 'message' => 'Senha invalida!']);
+        echo json_encode(['success' => false, 'message' => 'Senha inválida!']);
     } else {
-        $_SESSION['idadm'] = $retornoValidar->idadm;
-        $_SESSION['nome'] = $retornoValidar->nome;
+        $_SESSION['idFuncionario'] = $retornoValidar->idusuario;
+        $_SESSION['nome'] = $retornoValidar->nomeUsuario;
         $_SESSION['emailAdm'] = $retornoValidar->email;
         echo json_encode(['success' => true, 'message' => "Logado com sucesso!"]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Usuario e Senha invalidos!']);
+    echo json_encode(['success' => false, 'message' => 'Usuário e Senha inválidos!']);
 }

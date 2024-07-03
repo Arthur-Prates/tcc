@@ -9,12 +9,13 @@ $dados = filter_input(INPUT_POST, 'idepi', FILTER_SANITIZE_NUMBER_INT);
 if (!isset($_SESSION['pedidoscarrinho'])) {
     $_SESSION['pedidoscarrinho'] = array();
 }
+
 $produtoADD = false;
 $produto = listarItemExpecifico('*', 'epi', 'idepi', $dados);
 if ($produto !== 'vazio') {
     foreach ($produto as $item) {
         $id = $item->idepi;
-        $nomeEpi = $item->nome;
+        $nomeEpi = $item->nomeEpi;
         $foto = $item->foto;
         $codigo = $item->certificado;
 

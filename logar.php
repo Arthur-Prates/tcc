@@ -37,7 +37,10 @@ include_once('./func/funcoes.php');
             <input class="input" type="password" placeholder="" required="" name="senha" id="senha">
             <span>Senha</span>
         </label>
-        <button class="submit" type="button" name="btnLogin" id="btnLogin">Entrar</button>
+        <div id="alertlog" class="alert alert-danger" style="display: none">
+
+        </div>
+        <button class="submit" type="button" name="btnLogin" id="btnLogin" onclick="fazerLogin()">Entrar</button>
 
     </form>
 
@@ -59,7 +62,7 @@ include_once('./func/funcoes.php');
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-<script src="../js/script.js"></script>
+<script src="./js/script.js"></script>
 </body>
 
 </html>

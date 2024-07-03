@@ -9,10 +9,11 @@ if (!empty($_SESSION['idFuncionario'])) {
 } else {
     $idFuncionario = null;
 }
-
-
 ?>
-
+<form action="verificarAluguel.php" method="get">
+    <input type="text" id="codigoAluguel" name="codigoAluguel">
+    <button type="submit">dasd</button>
+</form>
 <!doctype html>
 <html lang="pt-br">
 
@@ -35,13 +36,14 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 <body>
 <?php include_once ('navbar.php')?>
-
+<!--66844c87dab1e-->
+<!--66844c73924e1-->
 <div class="container">
     <div class="row">
         <?php
         $tabelaProdutos = listarTabela('*','epi');
         foreach ($tabelaProdutos as $item){
-            $nome = $item -> nome;
+            $nome = $item -> nomeEpi;
             $certificado = $item -> certificado;
             $foto = $item -> foto;
             $id = $item -> idepi;

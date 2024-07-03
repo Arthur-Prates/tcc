@@ -14,7 +14,7 @@ $produto = listarItemExpecifico('*', 'epi', 'idepi', $dados);
 if ($produto !== 'vazio') {
     foreach ($produto as $item) {
         $id = $item->idepi;
-        $nomeEpi = $item->nome;
+        $nomeEpi = $item->nomeEpi;
         $foto = $item->foto;
         $codigo = $item->certificado;
 
@@ -31,15 +31,10 @@ if ($produto !== 'vazio') {
     }
     if ($produtoremove) {
         echo json_encode(['success' => true, 'message' => "Quantidade do produto diminuída!"]);
-    } else {
-
-        unset($_SESSION['pedidoscarrinho'][$fila]);
-
-
-        $_SESSION['pedidoscarrinho'] = array_values($_SESSION['pedidoscarrinho']);
-        echo json_encode(['success' => false, 'message' => "Produto retirado do carrinho "]);
-//        echo json_encode(['success' => false, 'message' => "Produto retirado do carrinho", 'indice' => $indiceEncontrado ]);
+    }else{
+        echo json_encode(['success' => false, 'message' => "Para remover do carrinho clique em 'remover'"]);
     }
+
 } else {
     echo json_encode(['success' => false, 'message' => "Erro ao remover produto!"]);
 }
