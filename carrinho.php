@@ -76,6 +76,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             <p class="mt-3" id="qtdMD">Quantidade: <?php echo $qtd ?></p>
                         </div>
                         <div class="col-lg-2 col-12 qtdSacola text-center">
+
                             <p class="mt-3" id="qtdLG">Quantidade: <?php echo $qtd ?></p>
                             <div class="">
                                 <div class="w-100">
@@ -91,12 +92,15 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                         onclick="excluirItem('<?php echo $indice ?>')">
                                     Remover
                                 </button>
+
                             </div>
+
                         </div>
                     </div>
                     <hr>
 
                     <?php
+                    $f =  $f+1;
                 }
                 ?>
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">

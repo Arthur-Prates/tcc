@@ -252,11 +252,11 @@ function postCarrinho(produto) {
         // });
 }
 
-function removeCarrinho(produto) {
+function removeCarrinho(produto, f) {
     fetch('removeCarrinho.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'idepi=' + encodeURIComponent(produto),
+        }, body: 'idepi=' + encodeURIComponent(produto) + '&num=' + encodeURIComponent(f),
     })
         .then(response => response.json())
         .then(data => {
