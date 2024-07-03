@@ -88,52 +88,14 @@ $codigoAluguel = filter_input(INPUT_GET, 'codigoAluguel', FILTER_SANITIZE_STRING
         ?>
         </tbody>
     </table>
+
 </div>
-
-<!--OlHJ8TpGjzQg6IQORmYVJt7e2hiRbugP_YrMdDrmlhqYsDlENs_kS2aXNTmWZgbU-->
-<!--https://api.qr-code-generator.com/v1/create?access-token=OlHJ8TpGjzQg6IQORmYVJt7e2hiRbugP_YrMdDrmlhqYsDlENs_kS2aXNTmWZgbU-->
 <?php
-// URL da API de geração de QR Code
-$api_url = "https://api.qr-code-generator.com/v1/create?access-token=4n2eRjB8_AfsC8uccO8U0RHYAP0u-SP5geFpfB9XHECrY6c2y4MTzP0eHSZE1VYN";
+//66845a71e3c4b
+$link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
-// Dados que serão enviados na solicitação
-$data = array(
-    "frame_name" => "no-frame",
-    "qr_code_text" => "https://www.qr-code-generator.com/",
-    "image_format" => "SVG",
-    "qr_code_logo" => "scan-me-square"
-);
-
-// Inicializar cURL
-$ch = curl_init($api_url);
-
-// Configurar a solicitação cURL
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json'
-));
-
-// Executar a solicitação e obter a resposta
-$response = curl_exec($ch);
-
-// Fechar a conexão cURL
-curl_close($ch);
-
-// Converter a resposta JSON em um array
-$response_data = json_decode($response, true);
-
-// Obter a URL do QR Code
-$qr_code_url = $response_data['url'];
 ?>
-
-<?php if (isset($qr_code_url)): ?>
-    <img src="<?php echo $qr_code_url; ?>" alt="QR Code">
-<?php else: ?>
-    <p>Erro ao gerar o QR Code.</p>
-<?php endif; ?>
-
+<img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link?>&amp;size=200x200" alt="" title="" />
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
