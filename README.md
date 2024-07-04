@@ -1,4 +1,6 @@
 https://code-with-me.global.jetbrains.com/5OjyP1BEmxRFs9-pTvRXyg#p=PS&fp=D59CC3A9B9FB72E73D0905F020D8BD144E9F57A59BABF2E74F6B33EF099403C2&newUi=true
+
+https://prod.liveshare.vsengsaas.visualstudio.com/join?D49CB34271F99406CD613F2755568B83AE23
 <h1 align="center" style="display: inline_block">
   
   Bem vindo a Pasta Base
