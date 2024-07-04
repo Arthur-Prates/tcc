@@ -38,7 +38,7 @@ function fazerLogin() {
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "dashboard.php";
-                }, 1000);
+                }, 2000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
                 alertlog.classList.add("acertoBonito");
@@ -47,12 +47,14 @@ function fazerLogin() {
             } else {
                 alertlog.style.display = "block";
                 alertlog.innerHTML = data.message;
+                esconderProcessando();
+
             }
             esconderProcessando();
         })
-        .catch((error) => {
-            console.error("Erro na requisição", error);
-        });
+        // .catch((error) => {
+        //     console.error("Erro na requisição", error);
+        // });
 }
 
 // FUNCAO DE LOADING
@@ -77,6 +79,90 @@ function mostrarProcessando() {
     divProcessando.innerHTML = '<dotlottie-player autoplay loop mode="normal" src="./img/loadingjson.json" style="width: 140px;"></dotlottie-player>'
     document.body.appendChild(divProcessando);
 }
+
+function fazerLoginAdm() {
+    var email = document.getElementById("email").value;
+    var senha = document.getElementById("senha").value;
+    var alertlog = document.getElementById("alertlog");
+
+    if (email === "") {
+        alertlog.style.display = "block";
+        alertlog.innerHTML =
+            "Email não digitado.";
+        return;
+    } else if (senha === "") {
+        alertlog.style.display = "block";
+        alertlog.innerHTML =
+            "Senha não digitada.";
+        return;
+    } else if (senha.length < 8) {
+        alertlog.style.display = "block";
+        alertlog.innerHTML = "Mínimo de 8 digitos.";
+        return;
+    } else {
+        alertlog.style.display = "none";
+    }
+    mostrarProcessandoAdm();
+    fetch("login.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body:
+            "email=" +
+            encodeURIComponent(email) +
+            "&senha=" +
+            encodeURIComponent(senha),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            if (data.success) {
+                setTimeout(function () {
+                    window.location.href = "dashboard.php";
+                }, 2000);
+                //alert(data.message);
+                alertlog.classList.remove("erroBonito");
+                alertlog.classList.add("acertoBonito");
+                alertlog.innerHTML = data.message;
+                alertlog.style.display = "block";
+            } else {
+                alertlog.style.display = "block";
+                alertlog.innerHTML = data.message;
+                esconderProcessando();
+
+            }
+            esconderProcessando();
+        })
+    .catch((error) => {
+        console.error("Erro na requisição", error);
+    });
+}
+
+// FUNCAO DE LOADING
+function mostrarProcessandoAdm() {
+    var divFundoEscuro = document.createElement('div');
+    divFundoEscuro.id = 'fundoEscuro';
+    divFundoEscuro.style.position = 'fixed';
+    divFundoEscuro.style.top = '0';
+    divFundoEscuro.style.left = '0';
+    divFundoEscuro.style.width = '100%';
+    divFundoEscuro.style.height = '100%';
+    divFundoEscuro.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    document.body.appendChild(divFundoEscuro);
+
+    var divProcessando = document.createElement("div");
+    divProcessando.id = "processandoDiv";
+    divProcessando.style.position = "fixed";
+    divProcessando.style.top = "50%";
+    divProcessando.style.left = "50%";
+    divProcessando.style.transform = "translate(-50%, -50%)";
+    // divProcessando.innerHTML = '<img src="../img/loading.gif" width="80px" alt="Processando..." title="Processando...">';
+    divProcessando.innerHTML = '<dotlottie-player autoplay loop mode="normal" src="../img/loadingjson.json" style="width: 140px;"></dotlottie-player>'
+    document.body.appendChild(divProcessando);
+}
+
+
 
 // FUNCAO DE ESCONDER O LOADING
 function esconderProcessando() {
@@ -355,16 +441,16 @@ function realizarAluguel(formulario,addEditDel,botoes){
                     alertSuccess(data.message, '#1B7E00');
                     formDados.removeEventListener('submit', submitHandler);
                     setTimeout(function (){
-                        window.location.href = 'index.php'
+                        window.location.href = 'aluguel.php'
                     },1500)
                 } else {
                     alertError(data.message);
                     formDados.removeEventListener('submit', submitHandler);
                 }
             })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
     };
     formDados.addEventListener('submit', submitHandler);
 

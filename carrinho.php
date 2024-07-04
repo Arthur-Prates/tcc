@@ -100,7 +100,6 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     <hr>
 
                     <?php
-                    $f =  $f+1;
                 }
                 ?>
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
@@ -112,18 +111,19 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                        value="<?php echo DATAATUAL ?>" required="required">
                             </div>
                             <div class="mt-4">
+                                <label for="dataFimAluguel">Selecione a data de término do aluguel:</label>
+                                <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control" required="required" value="<?php echo DATAATUAL ?>">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 ">
+                            <div class="mt-4">
                                 <label for="addPrioridade" class="label-control">Selecione a prioridade:</label>
                                 <select name="addPrioridade" id="addPrioridade" class="form-control" required="required">
                                     <option value="BAIXA" selected>Baixa</option>
                                     <option value="MEDIA">Média</option>
                                     <option value="ALTA">Alta</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12 ">
-                            <div class="mt-4">
-                                <label for="dataFimAluguel">Selecione a data de término do aluguel:</label>
-                                <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control" required="required" value="<?php echo DATAATUAL ?>">
                             </div>
                             <div class="input-group mt-4">
                                 <span class="input-group-text">Observação</span>

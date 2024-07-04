@@ -15,7 +15,12 @@ if (!empty($controle) && isset($controle)) {
         case 'limparCarrinho':
             include_once 'limparCarrinho.php';
             break;
-
+        case 'listarAluguel':
+            include_once 'aluguel.php';
+            break;
+        case 'visualizarAluguel':
+            include_once 'visualizarAluguel.php';
+            break;
     }
 } else {
     ?>
@@ -31,7 +36,7 @@ if (!empty($controle) && isset($controle)) {
 //$url = (isset($_GET['url'])) ? $_GET['url'] : 'dashboard.php';
 //$url = array_filter(explode('/', $url));
 //
-//$file = $url[0] . '.php';
+//$file = $url[0] . 'upload.php';
 //
 //if (is_file($file)) {
 //    include $file;

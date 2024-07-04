@@ -10,10 +10,7 @@ if (!empty($_SESSION['idFuncionario'])) {
     $idFuncionario = null;
 }
 ?>
-<form action="verificarAluguel.php" method="get">
-    <input type="text" id="codigoAluguel" name="codigoAluguel">
-    <button type="submit">dasd</button>
-</form>
+
 <!doctype html>
 <html lang="pt-br">
 

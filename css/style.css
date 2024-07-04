@@ -184,6 +184,7 @@ body {
 
 .dropdown-item:hover {
     color: #ffffff !important;
+    background-color: #797979;
 }
 
 
@@ -206,8 +207,8 @@ body {
     .btnRemover{
         width: 85%;
     }
-
 }
+
 @media (min-width: 992px){
     #qtdMD{
         display: none;
@@ -253,4 +254,15 @@ body {
     text-overflow: ellipsis !important;
     white-space: nowrap;
     direction: ltr;
+}
+
+.fotoEpi {
+    object-fit: scale-down;
+    border-radius: 50%;
+}
+.centraliza{
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
