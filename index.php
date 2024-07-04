@@ -30,7 +30,6 @@ if (!empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
-
 <body>
 <?php include_once ('navbar.php')?>
 <!--66844c87dab1e-->

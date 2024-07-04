@@ -11,8 +11,8 @@ if ($_SESSION['idadm']) {
 }
 
 
-?>
 
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -53,21 +53,20 @@ include_once('nav.php');
             <div class="col-12">
                 <div class="d-flex justify-content-center align-items-center">
 
-
                     <form action="verificarAluguel.php" method="get">
                         <input type="text" id="codigoAluguel" name="codigoAluguel">
-                        <button type="submit" class="btn btn-success">Pesquisar EPI</button>
+                        <button type="submit" class="btn btn-success">Pesquisar Aluguel</button>
                     </form>
 
                 </div>
             </div>
         </div>
-        <div class="row d-flex justify-content-center align-items-center ">
+        <div class="row d-flex justify-content-between align-items-center ">
             <div class="col-4 col-md-4 col-sm-12">
-
                 <div class=" d-flex justify-content-center align-items-center ">
                     <canvas id="myChart"></canvas>
                 </div>
+
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script>
                     const ctx = document.getElementById('myChart');
@@ -76,9 +75,9 @@ include_once('nav.php');
                         data: {
                             labels: ['Alugado', 'Não Alugados'],
                             datasets: [{
-                                label: 'Número de aluguéis',
+                                label: '',
 
-                                data: ['235', '532'],
+                                data: ['<?php  echo  valoresGraficoQuantidadeEpi('alugado') ?>', '<?php  echo  valoresGraficoQuantidadeEpi('contar') ;?>'],
 
                                 backgroundColor: [
                                     'rgba(219,2,2,0.8)',
@@ -108,46 +107,8 @@ include_once('nav.php');
             </div>
             <div class="col-4 col-md-4 col-sm-12">
                 <?php
-                $aray = array();
-                $topTotal = array();
-                $arayPessoas = array();
-                $contarAray = 0;
-
-                $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,nomeUsuario', 'usuario','aluguel','idusuario','idusuario','idusuario','ASC');
-
-                foreach ($selectAlugadores as $itemAlu) {
-                    $iduser = $itemAlu->idusuario;
-                    $nomeUser = $itemAlu->nomeUsuario;
-                    array_push($aray, "$iduser");
-                    array_push($arayPessoas, "$nomeUser");
-                }
-
-                $aray = array_unique($aray);
-                $aray = array_values($aray);
-                $arayPessoas = array_unique($arayPessoas);
-                $arayPessoas = array_values($arayPessoas);
-                echo '<pre>';
-                print_r($aray);
-                echo '</pre>';
 
 
-                foreach ($aray as $itemArray) {
-                    $id = $itemArray;
-                    echo $id.'<br>';
-
-                    $selectTopAluguel = listarItemExpecifico('count(quantidade) as total', 'aluguel', 'idusuario', $id);
-            foreach ($selectTopAluguel as $valor){
-                $fim = $valor->total;
-            }
-                array_push($topTotal,"$fim");
-                $topTotal = array_values($topTotal);
-                $contarAray = $contarAray+1;
-                }
-                            echo '<pre>';
-                            print_r($topTotal);
-                            echo '</pre>';
-                            $contarPeople= 0;
-                            $contarValue= 0;
                 ?>
                 <div class=" d-flex justify-content-center align-items-center ">
                     <canvas id="myChart2"></canvas>
@@ -160,24 +121,33 @@ include_once('nav.php');
                         data: {
                             labels: [
                                 <?php
-                                foreach ($arayPessoas as $people){
-                                    ?>
-                                '<?php echo $arayPessoas[$contarPeople];
-                                    $contarPeople = $contarPeople+1?>',
+                                $numPeople = 0;
+                                $TOTALFIMEND =  valoresGraficoTopFuncionarios('nome');
+                                foreach ($TOTALFIMEND as  $key => $value){
+                                if($numPeople < 5){
+
+                                ?>
+                                '<?php echo $key;?>',
                                 <?php
                                 }
+                                $numPeople = $numPeople + 1;
+                                }
                                 ?>
-                               ],
+                            ],
                             datasets: [{
                                 label: 'Quantidade de Aluguéis feitos',
 
                                 data: [
                                     <?php
-                                    foreach ($topTotal as $value){
+                                    $numValores = 0;
+                                    $TOTALFIMEND =  valoresGraficoTopFuncionarios('valor');
+                                    foreach ($TOTALFIMEND as  $key => $value){
+                                    if($numValores < 5){
                                     ?>
-                                    '<?php echo $topTotal[$contarValue];
-                                        $contarValue = $contarValue+1?>',
+                                    '<?php echo $value;?>',
                                     <?php
+                                    $numValores = $numValores + 1;
+                                    }
                                     }
                                     ?>
                                 ],

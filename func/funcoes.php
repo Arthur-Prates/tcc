@@ -21,7 +21,7 @@ function listarTabela($campos, $tabela)
     $conn = null;
 }
 
-function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valorCampo,$campoExpecifico2,$valorCampo2)
+function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2)
 {
     $conn = conectar();
     try {
@@ -69,6 +69,32 @@ function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
     $conn = null;
 }
 
+function listarItemExpecificoOrdem($campos, $tabela, $campoExpecifico, $valorCampo, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoExpecifico = ? ORDER BY $ordem $tipoOrdem");
+//        $sqlListaTabelas->bindValue(1, $campos, PDO::PARAM_STR);
+//        $sqlListaTabelas->bindValue(2, $tabela, PDO::PARAM_STR);
+//        $sqlListaTabelas->bindValue(1, $campoExpecifico, PDO::PARAM_STR);
+        $sqlListaTabelas->bindValue(1, $valorCampo, PDO::PARAM_STR);
+        $sqlListaTabelas->execute();
+        $conn->commit();
+        if ($sqlListaTabelas->rowCount() > 0) {
+            return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'vazio';
+    } catch
+    (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
+
 function listarTabelaOrdenada($campos, $tabela, $campoOrdem, $ASCouDESC)
 {
     $conn = conectar();
@@ -112,12 +138,13 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
     }
     $conn = null;
 }
+
 function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem)
 {
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 ORDER BY $ordem $tipoOrdem ");
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 ORDER BY $ordem $tipoOrdem");
         //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
         $sqlLista->execute();
         $conn->commit();
@@ -133,7 +160,8 @@ function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1
     }
     $conn = null;
 }
-function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $id1, $id2,$campoExpecifico,$valorCampo, $ordem, $tipoOrdem)
+
+function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $id1, $id2, $campoExpecifico, $valorCampo, $ordem, $tipoOrdem)
 {
     $conn = conectar();
     try {
@@ -154,6 +182,7 @@ function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $i
     }
     $conn = null;
 }
+
 function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $ordem, $tipoOrdem)
 {
     $conn = conectar();
@@ -175,7 +204,7 @@ function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tab
     $conn = null;
 }
 
-function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4,$campoExpecifico,$valorCampo, $ordem, $tipoOrdem)
+function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $campoExpecifico, $valorCampo, $ordem, $tipoOrdem)
 {
     $conn = conectar();
     try {
@@ -260,7 +289,7 @@ function insert2Item($tabela, $dados, $novosDados1, $novosDados2)
     $conn = null;
 }
 
-function insert3Item($tabela, $dados, $novosDados1, $novosDados2,$novosDados3)
+function insert3Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3)
 {
     $conn = conectar();
     try {
@@ -480,7 +509,7 @@ function insert10Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3,
     $conn = null;
 }
 
-function insert11Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5, $novosDados6, $novosDados7, $novosDados8, $novosDados9, $novosDados10,$novosDados11)
+function insert11Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5, $novosDados6, $novosDados7, $novosDados8, $novosDados9, $novosDados10, $novosDados11)
 {
     $conn = conectar();
     try {
@@ -533,6 +562,7 @@ function deletarCadastro($tabela, $NomeDoCampoId, $id)
     }
     $conn = null;
 }
+
 function alterarItemGlobal($tabela, $comando, $identificar, $id)
 {
     $conn = conectar();
@@ -797,7 +827,7 @@ function alterar9Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
     $conn = null;
 }
 
-function alterar10Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $campo7, $campo8, $campo9,$campo10, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7, $valor8, $valor9,$valor10, $identificar, $id)
+function alterar10Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $campo7, $campo8, $campo9, $campo10, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7, $valor8, $valor9, $valor10, $identificar, $id)
 {
     $conn = conectar();
     try {
@@ -971,4 +1001,91 @@ function validaCPF($cpf)
         }
     }
     return true;
+}
+
+function valoresGraficoTopFuncionarios($tipo)
+{
+    $aray = array();
+    $topTotal = array();
+    $arayPessoas = array();
+    $contarAray = 0;
+
+    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,nomeUsuario', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idusuario', 'ASC');
+
+    foreach ($selectAlugadores as $itemAlu) {
+        $iduser = $itemAlu->idusuario;
+        $nomeUser = $itemAlu->nomeUsuario;
+        array_push($aray, "$iduser");
+        array_push($arayPessoas, "$nomeUser");
+    }
+
+    $aray = array_unique($aray);
+    $aray = array_values($aray);
+    $arayPessoas = array_unique($arayPessoas);
+    $arayPessoas = array_values($arayPessoas);
+
+
+    foreach ($aray as $itemArray) {
+        $id = $itemArray;
+
+
+        $selectTopAluguel = listarItemExpecifico('sum(quantidade) as total', 'aluguel', 'idusuario', $id);
+        foreach ($selectTopAluguel as $valor) {
+            $fim = $valor->total;
+        }
+
+        array_push($topTotal, "$fim");
+
+        $topTotal = array_values($topTotal);
+        $contarAray = $contarAray + 1;
+    }
+
+    $TOTALFIMEND = array_combine($arayPessoas, $topTotal);
+    arsort($TOTALFIMEND);
+return $TOTALFIMEND;
+
+}
+
+function valoresGraficoQuantidadeEpi($tipo)
+{
+    $selectAlugados = listarTabela('count(quantidade) as totalAlugado', 'aluguel');
+    if ($tipo == 'alugado') {
+    foreach ($selectAlugados as $itemContar) {
+        $alugado = $itemContar->totalAlugado;
+        return $alugado;
+    }
+
+    } else if ($tipo = 'contar') {
+
+
+    $arayEpiTable = array();
+    $epi = listarTabela('idepi', 'epi');
+    foreach ($epi as $epiItems) {
+        $alinhar = $epiItems->idepi;
+        array_push($arayEpiTable, "$alinhar");
+
+    }
+
+    $arayEpiTable = array_values($arayEpiTable);
+    $arayEpiTable = array_unique($arayEpiTable);
+
+
+    $arayEpiAlugadoTable = array();
+    $epiResultado = array();
+    $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
+
+
+    foreach ($arayEpiAlugadoTable as $epiItems2) {
+        $alinhar2 = $epiItems2->idepi;
+        array_push($epiResultado, "$alinhar2");
+
+    }
+    $epiResultado = array_values($epiResultado);
+    $epiResultado = array_unique($epiResultado);
+
+    $result = array_diff($arayEpiTable, $epiResultado);
+    $result = array_values($result);
+    $result = array_unique($result);
+    return count($result);
+}
 }

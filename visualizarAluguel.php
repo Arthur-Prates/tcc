@@ -10,8 +10,9 @@ if (!empty($_SESSION['idFuncionario'])) {
     $idFuncionario = null;
 }
 
-echo json_encode(['success' => true, 'message' => 'oiiii'])
+$codigoAluguel = filter_input(INPUT_POST, 'idCodAluguel', FILTER_SANITIZE_STRING);
 
+$link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel";
 ?>
 
 <!doctype html>
@@ -37,6 +38,61 @@ echo json_encode(['success' => true, 'message' => 'oiiii'])
 <body>
 <?php include_once('navbar.php') ?>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 fs-2">
+            <a href="aluguel.php" class="btn btn-sm btn-outline-secondary">Voltar</a>
+            Empréstimo - #<?php echo $codigoAluguel ?>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-5 text-center">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=300x300" alt=""
+                 title=""/>
+        </div>
+        <div class="col-lg-7">
+            <?php
+            $tabelaAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica('*', 'aluguel', 'epi', 'usuario', 'idepi', 'idepi', 'idusuario', 'idusuario', 'codigoAluguel', $codigoAluguel, 'idaluguel', 'ASC');
+            if ($tabelaAluguel !== 'vazio') {
+                foreach ($tabelaAluguel as $item) {
+                    $dataInicioAluguel = $item->dataInicio;
+                    $dataFinalAluguel = $item->dataFim;
+                    $locatario = $item->nomeUsuario;
+                    $email = $item->email;
+                    $prioridade = $item->prioridade;
+
+                    $dataInicioAluguel = implode("/", array_reverse(explode("-", $dataInicioAluguel)));
+                    $dataFinalAluguel = implode("/", array_reverse(explode("-", $dataFinalAluguel)));
+                    if ($prioridade == 'ALTA') {
+                        $prioridade = 'Alta';
+                    } else if ($prioridade == 'MEDIA') {
+                        $prioridade = 'Média';
+                    } else {
+                        $prioridade = 'Baixa';
+                    }
+                    ?>
+                    <p class="mt-4">Locatário: <?php echo $locatario ?></p>
+                    <p>Email: <?php echo $email ?></p>
+                    <p>Data de início do aluguel: <?php echo $dataInicioAluguel ?></p>
+                    <p>Data final do aluguel: <?php echo $dataFinalAluguel ?></p>
+                    <p>Nível de prioridade: <?php echo $prioridade ?></p>
+
+                    <?php
+                }
+            } else {
+                ?>
+                <div class="text-center">
+                    <h1>Nenhum EPI encontrado!</h1>
+                </div>
+                <?php
+            }
+
+            ?>
+        </div>
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
