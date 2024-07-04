@@ -9,14 +9,22 @@ if (!empty($_SESSION['idFuncionario'])) {
 } else {
     $idFuncionario = null;
 }
+
 ?>
+<!--<form action="verificarAluguel.php" method="get">-->
+<!--    <input type="text" id="codigoAluguel" name="codigoAluguel">-->
+<!--    <button type="submit">dasd</button>-->
+<!--</form>-->
+
+<!--66844c87dab1e-->
+<!--66844c73924e1-->
 <!doctype html>
 <html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Safetech</title>
+    <title>SAFETECH</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -34,53 +42,118 @@ if (!empty($_SESSION['idFuncionario'])) {
 <?php include_once('navbar.php') ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="fs-3">
-                Aluguéis recentes
-            </div>
-            <div class="mt-3">
-                <table class="table table-strip">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Código do aluguel</th>
-                        <th scope="col">Data em que foi realizado</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $cont = 1;
-                    $alugueis = listarItemExpecifico('*', 'aluguel', 'idusuario', "$idFuncionario");
-                    if ($alugueis !== 'vazio') {
-                        foreach ($alugueis as $aluguel) {
-                            $codigoAluguel = $aluguel->codigoAluguel;
-                            $dataRegistro = $aluguel->cadastro;
-
-
-                            ?>
-                            <tr>
-                                <th scope="row"><?php echo $cont ?></th>
-                                <td><?php echo $codigoAluguel ?></td>
-                                <td><?php echo $dataRegistro ?></td>
-                                <td>
-                                    <button class="btn btn-sm btn-success">Ver aluguel</button>
-                                    <button class="btn btn-sm btn-danger">Excluir</button>
-                                </td>
-                            </tr>
-                            <?php
-                            ++$cont;
-                        }
-                    } else {
-                        ?>
-                        <th colspan="4" class="text-center">NENHUM ALUGUEL ENCONTRADO</th>
-                        <?php
-                    }
+    <h2 class="mt-3">
+        <a href="index.php" class="btn btn-sm btn-outline-secondary">Voltar</a>
+        Empréstimos</h2>
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Código do aluguel</th>
+                    <th scope="col">Data do aluguel</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $cont = 1;
+                $alugueis = listarItemExpecificoOrdem('*', 'aluguel', 'idusuario', "$idFuncionario", 'idaluguel', 'DESC');
+                foreach ($alugueis as $aluguel) {
+                    $id = $aluguel->idaluguel;
+                    $codigoAluguel = $aluguel->codigoAluguel;
+                    $dataAluguel = $aluguel->cadastro;
+                    $dataFimAluguel = $aluguel->dataFim;
+                    $devolvido = $aluguel->devolvido;
                     ?>
-                    </tbody>
-                </table>
+                    <tr>
+                        <th scope="row"><?php echo $cont ?></th>
+                        <td><?php echo $codigoAluguel ?></td>
+                        <td><?php echo $dataAluguel ?></td>
+                        <td class="d-flex">
+                            <form action="visualizarAluguel.php" name="frmCodAluguel" id="frmCodAluguel" method="post">
+                                <input type="hidden" id="idCodAluguel" name="idCodAluguel"
+                                       value="<?php echo $codigoAluguel ?>">
+                                <button class="btn btn-success btn-sm">Visualizar</button>
+                            </form>
+                            <?php
+                            $dataAtual = DATAATUAL;
+                            if ($dataFimAluguel >= $dataAluguel || $devolvido !== 'S') {
+                                ?>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#erroExcluir">
+                                    Excluir
+                                </button>
+                                <?php
+                            } else {
+                                ?>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        onclick="abrirModalJsExcluirAluguel('<?php echo $id ?>', 'idDeleteAluguel', 'nao', 'nao', 'mdlExcluirAluguel', 'nao', 'A', 'btnExcluirAluguel', 'deletarAluguel', 'nao', 'nao', 'frmDeleteAluguel')">
+                                    Excluir
+                                </button>
+                                <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                    ++$cont;
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal alerta -->
+<div class="modal fade" id="erroExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-danger">
+            <div class="modal-header bg-danger text-white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Problemas ao excluir</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <h4>Você não pode excluir um aluguel com devolução pendente</h4>
+                </div>
+            </div>
+            <div class="modal-footer bg-danger">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="mdlExcluirAluguel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Excluir aluguel</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" id="frmDeleteAluguel" name="frmDeleteAluguel">
+                <div class="modal-body">
+                    <input type="text" id="idDeleteAluguel" name="idDeleteAluguel">
+                    <div class="alert alert-danger">
+                        Você tem certeza que deseja excluir esse aluguel?
+                        <h5>Essa ação não pode ser desfeita!</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnMdlExcluirAluguel">
+                        Fechar
+                    </button>
+                    <button type="submit" class="btn btn-danger" id="btnExcluirAluguel">Excluir</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

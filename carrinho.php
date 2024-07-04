@@ -62,7 +62,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     $id = $itemEpi['idproduto'];
                     $foto = $itemEpi['foto'];
                     $certificado = $itemEpi['certificado'];
-                    $qtd = $itemEpi['quantidade']
+                    $qtd = $itemEpi['quantidade'];
 
                     ?>
                     <div class="row mt-5">
@@ -106,20 +106,75 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     <div class="row mb-5">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="mt-4">
-                                <label for="dataInicioAluguel">Selecione a data de início do aluguel:</label>
+                                <label for="dataInicioAluguel">Selecione a data do aluguel:</label>
                                 <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control"
                                        value="<?php echo DATAATUAL ?>" required="required">
                             </div>
                             <div class="mt-4">
-                                <label for="dataFimAluguel">Selecione a data de término do aluguel:</label>
-                                <input type="date" id="dataFimAluguel" name="dataFimAluguel" class="form-control" required="required" value="<?php echo DATAATUAL ?>">
+                                <label for="horaInicialAluguel">Selecione a hora de início do aluguel:</label>
+                                <select name="horaInicialAluguel" id="horaInicialAluguel" class="form-control">
+                                    <?php
+                                    $minuto = '0';
+                                    $hora = 0;
+                                    while ($hora < 24) {
+                                        if ($hora < 10) {
+                                            ?>
+                                            <option value="<?php  echo '0' . $hora . $minuto . '0';?>"><?php  echo '0' . $hora . ':' . $minuto . '0';?></option>
+                                            <?php
+
+                                        } else {
+
+                                            ?>
+                                            <option value="<?php  echo $hora . $minuto . '0';?>"><?php  echo $hora . ':' . $minuto . '0';?></option>
+                                            <?php
+                                        }
+
+                                        if ($minuto == '0') {
+                                            $minuto = '3';
+                                        } else {
+                                            $minuto = '0';
+                                            $hora = $hora + 1;
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mt-4">
+                                <label for="horaFinalAluguel">Selecione a hora de término do aluguel:</label>
+                                <select name="horaFinalAluguel" id="horaFinalAluguel" class="form-control">
+                                    <?php
+                                    $minuto = '0';
+                                    $hora = 0;
+                                    while ($hora < 24) {
+                                        if ($hora < 10) {
+                                            ?>
+                                            <option value="<?php  echo '0' . $hora . $minuto . '0';?>"><?php  echo '0' . $hora . ':' . $minuto . '0';?></option>
+                                            <?php
+
+                                        } else {
+
+                                            ?>
+                                            <option value="<?php  echo $hora . $minuto . '0';?>"><?php  echo $hora . ':' . $minuto . '0';?></option>
+                                            <?php
+                                        }
+
+                                        if ($minuto == '0') {
+                                            $minuto = '3';
+                                        } else {
+                                            $minuto = '0';
+                                            $hora = $hora + 1;
+                                        }
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 ">
                             <div class="mt-4">
                                 <label for="addPrioridade" class="label-control">Selecione a prioridade:</label>
-                                <select name="addPrioridade" id="addPrioridade" class="form-control" required="required">
+                                <select name="addPrioridade" id="addPrioridade" class="form-control"
+                                        required="required">
                                     <option value="BAIXA" selected>Baixa</option>
                                     <option value="MEDIA">Média</option>
                                     <option value="ALTA">Alta</option>
@@ -127,7 +182,8 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             </div>
                             <div class="input-group mt-4">
                                 <span class="input-group-text">Observação</span>
-                                <textarea class="form-control" aria-label="With textarea" name="addObservacao" id="addObservacao"></textarea>
+                                <textarea class="form-control" aria-label="With textarea" name="addObservacao"
+                                          id="addObservacao"></textarea>
                             </div>
                         </div>
                         <div class="col-12">
@@ -135,14 +191,17 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                 <?php
                                 if (isset($_SESSION['idFuncionario'])) {
                                     ?>
-                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnConcluirAluguel" type="submit"
-                                            name="btnConcluirAluguel" onclick="realizarAluguel('frmCarrinho','addAluguel','btnConcluirAluguel')">
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnConcluirAluguel"
+                                            type="submit"
+                                            name="btnConcluirAluguel"
+                                            onclick="realizarAluguel('frmCarrinho','addAluguel','btnConcluirAluguel')">
                                         Concluir aluguel
                                     </button>
                                     <?php
                                 } else {
                                     ?>
-                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnLogin" type="button"
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnLogin"
+                                            type="button"
                                             name="btnLogin" onclick="redireciona('logar.php')">
                                         Concluir aluguel
                                     </button>
