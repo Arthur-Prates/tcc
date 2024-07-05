@@ -181,5 +181,5 @@ adm@gmail.com
 <h2>Nosso time</h2>
 
 - [Arthur Prates](https://github.com/Arthur-Prates) - Desenvolvedor(a) Back-end ;
-- [Arthur Prates](https://github.com/MarcoAntonioNobre) - Desenvolvedor(a) Back-end ;
-- [Arthur Prates](https://github.com/cclar13) - Desenvolvedor(a) Back-end ;
+- [Marco Nobre](https://github.com/MarcoAntonioNobre) - Desenvolvedor(a) Back-end ;
+- [Clarisse Oliveira](https://github.com/cclar13) - Desenvolvedor(a) Back-end ;
