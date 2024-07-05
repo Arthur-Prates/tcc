@@ -6,7 +6,8 @@ include_once('./func/funcoes.php');
 $idFuncionario = $_SESSION['idFuncionario'];
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-$hora = date('h:i');
+
+$hora = date('H:i:s');
 
 
 if (isset($dados) && !empty($dados)) {
@@ -14,32 +15,56 @@ if (isset($dados) && !empty($dados)) {
     $horaInicial = isset($dados['horaInicialAluguel']) ? addslashes($dados['horaInicialAluguel']) : '';
     $horaFim = isset($dados['horaFinalAluguel']) ? addslashes($dados['horaFinalAluguel']) : '';
     $prioridade = isset($dados['addPrioridade']) ? addslashes($dados['addPrioridade']) : '';
-    $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : '';
+    $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : 'NAO';
 
-    if ($observacao == '') {
-        $observacao = 'NAO';
+
+    $data = $dataAluguel;
+    $verificaData = validarData($data);
+
+    if ($verificaData != 1 || $dataAluguel < date('Y-m-d')) {
+        $dataVerificada = false;
+        $msgData = 'Data inválida, favor selecionar uma data válida.';
+    } else {
+        $dataVerificada = true;
+        $msgData = '';
     }
 
-    if ($dataAluguel !== date('Y-m-d') || $dataAluguel < date('Y-m-d')) {
-        echo json_encode(['success' => false, 'errodata' => true, 'dataErrada' => true, 'horaInicial' => false, 'horaFinal' => false, 'mensagem' => 'Data inválida, favor selecionar uma data válida']);
-    } else if ($horaInicial < $hora) {
-        echo json_encode(['success' => false, 'errodata' => true, 'dataErrada' => false, 'horaInicial' => true, 'horaFinal' => false, 'mensagem' => 'A hora inicial do aluguel não pode ser menor que a atual!']);
-    } else if ($horaFim <= $horaInicial) {
-        echo json_encode(['success' => false, 'errodata' => true, 'dataErrada' => false, 'horaInicial' => false, 'horaFinal' => true, 'mensagem' => 'A hora final deve ser maior que a inicial!']);
+    if ($horaInicial < $hora && $dataAluguel == date('Y-m-d')){
+        $horaInicialVerificada = false;
+        $msgHoraInicial = 'A hora inicial não pode ser menor que a atual.';
+    } else if ($dataAluguel > date('Y-m-d')) {
+        $horaInicialVerificada = true;
+        $msgHoraInicial = '';
+    }else{
+        $horaInicialVerificada = true;
+        $msgHoraInicial = '';
+    }
+
+    if ($horaFim <= $horaInicial) {
+        $horaFimVerificada = false;
+        $msgHoraFim = 'A hora final deve ser maior que a inicial.';
     } else {
+        $horaFimVerificada = true;
+        $msgHoraFim = '';
+    }
+
+    if ($dataVerificada == false || $horaInicialVerificada == false || $horaFimVerificada == false) {
+        echo json_encode(['success' => false, 'errodata' => true, 'msgData' => $msgData, 'msgHoraInicial' => $msgHoraInicial, 'msgHoraFinal' => $msgHoraFim]);
+    }
+
+
+    if ($dataVerificada == true && $horaInicialVerificada == true && $horaFimVerificada == true) {
         $codigoAluguel = uniqid();
         foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
             $idepi = $produtoCarrinho['idproduto'];
             $quantidade = $produtoCarrinho['quantidade'];
             $insert = insert11Item('aluguel', 'idusuario, idepi, quantidade, dataAluguel, horaInicial, horaFinal, codigoAluguel, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$idepi", "$quantidade", "$dataAluguel", "$horaInicial", "$horaFim", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
-
         }
         echo json_encode(['success' => true, 'errodata' => false, 'message' => "Produto(s) alugado(s)!"]);
         unset($_SESSION['pedidoscarrinho']);
     }
 
 }
-
 
 //$horaInicial = $dados['horaInicialAluguel'];
 //$horaFinal = $dados['horaFinalAluguel'];

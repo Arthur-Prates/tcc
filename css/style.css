@@ -267,3 +267,27 @@ body {
     align-items: center !important;
 }
 
+.dashAdm{
+    height: 100vh !important;
+}
+.btn-inputAluguel{
+    padding: 10px 20px !important;
+    background-color: #38d39f;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+transition: all 0.2s;
+}
+.btn-inputAluguel:hover{
+    padding: 10px 20px !important;
+    color: #38d39f;
+background-color: white;
+    border: 1px solid #38d39f;
+    border-radius: 10px;
+}
+.cardeCarrossel {
+    display: flex;
+flex-direction: column;
+    align-content: space-between;
+    height: 150px !important;
+}

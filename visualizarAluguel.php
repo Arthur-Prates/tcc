@@ -62,6 +62,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                     $locatario = $item->nomeUsuario;
                     $email = $item->email;
                     $prioridade = $item->prioridade;
+                    $observacao = $item -> observacao;
 
                     $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
 
@@ -82,6 +83,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                 <p>Hora inicial do aluguel: <?php echo $horaInicial ?></p>
                 <p>Hora final do aluguel: <?php echo $horaFinal ?></p>
                 <p>Nível de prioridade: <?php echo $prioridade ?></p>
+                <p>Observação: <?php echo $observacao ?></p>
                 <?php
             } else {
                 ?>

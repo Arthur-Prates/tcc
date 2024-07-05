@@ -50,12 +50,14 @@ include_once('nav.php');
 <div class="container">
     <div id='show' class='show'>
         <div class="row">
-            <div class="col-12">
-                <div class="d-flex justify-content-center align-items-center">
+            <div class="col-12 ">
+                <div class="d-flex justify-content-center align-items-center dashAdm">
 
-                    <form action="verificarAluguel.php" method="get">
-                        <input type="text" id="codigoAluguel" name="codigoAluguel">
-                        <button type="submit" class="btn btn-success">Pesquisar Aluguel</button>
+                    <form action="verificarAluguel.php" method="get" >
+                        <label for="codigoAluguel" class="form-label">Código da Reserva:</label>
+                        <input type="text" class="form-control" id="codigoAluguel" name="codigoAluguel" placeholder="Código">
+                        <span class="input-group-text">   <button type="submit" class="btn btn-inputAluguel">Pesquisar Aluguel</button></span>
+                        
                     </form>
 
                 </div>
@@ -73,26 +75,34 @@ include_once('nav.php');
                     new Chart(ctx, {
                         type: 'doughnut',
                         data: {
-                            labels: ['Alugado', 'Não Alugados'],
+                            labels: ['Reservado', 'Não Reservados'],
                             datasets: [{
                                 label: '',
 
-                                data: ['<?php  echo  valoresGraficoQuantidadeEpi('alugado') ?>', '<?php  echo  valoresGraficoQuantidadeEpi('contar') ;?>'],
+                                data: ['<?php  echo  valoresGraficoQuantidadeEpi('indisponivel') ?>', '<?php  echo  valoresGraficoQuantidadeEpi('disponivel') ;?>'],
 
                                 backgroundColor: [
                                     'rgba(219,2,2,0.8)',
-                                    'rgba(12,148,0, 0.8)'
-
+                                    'rgba(42,197,143,0.8)'
                                 ],
                                 borderColor: [
-                                    'rgb(2,2,2)',
-                                    'rgb(2,2,2)'
+                                    'rgba(219,2,2)',
+                                    'rgba(42,197,143)'
 
                                 ],
                                 borderWidth: 2
                             }]
                         },
                         options: {
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Quantidade de Items Reservados',
+                                    padding: {
+                                        top: 10,
+                                        bottom: 30
+                                    }
+                                }},
                             scales: {
                                 y: {
                                     beginAtZero: true
@@ -153,16 +163,20 @@ include_once('nav.php');
                                 ],
 
                                 backgroundColor: [
-                                    'rgba(211,50,50,0.8)',
-                                    'rgba(255,128,0,0.8)',
-                                    'rgba(247,255,0,0.8)',
-                                    'rgba(50,211,211,0.8)',
-                                    'rgba(17,0,255,0.8)'
+                                    'rgba(183, 28, 28,0.8)',
+                                    'rgba(255, 111, 0,0.8)',
+                                    'rgba(255,186,8,0.8)',
+                                    'rgba(63,132,229,0.8)',
+                                    'rgba(22,152,115,0.8)',
 
                                 ],
                                 borderColor: [
-                                    'rgb(2,2,2)',
-                                    'rgb(2,2,2)'
+                                    'rgba(183, 28, 28)',
+                                    'rgba(255, 111, 0)',
+                                    'rgba(255,186,8)',
+                                    'rgba(63,132,229)',
+                                    'rgba(22,152,115)',
+
 
                                 ],
                                 borderWidth: 2
@@ -204,6 +218,7 @@ include_once('nav.php');
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 <script src="../js/script.js"></script>
+
 </body>
 
 </html>
