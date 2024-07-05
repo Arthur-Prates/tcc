@@ -1,13 +1,12 @@
-https://code-with-me.global.jetbrains.com/5OjyP1BEmxRFs9-pTvRXyg#p=PS&fp=D59CC3A9B9FB72E73D0905F020D8BD144E9F57A59BABF2E74F6B33EF099403C2&newUi=true
 
-https://prod.liveshare.vsengsaas.visualstudio.com/join?D49CB34271F99406CD613F2755568B83AE23
 <h1 align="center" style="display: inline_block">
   
-  Bem vindo a Pasta Base
+  Bem vindo ao nosso trabalho de conclusão de curso
 
 </h1>
 
-<p align="center" style="display: inline_block"> Fale um pouco do trbalho, 1/2 linha.</p>
+<p align="center" style="display: inline_block"> 
+O trabalho de conclusão de curso visa otimizar a gestão de EPIs na MáquinasTech, reduzindo papelada e agilizando o processo de distribuição para garantir maior eficiência operacional.</p>
 
 <br>
 
@@ -130,9 +129,32 @@ https://downloads.mysql.com/archives/query/
 <h2>Acessando o sistema</h2>
 
 <p>Para conseguir acessar o sistema você precisa digitar as credenciais do administrador.</p>
+<p>Existem 2 logins, o de usuario e o de Adminstrador, o primeiro login da permissão para os funcionário reservarem os seus respectivos EPI's e lista-los, já o adminstrador, acessa uma dashboard onde pode manipular mais dados, excluir reservas, confirmar reservar e muito mais.</p>
+<h4>Credencial Usuário:</h4>
+<br>
+<h6>Email:</h6>
+
+```
+usuario@gmail.com
+```
+<h6>Senha:</h6>
+
+```
+12345678
+```
 
 <br>
+<h4>Credencial Adminstrador:</h4>
+<h6>Email:</h6>
 
+```
+adm@gmail.com
+```
+<h6>Senha:</h6>
+
+```
+12345678
+```
 <p>Pronto, você já pode testar nosso sistema em seu computador.</p>
 
 <a id="ancora7"></a>
@@ -159,3 +181,5 @@ https://downloads.mysql.com/archives/query/
 <h2>Nosso time</h2>
 
 - [Arthur Prates](https://github.com/Arthur-Prates) - Desenvolvedor(a) Back-end ;
+- [Arthur Prates](https://github.com/MarcoAntonioNobre) - Desenvolvedor(a) Back-end ;
+- [Arthur Prates](https://github.com/cclar13) - Desenvolvedor(a) Back-end ;
