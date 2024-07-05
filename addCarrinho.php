@@ -11,32 +11,37 @@ if (!isset($_SESSION['pedidoscarrinho'])) {
 }
 
 $produtoADD = false;
-$produto = listarItemExpecifico('*', 'epi', 'idepi', $dados);
-if ($produto !== 'vazio') {
+$produto = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', $dados, "a.idepi", "ASC");
+
+
+if ($produto !== false) {
     foreach ($produto as $item) {
         $id = $item->idepi;
         $nomeEpi = $item->nomeEpi;
         $foto = $item->foto;
         $codigo = $item->certificado;
+        $estoque = $item->quantidade;
 
-        foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
-            if ($produtoCarrinho['idproduto'] == $id) {
-                $produtoCarrinho['quantidade'] += 1;
-                $produtoADD = true;
-                break;
+        if ($estoque > 0) {
+            foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
+                if ($produtoCarrinho['idproduto'] == $id) {
+                    $produtoCarrinho['quantidade'] += 1;
+                    $produtoADD = true;
+                    break;
+                }
             }
-        }
-        if (!$produtoADD) {
-            array_push(
-                $_SESSION['pedidoscarrinho'],
-                array(
-                    'idproduto' => $id,
-                    'nome' => $nomeEpi,
-                    'foto' => $foto,
-                    'certificado' => $codigo,
-                    'quantidade' => 1
-                )
-            );
+            if (!$produtoADD) {
+                array_push(
+                    $_SESSION['pedidoscarrinho'],
+                    array(
+                        'idproduto' => $id,
+                        'nome' => $nomeEpi,
+                        'foto' => $foto,
+                        'certificado' => $codigo,
+                        'quantidade' => 1
+                    )
+                );
+            }
         }
 
 

@@ -31,39 +31,46 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 </head>
 <body>
-<?php include_once ('navbar.php')?>
+<?php include_once('navbar.php') ?>
 <!--66844c87dab1e-->
 <!--66844c73924e1-->
 <div class="container">
     <div class="row">
         <?php
-        $tabelaProdutos = listarTabela('*','epi');
-        foreach ($tabelaProdutos as $item){
-            $nome = $item -> nomeEpi;
-            $certificado = $item -> certificado;
-            $foto = $item -> foto;
-            $id = $item -> idepi;
+        $tabelaProdutos = listarTabelaInnerJoinOrdenada('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', 'ASC');
+        foreach ($tabelaProdutos as $item) {
+            $nome = $item->nomeEpi;
+            $certificado = $item->certificado;
+            $foto = $item->foto;
+            $id = $item->idepi;
+            $estoque = $item->quantidade;
 
-        ?>
-        <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
-            <div class="card">
-                <div class="imgProduto">
+            if ($estoque > 0) {
 
-                <img src="./img/produtos/<?php echo $foto?>" class="card-img-top" alt="...">
+                ?>
+                <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
+                    <div class="card">
+                        <div class="imgProduto">
+
+                            <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title nomeProduto"><?php echo $nome ?></h5>
+                            <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nº CA: <?php echo $certificado ?></li>
+                            <li class="list-group-item">Quantidade disponível: <?php echo $estoque ?></li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <button class="btn btn-sm btn-success" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
+                                ao carrinho
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title nomeProduto"><?php echo $nome?></h5>
-                    <p class="card-text"></p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Nº CA: <?php echo $certificado?></li>
-                </ul>
-                <div class="card-body text-center">
-                    <button class="btn btn-sm btn-success" onclick="postCarrinho(<?php echo $id?>)">Adicionar ao carrinho</button>
-                </div>
-            </div>
-        </div>
-        <?php
+                <?php
+            }
         }
         ?>
     </div>

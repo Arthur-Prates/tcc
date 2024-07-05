@@ -64,6 +64,11 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     $certificado = $itemEpi['certificado'];
                     $qtd = $itemEpi['quantidade'];
 
+                    $tabelaEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $id);
+                    foreach ($tabelaEstoque as $estoque) {
+                        $qtdEstoque = $estoque->quantidade;
+                    }
+
                     ?>
                     <div class="row mt-5">
                         <div class="col-lg-2 col-4">
@@ -73,7 +78,8 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                         <div class="col-lg-8 col-8">
                             <h4><?php echo $nome ?></h4>
                             <p>Número CA: <?php echo $certificado ?></p>
-                            <p class="mt-3" id="qtdMD">Quantidade: <?php echo $qtd ?></p>
+                            <p>Quantidade disponível: <?php echo $qtdEstoque; ?></p>
+                            <p class="mt-3" id="qtdMD">Quantidade no carrinho: <?php echo $qtd ?></p>
                         </div>
                         <div class="col-lg-2 col-12 qtdSacola text-center">
 
@@ -106,26 +112,28 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     <div class="row mb-5">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="mt-4">
-                                <label for="dataInicioAluguel">Selecione a data do aluguel:</label>
-                                <input type="date" id="dataInicioAluguel" name="dataInicioAluguel" class="form-control"
+                                <label for="dataAluguel">Selecione a data do aluguel:</label>
+                                <input type="date" id="dataAluguel" name="dataAluguel" class="form-control"
                                        value="<?php echo DATAATUAL ?>" required="required">
+                                <p id="alertData" style="display: none"></p>
                             </div>
                             <div class="mt-4">
                                 <label for="horaInicialAluguel">Selecione a hora de início do aluguel:</label>
-                                <select name="horaInicialAluguel" id="horaInicialAluguel" class="form-control">
+                                <select name="horaInicialAluguel" id="horaInicialAluguel" class="form-control"
+                                        required="required">
                                     <?php
                                     $minuto = '0';
                                     $hora = 0;
                                     while ($hora < 24) {
                                         if ($hora < 10) {
                                             ?>
-                                            <option value="<?php  echo '0' . $hora . $minuto . '0';?>"><?php  echo '0' . $hora . ':' . $minuto . '0';?></option>
+                                            <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
                                             <?php
 
                                         } else {
 
                                             ?>
-                                            <option value="<?php  echo $hora . $minuto . '0';?>"><?php  echo $hora . ':' . $minuto . '0';?></option>
+                                            <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
                                             <?php
                                         }
 
@@ -138,23 +146,25 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     }
                                     ?>
                                 </select>
+                                <p id="alertHoraInicial" style="display: none"></p>
                             </div>
                             <div class="mt-4">
                                 <label for="horaFinalAluguel">Selecione a hora de término do aluguel:</label>
-                                <select name="horaFinalAluguel" id="horaFinalAluguel" class="form-control">
+                                <select name="horaFinalAluguel" id="horaFinalAluguel" class="form-control"
+                                        required="required">
                                     <?php
                                     $minuto = '0';
                                     $hora = 0;
                                     while ($hora < 24) {
                                         if ($hora < 10) {
                                             ?>
-                                            <option value="<?php  echo '0' . $hora . $minuto . '0';?>"><?php  echo '0' . $hora . ':' . $minuto . '0';?></option>
+                                            <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
                                             <?php
 
                                         } else {
 
                                             ?>
-                                            <option value="<?php  echo $hora . $minuto . '0';?>"><?php  echo $hora . ':' . $minuto . '0';?></option>
+                                            <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
                                             <?php
                                         }
 
@@ -167,8 +177,8 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     }
                                     ?>
                                 </select>
+                                <p id="alertHoraFinal" style="display: none"></p>
                             </div>
-
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 ">
                             <div class="mt-4">

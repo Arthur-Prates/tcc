@@ -60,44 +60,53 @@ if (!empty($_SESSION['idFuncionario'])) {
                 <?php
                 $cont = 1;
                 $alugueis = listarItemExpecificoOrdem('*', 'aluguel', 'idusuario', "$idFuncionario", 'idaluguel', 'DESC');
-                foreach ($alugueis as $aluguel) {
-                    $id = $aluguel->idaluguel;
-                    $codigoAluguel = $aluguel->codigoAluguel;
-                    $dataAluguel = $aluguel->cadastro;
-                    $dataFimAluguel = $aluguel->dataFim;
-                    $devolvido = $aluguel->devolvido;
+                if ($alugueis !== 'vazio') {
+                    foreach ($alugueis as $aluguel) {
+                        $id = $aluguel->idaluguel;
+                        $codigoAluguel = $aluguel->codigoAluguel;
+                        $dataAluguel = $aluguel->dataAluguel;
+                        $devolvido = $aluguel->devolvido;
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $cont ?></th>
+                            <td><?php echo $codigoAluguel ?></td>
+                            <td><?php echo $dataAluguel ?></td>
+                            <td class="d-flex">
+                                <form action="visualizarAluguel.php" name="frmCodAluguel" id="frmCodAluguel"
+                                      method="post">
+                                    <input type="hidden" id="idCodAluguel" name="idCodAluguel"
+                                           value="<?php echo $codigoAluguel ?>">
+                                    <button class="btn btn-success btn-sm">Visualizar</button>
+                                </form>
+                                <?php
+                                $dataAtual = DATAATUAL;
+                                if ($devolvido !== 'S') {
+                                    ?>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#erroExcluir">
+                                        Excluir
+                                    </button>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            onclick="abrirModalJsExcluirAluguel('<?php echo $id ?>', 'idDeleteAluguel', 'nao', 'nao', 'mdlExcluirAluguel', 'nao', 'A', 'btnExcluirAluguel', 'deletarAluguel', 'nao', 'nao', 'frmDeleteAluguel')">
+                                        Excluir
+                                    </button>
+                                    <?php
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                        ++$cont;
+                    }
+                }else{
                     ?>
                     <tr>
-                        <th scope="row"><?php echo $cont ?></th>
-                        <td><?php echo $codigoAluguel ?></td>
-                        <td><?php echo $dataAluguel ?></td>
-                        <td class="d-flex">
-                            <form action="visualizarAluguel.php" name="frmCodAluguel" id="frmCodAluguel" method="post">
-                                <input type="hidden" id="idCodAluguel" name="idCodAluguel"
-                                       value="<?php echo $codigoAluguel ?>">
-                                <button class="btn btn-success btn-sm">Visualizar</button>
-                            </form>
-                            <?php
-                            $dataAtual = DATAATUAL;
-                            if ($dataFimAluguel >= $dataAluguel || $devolvido !== 'S') {
-                                ?>
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#erroExcluir">
-                                    Excluir
-                                </button>
-                                <?php
-                            } else {
-                                ?>
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        onclick="abrirModalJsExcluirAluguel('<?php echo $id ?>', 'idDeleteAluguel', 'nao', 'nao', 'mdlExcluirAluguel', 'nao', 'A', 'btnExcluirAluguel', 'deletarAluguel', 'nao', 'nao', 'frmDeleteAluguel')">
-                                    Excluir
-                                </button>
-                                <?php
-                            }
-                            ?>
-                        </td>
+                        <td colspan="4" class="text-center">Nenhum empréstimo a ser mostrado!</td>
                     </tr>
                     <?php
-                    ++$cont;
                 }
                 ?>
                 </tbody>

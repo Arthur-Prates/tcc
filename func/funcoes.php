@@ -50,10 +50,8 @@ function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
     try {
         $conn->beginTransaction();
         $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoExpecifico = ?");
-//        $sqlListaTabelas->bindValue(1, $campos, PDO::PARAM_STR);
-//        $sqlListaTabelas->bindValue(2, $tabela, PDO::PARAM_STR);
-//        $sqlListaTabelas->bindValue(1, $campoExpecifico, PDO::PARAM_STR);
         $sqlListaTabelas->bindValue(1, $valorCampo, PDO::PARAM_STR);
+
         $sqlListaTabelas->execute();
         $conn->commit();
         if ($sqlListaTabelas->rowCount() > 0) {
@@ -75,10 +73,10 @@ function listarItemExpecificoOrdem($campos, $tabela, $campoExpecifico, $valorCam
     try {
         $conn->beginTransaction();
         $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoExpecifico = ? ORDER BY $ordem $tipoOrdem");
+        $sqlListaTabelas->bindValue(1, $valorCampo, PDO::PARAM_STR);
 //        $sqlListaTabelas->bindValue(1, $campos, PDO::PARAM_STR);
 //        $sqlListaTabelas->bindValue(2, $tabela, PDO::PARAM_STR);
 //        $sqlListaTabelas->bindValue(1, $campoExpecifico, PDO::PARAM_STR);
-        $sqlListaTabelas->bindValue(1, $valorCampo, PDO::PARAM_STR);
         $sqlListaTabelas->execute();
         $conn->commit();
         if ($sqlListaTabelas->rowCount() > 0) {
@@ -173,7 +171,7 @@ function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $i
         if ($sqlLista->rowCount() > 0) {
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         }
-        return False;
+        return false;
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
@@ -1050,42 +1048,42 @@ function valoresGraficoQuantidadeEpi($tipo)
 {
     $selectAlugados = listarTabela('count(quantidade) as totalAlugado', 'aluguel');
     if ($tipo == 'alugado') {
-    foreach ($selectAlugados as $itemContar) {
-        $alugado = $itemContar->totalAlugado;
-        return $alugado;
-    }
+        foreach ($selectAlugados as $itemContar) {
+            $alugado = $itemContar->totalAlugado;
+            return $alugado;
+        }
 
     } else if ($tipo = 'contar') {
 
 
-    $arayEpiTable = array();
-    $epi = listarTabela('idepi', 'epi');
-    foreach ($epi as $epiItems) {
-        $alinhar = $epiItems->idepi;
-        array_push($arayEpiTable, "$alinhar");
+        $arayEpiTable = array();
+        $epi = listarTabela('idepi', 'epi');
+        foreach ($epi as $epiItems) {
+            $alinhar = $epiItems->idepi;
+            array_push($arayEpiTable, "$alinhar");
 
+        }
+
+        $arayEpiTable = array_values($arayEpiTable);
+        $arayEpiTable = array_unique($arayEpiTable);
+
+
+        $arayEpiAlugadoTable = array();
+        $epiResultado = array();
+        $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
+
+
+        foreach ($arayEpiAlugadoTable as $epiItems2) {
+            $alinhar2 = $epiItems2->idepi;
+            array_push($epiResultado, "$alinhar2");
+
+        }
+        $epiResultado = array_values($epiResultado);
+        $epiResultado = array_unique($epiResultado);
+
+        $result = array_diff($arayEpiTable, $epiResultado);
+        $result = array_values($result);
+        $result = array_unique($result);
+        return count($result);
     }
-
-    $arayEpiTable = array_values($arayEpiTable);
-    $arayEpiTable = array_unique($arayEpiTable);
-
-
-    $arayEpiAlugadoTable = array();
-    $epiResultado = array();
-    $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
-
-
-    foreach ($arayEpiAlugadoTable as $epiItems2) {
-        $alinhar2 = $epiItems2->idepi;
-        array_push($epiResultado, "$alinhar2");
-
-    }
-    $epiResultado = array_values($epiResultado);
-    $epiResultado = array_unique($epiResultado);
-
-    $result = array_diff($arayEpiTable, $epiResultado);
-    $result = array_values($result);
-    $result = array_unique($result);
-    return count($result);
-}
 }
