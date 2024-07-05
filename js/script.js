@@ -52,9 +52,9 @@ function fazerLogin() {
             }
             esconderProcessando();
         })
-        // .catch((error) => {
-        //     console.error("Erro na requisição", error);
-        // });
+    // .catch((error) => {
+    //     console.error("Erro na requisição", error);
+    // });
 }
 
 // FUNCAO DE LOADING
@@ -134,9 +134,9 @@ function fazerLoginAdm() {
             }
             esconderProcessando();
         })
-    .catch((error) => {
-        console.error("Erro na requisição", error);
-    });
+        .catch((error) => {
+            console.error("Erro na requisição", error);
+        });
 }
 
 // FUNCAO DE LOADING
@@ -161,7 +161,6 @@ function mostrarProcessandoAdm() {
     divProcessando.innerHTML = '<dotlottie-player autoplay loop mode="normal" src="../img/loadingjson.json" style="width: 140px;"></dotlottie-player>'
     document.body.appendChild(divProcessando);
 }
-
 
 
 // FUNCAO DE ESCONDER O LOADING
@@ -328,14 +327,14 @@ function postCarrinho(produto) {
             } else {
                 alertError(data.message)
             }
-            setTimeout(function (){
+            setTimeout(function () {
                 window.location.reload()
-            },1240)
+            }, 1240)
         })
-        // .catch(error => {
-        //     console.error('Erro:', error);
-        //     alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
-        // });
+    // .catch(error => {
+    //     console.error('Erro:', error);
+    //     alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
+    // });
 }
 
 function removeCarrinho(produto, f) {
@@ -352,9 +351,9 @@ function removeCarrinho(produto, f) {
             } else {
                 alertError(data.message)
             }
-            setTimeout(function (){
+            setTimeout(function () {
                 window.location.reload()
-            },1240)
+            }, 1240)
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -362,7 +361,7 @@ function removeCarrinho(produto, f) {
         });
 }
 
-function excluirItem(id){
+function excluirItem(id) {
     fetch('removerItem.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -376,9 +375,9 @@ function excluirItem(id){
             } else {
                 alertError(data.message)
             }
-            setTimeout(function (){
+            setTimeout(function () {
                 window.location.reload()
-            },1240)
+            }, 1240)
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -402,27 +401,44 @@ function limparCarrinho() {
             } else {
                 alertError(data.message);
             }
-            setTimeout(function (){
+            setTimeout(function () {
                 window.location.reload()
-            },1500)
+            }, 1500)
         })
-    .catch(error => {
-        // console.error('Erro:', error);
-        alertError('Ocorreu um erro ao tentar limpar o carrinho.');
-    });
+        .catch(error => {
+            // console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar limpar o carrinho.');
+        });
 }
 
-function redireciona(link){
+function redireciona(link) {
     window.location.href = link;
 }
 
-function realizarAluguel(formulario,addEditDel,botoes){
+function realizarAluguel(formulario, addEditDel, botoes) {
     const formDados = document.getElementById(formulario);
     let formEnviado = false;
     const submitHandler = function (event) {
         event.preventDefault();
-
         botoes.disabled = true;
+
+        var dataAluguel = document.getElementById('dataAluguel');
+        var horaInicialAluguel = document.getElementById('horaInicialAluguel');
+        var horaFinalAluguel = document.getElementById('horaFinalAluguel');
+
+        var alertData = document.getElementById('alertData');
+        var horaInicial = document.getElementById('alertHoraInicial');
+        var horaFinal = document.getElementById('alertHoraFinal');
+
+        dataAluguel.addEventListener('change', function () {
+            alertData.style.display = 'none'
+        })
+        horaInicialAluguel.addEventListener('change', function () {
+            horaInicial.style.display = 'none'
+        })
+        horaFinalAluguel.addEventListener('change', function () {
+            horaFinal.style.display = 'none'
+        })
 
         const form = event.target;
         const formData = new FormData(form);
@@ -435,17 +451,45 @@ function realizarAluguel(formulario,addEditDel,botoes){
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 formEnviado = true;
                 if (data.success) {
                     alertSuccess(data.message, '#1B7E00');
                     formDados.removeEventListener('submit', submitHandler);
-                    setTimeout(function (){
+                    setTimeout(function () {
                         window.location.href = 'aluguel.php'
-                    },1500)
+                    }, 1500)
                 } else {
-                    alertError(data.message);
-                    formDados.removeEventListener('submit', submitHandler);
+                    if (data.errodata) {
+                        console.log(data.mensagem);
+                        if (data.dataErrada) {
+                            alertData.style.color = 'red'
+                            alertData.style.display = 'block'
+                            horaInicial.style.display = 'none'
+                            horaFinal.style.display = 'none'
+                            alertData.innerHTML = data.mensagem;
+                        }
+                        if (data.horaInicial) {
+                            horaInicial.style.color = 'red'
+                            horaInicial.style.display = 'block'
+                            alertData.style.display = 'none'
+                            horaFinal.style.display = 'none'
+                            horaInicial.innerHTML = data.mensagem;
+                        }
+                        if (data.horaFinal) {
+                            horaFinal.style.color = 'red'
+                            horaFinal.style.display = 'block'
+                            alertData.style.display = 'none'
+                            horaInicial.style.display = 'none'
+                            horaFinal.innerHTML = data.mensagem;
+                        }
+
+                        formDados.removeEventListener('submit', submitHandler);
+                    } else {
+                        alertError(data.message);
+                        formDados.removeEventListener('submit', submitHandler);
+                    }
+
                 }
             })
             .catch(error => {
@@ -455,3 +499,20 @@ function realizarAluguel(formulario,addEditDel,botoes){
     formDados.addEventListener('submit', submitHandler);
 
 }
+
+let alertData = document.getElementById('alertData');
+let horaInicial = document.getElementById('alertHoraInicial');
+let horaFinal = document.getElementById('alertHoraFinal');
+
+alertData.addEventListener('change', function () {
+    alertData.style.display = 'none'
+    console.log('Data')
+})
+horaInicial.addEventListener('change', function () {
+    horaInicial.style.display = 'none'
+    console.log('inicio')
+})
+horaFinal.addEventListener('change', function () {
+    horaFinal.style.display = 'none'
+    console.log('fim')
+})

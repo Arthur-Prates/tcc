@@ -56,14 +56,16 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             $tabelaAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica('*', 'aluguel', 'epi', 'usuario', 'idepi', 'idepi', 'idusuario', 'idusuario', 'codigoAluguel', $codigoAluguel, 'idaluguel', 'ASC');
             if ($tabelaAluguel !== 'vazio') {
                 foreach ($tabelaAluguel as $item) {
-                    $dataInicioAluguel = $item->dataInicio;
-                    $dataFinalAluguel = $item->dataFim;
+                    $dataAluguel = $item->dataAluguel;
+                    $horaInicial = $item->horaInicial;
+                    $horaFinal = $item->horaFinal;
                     $locatario = $item->nomeUsuario;
                     $email = $item->email;
                     $prioridade = $item->prioridade;
 
-                    $dataInicioAluguel = implode("/", array_reverse(explode("-", $dataInicioAluguel)));
-                    $dataFinalAluguel = implode("/", array_reverse(explode("-", $dataFinalAluguel)));
+                    $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
+
+
                     if ($prioridade == 'ALTA') {
                         $prioridade = 'Alta';
                     } else if ($prioridade == 'MEDIA') {
@@ -71,15 +73,16 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                     } else {
                         $prioridade = 'Baixa';
                     }
-                    ?>
-                    <p class="mt-4">Locatário: <?php echo $locatario ?></p>
-                    <p>Email: <?php echo $email ?></p>
-                    <p>Data de início do aluguel: <?php echo $dataInicioAluguel ?></p>
-                    <p>Data final do aluguel: <?php echo $dataFinalAluguel ?></p>
-                    <p>Nível de prioridade: <?php echo $prioridade ?></p>
 
-                    <?php
                 }
+                ?>
+                <p class="mt-4">Locatário: <?php echo $locatario ?></p>
+                <p>Email: <?php echo $email ?></p>
+                <p>Data do aluguel: <?php echo $dataAluguel ?></p>
+                <p>Hora inicial do aluguel: <?php echo $horaInicial ?></p>
+                <p>Hora final do aluguel: <?php echo $horaFinal ?></p>
+                <p>Nível de prioridade: <?php echo $prioridade ?></p>
+                <?php
             } else {
                 ?>
                 <div class="text-center">
