@@ -3,23 +3,23 @@ include_once('../config/conexao.php');
 include_once('../config/constantes.php');
 include_once('../func/funcoes.php');
 
-//if ($_SESSION['idadm']) {
-//    $idUsuario = $_SESSION['idadm'];
-//} else {
-//    session_destroy();
-//    header('location: index.php?error=404');
-//}
+if ($_SESSION['idadm']) {
+    $idUsuario = $_SESSION['idadm'];
+} else {
+    session_destroy();
+    header('location: index.php?error=404');
+}
+
 
 
 ?>
-
 <!doctype html>
 <html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DASHBOARD</title>
+    <title>AREA RESTRITA - DASHBORAD</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -36,7 +36,8 @@ include_once('../func/funcoes.php');
 
 <body>
 <?php
-include_once('nav.php')
+include_once('nav.php');
+
 ?>
 <div class="row">
     <div class="col-2">
@@ -48,9 +49,143 @@ include_once('nav.php')
 </div>
 <div class="container">
     <div id='show' class='show'>
+        <div class="row  pesquisaAluguel" style=" margin-top: 20%;">
+            <div class="col-12">
+                <div class="d-flex justify-content-center align-items-center">
+                    <form action="verificarAluguel.php" method="get">
+                        <input type="text" id="codigoAluguel" name="codigoAluguel" class="inputPesquisa text-center" placeholder="Digite o codigo do aluguel">
+                        <button type="submit" class="btn btnAluguelPesquisa">Pesquisar Aluguel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between align-items-center graficosAluguel" style=" margin-top: 30%;">
+            <div class="col-4 col-md-4 col-sm-12">
+                <div class=" d-flex justify-content-center align-items-center ">
+                    <canvas id="myChart"></canvas>
+                </div>
 
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const ctx = document.getElementById('myChart');
+                    new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Alugado', 'Não Alugados'],
+                            datasets: [{
+                                label: '',
+
+                                data: ['<?php  echo  valoresGraficoQuantidadeEpi('alugado') ?>', '<?php  echo  valoresGraficoQuantidadeEpi('contar') ;?>'],
+
+                                backgroundColor: [
+                                    'rgba(219,2,2,0.8)',
+                                    'rgba(12,148,0, 0.8)'
+
+                                ],
+                                borderColor: [
+                                    'rgb(2,2,2)',
+                                    'rgb(2,2,2)'
+
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+
+                </script>
+
+            </div>
+            <div class="col-4 col-md-4 col-sm-12">
+                <?php
+
+
+                ?>
+                <div class=" d-flex justify-content-center align-items-center ">
+                    <canvas id="myChart2"></canvas>
+                </div>
+
+                <script>
+                    const ctx2 = document.getElementById('myChart2');
+                    new Chart(ctx2, {
+                        type: 'doughnut',
+                        data: {
+                            labels: [
+                                <?php
+                                $numPeople = 0;
+                                $TOTALFIMEND =  valoresGraficoTopFuncionarios('nome');
+                                foreach ($TOTALFIMEND as  $key => $value){
+                                if($numPeople < 5){
+
+                                ?>
+                                '<?php echo $key;?>',
+                                <?php
+                                }
+                                $numPeople = $numPeople + 1;
+                                }
+                                ?>
+                            ],
+                            datasets: [{
+                                label: 'Quantidade de Aluguéis feitos',
+
+                                data: [
+                                    <?php
+                                    $numValores = 0;
+                                    $TOTALFIMEND =  valoresGraficoTopFuncionarios('valor');
+                                    foreach ($TOTALFIMEND as  $key => $value){
+                                    if($numValores < 5){
+                                    ?>
+                                    '<?php echo $value;?>',
+                                    <?php
+                                    $numValores = $numValores + 1;
+                                    }
+                                    }
+                                    ?>
+                                ],
+
+                                backgroundColor: [
+                                    'rgba(211,50,50,0.8)',
+                                    'rgba(255,128,0,0.8)',
+                                    'rgba(247,255,0,0.8)',
+                                    'rgba(50,211,211,0.8)',
+                                    'rgba(17,0,255,0.8)'
+
+                                ],
+                                borderColor: [
+                                    'rgb(2,2,2)',
+                                    'rgb(2,2,2)'
+
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+
+            </div>
+        </div>
+
+        <?php
+        //include_once('listarEpi.php');
+        ?>
     </div>
 </div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

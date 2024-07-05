@@ -10,7 +10,7 @@ include_once('../func/funcoes.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Titulo</title>
+    <title>Área restrita - Safetech</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,7 +27,7 @@ include_once('../func/funcoes.php');
 <body>
     <div class="position-absolute top-50 start-50 translate-middle">
         <form class="form" method="post" action="#" name="frmLogin" id="frmLogin">
-            <p class="title">Bem-vindo</p>
+            <p class="title">Área restrita</p>
             <label>
                 <input class="input" type="email" placeholder="" required="" name="email" id="email">
                 <span>Email</span>
@@ -37,10 +37,16 @@ include_once('../func/funcoes.php');
                 <input class="input" type="password" placeholder="" required="" name="senha" id="senha">
                 <span>Senha</span>
             </label>
-            <button class="submit" type="button" name="btnLogin" id="btnLogin">Entrar</button>
+            <div class="alert alert-danger" id="alertlog" style="display: none;">
+
+            </div>
+            <button class="submit" type="button" name="btnLogin" id="btnLogin" onclick="fazerLoginAdm()">Entrar</button>
 
         </form>
+
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
