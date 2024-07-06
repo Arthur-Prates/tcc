@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<h1>Aluguel(éis)</h1>
+<h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Aluguel(éis)</h1>
 <table class="table table-hover table-bordered border-dark">
     <thead>
     <tr>

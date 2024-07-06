@@ -33,6 +33,8 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
 
 <body>
+<?php include_once('nav.php') ?>
+
 <div class="container">
 
     <h1>Aluguel - #<?php echo $codigoAluguel ?></h1>
@@ -55,11 +57,13 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             array_push($quantidade, $item->quantidade);
             $prioridade = $item->prioridade;
             $dataAluguel = $item->dataAluguel;
+
+            $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
         }
     }
     ?>
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <p>Nome: <?php echo $nomeUsuario ?></p>
             <p>Data: <?php echo $dataAluguel ?></p>
             <p>Prioridade: <?php echo $prioridade ?></p>
@@ -75,7 +79,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <h2>Ferramentas Emprestadas</h2>
             <div class="owl-carousel owl-theme">
                 <?php
@@ -88,8 +92,8 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                         $foto = $item->foto;
                         $CA = $item->certificado;
                         ?>
-                        <div class="item ">
-                            <div class="card ">
+                        <div class="item">
+                            <div class="card">
                                 <img src="../img/produtos/<?php echo $foto ?>" class="card-img-top" alt="...">
                                 <div class="card-body cardeCarrossel text-center">
                                     <h5 class="card-title "><?php echo $nome ?></h5>
@@ -109,7 +113,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             } else {
                 ?>
 
-                <h4>Nenhum Aluguel cadastrado no banco</h4>
+                <h4>Nenhum Aluguel cadastrado</h4>
                 <?php
             }
             ?>

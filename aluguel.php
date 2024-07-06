@@ -66,6 +66,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                         $codigoAluguel = $aluguel->codigoAluguel;
                         $dataAluguel = $aluguel->dataAluguel;
                         $devolvido = $aluguel->devolvido;
+
+                        $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
                         ?>
                         <tr>
                             <th scope="row"><?php echo $cont ?></th>
