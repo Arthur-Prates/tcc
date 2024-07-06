@@ -1,8 +1,3 @@
-https://code-with-me.global.jetbrains.com/LWt90KkD379-g89jOUFA1Q#p=PS&fp=215B6F0F047FA31EB5B55863FA83353DA7AB1DD44B268C917F73FB5F33106B32&newUi=true
-
-https://prod.liveshare.vsengsaas.visualstudio.com/join?B7D46A0EFE1DBDDCEE4737B0E8BE1149DC3E
-
-
 <h1 align="center" style="display: inline_block">
   
   Bem vindo ao nosso trabalho de conclusão de curso
