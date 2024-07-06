@@ -451,7 +451,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
         })
             .then(response => response.json())
             .then(data => {
-                // console.log(data)
+                console.log(data)
                 formEnviado = true;
                 if (data.success) {
                     alertSuccess(data.message, '#1B7E00');
@@ -461,27 +461,24 @@ function realizarAluguel(formulario, addEditDel, botoes) {
                     }, 1500)
                 } else {
                     if (data.errodata) {
-                        console.log(data.mensagem);
-                        if (data.dataErrada) {
+                        console.log(data.errodata);
+                        if (data.msgData !== '') {
                             alertData.style.color = 'red'
                             alertData.style.display = 'block'
-                            horaInicial.style.display = 'none'
-                            horaFinal.style.display = 'none'
-                            alertData.innerHTML = data.mensagem;
+
+                            alertData.innerHTML = data.msgData;
                         }
-                        if (data.horaInicial) {
+                        if (data.msgHoraInicial !== '') {
                             horaInicial.style.color = 'red'
                             horaInicial.style.display = 'block'
-                            alertData.style.display = 'none'
-                            horaFinal.style.display = 'none'
-                            horaInicial.innerHTML = data.mensagem;
+
+                            horaInicial.innerHTML = data.msgHoraInicial;
                         }
-                        if (data.horaFinal) {
+                        if (data.msgHoraFinal !== '') {
                             horaFinal.style.color = 'red'
                             horaFinal.style.display = 'block'
-                            alertData.style.display = 'none'
-                            horaInicial.style.display = 'none'
-                            horaFinal.innerHTML = data.mensagem;
+
+                            horaFinal.innerHTML = data.msgHoraFinal;
                         }
 
                         formDados.removeEventListener('submit', submitHandler);
@@ -492,27 +489,10 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
                 }
             })
-            .catch(error => {
-                console.error('Erro na requisição:', error);
-            });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
     };
     formDados.addEventListener('submit', submitHandler);
 
 }
-
-let alertData = document.getElementById('alertData');
-let horaInicial = document.getElementById('alertHoraInicial');
-let horaFinal = document.getElementById('alertHoraFinal');
-
-alertData.addEventListener('change', function () {
-    alertData.style.display = 'none'
-    console.log('Data')
-})
-horaInicial.addEventListener('change', function () {
-    horaInicial.style.display = 'none'
-    console.log('inicio')
-})
-horaFinal.addEventListener('change', function () {
-    horaFinal.style.display = 'none'
-    console.log('fim')
-})

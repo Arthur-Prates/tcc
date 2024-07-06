@@ -1,6 +1,6 @@
 <h1 align="center" style="display: inline_block">
-  
-  Bem vindo ao nosso trabalho de conclusão de curso
+
+Bem vindo ao nosso trabalho de conclusão de curso
 
 </h1>
 

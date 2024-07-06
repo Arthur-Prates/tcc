@@ -43,14 +43,14 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     if (isset($_SESSION['pedidoscarrinho']) && !empty($_SESSION['pedidoscarrinho'])) {
         ?>
         <div class="d-flex justify-content-between align-items-center">
-
-            <h3 class="mt-3">Itens para alugar</h3>
+            <h3 class="mt-3">Itens para empréstimo</h3>
             <button class="btn btn-sm btn-danger" type="button" id="btnLimparCarrinho"
                     onclick="limparCarrinho('apagar')">Limpar carrinho
             </button>
         </div>
         <?php
     }
+
     ?>
     <div class="row">
         <div class="col-12">
