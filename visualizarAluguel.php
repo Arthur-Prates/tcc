@@ -12,7 +12,16 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 $codigoAluguel = filter_input(INPUT_POST, 'idCodAluguel', FILTER_SANITIZE_STRING);
 
-$link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel";
+$cod = listarItemExpecifico('*', 'aluguel', 'codigoAluguel', $codigoAluguel);
+foreach ($cod as $itemCod) {
+    $codAluguel = $itemCod->codigoAluguel;
+    if ($codAluguel) {
+        $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel";
+    } else {
+        echo '';
+    }
+}
+
 ?>
 
 <!doctype html>
@@ -31,6 +40,8 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -47,25 +58,29 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-lg-5 text-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=300x300" alt=""
+        <div class="col-lg-5 col-12 text-center">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=100%" alt=""
                  title=""/>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-7 col-12">
             <?php
             $tabelaAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica('*', 'aluguel', 'epi', 'usuario', 'idepi', 'idepi', 'idusuario', 'idusuario', 'codigoAluguel', $codigoAluguel, 'idaluguel', 'ASC');
             if ($tabelaAluguel !== 'vazio') {
                 foreach ($tabelaAluguel as $item) {
+                    $locatario = $item->nomeUsuario;
+                    $email = $item->email;
+                    $cpf = $item->cpf;
                     $dataAluguel = $item->dataAluguel;
                     $horaInicial = $item->horaInicial;
                     $horaFinal = $item->horaFinal;
-                    $locatario = $item->nomeUsuario;
-                    $email = $item->email;
                     $prioridade = $item->prioridade;
-                    $observacao = $item -> observacao;
+                    $observacao = $item->observacao;
 
                     $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
 
+                    if ($observacao == 'NAO') {
+                        $observacao = 'Nenhuma observação foi feita';
+                    }
 
                     if ($prioridade == 'ALTA') {
                         $prioridade = 'Alta';
@@ -77,8 +92,9 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
                 }
                 ?>
-                <p class="mt-4">Locatário: <?php echo $locatario ?></p>
+                <p class="mt-3">Locatário: <?php echo $locatario ?></p>
                 <p>Email: <?php echo $email ?></p>
+                <p>CPF: <?php echo $cpf ?></p>
                 <p>Data do aluguel: <?php echo $dataAluguel ?></p>
                 <p>Hora inicial do aluguel: <?php echo $horaInicial ?></p>
                 <p>Hora final do aluguel: <?php echo $horaFinal ?></p>
@@ -94,6 +110,40 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             }
 
             ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <div class="owl-carousel owl-theme">
+                <?php
+                if ($tabelaAluguel !== 'Vazio') {
+                    foreach ($tabelaAluguel as $item) {
+                        $nomeEpi = $item->nomeEpi;
+                        $codEpi = $item->certificado;
+                        $foto = $item->foto;
+
+                        ?>
+                        <div class="item d-flex justify-content-center align-items-center">
+                            <div class="card mb-3 item cardCarrosselVisualizarAluguel">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="./img/produtos/<?php echo $foto ?>" class="img-fluid rounded-start"
+                                             alt="foto do epi: <?php echo $nomeEpi ?>">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $nomeEpi ?></h5>
+                                            <p class="card-text">Número do CA: <?php echo $codEpi ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
 
@@ -114,7 +164,33 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
 <script src="./js/script.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+            loop: false,
+            navText: ['Voltar', 'Próximo'],
+            center: false,
+            nav: true,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+
+    });
+</script>
 </body>
 
 </html>

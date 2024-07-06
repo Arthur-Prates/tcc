@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<h1>Usuário(s)</h1>
+<h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
 <table class="table table-hover table-bordered border-dark">
     <thead>
     <tr>
