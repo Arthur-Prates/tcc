@@ -43,12 +43,12 @@ if (!empty($_SESSION['idFuncionario'])) {
             $certificado = $item->certificado;
             $foto = $item->foto;
             $id = $item->idepi;
-            $estoque = $item->quantidade;
+            $estoque = $item->disponivel;
 
             if ($estoque > 0) {
 
                 ?>
-                <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4 ">
+                <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4">
                     <div class="card">
                         <div class="imgProduto">
 

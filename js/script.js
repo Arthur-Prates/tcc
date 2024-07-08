@@ -38,7 +38,7 @@ function fazerLogin() {
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "dashboard.php";
-                }, 2000);
+                }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
                 alertlog.classList.add("acertoBonito");
@@ -50,11 +50,11 @@ function fazerLogin() {
                 esconderProcessando();
 
             }
-            esconderProcessando();
+            // esconderProcessando();
         })
-    // .catch((error) => {
-    //     console.error("Erro na requisição", error);
-    // });
+    .catch((error) => {
+        console.error("Erro na requisição", error);
+    });
 }
 
 // FUNCAO DE LOADING
@@ -120,7 +120,8 @@ function fazerLoginAdm() {
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "dashboard.php";
-                }, 2000);
+                    esconderProcessando();
+                }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
                 alertlog.classList.add("acertoBonito");
@@ -132,7 +133,6 @@ function fazerLoginAdm() {
                 esconderProcessando();
 
             }
-            esconderProcessando();
         })
         .catch((error) => {
             console.error("Erro na requisição", error);
@@ -199,12 +199,12 @@ $('.telefone').mask('(00) 0000-0000');
 $('.dinheiro').mask('000.000.000.000.000,00', {reverse: true});
 
 
-function abrirModalJs(id, inID, innome, idNome, nomeModal, dataTime, abrirModal, botao, addEditDel, inFocus, inFocusValue, formulario) {
-    const formDados = document.getElementById(formulario);
+function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTime, abrirModal, botao, addEditDel, inFocus, inFocusValue, formulario) {
+    const formDados = document.getElementById(`${formulario}`);
     let formEnviado = false;
 
-    var botoes = document.getElementById(botao);
-    const ModalInstancia = new bootstrap.Modal(document.getElementById(nomeModal));
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
 
     const submitHandler = function (event) {
         event.preventDefault();
@@ -215,7 +215,7 @@ function abrirModalJs(id, inID, innome, idNome, nomeModal, dataTime, abrirModal,
         const formData = new FormData(form);
 
         if (dataTime !== 'nao') {
-            formData.append('dataTime', dataTime);
+            formData.append('dataTime', `${dataTime}`);
         }
         formData.append('controle', addEditDel);
 
@@ -243,7 +243,7 @@ function abrirModalJs(id, inID, innome, idNome, nomeModal, dataTime, abrirModal,
             });
     };
 
-    document.getElementById(/*'ID DO BOTAO QUE VAI FECHAR A MODAL'*/).addEventListener('click', function () {
+    document.getElementById('btnMdlExcluirAluguel').addEventListener('click', function () {
         ModalInstacia.hide();
         formDados.removeEventListener('submit', submitHandler);
     });
@@ -251,7 +251,7 @@ function abrirModalJs(id, inID, innome, idNome, nomeModal, dataTime, abrirModal,
     if (abrirModal === 'A') {
         ModalInstancia.show();
 
-        const inputFocar = document.getElementById(inFocus);
+        const inputFocar = document.getElementById(`${inFocus}`);
         if (inFocusValue !== 'nao') {
             inputFocar.value = inFocusValue;
             setTimeout(function () {
@@ -259,12 +259,12 @@ function abrirModalJs(id, inID, innome, idNome, nomeModal, dataTime, abrirModal,
             }, 500);
         }
 
-        const ID = document.getElementById(inID);
+        const ID = document.getElementById(`${inID}`);
         if (inID !== 'nao') {
             ID.value = id;
         }
 
-        const nome = document.getElementById(innome);
+        const nome = document.getElementById(`${innome}`);
         if (innome !== 'nao') {
             nome.value = idNome;
         }

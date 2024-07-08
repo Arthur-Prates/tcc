@@ -1,0 +1,6 @@
+SELECT * FROM aluguel a
+INNER JOIN usuario u ON a.idusuario = u.idusuario
+INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel
+INNER JOIN epi e ON e.idepi = pa.idepi
+WHERE pa.idepi = 2
+;
