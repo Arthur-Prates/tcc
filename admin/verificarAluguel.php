@@ -41,7 +41,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
 
     <?php
-    $listaAlguel = listarTabelaInnerJoinTriploOrdenadaExpecifica("*", "aluguel", 'usuario', 'epi', 'idusuario', 'idusuario', 'idepi', 'idepi', 'codigoAluguel', $codigoAluguel, 'dataAluguel', 'ASC');
+    $listaAlguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel INNER JOIN epi e ON e.idepi = pa.idepi");
     if ($listaAlguel !== 'Vazio') {
     $nomeEpi = array();
     $idepi = array();

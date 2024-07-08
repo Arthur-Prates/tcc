@@ -29,13 +29,13 @@ if (isset($dados) && !empty($dados)) {
         $msgData = '';
     }
 
-    if ($horaInicial < $hora && $dataAluguel == date('Y-m-d')){
+    if ($horaInicial < $hora && $dataAluguel == date('Y-m-d')) {
         $horaInicialVerificada = false;
         $msgHoraInicial = 'A hora inicial não pode ser menor que a atual.';
     } else if ($dataAluguel > date('Y-m-d')) {
         $horaInicialVerificada = true;
         $msgHoraInicial = '';
-    }else{
+    } else {
         $horaInicialVerificada = true;
         $msgHoraInicial = '';
     }
@@ -55,13 +55,31 @@ if (isset($dados) && !empty($dados)) {
 
     if ($dataVerificada == true && $horaInicialVerificada == true && $horaFimVerificada == true) {
         $codigoAluguel = uniqid();
+        $insert = insert9Item('aluguel', 'idusuario, dataAluguel, horaInicial, horaFim, codigoAluguel, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$dataAluguel", "$horaInicial", "$horaFim", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
         foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
             $idepi = $produtoCarrinho['idproduto'];
             $quantidade = $produtoCarrinho['quantidade'];
-            $insert = insert11Item('aluguel', 'idusuario, idepi, quantidade, dataAluguel, horaInicial, horaFinal, codigoAluguel, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$idepi", "$quantidade", "$dataAluguel", "$horaInicial", "$horaFim", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
+            $qtdDoEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $idepi);
+            foreach ($qtdDoEstoque as $item) {
+                $quantidadeEstoque = $item->disponivel;
+            }
+            if ($quantidade <= $quantidadeEstoque) {
+                $qtdRestante = $quantidadeEstoque - $quantidade;
+
+                $mudandoEstoque = alterar1Item('estoque', 'disponivel', "$qtdRestante", 'idepi', "$idepi");
+                $insertProdutoAluguel = insert5Item('produtoAluguel', 'idepi, quantidade, codAluguel, devolucao, cadastro', "$idepi", "$quantidade", "$codigoAluguel", "N", DATATIMEATUAL);
+                $sucesso = true;
+            } else {
+                $sucesso = false;
+            }
         }
-        echo json_encode(['success' => true, 'errodata' => false, 'message' => "Produto(s) alugado(s)!"]);
-        unset($_SESSION['pedidoscarrinho']);
+        if ($sucesso) {
+            echo json_encode(['success' => true, 'errodata' => false, 'message' => "Produto(s) alugado(s)!"]);
+            unset($_SESSION['pedidoscarrinho']);
+        } else {
+            echo json_encode(['success' => true, 'errodata' => false, 'message' => "Quantidade de produto indisponível!"]);
+        }
+
     }
 
 }

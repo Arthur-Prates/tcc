@@ -14,7 +14,7 @@
     <tbody>
     <?php
     $contar = 1;
-    $listaAluguel = listarTabelaInnerJoinTriploOrdenada("*", "aluguel",'epi','usuario','idepi','idepi','idusuario','idusuario','dataFim','ASC');
+    $listaAluguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel INNER JOIN epi e ON e.idepi = pa.idepi");
     if ($listaAluguel) {
         foreach ($listaAluguel as $itemAluguel) {
             $idaluguel = $itemAluguel->idaluguel;
@@ -23,7 +23,6 @@
             $nomeEpi = $itemAluguel->nomeEpi;
             $idepi = $itemAluguel->idepi;
             $codigoAluguel = $itemAluguel->codigoAluguel;
-
             ?>
             <tr>
                 <th scope="row"><?php echo $contar?></th>

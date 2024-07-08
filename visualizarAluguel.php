@@ -64,7 +64,7 @@ foreach ($cod as $itemCod) {
         </div>
         <div class="col-lg-7 col-12">
             <?php
-            $tabelaAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica('*', 'aluguel', 'epi', 'usuario', 'idepi', 'idepi', 'idusuario', 'idusuario', 'codigoAluguel', $codigoAluguel, 'idaluguel', 'ASC');
+            $tabelaAluguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel INNER JOIN epi e ON e.idepi = pa.idepi");
             if ($tabelaAluguel !== 'vazio') {
                 foreach ($tabelaAluguel as $item) {
                     $locatario = $item->nomeUsuario;
@@ -72,7 +72,7 @@ foreach ($cod as $itemCod) {
                     $cpf = $item->cpf;
                     $dataAluguel = $item->dataAluguel;
                     $horaInicial = $item->horaInicial;
-                    $horaFinal = $item->horaFinal;
+                    $horaFinal = $item->horaFim;
                     $prioridade = $item->prioridade;
                     $observacao = $item->observacao;
 
@@ -126,11 +126,11 @@ foreach ($cod as $itemCod) {
                         <div class="item d-flex justify-content-center align-items-center">
                             <div class="card mb-3 item cardCarrosselVisualizarAluguel">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
+                                    <div class="col-lg-4">
                                         <img src="./img/produtos/<?php echo $foto ?>" class="img-fluid rounded-start"
                                              alt="foto do epi: <?php echo $nomeEpi ?>">
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-lg-8">
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $nomeEpi ?></h5>
                                             <p class="card-text">Número do CA: <?php echo $codEpi ?></p>

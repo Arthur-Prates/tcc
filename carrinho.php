@@ -66,7 +66,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 
                     $tabelaEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $id);
                     foreach ($tabelaEstoque as $estoque) {
-                        $qtdEstoque = $estoque->quantidade;
+                        $qtdEstoque = $estoque->disponivel;
                     }
 
                     ?>

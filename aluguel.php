@@ -129,12 +129,11 @@ if (!empty($_SESSION['idFuncionario'])) {
 
             <div class="modal-body">
                 <div class="alert alert-danger">
-                    <h4>Você não pode excluir um aluguel com devolução pendente</h4>
+                    <h4>Você <b>não</b> pode excluir um empréstimo com devolução pendente</h4>
                 </div>
             </div>
             <div class="modal-footer bg-danger">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
-                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
             </div>
         </div>
     </div>
@@ -152,9 +151,9 @@ if (!empty($_SESSION['idFuncionario'])) {
             </div>
             <form action="#" id="frmDeleteAluguel" name="frmDeleteAluguel">
                 <div class="modal-body">
-                    <input type="text" id="idDeleteAluguel" name="idDeleteAluguel">
+                    <input type="hidden" id="idDeleteAluguel" name="idDeleteAluguel">
                     <div class="alert alert-danger">
-                        Você tem certeza que deseja excluir esse aluguel?
+                        Você tem certeza que deseja excluir esse empréstimo?
                         <h5>Essa ação não pode ser desfeita!</h5>
                     </div>
                 </div>
