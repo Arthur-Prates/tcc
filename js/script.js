@@ -277,6 +277,49 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
     }
 }
 
+function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+    if (abrirModal === 'A') {
+        ModalInstacia.show();
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', `${addEditDel}`)
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alertSuccess(data.message, '#30B27F')
+                        carregarConteudo('listarEpi')
+
+                    } else {
+                        alertError(data.message)
+                        carregarConteudo('listarEpi')
+
+                    }
+                    ModalInstacia.hide();
+                })
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
+        }
+        formDados.addEventListener('submit', submitHandler);
+    } else {
+
+        ModalInstacia.hide();
+    }
+}
+
 
 function alertSuccess(msg, cor) {
 
@@ -323,13 +366,21 @@ function postCarrinho(produto) {
         .then(data => {
             // console.log(data)
             if (data.success) {
-                alertSuccess(data.message, '#30B27F')
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "success"
+                });
             } else {
-                alertError(data.message)
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "danger"
+                });
             }
             setTimeout(function () {
                 window.location.reload()
-            }, 1240)
+            }, 1350)
         })
     // .catch(error => {
     //     console.error('Erro:', error);
@@ -347,9 +398,17 @@ function removeCarrinho(produto, f) {
         .then(data => {
             // console.log(data)
             if (data.success) {
-                alertSuccess(data.message, '#30B27F')
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "success"
+                });
             } else {
-                alertError(data.message)
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "danger"
+                });
             }
             setTimeout(function () {
                 window.location.reload()
@@ -357,7 +416,11 @@ function removeCarrinho(produto, f) {
         })
         .catch(error => {
             console.error('Erro:', error);
-            alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
+            Swal.fire({
+                title: `${data.message}`,
+                text: "Ocorreu um erro ao tentar remover o produto do carrinho.",
+                icon: "danger"
+            });
         });
 }
 
@@ -371,9 +434,17 @@ function excluirItem(id) {
         .then(data => {
             // console.log(data)
             if (data.success) {
-                alertSuccess(data.message, '#30B27F')
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "success"
+                });
             } else {
-                alertError(data.message)
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "danger"
+                });
             }
             setTimeout(function () {
                 window.location.reload()
@@ -381,6 +452,11 @@ function excluirItem(id) {
         })
         .catch(error => {
             console.error('Erro:', error);
+            Swal.fire({
+                title: `${data.message}`,
+                text: "Ocorreu um erro ao tentar remover o produto do carrinho.",
+                icon: "danger"
+            });
             alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
         });
 }
@@ -397,9 +473,17 @@ function limparCarrinho() {
         .then(data => {
             console.log(data);
             if (data.success) {
-                alertSuccess(data.message, '#30B27F');
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "success"
+                });
             } else {
-                alertError(data.message);
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "danger"
+                });
             }
             setTimeout(function () {
                 window.location.reload()
@@ -489,10 +573,62 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
                 }
             })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
     };
     formDados.addEventListener('submit', submitHandler);
 
+}
+
+
+function deleletarEpi(id,addEditDel,formulario){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            fetch('controle.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'controle=' + encodeURIComponent(`${addEditDel}`)+
+                    "&idDelete=" +
+                    encodeURIComponent(`${id}`),
+            })
+                    .then(response => response.json())
+                    .then(data => {
+                        carregarConteudo('listarEpi')
+                        if (data.success) {
+
+                            Swal.fire({
+                                title: "Deletado!",
+                                text: `${data.message}`,
+                                icon: "success"
+                            });
+
+                        } else {
+                            Swal.fire({
+                                title: "Erro!",
+                                text: `${data.message}`,
+                                icon: "warning"
+                            });
+
+                        }
+
+                    })
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
+            }
+
+
+    });
 }

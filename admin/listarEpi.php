@@ -3,15 +3,17 @@
 ?>
 <div class="teste mt-5">
     <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-    <button type="button" class="btn btn-dark" style="float: right">Cadastrar</button>
+    <button type="button" class="btn btn-dark" style="float: right" onclick="abrirModalEpiAdd('fotoEpiAdd', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">Cadastrar</button>
+
 </div>
 <table class="table table-hover table-bordered border-dark">
     <thead>
     <tr>
-        <th scope="col" style="width: 10%;">#</th>
-        <th scope="col" style="width: 40%;">Foto</th>
-        <th scope="col" style="width: 40%;">Epi</th>
-        <th scope="col" style="width: 10%;">Certificado</th>
+        <th scope="col" style="width: 5%;" class="text-center">#</th>
+        <th scope="col" style="width: 10%;">Foto</th>
+        <th scope="col" style="width: 60%;">Epi</th>
+        <th scope="col" style="width: 15%;">Certificado</th>
+        <th scope="col" style="width: 10%;">Ação</th>
     </tr>
     </thead>
     <tbody>
@@ -28,11 +30,16 @@
 //            idepi, nome, certificado, foto, cadastro, alteracao, ativo
             ?>
             <tr class="">
-                <th scope="row"><?php echo $contar ?></th>
-                <td class="centraliza"><img src="../img/produtos/<?php echo $foto ?>" width='50' alt="" class="fotoEpi">
+                <th scope="row" class="text-center"><?php echo $contar ?></th>
+                <td class="centraliza">
+                        <img src="../img/produtos/<?php echo $foto ?>" width='50' alt="" class="fotoPerfil  img-fluid fotoEpi ">
                 </td>
                 <td class=" align-items-center "><?php echo $nomeEpi ?></td>
                 <td class=""><?php echo $certificado ?></td>
+                <td class="">
+                    <button type="button" class="btn btn-danger" onclick="deleletarEpi('<?php echo $idepi?>','deleteEpi','frmEpiDelete')"><span class="mdi mdi-trash-can"></span> </button>
+                </td>
+
             </tr>
             <?php
             ++$contar;

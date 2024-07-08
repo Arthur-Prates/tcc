@@ -13,8 +13,14 @@ if (!empty($controle) && isset($controle)) {
         case 'listarEpi':
             include_once './listarEpi.php';
             break;
+        case 'addEpi':
+            include_once './addEpi.php';
+            break;
         case 'listarAluguel':
             include_once './listarAluguel.php';
+            break;
+        case 'deleteEpi':
+            include_once './deleteEpi.php';
             break;
         case 'listarUsuario':
             include_once './listarUsuario.php';

@@ -188,43 +188,50 @@ body {
 }
 
 
-
 @media (min-width: 768px) {
 
 }
+
 @media (max-width: 991px) {
 
-    #qtdMD{
+    #qtdMD {
         display: block;
     }
-    #qtdLG{
+
+    #qtdLG {
         display: none;
     }
-    .btnMaisEMenos{
+
+    .btnMaisEMenos {
         width: 40%;
         margin: 10px;
     }
-    .btnRemover{
+
+    .btnRemover {
         width: 85%;
     }
 }
 
-@media (min-width: 992px){
-    #qtdMD{
+@media (min-width: 992px) {
+    #qtdMD {
         display: none;
     }
-    #qtdLG{
+
+    #qtdLG {
         display: block;
     }
-    .btnMaisEMenos{
+
+    .btnMaisEMenos {
         width: 35%;
         margin: 5px;
     }
-    .btnRemover{
+
+    .btnRemover {
         width: 75%;
     }
 }
-.btnConcluirAluguel{
+
+.btnConcluirAluguel {
     width: 90%;
 }
 
@@ -234,14 +241,15 @@ body {
     text-overflow: ellipsis;
 }
 
-.margemEntreSacolaEForm{
+.margemEntreSacolaEForm {
     margin-right: 10px;
 }
 
-.qtdDeItensNoCarrinho{
+.qtdDeItensNoCarrinho {
     background-color: #940000;
     border-radius: 5px;
 }
+
 .overflowTable {
     overflow-x: scroll !important;
     /*text-overflow: ellipsis !important;*/
@@ -249,45 +257,46 @@ body {
     /*direction: ltr;*/
 
 }
-.tableNaoVazada{
+
+.tableNaoVazada {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap;
     direction: ltr;
 }
 
-.fotoEpi {
-    object-fit: scale-down;
-    border-radius: 50%;
-}
-.centraliza{
+
+.centraliza {
 
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
 }
 
-.dashAdm{
+.dashAdm {
     height: 100vh !important;
 }
-.btn-inputAluguel{
+
+.btn-inputAluguel {
     padding: 10px 20px !important;
     background-color: #38d39f;
     color: white;
     border: 1px solid white;
     border-radius: 10px;
-transition: all 0.2s;
+    transition: all 0.2s;
 }
-.btn-inputAluguel:hover{
+
+.btn-inputAluguel:hover {
     padding: 10px 20px !important;
     color: #38d39f;
-background-color: white;
+    background-color: white;
     border: 1px solid #38d39f;
     border-radius: 10px;
 }
+
 .cardeCarrossel {
     display: flex;
-flex-direction: column;
+    flex-direction: column;
     align-content: space-between;
     height: 150px !important;
 }
@@ -296,7 +305,14 @@ flex-direction: column;
     /*display: flex;*/
     /*flex-direction: column;*/
     /*align-content: space-between;*/
-    width: 400px !important;
+    min-height: 100px !important;
+
+}
+
+.tituloCard{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .wave-box {
@@ -315,3 +331,14 @@ section .wave {
     background: url('img/wave.png') repeat-x;
     background-size: 1000px 100px;
 }
+
+
+.fotoEpi {
+    object-fit: cover;
+    aspect-ratio: 1 / 1; !important ;
+    border-radius: 10px;
+}
+.circulo {
+    border-radius: 50%;
+}
+
