@@ -212,7 +212,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     ?>
                                     <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnLogin"
                                             type="button"
-                                            name="btnLogin" onclick="redireciona('logar.php')">
+                                            name="btnLogin" onclick="redireciona('fazer-login')">
                                         Concluir aluguel
                                     </button>
                                     <?php

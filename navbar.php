@@ -13,7 +13,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 <nav class="navbar navbar-expand-lg cinza" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">SAFETECH</a>
+        <a class="navbar-brand" href="pagina-inicial">SAFETECH</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,37 +21,37 @@ if (!empty($_SESSION['idFuncionario'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Início</a>
+                    <a class="nav-link active" aria-current="page" href="pagina-inicial">Início</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        <span class="mdi mdi-account-circle-outline"></span>
+                        <span class="mdi mdi-account-circle-outline"></span> Menu
                     </a>
                     <?php
                     if ($idFuncionario == null) {
                         ?>
                         <ul class="dropdown-menu ">
-                            <li class=""><a class="dropdown-item" href="logar.php">Fazer login</a></li>
+                            <li class=""><a class="dropdown-item" href="fazer-login">Fazer login</a></li>
                         </ul>
 
                         <?php
                     } else {
                         ?>
                         <ul class="dropdown-menu ">
-                            <li class=""><a class="dropdown-item" href="#">Meu perfil</a></li>
-                            <li class=""><a class="dropdown-item" href="aluguel.php">Meus aluguéis</a></li>
+                            <li class=""><a class="dropdown-item" href="perfil">Meu perfil</a></li>
+                            <li class=""><a class="dropdown-item" href="aluguel">Meus aluguéis</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="logout">Sair</a></li>
                         </ul>
                         <?php
                     }
                     ?>
                 </li>
             </ul>
-            <a href="carrinho.php" class="text-decoration-none text-white margemEntreSacolaEForm">
+            <a href="carrinho" class="text-decoration-none text-white margemEntreSacolaEForm">
 
-                <i class="bi bi-cart4 fs-5"></i><span> Carrinho</span><sup class="qtdDeItensNoCarrinho">
+                <i class="bi bi-cart4 fs-5"></i><span> Carrinho</span><sup class="qtdDeItensNoCarrinho" id="qtdDeItensNoCarrinho">
                     <?php
                     if (isset($_SESSION['pedidoscarrinho'])) {
                         $cont = count($_SESSION['pedidoscarrinho']);

@@ -54,7 +54,7 @@ foreach ($cod as $itemCod) {
 <div class="container">
     <div class="row">
         <div class="col-lg-12 fs-2">
-            <a href="aluguel.php" class="btn btn-sm btn-outline-secondary">Voltar</a>
+            <a href="aluguel" class="btn btn-sm btn-outline-secondary">Voltar</a>
             Empréstimo - #<?php echo $codigoAluguel ?>
         </div>
     </div>

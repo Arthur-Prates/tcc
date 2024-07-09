@@ -9,6 +9,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 } else {
     $idFuncionario = null;
 }
+
 ?>
 
 <!doctype html>

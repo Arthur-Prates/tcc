@@ -1065,12 +1065,11 @@ function valoresGraficoTopFuncionarios($tipo)
     $arayPessoas = array_unique($arayPessoas);
     $arayPessoas = array_values($arayPessoas);
 
-
     foreach ($aray as $itemArray) {
         $id = $itemArray;
 
 
-        $selectTopAluguel = listarItemExpecifico('sum(quantidade) as total', 'produtoAlugado', 'idusuario', $id);
+        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica('sum(quantidade) as total', 'alugado', 'usuario', 'produtoAlugado', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idusuario', "$id", 'total', 'ASC');
         foreach ($selectTopAluguel as $valor) {
             $fim = $valor->total;
         }
@@ -1093,6 +1092,15 @@ function validarData($data, $formato = 'Y-m-d')
     return $d && $d->format($formato) == $data;
 }
 
+function codificarUrl($url, $opcao)
+{
+    if ($opcao == 'codificar') {
+        return base64_encode($url);
+    } else {
+        return base64_decode($url);
+    }
+}
+
 function valoresGraficoQuantidadeEpi($tipo)
 {
     $selectDisponivel = listarTabela('sum(disponivel) as totalDisponivel', 'estoque');
@@ -1106,46 +1114,46 @@ function valoresGraficoQuantidadeEpi($tipo)
     }
     $indisponivel = $quantidade - $disponivel;
 
-//    if ($tipo == 'disponivel') {
-//        return $quantidade;
-//    } else if ($tipo == 'indisponivel') {
-//
-//        return $indisponivel;
-//    }
-//    if ($tipo == 'alugado') {
-//        return "alugado";
-//
-//    } else if ($tipo = 'contar') {
-//
-//
-//        $arayEpiTable = array();
-//        $epi = listarTabela('idepi', 'epi');
-//        foreach ($epi as $epiItems) {
-//            $alinhar = $epiItems->idepi;
-//            array_push($arayEpiTable, "$alinhar");
-//
-//        }
-//
-//        $arayEpiTable = array_values($arayEpiTable);
-//        $arayEpiTable = array_unique($arayEpiTable);
-//
-//
-//        $arayEpiAlugadoTable = array();
-//        $epiResultado = array();
-//        $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
-//
-//
-//        foreach ($arayEpiAlugadoTable as $epiItems2) {
-//            $alinhar2 = $epiItems2->idepi;
-//            array_push($epiResultado, "$alinhar2");
-//
-//        }
-//        $epiResultado = array_values($epiResultado);
-//        $epiResultado = array_unique($epiResultado);
-//
-//        $result = array_diff($arayEpiTable, $epiResultado);
-//        $result = array_values($result);
-//        $result = array_unique($result);
-//        return count($result);
-//    }
+    if ($tipo == 'disponivel') {
+        return $quantidade;
+    } else if ($tipo == 'indisponivel') {
+
+        return $indisponivel;
+    }
+    if ($tipo == 'alugado') {
+        return "alugado";
+
+    } else if ($tipo == 'contar') {
+
+
+        $arayEpiTable = array();
+        $epi = listarTabela('idepi', 'epi');
+        foreach ($epi as $epiItems) {
+            $alinhar = $epiItems->idepi;
+            array_push($arayEpiTable, "$alinhar");
+
+        }
+
+        $arayEpiTable = array_values($arayEpiTable);
+        $arayEpiTable = array_unique($arayEpiTable);
+
+
+        $arayEpiAlugadoTable = array();
+        $epiResultado = array();
+        $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
+
+
+        foreach ($arayEpiAlugadoTable as $epiItems2) {
+            $alinhar2 = $epiItems2->idepi;
+            array_push($epiResultado, "$alinhar2");
+
+        }
+        $epiResultado = array_values($epiResultado);
+        $epiResultado = array_unique($epiResultado);
+
+        $result = array_diff($arayEpiTable, $epiResultado);
+        $result = array_values($result);
+        $result = array_unique($result);
+        return count($result);
+    }
 }

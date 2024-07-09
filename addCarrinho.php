@@ -46,12 +46,14 @@ if ($produto !== false) {
 
 
     }
+    $cont = count($_SESSION['pedidoscarrinho']);
     if ($produtoADD) {
-        echo json_encode(['success' => true, 'message' => "Quantidade do produto aumentada!"]);
+        echo json_encode(['success' => true, 'message' => "Quantidade do produto aumentada!", 'qtd' => $cont]);
     } else {
-        echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!"]);
+        echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!", 'qtd' => $cont]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!"]);
+    $cont = count($_SESSION['pedidoscarrinho']);
+    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!",  'qtd' => $cont]);
 }
 
