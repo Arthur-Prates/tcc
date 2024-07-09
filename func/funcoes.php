@@ -192,7 +192,29 @@ function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $i
         if ($sqlLista->rowCount() > 0) {
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         }
-        return false;
+        return 'Vazio';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
+function listarTabelaLeftJoinExpecifica($campos, $tabela1, $tabela2, $id1, $id2, $campoExpecifico, $valorCampo)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a LEFT JOIN $tabela2 b ON a.$id1 = b.$id2 WHERE $campoExpecifico = ?");
+        $sqlLista->bindValue(1, $valorCampo, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $sqlLista;
 
     } catch (PDOException $e) {
         echo 'Exception -> ';

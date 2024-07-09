@@ -332,7 +332,6 @@ section .wave {
     background-size: 1000px 100px;
 }
 
-
 .fotoEpi {
     object-fit: cover;
     aspect-ratio: 1 / 1; !important ;
@@ -342,3 +341,19 @@ section .wave {
     border-radius: 50%;
 }
 
+.cardAlterarSenha{
+    width: 350px;
+    border: none;
+    background-color: #ffffff;
+}
+
+.inpAlterarSenha{
+    width: 100%;
+    border: #272626 2px solid;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.inpAlterarSenha:focus{
+    border-color: white;
+}

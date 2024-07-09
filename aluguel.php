@@ -43,7 +43,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 <div class="container">
     <h2 class="mt-3">
-        <a href="index" class="btn btn-sm btn-outline-secondary">Voltar</a>
+        <a href="pagina-inicial" class="btn btn-sm btn-outline-secondary">Voltar</a>
         Empréstimos</h2>
     <div class="card mt-3">
         <div class="card-body">
@@ -74,7 +74,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                             <td><?php echo $codigoAluguel ?></td>
                             <td><?php echo $dataAluguel ?></td>
                             <td class="d-flex">
-                                <form action="visualizarAluguel" name="frmCodAluguel" id="frmCodAluguel"
+                                <form action="visualizar-aluguel" name="frmCodAluguel" id="frmCodAluguel"
                                       method="post">
                                     <input type="hidden" id="idCodAluguel" name="idCodAluguel"
                                            value="<?php echo $codigoAluguel ?>">

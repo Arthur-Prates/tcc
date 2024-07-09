@@ -254,7 +254,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
     };
 
     document.getElementById('btnMdlExcluirAluguel').addEventListener('click', function () {
-        ModalInstacia.hide();
+        ModalInstancia.hide();
         formDados.removeEventListener('submit', submitHandler);
     });
 
@@ -291,9 +291,9 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
     const formDados = document.getElementById(`${formulario}`)
 
     var botoes = document.getElementById(`${botao}`);
-    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+    const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
     if (abrirModal === 'A') {
-        ModalInstacia.show();
+        ModalInstancia.show();
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -317,7 +317,7 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
                         carregarConteudo('listarEpi')
 
                     }
-                    ModalInstacia.hide();
+                    ModalInstancia.hide();
                 })
                 .catch(error => {
                     console.error('Erro na requisição:', error);
@@ -326,8 +326,64 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
         formDados.addEventListener('submit', submitHandler);
     } else {
 
+        ModalInstancia.hide();
+    }
+}
+
+function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+
+    if (abrirModal === 'A') {
+        ModalInstacia.show();
+
+        let alertSenha = document.getElementById('alertSenha');
+
+
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', `${addEditDel}`)
+
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.success) {
+                        alertSuccess(data.message, '#30B27F')
+
+                    } else {
+                        alertSenha.style.display = "block";
+                        alertSenha.innerText = data.message;
+                    }
+                    ModalInstacia.hide();
+                })
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
+
+        }
+
+        document.getElementById('btnFecharModalSenha').addEventListener('click', function () {
+            ModalInstacia.hide();
+            formDados.removeEventListener('submit', submitHandler);
+        });
+
+        formDados.addEventListener('submit', submitHandler);
+    } else {
         ModalInstacia.hide();
     }
+
 }
 
 
@@ -594,9 +650,9 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
                 }
             })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
     };
     formDados.addEventListener('submit', submitHandler);
 
@@ -645,9 +701,9 @@ function deleletarEpi(id, addEditDel, formulario) {
                     }
 
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
 
 
