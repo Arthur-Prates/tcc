@@ -17,6 +17,9 @@ if (isset($dados) && !empty($dados)) {
     $prioridade = isset($dados['addPrioridade']) ? addslashes($dados['addPrioridade']) : '';
     $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : 'NAO';
 
+    if ($observacao == ''){
+        $observacao = 'NAO';
+    }
 
     $data = $dataAluguel;
     $verificaData = validarData($data);
@@ -55,7 +58,7 @@ if (isset($dados) && !empty($dados)) {
 
     if ($dataVerificada == true && $horaInicialVerificada == true && $horaFimVerificada == true) {
         $codigoAluguel = uniqid();
-        $insert = insert9Item('aluguel', 'idusuario, dataAluguel, horaInicial, horaFim, codigoAluguel, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$dataAluguel", "$horaInicial", "$horaFim", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
+        $limite = 1;
         foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
             $idepi = $produtoCarrinho['idproduto'];
             $quantidade = $produtoCarrinho['quantidade'];
@@ -64,6 +67,9 @@ if (isset($dados) && !empty($dados)) {
                 $quantidadeEstoque = $item->disponivel;
             }
             if ($quantidade <= $quantidadeEstoque) {
+                if ($limite == 1) {
+                    $insert = insert9Item('aluguel', 'idusuario, dataAluguel, horaInicial, horaFim, codigoAluguel, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$dataAluguel", "$horaInicial", "$horaFim", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
+                }
                 $qtdRestante = $quantidadeEstoque - $quantidade;
 
                 $mudandoEstoque = alterar1Item('estoque', 'disponivel', "$qtdRestante", 'idepi', "$idepi");
@@ -72,12 +78,13 @@ if (isset($dados) && !empty($dados)) {
             } else {
                 $sucesso = false;
             }
+            ++$limite;
         }
         if ($sucesso) {
             echo json_encode(['success' => true, 'errodata' => false, 'message' => "Produto(s) alugado(s)!"]);
             unset($_SESSION['pedidoscarrinho']);
         } else {
-            echo json_encode(['success' => true, 'errodata' => false, 'message' => "Quantidade de produto indisponível!"]);
+            echo json_encode(['success' => false, 'errodata' => false, 'message' => "Quantidade de produto indisponível!"]);
         }
 
     }

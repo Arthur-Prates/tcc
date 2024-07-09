@@ -33,7 +33,7 @@ function executaQuery($query)
         if ($sqlListaTabelas->rowCount() > 0) {
             return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
         }
-        return 'vazio';
+        return 'Vazio';
     } catch (PDOException $e) {
         echo 'Exception -> ';
         return ($e->getMessage());
@@ -78,7 +78,7 @@ function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
         if ($sqlListaTabelas->rowCount() > 0) {
             return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
         }
-        return 'vazio';
+        return 'Vazio';
     } catch
     (PDOException $e) {
         echo 'Exception -> ';
@@ -257,6 +257,28 @@ function listarTabelaInnerJoinTriploWhere($campos, $tabelaA1, $tabelaB2, $tabela
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         }
         return False;
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
+function listarTabelaInnerJoinQuadruploWhere($campos, $tabelaA1, $tabelaB2, $tabelaD3, $tabelaF5, $idA1, $idB2, $idA3, $idD3, $idA5, $idF5, $quando, $idquando, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON a.$idA3 = d.$idD3 INNER JOIN $tabelaF5 f ON d.$idA5 = f.$idF5 WHERE $quando = ? ORDER BY $ordem $tipoOrdem");
+        $sqlLista->bindValue(1, $idquando, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
@@ -1048,12 +1070,12 @@ function valoresGraficoTopFuncionarios($tipo)
         $id = $itemArray;
 
 
-        $selectTopAluguel = listarItemExpecifico('sum(quantidade) as total', 'aluguel', 'idusuario', $id);
+        $selectTopAluguel = listarItemExpecifico('sum(quantidade) as total', 'produtoAlugado', 'idusuario', $id);
         foreach ($selectTopAluguel as $valor) {
             $fim = $valor->total;
         }
-
         array_push($topTotal, "$fim");
+
 
         $topTotal = array_values($topTotal);
         $contarAray = $contarAray + 1;
@@ -1073,25 +1095,26 @@ function validarData($data, $formato = 'Y-m-d')
 
 function valoresGraficoQuantidadeEpi($tipo)
 {
-        $selectDisponivel = listarTabela('sum(disponivel) as totalDisponivel', 'estoque');
+    $selectDisponivel = listarTabela('sum(disponivel) as totalDisponivel', 'estoque');
 
-        $selectQuantidade = listarTabela('sum(quantidade) as totalItems', 'estoque');
-        foreach ($selectQuantidade as $itemContar) {
-            $quantidade = $itemContar->totalItems;
-        }
-        foreach ($selectDisponivel as $itemContar) {
-            $disponivel = $itemContar->totalDisponivel;
-        }
-        $indisponivel = $quantidade - $disponivel;
+    $selectQuantidade = listarTabela('sum(quantidade) as totalItems', 'estoque');
+    foreach ($selectQuantidade as $itemContar) {
+        $quantidade = $itemContar->totalItems;
+    }
+    foreach ($selectDisponivel as $itemContar) {
+        $disponivel = $itemContar->totalDisponivel;
+    }
+    $indisponivel = $quantidade - $disponivel;
 
-        if($tipo=='disponivel'){
-         return $quantidade;
-        }else if($tipo== 'indisponivel'){
-
-         return $indisponivel;
-        }
-//            return $alugado;
+//    if ($tipo == 'disponivel') {
+//        return $quantidade;
+//    } else if ($tipo == 'indisponivel') {
+//
+//        return $indisponivel;
+//    }
 //    if ($tipo == 'alugado') {
+//        return "alugado";
+//
 //    } else if ($tipo = 'contar') {
 //
 //

@@ -201,6 +201,38 @@ include_once('nav.php');
     </div>
 </div>
 
+<!-- Modal Banner -->
+<div class="modal fade" id="modalEpiAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Epi</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" name="frmEpiAdd" id="frmEpiAdd">
+
+                <div class="modal-body quasebranco ">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd" >
+                        <label class="input-group-text" for="fotoEpiAdd">Foto</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd" >
+                        <label class="input-group-text" for="nomeEpiAdd">Nome do Epi</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="certificadoEpiAdd" name="certificadoEpiAdd" maxlength="7" minlength="5">
+                        <label class="input-group-text" for="certificadoEpiAdd" >Certificado</label>
+                    </div>
+                </div>
+                <div class="modal-footer quasebranco ">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success" id="btnEpiAdd">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -218,6 +250,9 @@ include_once('nav.php');
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 <script src="../js/script.js"></script>
+
+
+
 
 </body>
 

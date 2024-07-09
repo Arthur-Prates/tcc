@@ -41,7 +41,8 @@ foreach ($cod as $itemCod) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -57,16 +58,23 @@ foreach ($cod as $itemCod) {
             Empréstimo - #<?php echo $codigoAluguel ?>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col-lg-5 col-12 text-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=100%" alt=""
-                 title=""/>
+    <div class="row mb-5 mt-5">
+        <div class="col-lg-5 col-12 d-flex justify-content-center">
+            <div class="card" style=" max-width: 250px!important">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=300x300"
+                     class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <p class="card-text"><?php echo $codigoAluguel ?></p>
+
+                </div>
+            </div>
         </div>
         <div class="col-lg-7 col-12">
             <?php
-            $tabelaAluguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel INNER JOIN epi e ON e.idepi = pa.idepi");
+            $tabelaAluguel = listarTabelaInnerJoinQuadruploWhere('*', 'aluguel', 'usuario', 'produtoAluguel', 'epi', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idepi', 'idepi', 'codAluguel', "$codigoAluguel", 'horaFim', 'DESC');
             if ($tabelaAluguel !== 'vazio') {
                 foreach ($tabelaAluguel as $item) {
+                    $id = $item->idusuario;
                     $locatario = $item->nomeUsuario;
                     $email = $item->email;
                     $cpf = $item->cpf;
@@ -78,10 +86,9 @@ foreach ($cod as $itemCod) {
 
                     $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
 
-                    if ($observacao == 'NAO') {
+                    if ($observacao == 'NAO' || $observacao == '') {
                         $observacao = 'Nenhuma observação foi feita';
                     }
-
                     if ($prioridade == 'ALTA') {
                         $prioridade = 'Alta';
                     } else if ($prioridade == 'MEDIA') {
@@ -91,9 +98,19 @@ foreach ($cod as $itemCod) {
                     }
 
                 }
+                $telefoneTabela = listarItemExpecifico('*', 'telefone', 'idusuario', $id);
+                if ($telefoneTabela !== 'Vazio') {
+                    foreach ($telefoneTabela as $itemTelefone) {
+                        $telefone = $itemTelefone->numero;
+                    }
+                } else {
+                    $telefone = 'Não informado!';
+                }
+
                 ?>
                 <p class="mt-3">Locatário: <?php echo $locatario ?></p>
                 <p>Email: <?php echo $email ?></p>
+                <p>Telefone: <?php echo $telefone?></p>
                 <p>CPF: <?php echo $cpf ?></p>
                 <p>Data do aluguel: <?php echo $dataAluguel ?></p>
                 <p>Hora inicial do aluguel: <?php echo $horaInicial ?></p>
@@ -112,8 +129,10 @@ foreach ($cod as $itemCod) {
             ?>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-lg-12 col-12">
+            <h3 class="mt-3 mb-3">EPI(s) emprestado(s)</h3>
             <div class="owl-carousel owl-theme">
                 <?php
                 if ($tabelaAluguel !== 'Vazio') {
@@ -121,19 +140,21 @@ foreach ($cod as $itemCod) {
                         $nomeEpi = $item->nomeEpi;
                         $codEpi = $item->certificado;
                         $foto = $item->foto;
+                        $quantidade = $item->quantidade;
 
                         ?>
                         <div class="item d-flex justify-content-center align-items-center">
                             <div class="card mb-3 item cardCarrosselVisualizarAluguel">
                                 <div class="row g-0">
-                                    <div class="col-lg-4">
+                                    <div class="col-4">
                                         <img src="./img/produtos/<?php echo $foto ?>" class="img-fluid rounded-start"
                                              alt="foto do epi: <?php echo $nomeEpi ?>">
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-8">
                                         <div class="card-body">
-                                            <h5 class="card-title"><?php echo $nomeEpi ?></h5>
+                                            <h5 class="card-title tituloCard"><?php echo $nomeEpi ?></h5>
                                             <p class="card-text">Número do CA: <?php echo $codEpi ?></p>
+                                            <p>Quantidade: <?php echo $quantidade ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -180,8 +201,11 @@ foreach ($cod as $itemCod) {
                 0: {
                     items: 1
                 },
+                500: {
+                    items: 1
+                },
                 600: {
-                    items: 3
+                    items: 2
                 },
                 1000: {
                     items: 3

@@ -41,7 +41,8 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
 
     <?php
-    $listaAlguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel INNER JOIN epi e ON e.idepi = pa.idepi");
+
+    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('*', 'aluguel', 'usuario', 'produtoAluguel', 'epi', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idepi', 'idepi', 'codAluguel', "$codigoAluguel", 'horaFim', 'DESC');
     if ($listaAlguel !== 'Vazio') {
     $nomeEpi = array();
     $idepi = array();
@@ -50,6 +51,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
     foreach ($listaAlguel as $item) {
         $ativo = $item->ativo;
         if ($ativo === 'A') {
+            $id = $item->idusuario;
             $nomeUsuario = $item->nomeUsuario;
             array_push($idepi, $item->idepi);
             array_push($nomeEpi, $item->nomeEpi);
@@ -57,115 +59,142 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             array_push($quantidade, $item->quantidade);
             $prioridade = $item->prioridade;
             $dataAluguel = $item->dataAluguel;
+            $email = $item->email;
+
 
             $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
         }
     }
+    $telefoneTabela = listarItemExpecifico('*', 'telefone', 'idusuario', $id);
+    if ($telefoneTabela != 'Vazio') {
+        foreach ($telefoneTabela as $itemTelefone) {
+            $telefone = $itemTelefone->numero;
+        }
+    } else {
+        $telefone = 'Não informado!';
+    }
+
     ?>
     <div class="row">
-        <div class="col-lg-6 col-12">
-            <p>Nome: <?php echo $nomeUsuario ?></p>
-            <p>Data: <?php echo $dataAluguel ?></p>
-            <p>Prioridade: <?php echo $prioridade ?></p>
-            <div class="d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 mt-4 d-flex justify-content-center">
+            <div class="card" style=" max-width: 250px!important">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=250x250"
+                     class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <p class="card-text"><?php echo $codigoAluguel ?></p>
 
-                <div class="card" style=" max-width: 250px!important">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=200x200"
-                         class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <p class="card-text"><?php echo $codigoAluguel ?></p>
-
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-12">
-            <h2>Ferramentas Emprestadas</h2>
-            <div class="owl-carousel owl-theme">
-                <?php
+        <div class="col-lg-6 col-12 mt-4">
+            <p>Nome: <?php echo $nomeUsuario ?></p>
+            <p>Email: <?php echo $email ?></p>
+            <p>Telefone: <?php echo $telefone ?></p>
+            <p>Data: <?php echo $dataAluguel ?></p>
+            <p>Prioridade: <?php echo $prioridade ?></p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <h2 class="mt-5 mb-4">Ferramentas emprestadas</h2>
+                <div class="owl-carousel owl-theme">
+                    <?php
 
-                foreach ($epi as $key => $value) {
-                    $id = $key;
-                    $selectCompras = listarItemExpecifico('*', 'epi', 'idepi', $id);
-                    foreach ($selectCompras as $item) {
-                        $nome = $item->nomeEpi;
-                        $foto = $item->foto;
-                        $CA = $item->certificado;
-                        ?>
-                        <div class="item">
-                            <div class="card">
-                                <img src="../img/produtos/<?php echo $foto ?>" class="card-img-top" alt="...">
-                                <div class="card-body cardeCarrossel text-center">
-                                    <h5 class="card-title "><?php echo $nome ?></h5>
-                                    <p class="card-text "><?php echo $CA ?></p>
+                    foreach ($epi as $key => $value) {
+                        $id = $key;
+                        $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'a.idepi', $id, 'a.idepi', 'ASC');
+                        if ($selectCompras) {
+                            foreach ($selectCompras as $item) {
+                                $nome = $item->nomeEpi;
+                                $foto = $item->foto;
+                                $CA = $item->certificado;
+                                $quantidade = $item->quantidade;
 
+                                ?>
+
+                                <div class="item">
+                                    <div class="card mb-3 item">
+                                        <div class="row g-0">
+                                            <div class="col-4">
+                                                <img src="../img/produtos/<?php echo $foto ?>"
+                                                     class="img-fluid rounded-start"
+                                                     alt="foto do epi: <?php echo $nome ?>">
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title tituloCard"><?php echo $nome ?></h5>
+                                                    <p class="card-text">Número do CA: <?php echo $CA ?></p>
+                                                    <p class="card-text">Quantidade: <?php echo $quantidade ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <?php
+                                <?php
+                            }
+                        }
+
                     }
+                    ?>
+                </div>
+
+                <?php
+                } else {
+                    ?>
+
+                    <h4>Nenhum Aluguel cadastrado</h4>
+                    <?php
                 }
                 ?>
             </div>
-
-
-            <?php
-            } else {
-                ?>
-
-                <h4>Nenhum Aluguel cadastrado</h4>
-                <?php
-            }
-            ?>
         </div>
     </div>
 
 
-</div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"
+            integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <script src="../js/script.js"></script>
 
+    <script>
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"
-        integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-<script src="../js/script.js"></script>
-
-<script>
-
-    $(document).ready(function () {
-        $('.owl-carousel').owlCarousel({
-            loop: false,
-            navText: ['Voltar', 'Próximo'],
-            center: false,
-            nav: true,
-            margin: 10,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 3
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: false,
+                navText: ['Voltar', 'Próximo'],
+                center: false,
+                nav: true,
+                margin: 10,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    500: {
+                        items: 2
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 3
+                    }
                 }
-            }
-        });
+            });
 
-    });
-</script>
+        });
+    </script>
 </body>
 
 </html>
