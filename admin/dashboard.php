@@ -11,7 +11,6 @@ if ($_SESSION['idadm']) {
 }
 
 
-
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -53,11 +52,12 @@ include_once('nav.php');
             <div class="col-12 ">
                 <div class="d-flex justify-content-center align-items-center dashAdm">
 
-                    <form action="verificarAluguel.php" method="get" >
+                    <form action="verificarAluguel.php" method="get">
                         <label for="codigoAluguel" class="form-label">Código da Reserva:</label>
-                        <input type="text" class="form-control" id="codigoAluguel" name="codigoAluguel" placeholder="Código">
+                        <input type="text" class="form-control" id="codigoAluguel" name="codigoAluguel"
+                               placeholder="Código">
                         <span class="input-group-text">   <button type="submit" class="btn btn-inputAluguel">Pesquisar Aluguel</button></span>
-                        
+
                     </form>
 
                 </div>
@@ -79,7 +79,7 @@ include_once('nav.php');
                             datasets: [{
                                 label: '',
 
-                                data: ['<?php  echo  valoresGraficoQuantidadeEpi('indisponivel') ?>', '<?php  echo  valoresGraficoQuantidadeEpi('disponivel') ;?>'],
+                                data: ['<?php  echo valoresGraficoQuantidadeEpi('indisponivel') ?>', '<?php  echo valoresGraficoQuantidadeEpi('disponivel');?>'],
 
                                 backgroundColor: [
                                     'rgba(219,2,2,0.8)',
@@ -102,7 +102,8 @@ include_once('nav.php');
                                         top: 10,
                                         bottom: 30
                                     }
-                                }},
+                                }
+                            },
                             scales: {
                                 y: {
                                     beginAtZero: true
@@ -116,10 +117,6 @@ include_once('nav.php');
 
             </div>
             <div class="col-4 col-md-4 col-sm-12">
-                <?php
-
-
-                ?>
                 <div class=" d-flex justify-content-center align-items-center ">
                     <canvas id="myChart2"></canvas>
                 </div>
@@ -132,15 +129,13 @@ include_once('nav.php');
                             labels: [
                                 <?php
                                 $numPeople = 0;
-                                $TOTALFIMEND =  valoresGraficoTopFuncionarios('nome');
-                                foreach ($TOTALFIMEND as  $key => $value){
-                                if($numPeople < 5){
+                                $TOTALFIMEND = valoresGraficoTopFuncionarios('nome');
+                                foreach ($TOTALFIMEND as $key => $value) {
+                                    if ($numPeople < 5) {
+                                        echo "'" . $key . "',";
 
-                                ?>
-                                '<?php echo $key;?>',
-                                <?php
-                                }
-                                $numPeople = $numPeople + 1;
+                                    }
+                                    $numPeople = $numPeople + 1;
                                 }
                                 ?>
                             ],
@@ -150,14 +145,13 @@ include_once('nav.php');
                                 data: [
                                     <?php
                                     $numValores = 0;
-                                    $TOTALFIMEND =  valoresGraficoTopFuncionarios('valor');
-                                    foreach ($TOTALFIMEND as  $key => $value){
-                                    if($numValores < 5){
-                                    ?>
-                                    '<?php echo $value;?>',
-                                    <?php
-                                    $numValores = $numValores + 1;
-                                    }
+                                    $TOTALFIMEND = valoresGraficoTopFuncionarios('valor');
+                                    foreach ($TOTALFIMEND as $key => $value) {
+                                        if ($numValores < 5) {
+                                            echo "'" . $value . "',";
+
+                                            $numValores = $numValores + 1;
+                                        }
                                     }
                                     ?>
                                 ],
@@ -213,16 +207,17 @@ include_once('nav.php');
 
                 <div class="modal-body quasebranco ">
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd" >
+                        <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd">
                         <label class="input-group-text" for="fotoEpiAdd">Foto</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd" >
+                        <input type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd">
                         <label class="input-group-text" for="nomeEpiAdd">Nome do Epi</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="certificadoEpiAdd" name="certificadoEpiAdd" maxlength="7" minlength="5">
-                        <label class="input-group-text" for="certificadoEpiAdd" >Certificado</label>
+                        <input type="text" class="form-control" id="certificadoEpiAdd" name="certificadoEpiAdd"
+                               maxlength="7" minlength="5">
+                        <label class="input-group-text" for="certificadoEpiAdd">Certificado</label>
                     </div>
                 </div>
                 <div class="modal-footer quasebranco ">
@@ -250,8 +245,6 @@ include_once('nav.php');
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 <script src="../js/script.js"></script>
-
-
 
 
 </body>

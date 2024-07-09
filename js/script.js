@@ -37,7 +37,7 @@ function fazerLogin() {
             console.log(data)
             if (data.success) {
                 setTimeout(function () {
-                    window.location.href = "dashboard.php";
+                    window.location.href = "index.php";
                 }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
@@ -52,9 +52,9 @@ function fazerLogin() {
             }
             // esconderProcessando();
         })
-    .catch((error) => {
-        console.error("Erro na requisição", error);
-    });
+        .catch((error) => {
+            console.error("Erro na requisição", error);
+        });
 }
 
 // FUNCAO DE LOADING
@@ -225,16 +225,26 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 formEnviado = true;
                 if (data.success) {
                     ModalInstancia.hide();
-                    alertSuccess(data.message, '#1B7E00');
-                    carregarConteudo("#");
+                    Swal.fire({
+                        title: `${data.message}`,
+                        // text: "You clicked the button!",
+                        icon: "success"
+                    });
                     formDados.removeEventListener('submit', submitHandler);
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 2000)
                 } else {
                     ModalInstancia.hide();
-                    alertError(data.message);
-                    carregarConteudo("#");
+                    Swal.fire({
+                        title: `${data.message}`,
+                        // text: "You clicked the button!",
+                        icon: "error"
+                    });
                     formDados.removeEventListener('submit', submitHandler);
                 }
             })
@@ -309,9 +319,9 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
                     }
                     ModalInstacia.hide();
                 })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
         formDados.addEventListener('submit', submitHandler);
     } else {
@@ -356,6 +366,12 @@ function alertError(msg) {
 
 }
 
+function attCarrinho(quantidade) {
+    var qtdDeItensNoCarrinho = document.getElementById('qtdDeItensNoCarrinho')
+
+    qtdDeItensNoCarrinho.innerText = quantidade
+}
+
 function postCarrinho(produto) {
     fetch('addCarrinho.php', {
         method: 'POST', headers: {
@@ -365,12 +381,16 @@ function postCarrinho(produto) {
         .then(response => response.json())
         .then(data => {
             // console.log(data)
+            attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
                     icon: "success"
                 });
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1500)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -378,14 +398,11 @@ function postCarrinho(produto) {
                     icon: "danger"
                 });
             }
-            setTimeout(function () {
-                window.location.reload()
-            }, 1350)
         })
-    // .catch(error => {
-    //     console.error('Erro:', error);
-    //     alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
-    // });
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
+        });
 }
 
 function removeCarrinho(produto, f) {
@@ -397,12 +414,16 @@ function removeCarrinho(produto, f) {
         .then(response => response.json())
         .then(data => {
             // console.log(data)
+            attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
                     icon: "success"
                 });
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1240)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -410,14 +431,11 @@ function removeCarrinho(produto, f) {
                     icon: "danger"
                 });
             }
-            setTimeout(function () {
-                window.location.reload()
-            }, 1240)
         })
         .catch(error => {
             console.error('Erro:', error);
             Swal.fire({
-                title: `${data.message}`,
+                // title: `${data.message}`,
                 text: "Ocorreu um erro ao tentar remover o produto do carrinho.",
                 icon: "danger"
             });
@@ -432,13 +450,16 @@ function excluirItem(id) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
                     icon: "success"
                 });
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1240)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -446,9 +467,6 @@ function excluirItem(id) {
                     icon: "danger"
                 });
             }
-            setTimeout(function () {
-                window.location.reload()
-            }, 1240)
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -535,21 +553,24 @@ function realizarAluguel(formulario, addEditDel, botoes) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 formEnviado = true;
                 if (data.success) {
-                    alertSuccess(data.message, '#1B7E00');
+                    Swal.fire({
+                        title: `${data.message}`,
+                        // text: "You clicked the button!",
+                        icon: "success"
+                    });
                     formDados.removeEventListener('submit', submitHandler);
                     setTimeout(function () {
                         window.location.href = 'aluguel.php'
                     }, 1500)
                 } else {
                     if (data.errodata) {
-                        console.log(data.errodata);
+                        // console.log(data.errodata);
                         if (data.msgData !== '') {
                             alertData.style.color = 'red'
                             alertData.style.display = 'block'
-
                             alertData.innerHTML = data.msgData;
                         }
                         if (data.msgHoraInicial !== '') {
@@ -573,16 +594,16 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
                 }
             })
-            .catch(error => {
-                console.error('Erro na requisição:', error);
-            });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
     };
     formDados.addEventListener('submit', submitHandler);
 
 }
 
 
-function deleletarEpi(id,addEditDel,formulario){
+function deleletarEpi(id, addEditDel, formulario) {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -599,35 +620,35 @@ function deleletarEpi(id,addEditDel,formulario){
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'controle=' + encodeURIComponent(`${addEditDel}`)+
+                body: 'controle=' + encodeURIComponent(`${addEditDel}`) +
                     "&idDelete=" +
                     encodeURIComponent(`${id}`),
             })
-                    .then(response => response.json())
-                    .then(data => {
-                        carregarConteudo('listarEpi')
-                        if (data.success) {
+                .then(response => response.json())
+                .then(data => {
+                    carregarConteudo('listarEpi')
+                    if (data.success) {
 
-                            Swal.fire({
-                                title: "Deletado!",
-                                text: `${data.message}`,
-                                icon: "success"
-                            });
+                        Swal.fire({
+                            title: "Deletado!",
+                            text: `${data.message}`,
+                            icon: "success"
+                        });
 
-                        } else {
-                            Swal.fire({
-                                title: "Erro!",
-                                text: `${data.message}`,
-                                icon: "warning"
-                            });
+                    } else {
+                        Swal.fire({
+                            title: "Erro!",
+                            text: `${data.message}`,
+                            icon: "warning"
+                        });
 
-                        }
+                    }
 
-                    })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
-            }
+                })
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
+        }
 
 
     });

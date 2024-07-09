@@ -29,13 +29,15 @@ if ($produto !== 'vazio') {
 
 
     }
+    $cont = count($_SESSION['pedidoscarrinho']);
     if ($produtoremove) {
-        echo json_encode(['success' => true, 'message' => "Quantidade do produto diminuída!"]);
+        echo json_encode(['success' => true, 'message' => "Quantidade do produto diminuída!", 'qtd' => $cont]);
     }else{
-        echo json_encode(['success' => false, 'message' => "Para remover do carrinho clique em 'remover'"]);
+        echo json_encode(['success' => false, 'message' => "Para remover do carrinho clique em 'remover'", 'qtd' => $cont]);
     }
 
 } else {
-    echo json_encode(['success' => false, 'message' => "Erro ao remover produto!"]);
+    $cont = count($_SESSION['pedidoscarrinho']);
+    echo json_encode(['success' => false, 'message' => "Erro ao remover produto!", 'qtd' => $cont]);
 }
 
