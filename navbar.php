@@ -40,7 +40,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                         ?>
                         <ul class="dropdown-menu ">
                             <li class=""><a class="dropdown-item" href="perfil">Meu perfil</a></li>
-                            <li class=""><a class="dropdown-item" href="aluguel">Meus aluguéis</a></li>
+                            <li class=""><a class="dropdown-item" href="meus-alugueis">Meus aluguéis</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="logout">Sair</a></li>
                         </ul>

@@ -34,38 +34,119 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 <div class="container">
     <h3 class="mt-4">Informações pessoais</h3>
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-6 mt-3">
-            <p><b>Nome:</b></p>
-            <p>Marco antonio</p>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6 mt-3">
-            <p><b>CPF:</b></p>
-            <p>155.266.985-98</p>
-        </div>
-        <div class="col-lg-4 col-md-6 col-6 mt-3">
-            <p><b>Nascimento:</b></p>
-            <p>23/03/2003</p>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6 mt-3">
-            <p><b>Telefone:</b></p>
-            <p>(33) 9 8833-9900</p>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 mt-3">
-            <p><b>Email:</b></p>
-            <p>marco@gmail.com</p>
-        </div>
-    </div>
-    <hr>
-    <h3 class="mt-3">Informações de funcionário</h3>
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-            <p><b>Matrícula:</b></p>
-            <p>55663322</p>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 mt-3">
-            <p><b>Cargo:</b></p>
-            <p>Funcionário</p>
+    <?php
+    $tabelaFuncionario = listarTabelaLeftJoinExpecifica('*', 'usuario', 'telefone', 'idusuario', 'idusuario', 'a.idusuario', "$idFuncionario");
+    if ($tabelaFuncionario !== 'Vazio') {
+        foreach ($tabelaFuncionario as $item) {
+            $nome = $item->nomeUsuario;
+            $sobrenome = $item->sobrenome;
+            $cpf = $item->cpf;
+            $nascimento = $item->nascimento;
+            $email = $item->email;
+            $telefone = $item->numero;
+            $matricula = $item->matricula;
+            $cargo = $item->cargo;
+
+            if ($telefone == '') {
+                $telefone = 'Nenhum telefone cadastrado!';
+            }
+
+            if ($cargo == 'funcionario') {
+                $cargo = 'Funcionário';
+            } else if ($cargo == 'adm') {
+                $cargo = 'Administrador';
+            } else if ($cargo == 'rh') {
+                $cargo = 'Recursos Humanos';
+            }
+
+
+            $dataNascimento = implode("/", array_reverse(explode("-", $nascimento)));
+
+            ?>
+
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-6 mt-3">
+                    <p><b>Nome:</b></p>
+                    <p><?php echo $nome ?></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-6 mt-3">
+                    <p><b>CPF:</b></p>
+                    <p><?php echo $cpf ?></p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-6 mt-3">
+                    <p><b>Nascimento:</b></p>
+                    <p><?php echo $dataNascimento ?></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-6 mt-3">
+                    <p><b>Telefone:</b></p>
+                    <p><?php echo $telefone ?></p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mt-3">
+                    <p><b>Email:</b></p>
+                    <p><?php echo $email ?></p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mt-3">
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                            onclick="abrirModalAlterarSenha('mdlAlterarSenha','A','btnAlterarSenha','editSenha','frmAlterarSenha')">
+                        Alterar senha
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <h3 class="mt-3">Informações de funcionário</h3>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12 mt-3">
+                    <p><b>Matrícula:</b></p>
+                    <p><?php echo $matricula ?></p>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12 mt-3">
+                    <p><b>Cargo:</b></p>
+                    <p><?php echo $cargo ?></p>
+                </div>
+            </div>
+            <?php
+        }
+    } else {
+        echo 'erro';
+    }
+    ?>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mdlAlterarSenha" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="#" method="post" name="frmAlterarSenha" id="frmAlterarSenha">
+                <div class="modal-body">
+
+                    <div class="card-body">
+                        <h3 class="mb-5">Alterar senha</h3>
+                        <div class="">
+                            <label for="inpAlterarSenha" class="label-control">Digite sua nova senha:</label>
+                            <input type="password" name="inpAlterarSenha" id="inpAlterarSenha" class="inpAlterarSenha"
+                                   required="required">
+                        </div>
+                        <div class="mt-4">
+                            <label for="confirmarAlteracaoDaSenha" class="label-control">
+                                Digite a senha novamente:
+                            </label>
+                            <input type="password" name="confirmarAlteracaoDaSenha" id="confirmarAlteracaoDaSenha"
+                                   class="inpAlterarSenha" required="required">
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" id="alertSenha" style="display: none">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalSenha">Fechar
+                    </button>
+                    <button class="btn btn-sm btn-primary" type="submit" id="btnAlterarSenha">Alterar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

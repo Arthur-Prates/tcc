@@ -1,4 +1,4 @@
 RewriteEngine on
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteRule ^(.*)$ controle.php?url=$1
+RewriteRule ^(.*)$ rota.php?url=$1
