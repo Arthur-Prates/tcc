@@ -68,7 +68,7 @@ if (!empty($_SESSION['idFuncionario'])) {
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-6 mt-3">
                     <p><b>Nome:</b></p>
-                    <p><?php echo $nome ?></p>
+                    <p><?php echo $nome . ' ' . $sobrenome ?></p>
                 </div>
                 <div class="col-lg-4 col-md-4 col-6 mt-3">
                     <p><b>CPF:</b></p>
@@ -87,6 +87,10 @@ if (!empty($_SESSION['idFuncionario'])) {
                     <p><?php echo $email ?></p>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 mt-3">
+                    <button class="btn btn-sm bg-primary-subtle"
+                            onclick="abrirModalAlterarDados('mdlAlterarDados','A','btnAlterarDados','editDados','frmAlterarDados')">
+                        Alterar contatos
+                    </button>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                             onclick="abrirModalAlterarSenha('mdlAlterarSenha','A','btnAlterarSenha','editSenha','frmAlterarSenha')">
                         Alterar senha
@@ -113,7 +117,7 @@ if (!empty($_SESSION['idFuncionario'])) {
     ?>
 </div>
 
-<!-- Modal -->
+<!-- Modal editar senha -->
 <div class="modal fade" id="mdlAlterarSenha" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -145,6 +149,42 @@ if (!empty($_SESSION['idFuncionario'])) {
                             id="btnFecharModalSenha">Fechar
                     </button>
                     <button class="btn btn-sm btn-primary" type="submit" id="btnAlterarSenha">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal editar email e telefone-->
+<div class="modal fade" id="mdlAlterarDados" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="#" method="post" name="frmAlterarDados" id="frmAlterarDados">
+                <div class="modal-body">
+
+                    <div class="card-body mb-4">
+                        <h3 class="mb-5">Editar informações de contato</h3>
+                        <div class="">
+                            <label for="inpAlterarEmail" class="label-control">Email:</label>
+                            <input type="email" name="inpAlterarEmail" id="inpAlterarEmail" class="inpAlterarSenha"
+                                   value="marco@gmail.com">
+                        </div>
+                        <div class="mt-4">
+                            <label for="inpAlterarTelefone" class="label-control">
+                                Número de telefone:
+                            </label>
+                            <input type="text" name="inpAlterarTelefone" id="inpAlterarTelefone"
+                                   class="inpAlterarSenha celular" value="33966885577">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalDados">Fechar
+                    </button>
+                    <button class="btn btn-sm btn-primary" type="submit" id="btnAlterarDados">Alterar</button>
                 </div>
             </form>
         </div>

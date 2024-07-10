@@ -28,6 +28,9 @@ switch ($url[0]) {
     case 'visualizar-aluguel':
         include_once('visualizarAluguel.php');
         break;
+    case 'logout':
+        include_once('logout.php');
+        break;
     default:
         include_once('404.php');
         break;

@@ -357,23 +357,19 @@ function insert3Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3)
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("INSERT INTO $tabela($dados) VALUES (?,?,?)");
+        $sqlLista = $conn->prepare("INSERT INTO $tabela($dados) VALUES (?, ?, ?)");
         $sqlLista->bindValue(1, $novosDados1, PDO::PARAM_STR);
         $sqlLista->bindValue(2, $novosDados2, PDO::PARAM_STR);
         $sqlLista->bindValue(3, $novosDados3, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
-        if ($sqlLista->rowCount() > 0) {
-            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
-        }
-        return False;
-
+        return $sqlLista->rowCount() > 0;
     } catch (PDOException $e) {
-        echo 'Exception -> ';
         $conn->rollback();
-        return ($e->getMessage());
+        return 'Exception -> ' . $e->getMessage();
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -447,8 +443,8 @@ function insert6Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         }
         return False;
     } catch (PDOException $e) {
-        echo 'Exception -> ';
         $conn->rollback();
+        echo 'Exception -> ';
         return ($e->getMessage());
     }
     $conn = null;
@@ -620,8 +616,8 @@ function deletarCadastro($tabela, $NomeDoCampoId, $id)
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     }
     $conn = null;
 }
@@ -642,8 +638,8 @@ function alterarItemGlobal($tabela, $comando, $identificar, $id)
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     };
     $conn = null;
 }
@@ -653,22 +649,20 @@ function alterar1Item($tabela, $campo, $valor, $identificar, $id)
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("UPDATE $tabela SET $campo = ? WHERE  $identificar = $id ;");
+        $sqlLista = $conn->prepare("UPDATE $tabela SET $campo = ? WHERE $identificar = ?");
         $sqlLista->bindValue(1, $valor, PDO::PARAM_STR);
+        $sqlLista->bindValue(2, $id, PDO::PARAM_INT);
         $sqlLista->execute();
         $conn->commit();
-        if ($sqlLista->rowCount() > 0) {
-            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
-        }
-        return False;
-
+        return $sqlLista->rowCount() > 0;
     } catch (PDOException $e) {
-        echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
-    };
-    $conn = null;
+        return 'Exception -> ' . $e->getMessage();
+    } finally {
+        $conn = null;
+    }
 }
+
 
 function alterar2Item($tabela, $campo, $campo2, $valor, $valor2, $identificar, $id)
 {
@@ -687,9 +681,9 @@ function alterar2Item($tabela, $campo, $campo2, $valor, $valor2, $identificar, $
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
-    };
+        return ($e->getMessage());
+    }
     $conn = null;
 }
 
@@ -713,8 +707,8 @@ function alterar3Item($tabela, $campo1, $campo2, $campo3, $valor, $valor2, $valo
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     };
     $conn = null;
 }
@@ -739,8 +733,8 @@ function alterar4Item($tabela, $campo1, $campo2, $campo3, $campo4, $valor, $valo
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     };
     $conn = null;
 }
@@ -766,8 +760,8 @@ function alterar5Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $val
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     };
     $conn = null;
 }
@@ -794,8 +788,8 @@ function alterar6Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     }
     $conn = null;
 }
@@ -823,8 +817,8 @@ function alterar7Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     }
     $conn = null;
 }
@@ -853,8 +847,8 @@ function alterar8Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     }
     $conn = null;
 }
@@ -884,8 +878,8 @@ function alterar9Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     }
     $conn = null;
 }
@@ -916,8 +910,8 @@ function alterar10Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $ca
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
     }
     $conn = null;
 }

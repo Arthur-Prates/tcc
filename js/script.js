@@ -289,9 +289,13 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
 
 function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
-
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+
+    if (!formDados || !botoes || !ModalInstancia) {
+        console.error('Verificar a chamada da função e checar se os IDs estão corretos!')
+    }
+
     if (abrirModal === 'A') {
         ModalInstancia.show();
 
@@ -311,11 +315,11 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
                     if (data.success) {
                         alertSuccess(data.message, '#30B27F')
                         carregarConteudo('listarEpi')
-
+                        formDados.removeEventListener('submit', submitHandler);
                     } else {
                         alertError(data.message)
                         carregarConteudo('listarEpi')
-
+                        formDados.removeEventListener('submit', submitHandler);
                     }
                     ModalInstancia.hide();
                 })
@@ -323,6 +327,17 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
                     console.error('Erro na requisição:', error);
                 });
         }
+
+        const btnFecharModalAddEpi = document.getElementById('btnFecharModalAddEpi');
+        if (btnFecharModalAddEpi) {
+            btnFecharModalAddEpi.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+
         formDados.addEventListener('submit', submitHandler);
     } else {
 
@@ -331,59 +346,168 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
 }
 
 function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
-    const formDados = document.getElementById(`${formulario}`)
+    const formDados = document.getElementById(`${formulario}`);
+    const botoes = document.getElementById(`${botao}`);
+    const modalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
 
-    var botoes = document.getElementById(`${botao}`);
-    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+    if (!formDados || !botoes || !modalInstancia) {
+        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
+        return;
+    }
 
     if (abrirModal === 'A') {
-        ModalInstacia.show();
+        modalInstancia.show();
 
-        let alertSenha = document.getElementById('alertSenha');
+        const alertSenha = document.getElementById('alertSenha');
+        const inpAlterarSenha = document.getElementById('inpAlterarSenha');
+        const confirmarAlteracaoDaSenha = document.getElementById('confirmarAlteracaoDaSenha');
 
+        if (!alertSenha || !inpAlterarSenha || !confirmarAlteracaoDaSenha) {
+            console.error('Os IDs dos inputs e do alerta para verificação de senha estão errados.');
+            return;
+        }
+
+        const verificarSenha = () => {
+            alertSenha.style.display = 'none';
+            if (inpAlterarSenha.value.length < 8) {
+                alertSenha.classList.add('mt-4');
+                alertSenha.style.display = "block";
+                alertSenha.innerHTML = "Mínimo de 8 dígitos.";
+            } else if (inpAlterarSenha.value !== confirmarAlteracaoDaSenha.value) {
+                alertSenha.classList.add('mt-4');
+                alertSenha.style.display = "block";
+                alertSenha.innerHTML = "As senhas não coincidem";
+            }
+        };
+        setTimeout(function (){
+            inpAlterarSenha.addEventListener('input', verificarSenha);
+            confirmarAlteracaoDaSenha.addEventListener('input', verificarSenha);
+        },10000)
 
 
         const submitHandler = function (event) {
             event.preventDefault();
             botoes.disabled = true;
 
+            const form = event.target;
+            const formData = new FormData(form);
+            formData.append('controle', addEditDel);
 
+            fetch('controle.php', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        formDados.removeEventListener('submit', submitHandler);
+                        Swal.fire({
+                            title: data.message,
+                            icon: "success"
+                        });
+                        botoes.disabled = false;
+                        modalInstancia.hide();
+                        form.reset();
+                    } else {
+                        formDados.removeEventListener('submit', submitHandler);
+                        botoes.disabled = false;
+                        alertSenha.style.display = 'block';
+                        alertSenha.classList.add('mt-4');
+                        alertSenha.innerText = data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+        };
+
+        const btnFecharModalSenha = document.getElementById('btnFecharModalSenha');
+        if (btnFecharModalSenha) {
+            btnFecharModalSenha.addEventListener('click', function () {
+                modalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+                inpAlterarSenha.removeEventListener('input', verificarSenha);
+                confirmarAlteracaoDaSenha.removeEventListener('input', verificarSenha);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+
+        formDados.addEventListener('submit', submitHandler);
+    } else {
+        modalInstancia.hide();
+    }
+}
+
+
+function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`);
+    const botoes = document.getElementById(`${botao}`);
+    const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
+
+    if (!formDados || !botoes || !ModalInstancia) {
+        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
+        return;
+    }
+
+    if (abrirModal === 'A') {
+        ModalInstancia.show();
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+            console.log('submit')
             const form = event.target;
             const formData = new FormData(form);
 
-            formData.append('controle', `${addEditDel}`)
+            formData.append('controle', addEditDel);
 
             fetch('controle.php', {
-                method: 'POST', body: formData,
+                method: 'POST',
+                body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
                     if (data.success) {
-                        alertSuccess(data.message, '#30B27F')
-
+                        formDados.removeEventListener('submit', submitHandler);
+                        console.log('S')
+                        Swal.fire({
+                            title: data.message,
+                            icon: "success"
+                        });
+                        botoes.disabled = false;
+                        ModalInstancia.hide();
+                        form.reset();
                     } else {
-                        alertSenha.style.display = "block";
-                        alertSenha.innerText = data.message;
+                        console.log('N')
+                        formDados.removeEventListener('submit', submitHandler);
+                        botoes.disabled = false;
+                        Swal.fire({
+                            title: data.message,
+                            icon: "error"
+                        });
                     }
-                    ModalInstacia.hide();
                 })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
+        };
 
+        const btnFecharModalDados = document.getElementById('btnFecharModalDados');
+        if (btnFecharModalDados) {
+            btnFecharModalDados.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
         }
-
-        document.getElementById('btnFecharModalSenha').addEventListener('click', function () {
-            ModalInstacia.hide();
-            formDados.removeEventListener('submit', submitHandler);
-        });
 
         formDados.addEventListener('submit', submitHandler);
     } else {
-        ModalInstacia.hide();
+        ModalInstancia.hide();
     }
-
 }
 
 
