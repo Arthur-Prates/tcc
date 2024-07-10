@@ -3,7 +3,7 @@
 ?>
 <div class="teste mt-5">
     <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-    <button type="button" class="btn btn-dark" style="float: right" onclick="abrirModalEpiAdd('fotoEpiAdd', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">Cadastrar</button>
+    <button type="button" class="btn btn-dark" style="float: right" onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">Cadastrar</button>
 
 </div>
 <table class="table table-hover table-bordered border-dark">
@@ -37,6 +37,7 @@
                 <td class=" align-items-center "><?php echo $nomeEpi ?></td>
                 <td class=""><?php echo $certificado ?></td>
                 <td class="">
+                    <button type="button" class="btn btn-primary" onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto?>','<?php echo $idepi?>','idEditEpi','<?php echo $nomeEpi?>','nomeEpiEdit','<?php echo $certificado;?>','certificadoEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')"><span class="mdi mdi-file-document-edit-outline"></span> </button>
                     <button type="button" class="btn btn-danger" onclick="deleletarEpi('<?php echo $idepi?>','deleteEpi','frmEpiDelete')"><span class="mdi mdi-trash-can"></span> </button>
                 </td>
 

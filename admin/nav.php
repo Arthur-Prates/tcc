@@ -29,10 +29,10 @@
             </a>
 
 
-                <form action="verificarAluguel.php" method="get" class="d-flex" role="search">
-                    <input class="form-control me-2 cinza" type="text" id="codigoAluguel" name="codigoAluguel"  placeholder="Buscar">
-                    <button  class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
-                </form>
+<!--                <form action="verificarAluguel.php" method="get" class="d-flex" role="search">-->
+<!--                    <input class="form-control me-2 cinza" type="text" id="codigoAluguel" name="codigoAluguel"  placeholder="Buscar">-->
+<!--                    <button  class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>-->
+<!--                </form>-->
         </div>
     </div>
 </nav>

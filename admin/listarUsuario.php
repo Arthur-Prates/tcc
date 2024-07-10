@@ -1,15 +1,23 @@
 <?php
 
 ?>
+<div class="teste mt-5">
+
 <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
+<button type="button" class="btn btn-dark" style="float: right" onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'frmUsuarioAdd')">Cadastrar</button>
+
+</div>
+
 <table class="table table-hover table-bordered border-dark">
     <thead>
     <tr>
+
         <th scope="col">#</th>
         <th scope="col">Nome Completo</th>
         <th scope="col">CPF</th>
         <th scope="col">Cargo</th>
         <th scope="col">Email</th>
+        <th scope="col">Ação</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +29,7 @@
             $idusuario = $item -> idusuario;
             $nome = $item -> nomeUsuario;
             $sobrenome = $item -> sobrenome;
+            $nascimento = $item -> nascimento;
             $cpf = $item -> cpf;
             $cargo = $item -> cargo;
             if($cargo== 'adm'){
@@ -43,6 +52,14 @@
                 <td><?php echo $cpf?></td>
                 <td><?php echo $cargo?></td>
                 <td><?php echo $email?></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" class="btn btn-info" style="float: right" onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario ;?>','nomeUsuarioEdit','<?php echo $nome;?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome;?>', 'CPFUsuarioEdit','<?php echo $cpf ;?>', 'nascimentoUsuarioEdit','<?php echo $nascimento;?>', 'cargoUsuarioEdit','<?php echo $cargo ;?>', 'emailUsuarioEdit','<?php echo $email;?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')"><i class="mdi mdi-file-edit-outline"></i></button>
+                        <button type="button" class="btn btn-danger"><i class="mdi mdi-trash-can"></i></button>
+
+                    </div>
+
+                </td>
             </tr>
             <?php
             ++$contar;

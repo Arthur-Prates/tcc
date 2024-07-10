@@ -1,9 +1,5 @@
 <h1 align="center" style="display: inline_block">
 
-
-  https://prod.liveshare.vsengsaas.visualstudio.com/join?2C261714EF05BB5DE91DB611BFE310B0794B
-https://code-with-me.global.jetbrains.com/ZXkmjr0Y9GYfFUsyr6K7CA#p=PS&fp=E018C2871A341525FB6E09853BD93DB9CFC7409BC613DA5C3A548B8756F39B2A&newUi=true
-
 Bem vindo ao nosso trabalho de conclusão de curso
 
 </h1>

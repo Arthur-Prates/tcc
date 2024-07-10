@@ -168,15 +168,14 @@ if (!empty($_SESSION['idFuncionario'])) {
                         <h3 class="mb-5">Editar informações de contato</h3>
                         <div class="">
                             <label for="inpAlterarEmail" class="label-control">Email:</label>
-                            <input type="email" name="inpAlterarEmail" id="inpAlterarEmail" class="inpAlterarSenha"
-                                   value="marco@gmail.com">
+                            <input type="email" name="inpAlterarEmail" id="inpAlterarEmail" class="inpAlterarSenha">
                         </div>
                         <div class="mt-4">
                             <label for="inpAlterarTelefone" class="label-control">
                                 Número de telefone:
                             </label>
                             <input type="text" name="inpAlterarTelefone" id="inpAlterarTelefone"
-                                   class="inpAlterarSenha celular" value="33966885577">
+                                   class="inpAlterarSenha celular">
                         </div>
                     </div>
                 </div>

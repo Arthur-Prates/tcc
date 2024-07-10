@@ -57,6 +57,19 @@ function fazerLogin() {
         });
 }
 
+function mostrarsenha(input) {
+    var inputPass = document.getElementById(`${input}`);
+    var btnShowPass = document.getElementById('btn-senha');
+
+    if (inputPass.type === 'password') {
+        inputPass.setAttribute('type', 'text');
+        btnShowPass.classList.replace('bi-eye-slash', 'bi-eye');
+    } else {
+        inputPass.setAttribute('type', 'password');
+        btnShowPass.classList.replace('bi-eye', 'bi-eye-slash');
+    }
+}
+
 // FUNCAO DE LOADING
 function mostrarProcessando() {
     var divFundoEscuro = document.createElement('div');
@@ -287,7 +300,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
     }
 }
 
-function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, idCertificado, inpIdCertificado, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
@@ -295,6 +308,23 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
     if (!formDados || !botoes || !ModalInstancia) {
         console.error('Verificar a chamada da função e checar se os IDs estão corretos!')
     }
+
+    const inpidEpiEdit = document.getElementById(`${inpIdEpi}`)
+    if (idEpi !== 'nao') {
+        inpidEpiEdit.value = idEpi
+    }
+    const nomeEpi = document.getElementById(`${inpIdNome}`)
+    if (idNome !== 'nao') {
+        nomeEpi.value = idNome
+    }
+    const certificado = document.getElementById(`${inpIdCertificado}`)
+    if (idCertificado !== 'nao') {
+        certificado.value = idCertificado
+    }
+    const idFoto = document.getElementById(img1)
+    const idVerimg = document.getElementById('imgPreview')
+    const visualizaImg = document.getElementById(`${nomeFoto}`)
+
 
     if (abrirModal === 'A') {
         ModalInstancia.show();
@@ -323,14 +353,24 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
                     }
                     ModalInstancia.hide();
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
         }
 
         const btnFecharModalAddEpi = document.getElementById('btnFecharModalAddEpi');
         if (btnFecharModalAddEpi) {
             btnFecharModalAddEpi.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+
+        const btnFecharModalEditEpi = document.getElementById('btnFecharModalEditEpi');
+        if (btnFecharModalEditEpi) {
+            btnFecharModalEditEpi.addEventListener('click', function () {
                 ModalInstancia.hide();
                 formDados.removeEventListener('submit', submitHandler);
             });
@@ -344,6 +384,121 @@ function abrirModalEpiAdd(img1, nomeModal, abrirModal = 'A', botao, addEditDel, 
         ModalInstancia.hide();
     }
 }
+
+
+function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+
+    if (!formDados || !botoes || !ModalInstancia) {
+        console.error('Verificar a chamada da função e checar se os IDs estão corretos!')
+    }
+
+    const INPidi = document.getElementById(`${INPid}`)
+    if (IDid !== 'nao') {
+        INPidi.value = IDid
+    }
+    const INPnome = document.getElementById(`${INPnomeUsuario}`)
+    if (IDnomeUsuario !== 'nao') {
+        INPnome.value = IDnomeUsuario
+    }
+
+    const INPsobre = document.getElementById(`${INPsobrenome}`)
+    if (IDsobrenome !== 'nao') {
+        INPsobre.value = IDsobrenome
+    }
+
+    const INPcpefi = document.getElementById(`${INPcpf}`)
+    if (IDcpf !== 'nao') {
+        INPcpefi.value = IDcpf
+    }
+
+    const INPdata = document.getElementById(`${INPnascimento}`)
+    if (IDnascimento !== 'nao') {
+        INPdata.value = IDnascimento
+    }
+    const INPtrabalho = document.getElementById(`${INPcargo}`)
+    if (IDcargo !== 'nao') {
+        if (IDcargo === 'Adminstrador') {
+            IDcargo = 'adm'
+        } else if (IDcargo === 'Almoxarife') {
+            IDcargo = 'almoxarife'
+        } else if (IDcargo === 'Funcionário') {
+            IDcargo = 'funcionario'
+        } else if (IDcargo === 'Recursos Humanos') {
+            IDcargo = 'rh'
+        } else {
+            IDcargo = 'sem Cargo'
+        }
+        INPtrabalho.value = IDcargo
+    }
+
+    const INPemailu = document.getElementById(`${INPemail}`)
+    if (IDemail !== 'nao') {
+        INPemailu.value = IDemail
+    }
+
+
+    if (abrirModal === 'A') {
+        ModalInstancia.show();
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', `${addEditDel}`)
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.success) {
+                        alertSuccess(data.message, '#30B27F')
+                        carregarConteudo('listarUsuario')
+                        formDados.removeEventListener('submit', submitHandler);
+                    } else {
+                        alertError(data.message)
+                        carregarConteudo('listarUsuario')
+                        formDados.removeEventListener('submit', submitHandler);
+                    }
+                    ModalInstancia.hide();
+                })
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
+        }
+
+        const btnFecharModalAddUsuario = document.getElementById('btnFecharModalAddUsuario');
+        const btnFecharModalEditUsuario = document.getElementById('btnFecharModalEditUsuario');
+        if (btnFecharModalAddUsuario) {
+            btnFecharModalAddUsuario.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else if (btnFecharModalEditUsuario) {
+            btnFecharModalEditUsuario.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+
+        }
+
+
+        formDados.addEventListener('submit', submitHandler);
+    } else {
+
+        ModalInstancia.hide();
+    }
+}
+
 
 function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`);
@@ -379,10 +534,10 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
                 alertSenha.innerHTML = "As senhas não coincidem";
             }
         };
-        setTimeout(function (){
+        setTimeout(function () {
             inpAlterarSenha.addEventListener('input', verificarSenha);
             confirmarAlteracaoDaSenha.addEventListener('input', verificarSenha);
-        },10000)
+        }, 10000)
 
 
         const submitHandler = function (event) {
@@ -468,10 +623,9 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if (data.success) {
                         formDados.removeEventListener('submit', submitHandler);
-                        console.log('S')
                         Swal.fire({
                             title: data.message,
                             icon: "success"
@@ -479,8 +633,10 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         botoes.disabled = false;
                         ModalInstancia.hide();
                         form.reset();
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000)
                     } else {
-                        console.log('N')
                         formDados.removeEventListener('submit', submitHandler);
                         botoes.disabled = false;
                         Swal.fire({
@@ -489,9 +645,9 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         });
                     }
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         };
 
         const btnFecharModalDados = document.getElementById('btnFecharModalDados');
@@ -785,13 +941,13 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
 function deleletarEpi(id, addEditDel, formulario) {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "Você tem certeza?",
+        text: "Esta ação não pode ser desfeita",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonText: "Sim, eu tenho certeza!"
     }).then((result) => {
         if (result.isConfirmed) {
 

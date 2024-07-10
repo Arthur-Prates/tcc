@@ -266,6 +266,28 @@ function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabe
     }
     $conn = null;
 }
+function listarTabelaInnerJoinTriploOrdenadaExpecifica2Where($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $campoExpecifico, $valorCampo,$campoExpecifico2,$valorCampo2, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON a.$idA3 = d.$idD4 WHERE $campoExpecifico = ? AND  $campoExpecifico2 = ? ORDER BY $ordem $tipoOrdem");
+        $sqlLista->bindValue(1, $valorCampo, PDO::PARAM_STR);
+        $sqlLista->bindValue(2, $valorCampo2, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
 
 function listarTabelaInnerJoinTriploWhere($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $quando, $idquando, $ordem, $tipoOrdem)
 {
@@ -1060,14 +1082,14 @@ function validaCPF($cpf)
     return true;
 }
 
-function valoresGraficoTopFuncionarios($tipo)
+function valoresGraficoTopFuncionarios()
 {
     $aray = array();
     $topTotal = array();
     $arayPessoas = array();
     $contarAray = 0;
 
-    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,nomeUsuario', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idusuario', 'ASC');
+    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,nomeUsuario, b.idusuario as idUser', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idUser', 'ASC');
 
     foreach ($selectAlugadores as $itemAlu) {
         $iduser = $itemAlu->idusuario;
@@ -1080,14 +1102,14 @@ function valoresGraficoTopFuncionarios($tipo)
     $aray = array_values($aray);
     $arayPessoas = array_unique($arayPessoas);
     $arayPessoas = array_values($arayPessoas);
-
     foreach ($aray as $itemArray) {
         $id = $itemArray;
 
 
-        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica('sum(quantidade) as total', 'alugado', 'usuario', 'produtoAlugado', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idusuario', "$id", 'total', 'ASC');
+        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'aluguel', 'usuario', 'produtoAluguel', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'a.idusuario', "$id",'d.devolucao','N' ,'total', 'ASC');
         foreach ($selectTopAluguel as $valor) {
             $fim = $valor->total;
+
         }
         array_push($topTotal, "$fim");
 
@@ -1100,7 +1122,23 @@ function valoresGraficoTopFuncionarios($tipo)
     arsort($TOTALFIMEND);
     return $TOTALFIMEND;
 
+
+
+
+
+
 }
+function Data18AnosAtras() {
+    // Obtém a data atual
+    $today = new DateTime();
+
+    // Subtrai 18 anos da data atual
+    $date18YearsAgo = $today->sub(new DateInterval('P18Y'));
+
+    // Formata a data no formato desejado (YYYY-MM-DD)
+    return $date18YearsAgo->format('Y-m-d');
+}
+
 
 function validarData($data, $formato = 'Y-m-d')
 {

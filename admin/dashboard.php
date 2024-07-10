@@ -10,7 +10,6 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
-
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -44,10 +43,14 @@ include_once('nav.php');
     </div>
     <div class="col-10">
 
+
     </div>
 </div>
 <div class="container">
     <div id='show' class='show'>
+        <?php
+        include_once('listarUsuario.php');
+        ?>
         <div class="row">
             <div class="col-12 ">
                 <div class="d-flex justify-content-center align-items-center dashAdm">
@@ -116,6 +119,9 @@ include_once('nav.php');
                 </script>
 
             </div>
+
+            //
+
             <div class="col-4 col-md-4 col-sm-12">
                 <div class=" d-flex justify-content-center align-items-center ">
                     <canvas id="myChart2"></canvas>
@@ -129,10 +135,11 @@ include_once('nav.php');
                             labels: [
                                 <?php
                                 $numPeople = 0;
-                                $TOTALFIMEND = valoresGraficoTopFuncionarios('nome');
+                                $TOTALFIMEND = valoresGraficoTopFuncionarios();
                                 foreach ($TOTALFIMEND as $key => $value) {
                                     if ($numPeople < 5) {
-                                        echo "'" . $key . "',";
+
+                                        echo "'$key',";
 
                                     }
                                     $numPeople = $numPeople + 1;
@@ -145,15 +152,15 @@ include_once('nav.php');
                                 data: [
                                     <?php
                                     $numValores = 0;
-                                    $TOTALFIMEND = valoresGraficoTopFuncionarios('valor');
+                                    $TOTALFIMEND = valoresGraficoTopFuncionarios();
                                     foreach ($TOTALFIMEND as $key => $value) {
                                         if ($numValores < 5) {
-                                            echo "'" . $value . "',";
+                                            echo "'$value',";
 
                                             $numValores = $numValores + 1;
                                         }
                                     }
-                                    ?>
+                                    ?>,
                                 ],
 
                                 backgroundColor: [
@@ -195,7 +202,7 @@ include_once('nav.php');
     </div>
 </div>
 
-<!-- Modal Banner -->
+<!-- Modal add epi -->
 
 <div class="modal fade" id="modalEpiAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -224,13 +231,172 @@ include_once('nav.php');
                     </div>
                 </div>
                 <div class="modal-footer quasebranco ">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnFecharModalAddEpi">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
+                        Fechar
+                    </button>
                     <button type="submit" class="btn btn-success" id="btnEpiAdd">Cadastrar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<!-- Modal edit epi -->
+<div class="modal fade" id="modalEpiEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar EPI</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post" name="frmEpiEdit" id="frmEpiEdit">
+                <div class="modal-body">
+                    <input type="hidden" name="idEditEpi" id="idEditEpi">
+<!--                    <div class="col-12">-->
+<!--                        <img src="../img/produtos/capacete-classe-a.jpg" id="imgPreview" alt="foto-do-epi" width="50%">-->
+<!--                    </div>-->
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
+                        <label class="input-group-text" for="fotoEpiEdit">Foto</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit">
+                        <label class="input-group-text" for="nomeEpiEdit">Nome do Epi</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="certificadoEpiEdit" name="certificadoEpiEdit"
+                               maxlength="7" minlength="5">
+                        <label class="input-group-text" for="certificadoEpiEdit">Certificado</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" id="btnFecharModalEditEpi">Fechar</button>
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnEpiEdit">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Add Usuario -->
+<div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Usuario</h1>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post" name="frmUsuarioAdd" id="frmUsuarioAdd">
+                <div class="modal-body">
+
+                    <div class="input-group mb-3">
+                        <input required="required" type="text" class="form-control" id="nomeUsuarioAdd" name="nomeUsuarioAdd">
+                        <label class="input-group-text" for="nomeUsuarioAdd">Nome</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required="required" type="text" class="form-control" id="sobrenomeUsuarioAdd" name="sobrenomeUsuarioAdd">
+                        <label class="input-group-text" for="sobrenomeUsuarioAdd">Sobrenome</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required="required" type="text" class="form-control cpf" id="CPFUsuarioAdd" name="CPFUsuarioAdd">
+                        <label class="input-group-text" for="CPFUsuarioAdd">CPF</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required="required" type="date" class="form-control" id="nascimentoUsuarioAdd" name="nascimentoUsuarioAdd" value ='<?php echo Data18AnosAtras()?>'>
+                        <label class="input-group-text" for="nascimentoUsuarioAdd">Data de Nascimento</label>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <select required="required"  class="form-select" aria-label="Default select example" id="cargoUsuarioAdd" name="cargoUsuarioAdd">
+                            <option value="adm">Adminstrador</option>
+                            <option value="almoxarife">Almoxarife</option>
+                            <option selected value="funcionario">Funcionário</option>
+                            <option value="rh">Recursos Humanos</option>
+                        </select>
+                        <label class="input-group-text" for="nomeUsuarioAdd">Cargo</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required="required" type="email" class="form-control" id="emailUsuarioAdd" name="emailUsuarioAdd">
+                        <label class="input-group-text" for="emailUsuarioAdd">Email de acesso</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="senhaUsuarioAdd" id="btn-senha" onclick="mostrarsenha('senhaUsuarioAdd')"><span class="bi bi-eye"></span></label>
+
+                        <input required="required" type="password" class="form-control" id="senhaUsuarioAdd" name="senhaUsuarioAdd">
+                        <label class="input-group-text" for="senhaUsuarioAdd">Senha de acesso</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddUsuario">Fechar</button>
+                    <button type="submit" class="btn btn-dark btn-sm" id="btnUsuarioAdd">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Usuario -->
+<div class="modal fade" id="modalUsuarioEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario</h1>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post" name="frmUsuarioEdit" id="frmUsuarioEdit">
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="idUsuarioEdit" name="idUsuarioEdit">
+                        <label class="input-group-text" for="idUsuarioEdit">id</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="nomeUsuarioEdit" name="nomeUsuarioEdit">
+                        <label class="input-group-text" for="nomeUsuarioEdit">Nome</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="sobrenomeUsuarioEdit" name="sobrenomeUsuarioEdit">
+                        <label class="input-group-text" for="sobrenomeUsuarioEdit">Sobrenome</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control cpf" id="CPFUsuarioEdit" name="CPFUsuarioEdit">
+                        <label class="input-group-text" for="CPFUsuarioEdit">CPF</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" id="nascimentoUsuarioEdit" name="nascimentoUsuarioEdit" value ='<?php echo Data18AnosAtras()?>'>
+                        <label class="input-group-text" for="nascimentoUsuarioEdit">Data de Nascimento</label>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <select class="form-select" aria-label="Default select example" id="cargoUsuarioEdit" name="cargoUsuarioEdit">
+                            <option value="adm">Adminstrador</option>
+                            <option value="almoxarife">Almoxarife</option>
+                            <option value="funcionario">Funcionário</option>
+                            <option value="rh">Recursos Humanos</option>
+                        </select>
+                        <label class="input-group-text" for="nomeUsuarioEdit">Cargo</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="emailUsuarioEdit" name="emailUsuarioEdit">
+                        <label class="input-group-text" for="emailUsuarioEdit">Email de acesso</label>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="senhaUsuarioEdit" id="btn-senha" onclick="mostrarsenha('senhaUsuarioEdit')"><span class="bi bi-eye"></span></label>
+                        <input type="password" class="form-control" id="senhaUsuarioEdit" name="senhaUsuarioEdit">
+                        <label class="input-group-text" for="senhaUsuarioEdit">Senha de acesso</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" id="btnFecharModalEditUsuario">Fechar</button>
+                    <button type="submit" class="btn btn-dark btn-sm" id="btnUsuarioEdit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
