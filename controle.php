@@ -5,6 +5,7 @@ include_once("./func/funcoes.php");
 
 $controle = filter_input(INPUT_POST, 'controle', FILTER_SANITIZE_STRING);
 
+//echo $controle;
 if (!empty($controle) && isset($controle)) {
     switch ($controle) {
         case 'addAluguel':
@@ -23,7 +24,10 @@ if (!empty($controle) && isset($controle)) {
             include_once('deletarAluguel.php');
             break;
         case 'editSenha':
-            include_once ('editarSenha.php');
+            include_once('editarSenha.php');
+            break;
+        case 'editDados':
+            include_once('editDados.php');
             break;
         default:
             include_once('404.php');

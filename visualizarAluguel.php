@@ -54,7 +54,7 @@ foreach ($cod as $itemCod) {
 <div class="container">
     <div class="row">
         <div class="col-lg-12 fs-2">
-            <a href="aluguel" class="btn btn-sm btn-outline-secondary">Voltar</a>
+            <a href="meus-alugueis" class="btn btn-sm btn-outline-secondary">Voltar</a>
             Empréstimo - #<?php echo $codigoAluguel ?>
         </div>
     </div>
@@ -108,15 +108,15 @@ foreach ($cod as $itemCod) {
                 }
 
                 ?>
-                <p class="mt-3">Locatário: <?php echo $locatario ?></p>
-                <p>Email: <?php echo $email ?></p>
-                <p>Telefone: <?php echo $telefone?></p>
-                <p>CPF: <?php echo $cpf ?></p>
-                <p>Data do aluguel: <?php echo $dataAluguel ?></p>
-                <p>Hora inicial do aluguel: <?php echo $horaInicial ?></p>
-                <p>Hora final do aluguel: <?php echo $horaFinal ?></p>
-                <p>Nível de prioridade: <?php echo $prioridade ?></p>
-                <p>Observação: <?php echo $observacao ?></p>
+                <p class="mt-3"><b>Locatário:</b> <?php echo $locatario ?></p>
+                <p><b>Email:</b> <?php echo $email ?></p>
+                <p><b>Telefone:</b> <?php echo $telefone?></p>
+                <p><b>CPF:</b> <?php echo $cpf ?></p>
+                <p><b>Data do aluguel:</b> <?php echo $dataAluguel ?></p>
+                <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
+                <p><b>Hora final do aluguel:</b> <?php echo $horaFinal ?></p>
+                <p><b>Nível de prioridade:</b> <?php echo $prioridade ?></p>
+                <p><b>Observação:</b> <?php echo $observacao ?></p>
                 <?php
             } else {
                 ?>

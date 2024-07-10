@@ -196,11 +196,14 @@ include_once('nav.php');
 </div>
 
 <!-- Modal Banner -->
-<div class="modal fade" id="modalEpiAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="modalEpiAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Epi</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="post" name="frmEpiAdd" id="frmEpiAdd">
@@ -221,7 +224,7 @@ include_once('nav.php');
                     </div>
                 </div>
                 <div class="modal-footer quasebranco ">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnFecharModalAddEpi">Fechar</button>
                     <button type="submit" class="btn btn-success" id="btnEpiAdd">Cadastrar</button>
                 </div>
             </form>

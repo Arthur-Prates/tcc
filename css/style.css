@@ -305,15 +305,15 @@ body {
     /*display: flex;*/
     /*flex-direction: column;*/
     /*align-content: space-between;*/
-    min-height: 100px !important;
+    min-height: 200px !important;
 
 }
 
-.tituloCard{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+/*.tituloCard{*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
 
 .wave-box {
     position: relative;
@@ -349,11 +349,7 @@ section .wave {
 
 .inpAlterarSenha{
     width: 100%;
-    border: #272626 2px solid;
+    border: #656565 2px solid;
     height: 35px;
     border-radius: 5px;
-}
-
-.inpAlterarSenha:focus{
-    border-color: white;
 }
