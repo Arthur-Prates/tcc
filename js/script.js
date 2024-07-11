@@ -323,8 +323,17 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
     }
     const idFoto = document.getElementById(img1)
     const idVerimg = document.getElementById('imgPreview')
-    const visualizaImg = document.getElementById(`${nomeFoto}`)
+    const visualizaImg = `${nomeFoto}`
 
+    idVerimg.src = '../img/produtos/' + visualizaImg
+
+    idFoto.addEventListener('change', function (event) {
+        let reader = new FileReader();
+        reader.onload = () => {
+            idVerimg.src = reader.result
+        }
+        reader.readAsDataURL(idFoto.files[0])
+    })
 
     if (abrirModal === 'A') {
         ModalInstancia.show();
@@ -343,19 +352,21 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        botoes.disabled = false;
                         alertSuccess(data.message, '#30B27F')
                         carregarConteudo('listarEpi')
                         formDados.removeEventListener('submit', submitHandler);
                     } else {
+                        botoes.disabled = false;
                         alertError(data.message)
                         carregarConteudo('listarEpi')
                         formDados.removeEventListener('submit', submitHandler);
                     }
                     ModalInstancia.hide();
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
 
         const btnFecharModalAddEpi = document.getElementById('btnFecharModalAddEpi');
@@ -386,13 +397,16 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
 }
 
 
-function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome,INPtelefone,IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
 
-    if (!formDados || !botoes || !ModalInstancia) {
-        console.error('Verificar a chamada da função e checar se os IDs estão corretos!')
+    if (formDados !== 'nao' || botoes !== 'nao' || ModalInstancia !== 'nao'){
+        if (!formDados || !botoes || !ModalInstancia) {
+            console.error('Verificar a chamada da função e checar se os IDs estão corretos!')
+        }
+
     }
 
     const INPidi = document.getElementById(`${INPid}`)
@@ -408,7 +422,10 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
     if (IDsobrenome !== 'nao') {
         INPsobre.value = IDsobrenome
     }
-
+    const INPcelular = document.getElementById(`${INPtelefone}`)
+    if (IDtelefone !== 'nao') {
+        INPcelular.value = IDtelefone
+    }
     const INPcpefi = document.getElementById(`${INPcpf}`)
     if (IDcpf !== 'nao') {
         INPcpefi.value = IDcpf
@@ -442,6 +459,48 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
 
     if (abrirModal === 'A') {
         ModalInstancia.show();
+        const btnFecharAlterarSenha = document.getElementById('btnFecharAlterarSenha')
+        const btnAlterarSenha = document.getElementById('btnAlterarSenha');
+        const dNone = document.getElementById('dNone');
+        const novaSenhaUsuarioEdit = document.getElementById('novaSenhaUsuarioEdit');
+        const confirmNovaSenhaUsuarioEdit = document.getElementById('confirmNovaSenhaUsuarioEdit');
+        const alertaSenha = document.getElementById('alertaSenha');
+
+        btnAlterarSenha.addEventListener('click', function () {
+            dNone.style.display = 'block';
+            alertaSenha.style.display = 'none';
+            btnAlterarSenha.style.display = 'none';
+            btnFecharAlterarSenha.style.display = 'block';
+            const confirmaSenha = () => {
+                alertaSenha.style.display = 'none';
+                if (novaSenhaUsuarioEdit.value.length < 8) {
+                    alertaSenha.classList.add('mt-4');
+                    alertaSenha.style.display = "block";
+                    alertaSenha.innerHTML = "A senha precisa ter no mínimo de 8 dígitos.";
+                } else if (novaSenhaUsuarioEdit.value !== confirmNovaSenhaUsuarioEdit.value) {
+                    alertaSenha.classList.add('mt-4');
+                    alertaSenha.style.display = "block";
+                    alertaSenha.innerHTML = "As senhas não coincidem";
+                }
+            };
+
+            novaSenhaUsuarioEdit.addEventListener('input', function () {
+                alertaSenha.style.display = 'none';
+            })
+            confirmNovaSenhaUsuarioEdit.addEventListener('input', function () {
+                alertaSenha.style.display = 'none';
+            })
+            setInterval(confirmaSenha, 3500)
+        })
+
+        btnFecharAlterarSenha.addEventListener('click', function (){
+            btnFecharAlterarSenha.style.display = 'none';
+            btnAlterarSenha.style.display = 'block'
+            dNone.style.display = 'none';
+            alertaSenha.style.display = 'none';
+        })
+
+
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -458,37 +517,53 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
                 .then(data => {
                     console.log(data)
                     if (data.success) {
+                        botoes.disabled = false;
                         alertSuccess(data.message, '#30B27F')
                         carregarConteudo('listarUsuario')
                         formDados.removeEventListener('submit', submitHandler);
                     } else {
+                        botoes.disabled = false;
                         alertError(data.message)
                         carregarConteudo('listarUsuario')
                         formDados.removeEventListener('submit', submitHandler);
                     }
                     ModalInstancia.hide();
                 })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
         }
 
         const btnFecharModalAddUsuario = document.getElementById('btnFecharModalAddUsuario');
         const btnFecharModalEditUsuario = document.getElementById('btnFecharModalEditUsuario');
+        const btnFecharModalVermaisUsuario = document.getElementById('btnFecharModalVermaisUsuario');
         if (btnFecharModalAddUsuario) {
             btnFecharModalAddUsuario.addEventListener('click', function () {
+                alertaSenha.style.display = 'none';
+                dNone.style.display = 'none';
                 ModalInstancia.hide();
                 formDados.removeEventListener('submit', submitHandler);
             });
-        } else if (btnFecharModalEditUsuario) {
-            btnFecharModalEditUsuario.addEventListener('click', function () {
-                ModalInstancia.hide();
-                formDados.removeEventListener('submit', submitHandler);
-            });
-
         } else {
             console.error('ID do botão de fechar a modal está errado!');
-
+        }
+        if (btnFecharModalEditUsuario) {
+            btnFecharModalEditUsuario.addEventListener('click', function () {
+                alertaSenha.style.display = 'none';
+                dNone.style.display = 'none';
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+        if (btnFecharModalVermaisUsuario) {
+            btnFecharModalVermaisUsuario.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
         }
 
 
@@ -534,11 +609,15 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
                 alertSenha.innerHTML = "As senhas não coincidem";
             }
         };
-        setTimeout(function () {
-            inpAlterarSenha.addEventListener('input', verificarSenha);
-            confirmarAlteracaoDaSenha.addEventListener('input', verificarSenha);
-        }, 10000)
+        inpAlterarSenha.addEventListener('input', function () {
+            alertSenha.style.display = "none";
+        });
 
+        confirmarAlteracaoDaSenha.addEventListener('input', function () {
+            alertSenha.style.display = "none";
+        });
+
+        setInterval(verificarSenha, 4000)
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -555,6 +634,9 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000)
                         formDados.removeEventListener('submit', submitHandler);
                         Swal.fire({
                             title: data.message,
@@ -625,6 +707,9 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                 .then(data => {
                     // console.log(data)
                     if (data.success) {
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000)
                         formDados.removeEventListener('submit', submitHandler);
                         Swal.fire({
                             title: data.message,

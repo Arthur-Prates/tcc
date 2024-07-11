@@ -39,7 +39,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                     } else {
                         ?>
                         <ul class="dropdown-menu ">
-                            <li class=""><a class="dropdown-item" href="perfil">Meu perfil</a></li>
+                            <li class=""><a class="dropdown-item" href="meu-perfil">Meu perfil</a></li>
                             <li class=""><a class="dropdown-item" href="meus-alugueis">Meus aluguéis</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="logout">Sair</a></li>

@@ -34,14 +34,14 @@ include_once('./func/funcoes.php');
     <div class="login-content">
         <form action="index.html">
             <img src="img/logo/icon.png">
-            <h2 class="title text-white">Bem Vindo</h2>
+            <h2 class="title">Bem-Vindo</h2>
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
                     <h5>Email</h5>
-                    <input type="text" class="inputForm text-white" placeholder="" required="" name="email" id="email">
+                    <input type="text" class="inputForm" placeholder="" required="required" name="email" id="email">
                 </div>
             </div>
             <div class="input-div pass">
@@ -50,7 +50,7 @@ include_once('./func/funcoes.php');
                 </div>
                 <div class="div">
                     <h5>Senha</h5>
-                    <input type="password" class="inputForm text-white" placeholder="" required="" name="senha" id="senha">
+                    <input type="password" class="inputForm" placeholder="" required="required" name="senha" id="senha">
                 </div>
             </div>
             <div id="alertlog" class="alert alert-danger" style="display: none">

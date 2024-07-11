@@ -10,6 +10,7 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (isset($dados) && !empty($dados)) {
     $nome = isset($dados['nomeUsuarioAdd']) ? addslashes($dados['nomeUsuarioAdd']) : '';
     $sobrenome = isset($dados['sobrenomeUsuarioAdd']) ? addslashes($dados['sobrenomeUsuarioAdd']) : '';
+    $celular = isset($dados['telefoneUsuarioAdd']) ? addslashes($dados['telefoneUsuarioAdd']) : '';
     $CPF = isset($dados['CPFUsuarioAdd']) ? addslashes($dados['CPFUsuarioAdd']) : '';
     $nascimento = isset($dados['nascimentoUsuarioAdd']) ? addslashes($dados['nascimentoUsuarioAdd']) : '';
     $cargo = isset($dados['cargoUsuarioAdd']) ? addslashes($dados['cargoUsuarioAdd']) : '';

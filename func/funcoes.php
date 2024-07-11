@@ -224,6 +224,29 @@ function listarTabelaLeftJoinExpecifica($campos, $tabela1, $tabela2, $id1, $id2,
     $conn = null;
 }
 
+function listarTabelaLeftJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, $campoOrdem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a LEFT JOIN $tabela2 b ON a.$id1 = b.$id2 ORDER BY $campoOrdem $tipoOrdem");
+//        $sqlLista->bindValue(1, $valorCampo, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $sqlLista;
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
+
 function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $ordem, $tipoOrdem)
 {
     $conn = conectar();
