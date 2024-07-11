@@ -17,7 +17,7 @@ if ($_SESSION['idadm']) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Titulo</title>
+    <title>Dashboard-Adminstrador</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -46,159 +46,160 @@ include_once('nav.php');
 
     </div>
 </div>
-<div class="container">
+<div class="container-fluid">
+
+
+
     <div id='show' class='show'>
-        <?php
-        include_once('listarUsuario.php');
-        ?>
-        <div class="row">
-            <div class="col-12 ">
-                <div class="d-flex justify-content-center align-items-center dashAdm">
+        <section class="ondas-box">
 
-                    <form action="verificarAluguel.php" method="get">
-                        <label for="codigoAluguel" class="form-label">Código da Reserva:</label>
-                        <input type="text" class="form-control" id="codigoAluguel" name="codigoAluguel"
-                               placeholder="Código">
-                        <span class="input-group-text">   <button type="submit" class="btn btn-inputAluguel">Pesquisar Aluguel</button></span>
-
-                    </form>
-
+            <div class="titulo">
+                <div class="row  pesquisaAluguel" >
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <form action="verificarAluguel.php" method="get">
+                                <input type="text" id="codigoAluguel" name="codigoAluguel" class="inputPesquisa text-center" placeholder="Código">
+                                <button type="submit" class="btn btnAluguelPesquisa"><i class="bi bi-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row d-flex justify-content-between align-items-center ">
-            <div class="col-4 col-md-4 col-sm-12">
-                <div class=" d-flex justify-content-center align-items-center ">
-                    <canvas id="myChart"></canvas>
-                </div>
+        </section>
 
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <script>
-                    const ctx = document.getElementById('myChart');
-                    new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Reservado', 'Não Reservados'],
-                            datasets: [{
-                                label: '',
+        <img src="../img/wave.png" alt="onda" class="oondafoto">
+        <section class="conteudo">
+            <div class="row d-flex justify-content-between align-items-center ">
+                <div class="col-4 col-md-4 col-sm-12">
+                    <div class=" d-flex justify-content-center align-items-center ">
+                        <canvas id="myChart"></canvas>
+                    </div>
 
-                                data: ['<?php  echo valoresGraficoQuantidadeEpi('indisponivel') ?>', '<?php  echo valoresGraficoQuantidadeEpi('disponivel');?>'],
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script>
+                        const ctx = document.getElementById('myChart');
+                        new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Reservado', 'Não Reservados'],
+                                datasets: [{
+                                    label: '',
 
-                                backgroundColor: [
-                                    'rgba(219,2,2,0.8)',
-                                    'rgba(42,197,143,0.8)'
-                                ],
-                                borderColor: [
-                                    'rgba(219,2,2)',
-                                    'rgba(42,197,143)'
+                                    data: ['<?php  echo valoresGraficoQuantidadeEpi('indisponivel') ?>', '<?php  echo valoresGraficoQuantidadeEpi('disponivel');?>'],
 
-                                ],
-                                borderWidth: 2
-                            }]
-                        },
-                        options: {
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Quantidade de Items Reservados',
-                                    padding: {
-                                        top: 10,
-                                        bottom: 30
-                                    }
-                                }
+                                    backgroundColor: [
+                                        'rgba(219,2,2,0.8)',
+                                        'rgba(42,197,143,0.8)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(219,2,2)',
+                                        'rgba(42,197,143)'
+
+                                    ],
+                                    borderWidth: 2
+                                }]
                             },
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-
-
-                </script>
-
-            </div>
-
-            //
-
-            <div class="col-4 col-md-4 col-sm-12">
-                <div class=" d-flex justify-content-center align-items-center ">
-                    <canvas id="myChart2"></canvas>
-                </div>
-
-                <script>
-                    const ctx2 = document.getElementById('myChart2');
-                    new Chart(ctx2, {
-                        type: 'doughnut',
-                        data: {
-                            labels: [
-                                <?php
-                                $numPeople = 0;
-                                $TOTALFIMEND = valoresGraficoTopFuncionarios();
-                                foreach ($TOTALFIMEND as $key => $value) {
-                                    if ($numPeople < 5) {
-
-                                        echo "'$key',";
-
-                                    }
-                                    $numPeople = $numPeople + 1;
-                                }
-                                ?>
-                            ],
-                            datasets: [{
-                                label: 'Quantidade de Aluguéis feitos',
-
-                                data: [
-                                    <?php
-                                    $numValores = 0;
-                                    $TOTALFIMEND = valoresGraficoTopFuncionarios();
-                                    foreach ($TOTALFIMEND as $key => $value) {
-                                        if ($numValores < 5) {
-                                            echo "'$value',";
-
-                                            $numValores = $numValores + 1;
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Quantidade de Items Reservados',
+                                        padding: {
+                                            top: 10,
+                                            bottom: 30
                                         }
                                     }
-                                    ?>,
-                                ],
-
-                                backgroundColor: [
-                                    'rgba(183, 28, 28,0.8)',
-                                    'rgba(255, 111, 0,0.8)',
-                                    'rgba(255,186,8,0.8)',
-                                    'rgba(63,132,229,0.8)',
-                                    'rgba(22,152,115,0.8)',
-
-                                ],
-                                borderColor: [
-                                    'rgba(183, 28, 28)',
-                                    'rgba(255, 111, 0)',
-                                    'rgba(255,186,8)',
-                                    'rgba(63,132,229)',
-                                    'rgba(22,152,115)',
-
-
-                                ],
-                                borderWidth: 2
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
                             }
-                        }
-                    });
-                </script>
+                        });
 
+
+                    </script>
+
+                </div>
+
+                //
+
+                <div class="col-4 col-md-4 col-sm-12">
+                    <div class=" d-flex justify-content-center align-items-center ">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+
+                    <script>
+                        const ctx2 = document.getElementById('myChart2');
+                        new Chart(ctx2, {
+                            type: 'doughnut',
+                            data: {
+                                labels: [
+                                    <?php
+                                    $numPeople = 0;
+                                    $TOTALFIMEND = valoresGraficoTopFuncionarios();
+                                    foreach ($TOTALFIMEND as $key => $value) {
+                                        if ($numPeople < 5) {
+
+                                            echo "'$key',";
+
+                                        }
+                                        $numPeople = $numPeople + 1;
+                                    }
+                                    ?>
+                                ],
+                                datasets: [{
+                                    label: 'Quantidade de Aluguéis feitos',
+
+                                    data: [
+                                        <?php
+                                        $numValores = 0;
+                                        $TOTALFIMEND = valoresGraficoTopFuncionarios();
+                                        foreach ($TOTALFIMEND as $key => $value) {
+                                            if ($numValores < 5) {
+                                                echo "'$value',";
+
+                                                $numValores = $numValores + 1;
+                                            }
+                                        }
+                                        ?>,
+                                    ],
+
+                                    backgroundColor: [
+                                        'rgba(183, 28, 28,0.8)',
+                                        'rgba(255, 111, 0,0.8)',
+                                        'rgba(255,186,8,0.8)',
+                                        'rgba(63,132,229,0.8)',
+                                        'rgba(22,152,115,0.8)',
+
+                                    ],
+                                    borderColor: [
+                                        'rgba(183, 28, 28)',
+                                        'rgba(255, 111, 0)',
+                                        'rgba(255,186,8)',
+                                        'rgba(63,132,229)',
+                                        'rgba(22,152,115)',
+
+
+                                    ],
+                                    borderWidth: 2
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+
+                </div>
             </div>
-        </div>
+        </section>
 
-        <?php
-        //include_once('listarEpi.php');
-        ?>
     </div>
 </div>
 
