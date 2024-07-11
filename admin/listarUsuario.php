@@ -3,8 +3,11 @@
 ?>
 <div class="teste mt-5">
 
-<h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
-<button type="button" class="btn btn-dark" style="float: right" onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'frmUsuarioAdd')">Cadastrar</button>
+    <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
+    <button type="button" class="btn btn-dark" style="float: right"
+            onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'frmUsuarioAdd')">
+        Cadastrar
+    </button>
 
 </div>
 
@@ -23,38 +26,46 @@
     <tbody>
     <?php
     $contar = 1;
-    $listaUsuario = listarTabela("*", "usuario");
+    $listaUsuario = listarTabelaLeftJoinOrdenada("*", "usuario", 'telefone', 'idusuario', 'idusuario', 'nomeUsuario', 'ASC');
     if ($listaUsuario) {
         foreach ($listaUsuario as $item) {
-            $idusuario = $item -> idusuario;
-            $nome = $item -> nomeUsuario;
-            $sobrenome = $item -> sobrenome;
-            $nascimento = $item -> nascimento;
-            $cpf = $item -> cpf;
-            $cargo = $item -> cargo;
-            if($cargo== 'adm'){
+            $idusuario = $item->idusuario;
+            $nome = $item->nomeUsuario;
+            $sobrenome = $item->sobrenome;
+            $telefone = $item->numero;
+            $nascimento = $item->nascimento;
+            $cpf = $item->cpf;
+            $cargo = $item->cargo;
+            if ($cargo == 'adm') {
                 $cargo = "Adminstrador";
-            }else if($cargo == 'funcionario'){
+            } else if ($cargo == 'funcionario') {
                 $cargo = 'Funcionário';
-            }else if($cargo = 'rh'){
+            } else if ($cargo = 'rh') {
                 $cargo = "Recursos Humanos";
-            }else if($cargo=='almoxarife'){
+            } else if ($cargo == 'almoxarife') {
                 $cargo = "Almoxarife";
-            }else{
+            } else {
                 $cargo = 'Sem cargo';
             }
-            $email = $item -> email;
-//            idusuario, nome, sobrenome, cpf, nascimento, matricula, cargo, email, senha, cadastro, alteracao, ativo
+            $email = $item->email;
+            if ($telefone == '') {
+                $telefone = 'Sem telefone';
+            }
             ?>
             <tr>
-                <th scope="row"><?php echo $contar?></th>
-                <td><?php echo "$nome $sobrenome"?></td>
-                <td><?php echo $cpf?></td>
-                <td><?php echo $cargo?></td>
-                <td><?php echo $email?></td>
+                <th scope="row"><?php echo $contar ?></th>
+                <td><?php echo "$nome $sobrenome" ?></td>
+                <td><?php echo $cpf ?></td>
+                <td><?php echo $cargo ?></td>
+                <td><?php echo $email ?></td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-info" style="float: right" onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario ;?>','nomeUsuarioEdit','<?php echo $nome;?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome;?>', 'CPFUsuarioEdit','<?php echo $cpf ;?>', 'nascimentoUsuarioEdit','<?php echo $nascimento;?>', 'cargoUsuarioEdit','<?php echo $cargo ;?>', 'emailUsuarioEdit','<?php echo $email;?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')"><i class="mdi mdi-file-edit-outline"></i></button>
+                        <button type="button" class="btn btn-success" style="float: right"
+                                onclick="abrirModalUsuario('nao','nao','nomeUsuarioVermais','<?php echo $nome; ?>', 'sobrenomeUsuarioVermais','<?php echo $sobrenome; ?>','telefoneUsuarioVermais','<?php echo $telefone ?>', 'CPFUsuarioVermais','<?php echo $cpf; ?>', 'nascimentoUsuarioVermais','<?php echo $nascimento; ?>', 'cargoUsuarioVermais','<?php echo $cargo; ?>', 'emailUsuarioVermais','<?php echo $email; ?>', 'nao','nao','modalUsuarioVermais', 'A', 'nao', 'editUsuario', 'frmUsuarioVermais')">
+                            <i class="bi bi-person-lines-fill"></i></button>
+                        <button type="button" class="btn btn-info" style="float: right"
+                                onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')">
+                            <i class="mdi mdi-file-edit-outline"></i></button>
                         <button type="button" class="btn btn-danger"><i class="mdi mdi-trash-can"></i></button>
 
                     </div>

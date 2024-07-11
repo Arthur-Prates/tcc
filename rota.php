@@ -10,7 +10,7 @@ switch ($url[0]) {
     case 'pagina-inicial':
         include_once('index.php');
         break;
-    case 'perfil':
+    case 'meu-perfil':
         include_once('perfil.php');
         break;
     case 'meus-alugueis':
