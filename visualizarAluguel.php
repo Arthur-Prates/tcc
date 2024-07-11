@@ -76,7 +76,9 @@ foreach ($cod as $itemCod) {
                 foreach ($tabelaAluguel as $item) {
                     $id = $item->idusuario;
                     $locatario = $item->nomeUsuario;
+                    $sobrenome = $item->sobrenome;
                     $email = $item->email;
+                    $numero = $item->numero;
                     $cpf = $item->cpf;
                     $dataAluguel = $item->dataAluguel;
                     $horaInicial = $item->horaInicial;
@@ -98,19 +100,11 @@ foreach ($cod as $itemCod) {
                     }
 
                 }
-                $telefoneTabela = listarItemExpecifico('*', 'telefone', 'idusuario', $id);
-                if ($telefoneTabela !== 'Vazio') {
-                    foreach ($telefoneTabela as $itemTelefone) {
-                        $telefone = $itemTelefone->numero;
-                    }
-                } else {
-                    $telefone = 'Não informado!';
-                }
 
                 ?>
-                <p class="mt-3"><b>Locatário:</b> <?php echo $locatario ?></p>
+                <p class="mt-3"><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
                 <p><b>Email:</b> <?php echo $email ?></p>
-                <p><b>Telefone:</b> <?php echo $telefone?></p>
+                <p><b>Telefone:</b> <?php echo $numero ?></p>
                 <p><b>CPF:</b> <?php echo $cpf ?></p>
                 <p><b>Data do aluguel:</b> <?php echo $dataAluguel ?></p>
                 <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
@@ -185,7 +179,6 @@ foreach ($cod as $itemCod) {
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
 <script src="./js/script.js"></script>
 

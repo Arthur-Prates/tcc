@@ -26,7 +26,7 @@
     <tbody>
     <?php
     $contar = 1;
-    $listaUsuario = listarTabelaLeftJoinOrdenada("*", "usuario", 'telefone', 'idusuario', 'idusuario', 'nomeUsuario', 'ASC');
+    $listaUsuario = listarTabela("*", "usuario");
     if ($listaUsuario) {
         foreach ($listaUsuario as $item) {
             $idusuario = $item->idusuario;
