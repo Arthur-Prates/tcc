@@ -18,7 +18,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Titulo</title>
+    <title>Área Principal</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -36,7 +36,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 <!--66844c87dab1e-->
 <!--66844c73924e1-->
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-md-center">
         <?php
         $tabelaProdutos = listarTabelaInnerJoinOrdenada('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', 'ASC');
         foreach ($tabelaProdutos as $item) {
