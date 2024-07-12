@@ -60,6 +60,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
         if ($ativo === 'A') {
             $id = $item->idusuario;
             $nomeUsuario = $item->nomeUsuario;
+            $telefone = $item->numero;
             array_push($idepi, $item->idepi);
             array_push($nomeEpi, $item->nomeEpi);
             $epi = array_combine($idepi, $nomeEpi);
