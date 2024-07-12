@@ -29,10 +29,7 @@
                 <td><?php echo $nomeUsuario?></td>
                 <td><?php echo $codigoAluguel?></td>
                 <td>
-                    <?php
-                    $codigoCriptografado = codificarUrl("$codigoAluguel",'codificar');
-                    ?>
-                    <a href="verificarAluguel.php?emprestimo=<?php echo $codigoCriptografado?>" class="btn btn-sm btn-success">Visualizar</a>
+                    <a href="verificarAluguel.php?emprestimo=<?php echo $codigoAluguel?>" class="btn btn-sm btn-success">Visualizar</a>
                 </td>
             </tr>
             <?php

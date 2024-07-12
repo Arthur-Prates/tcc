@@ -298,7 +298,7 @@ body {
     display: flex;
     flex-direction: column;
     align-content: space-between;
-    height: 150px !important;
+    min-height: 200px !important;
 }
 
 .cardCarrosselVisualizarAluguel {
