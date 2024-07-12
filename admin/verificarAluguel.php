@@ -9,8 +9,9 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
-$codigoAluguel = filter_input(INPUT_GET, 'codigoAluguel', FILTER_SANITIZE_STRING);
+$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 
+$codigoAluguel = codificarUrl($codigoAluguel, 'decodificar');
 
 $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 ?>
@@ -118,7 +119,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                             ?>
 
                             <div class="item">
-                                <div class="card mb-3 item">
+                                <div class="card mb-3 item cardeCarrossel">
                                     <div class="row g-0">
                                         <div class="col-4">
                                             <img src="../img/produtos/<?php echo $foto ?>"

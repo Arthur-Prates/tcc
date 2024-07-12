@@ -6,29 +6,34 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Alugante</th>
-        <th scope="col">Epi</th>
-        <th scope="col">Cod Aluguel</th>
+        <th scope="col">Locatário</th>
+        <th scope="col">Código do empréstimo</th>
+        <th scope="col">Ações</th>
     </tr>
     </thead>
     <tbody>
     <?php
     $contar = 1;
-    $listaAluguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario INNER JOIN produtoAluguel pa ON a.codigoAluguel = pa.codAluguel INNER JOIN epi e ON e.idepi = pa.idepi");
+    $listaAluguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario");
     if ($listaAluguel) {
         foreach ($listaAluguel as $itemAluguel) {
             $idaluguel = $itemAluguel->idaluguel;
             $idusuario = $itemAluguel->idusuario;
             $nomeUsuario = $itemAluguel->nomeUsuario;
-            $nomeEpi = $itemAluguel->nomeEpi;
-            $idepi = $itemAluguel->idepi;
+
+
             $codigoAluguel = $itemAluguel->codigoAluguel;
             ?>
             <tr>
                 <th scope="row"><?php echo $contar?></th>
                 <td><?php echo $nomeUsuario?></td>
-                <td><?php echo $nomeEpi?></td>
                 <td><?php echo $codigoAluguel?></td>
+                <td>
+                    <?php
+                    $codigoCriptografado = codificarUrl("$codigoAluguel",'codificar');
+                    ?>
+                    <a href="verificarAluguel.php?emprestimo=<?php echo $codigoCriptografado?>" class="btn btn-sm btn-success">Visualizar</a>
+                </td>
             </tr>
             <?php
             ++$contar;
