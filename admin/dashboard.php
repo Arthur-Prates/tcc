@@ -57,7 +57,7 @@ include_once('nav.php');
                     <div class="col-12">
                         <div class="d-flex justify-content-center align-items-center">
                             <form action="verificarAluguel.php" method="get">
-                                <input type="text" id="codigoAluguel" name="codigoAluguel"
+                                <input type="text" id="emprestimo" name="emprestimo"
                                        class="inputPesquisa text-center" placeholder="Código">
                                 <button type="submit" class="btn btnAluguelPesquisa"><i class="bi bi-search"></i>
                                 </button>

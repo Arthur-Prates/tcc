@@ -11,8 +11,6 @@ if ($_SESSION['idadm']) {
 
 $codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 
-$codigoAluguel = codificarUrl($codigoAluguel, 'decodificar');
-
 $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 ?>
 
@@ -71,8 +69,6 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             $email = $item->email;
             $telefone = $item->numero;
             $observacao = $item->observacao;
-
-            echo $telefone;
 
             if ($telefone == '' || $telefone == null) {
                 $telefone = 'Nenhum telefone cadastrado!';
@@ -139,7 +135,6 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                             <?php
                         }
                     }
-
                     ?>
                 </div>
 
