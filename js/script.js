@@ -37,7 +37,7 @@ function fazerLogin() {
             console.log(data)
             if (data.success) {
                 setTimeout(function () {
-                    window.location.href = "index.php";
+                    window.location.href = "pagina-inicial";
                 }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
@@ -325,7 +325,9 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
     const idVerimg = document.getElementById('imgPreview')
     const visualizaImg = `${nomeFoto}`
 
-    idVerimg.src = '../img/produtos/' + visualizaImg
+    idVerimg.src = '../img/produtos/' + visualizaImg;
+
+
 
     idFoto.addEventListener('change', function (event) {
         let reader = new FileReader();
@@ -356,11 +358,13 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                         alertSuccess(data.message, '#30B27F')
                         carregarConteudo('listarEpi')
                         formDados.removeEventListener('submit', submitHandler);
+                        form.reset()
                     } else {
                         botoes.disabled = false;
                         alertError(data.message)
                         carregarConteudo('listarEpi')
                         formDados.removeEventListener('submit', submitHandler);
+                        form.reset()
                     }
                     ModalInstancia.hide();
                 })
@@ -401,13 +405,6 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
-
-    if (formDados !== 'nao' || botoes !== 'nao' || ModalInstancia !== 'nao'){
-        if (!formDados || !botoes || !ModalInstancia) {
-            console.error('Verificar a chamada da função e checar se os IDs estão corretos!')
-        }
-
-    }
 
     const INPidi = document.getElementById(`${INPid}`)
     if (IDid !== 'nao') {
@@ -515,7 +512,7 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if (data.success) {
                         botoes.disabled = false;
                         alertSuccess(data.message, '#30B27F')
@@ -529,9 +526,9 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
                     }
                     ModalInstancia.hide();
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
         }
 
         const btnFecharModalAddUsuario = document.getElementById('btnFecharModalAddUsuario');

@@ -2,6 +2,13 @@
 include_once('../config/conexao.php');
 include_once('../config/constantes.php');
 include_once('../func/funcoes.php');
+if ($_SESSION['idadm']) {
+    $idUsuario = $_SESSION['idadm'];
+} else {
+    session_destroy();
+    header('location: index.php?error=404');
+}
+
 $codigoAluguel = filter_input(INPUT_GET, 'codigoAluguel', FILTER_SANITIZE_STRING);
 
 
@@ -42,7 +49,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
     <?php
 
-    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('*', 'aluguel', 'usuario', 'produtoAluguel', 'epi', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idepi', 'idepi', 'codAluguel', "$codigoAluguel", 'horaFim', 'DESC');
+    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('*', 'aluguel', 'usuario', 'produtoAluguel', 'epi', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idepi', 'idepi', 'd.codAluguel', "$codigoAluguel", 'horaFim', 'DESC');
     if ($listaAlguel !== 'Vazio') {
     $nomeEpi = array();
     $idepi = array();
@@ -60,18 +67,17 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             $prioridade = $item->prioridade;
             $dataAluguel = $item->dataAluguel;
             $email = $item->email;
+            $telefone = $item->numero;
+            $observacao = $item->observacao;
 
+            echo $telefone;
+
+            if ($telefone == '' || $telefone == null) {
+                $telefone = 'Nenhum telefone cadastrado!';
+            }
 
             $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
         }
-    }
-    $telefoneTabela = listarItemExpecifico('*', 'telefone', 'idusuario', $id);
-    if ($telefoneTabela != 'Vazio') {
-        foreach ($telefoneTabela as $itemTelefone) {
-            $telefone = $itemTelefone->numero;
-        }
-    } else {
-        $telefone = 'Não informado!';
     }
 
     ?>
@@ -87,53 +93,51 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
             </div>
         </div>
         <div class="col-lg-6 col-12 mt-4">
-            <p>Nome: <?php echo $nomeUsuario ?></p>
-            <p>Email: <?php echo $email ?></p>
-            <p>Telefone: <?php echo $telefone ?></p>
-            <p>Data: <?php echo $dataAluguel ?></p>
-            <p>Prioridade: <?php echo $prioridade ?></p>
+            <p><b>Nome:</b> <?php echo $nomeUsuario ?></p>
+            <p><b>Email:</b> <?php echo $email ?></p>
+            <p><b>Telefone:</b> <?php echo $telefone ?></p>
+            <p><b>Data:</b> <?php echo $dataAluguel ?></p>
+            <p><b>Prioridade:</b> <?php echo $prioridade ?></p>
+            <p><b>Observação:</b> <?php echo $observacao ?></p>
         </div>
         <div class="row">
             <div class="col-lg-12 col-12">
                 <h2 class="mt-5 mb-4">Ferramentas emprestadas</h2>
                 <div class="owl-carousel owl-theme">
                     <?php
+                    $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'b.codAluguel', $codigoAluguel, 'a.idepi', 'ASC');
 
-                    foreach ($epi as $key => $value) {
-                        $id = $key;
-                        $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'a.idepi', $id, 'a.idepi', 'ASC');
-                        if ($selectCompras) {
-                            foreach ($selectCompras as $item) {
-                                $nome = $item->nomeEpi;
-                                $foto = $item->foto;
-                                $CA = $item->certificado;
-                                $quantidade = $item->quantidade;
+                    if ($selectCompras) {
+                        foreach ($selectCompras as $item) {
+                            $nome = $item->nomeEpi;
+                            $foto = $item->foto;
+                            $CA = $item->certificado;
+                            $quantidade = $item->quantidade;
 
-                                ?>
+                            ?>
 
-                                <div class="item">
-                                    <div class="card mb-3 item">
-                                        <div class="row g-0">
-                                            <div class="col-4">
-                                                <img src="../img/produtos/<?php echo $foto ?>"
-                                                     class="img-fluid rounded-start"
-                                                     alt="foto do epi: <?php echo $nome ?>">
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="card-body">
-                                                    <h5 class="card-title tituloCard"><?php echo $nome ?></h5>
-                                                    <p class="card-text">Número do CA: <?php echo $CA ?></p>
-                                                    <p class="card-text">Quantidade: <?php echo $quantidade ?></p>
-                                                </div>
+                            <div class="item">
+                                <div class="card mb-3 item">
+                                    <div class="row g-0">
+                                        <div class="col-4">
+                                            <img src="../img/produtos/<?php echo $foto ?>"
+                                                 class="img-fluid rounded-start"
+                                                 alt="foto do epi: <?php echo $nome ?>">
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title tituloCard"><?php echo $nome ?></h5>
+                                                <p class="card-text">Número do CA: <?php echo $CA ?></p>
+                                                <p class="card-text">Quantidade: <?php echo $quantidade ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <?php
-                            }
+                            </div>
+                            <?php
                         }
-
                     }
+
                     ?>
                 </div>
 

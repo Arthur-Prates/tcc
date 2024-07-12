@@ -17,7 +17,7 @@ if (!empty($controle) && isset($controle)) {
             include_once './addEpi.php';
             break;
         case 'editEpi':
-            include_once './editEpi.php';
+            include_once 'editEpi.php';
             break;
         case 'listarAluguel':
             include_once './listarAluguel.php';
