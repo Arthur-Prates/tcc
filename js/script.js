@@ -37,7 +37,7 @@ function fazerLogin() {
             console.log(data)
             if (data.success) {
                 setTimeout(function () {
-                    window.location.href = "index.php";
+                    window.location.href = "pagina-inicial";
                 }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
