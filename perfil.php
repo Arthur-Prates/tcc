@@ -35,7 +35,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 <div class="container">
     <h3 class="mt-4">Informações pessoais</h3>
     <?php
-    $tabelaFuncionario = listarTabelaLeftJoinExpecifica('*', 'usuario', 'telefone', 'idusuario', 'idusuario', 'a.idusuario', "$idFuncionario");
+    $tabelaFuncionario = listarItemExpecifico('*', 'usuario', 'idusuario', "$idFuncionario");
     if ($tabelaFuncionario !== 'Vazio') {
         foreach ($tabelaFuncionario as $item) {
             $nome = $item->nomeUsuario;
@@ -57,6 +57,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                 $cargo = 'Administrador';
             } else if ($cargo == 'rh') {
                 $cargo = 'Recursos Humanos';
+            } else if ($cargo == 'adm') {
+                $cargo = 'Administrador';
             }
 
 

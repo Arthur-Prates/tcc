@@ -257,7 +257,7 @@ include_once('nav.php');
                 <div class="modal-body">
                     <input type="hidden" name="idEditEpi" id="idEditEpi">
                     <div class="col-12 text-center mb-2 alturaFotoPreview">
-                        <img src="../img/produtos/capacete-classe-a.jpg" id="imgPreview" alt="foto-do-epi" width="50%">
+                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="50%">
                     </div>
                     <div class="input-group mb-3 mt-4">
                         <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
@@ -307,7 +307,7 @@ include_once('nav.php');
                         <label class="input-group-text" for="sobrenomeUsuarioAdd">Sobrenome</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input required="required" type="text" class="form-control" id="telefoneUsuarioAdd"
+                        <input required="required" type="text" class="form-control celular" id="telefoneUsuarioAdd"
                                name="telefoneUsuarioAdd">
                         <label class="input-group-text" for="telefoneUsuarioAdd">Celular</label>
                     </div>
@@ -364,7 +364,6 @@ include_once('nav.php');
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario</h1>
-                <!--                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
             <form action="#" method="post" name="frmUsuarioEdit" id="frmUsuarioEdit">
                 <div class="modal-body">
@@ -381,7 +380,7 @@ include_once('nav.php');
                         <label class="input-group-text" for="sobrenomeUsuarioEdit">Sobrenome</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="telefoneUsuarioEdit" name="telefoneUsuarioEdit">
+                        <input type="text" class="form-control celular" id="telefoneUsuarioEdit" name="telefoneUsuarioEdit">
                         <label class="input-group-text" for="telefoneUsuarioEdit">Celular</label>
                     </div>
                     <div class="input-group mb-3">

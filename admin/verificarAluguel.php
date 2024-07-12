@@ -53,6 +53,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
         if ($ativo === 'A') {
             $id = $item->idusuario;
             $nomeUsuario = $item->nomeUsuario;
+            $telefone = $item->numero;
             array_push($idepi, $item->idepi);
             array_push($nomeEpi, $item->nomeEpi);
             $epi = array_combine($idepi, $nomeEpi);
@@ -64,14 +65,6 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
             $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
         }
-    }
-    $telefoneTabela = listarItemExpecifico('*', 'telefone', 'idusuario', $id);
-    if ($telefoneTabela != 'Vazio') {
-        foreach ($telefoneTabela as $itemTelefone) {
-            $telefone = $itemTelefone->numero;
-        }
-    } else {
-        $telefone = 'Não informado!';
     }
 
     ?>
@@ -98,11 +91,14 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
                 <h2 class="mt-5 mb-4">Ferramentas emprestadas</h2>
                 <div class="owl-carousel owl-theme">
                     <?php
-
+                    print_r($epi);
+                    echo $codigoAluguel;
+                    echo '<br>';
                     foreach ($epi as $key => $value) {
                         $id = $key;
-                        $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'a.idepi', $id, 'a.idepi', 'ASC');
-                        if ($selectCompras) {
+                        $selectCompras = listarTabelaInnerJoinOrdenadaDuploWhere('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'a.idepi', $id, 'b.codAluguel', $codigoAluguel, 'a.idepi', 'ASC');
+                        print_r($selectCompras);
+                        if ($selectCompras !== 'Vazio') {
                             foreach ($selectCompras as $item) {
                                 $nome = $item->nomeEpi;
                                 $foto = $item->foto;
