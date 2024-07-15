@@ -1021,7 +1021,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 }
 
 
-function deleletarEpi(id, addEditDel, formulario) {
+function deleletarEpi(id, addEditDel) {
     Swal.fire({
         title: "Você tem certeza?",
         text: "Esta ação não pode ser desfeita",
@@ -1045,6 +1045,57 @@ function deleletarEpi(id, addEditDel, formulario) {
                 .then(response => response.json())
                 .then(data => {
                     carregarConteudo('listarEpi')
+                    if (data.success) {
+
+                        Swal.fire({
+                            title: "Deletado!",
+                            text: `${data.message}`,
+                            icon: "success"
+                        });
+
+                    } else {
+                        Swal.fire({
+                            title: "Erro!",
+                            text: `${data.message}`,
+                            icon: "warning"
+                        });
+
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+        }
+
+
+    });
+}
+
+function deleletarUsuario(id, addEditDel) {
+    Swal.fire({
+        title: "Você tem certeza?",
+        text: "Esta ação não pode ser desfeita",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, eu tenho certeza!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            fetch('controle.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'controle=' + encodeURIComponent(`${addEditDel}`) +
+                    "&idDelete=" +
+                    encodeURIComponent(`${id}`),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    carregarConteudo('listarUsuario')
                     if (data.success) {
 
                         Swal.fire({

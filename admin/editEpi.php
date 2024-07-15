@@ -32,6 +32,13 @@ if (isset($dados) && !empty($dados)) {
             echo json_encode(['success' => false, 'message' => "Foto não encontrada!"]);
         }
 
+    }else{
+        $retornoInsert = alterar2Item('epi', 'nomeEpi', 'certificado', "$nome", "$certificado", 'idepi',"$id");
+        if ($retornoInsert > 0) {
+            echo json_encode(['success' => true, 'message' => "Epi alterado com sucesso"]);
+        } else {
+            echo json_encode(['success' => false, 'message' => "Epi não alterado!"]);
+        }
     }
 } else {
     echo json_encode(['success' => false, 'message' => "Erro, nenhum dado encontrado!"]);
