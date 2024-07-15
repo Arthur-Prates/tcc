@@ -38,7 +38,7 @@
                 <td class=""><?php echo $certificado ?></td>
                 <td class="">
                     <button type="button" class="btn btn-primary" onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto?>','<?php echo $idepi?>','idEditEpi','<?php echo $nomeEpi?>','nomeEpiEdit','<?php echo $certificado;?>','certificadoEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')"><span class="mdi mdi-file-document-edit-outline"></span> </button>
-                    <button type="button" class="btn btn-danger" onclick="deleletarEpi('<?php echo $idepi?>','deleteEpi','frmEpiDelete')"><span class="mdi mdi-trash-can"></span> </button>
+                    <button type="button" class="btn btn-danger" onclick="deleletarEpi('<?php echo $idepi?>','deleteEpi')"><span class="mdi mdi-trash-can"></span> </button>
                 </td>
 
             </tr>

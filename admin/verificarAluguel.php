@@ -9,6 +9,7 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
+
 $codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 
 $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
@@ -39,7 +40,10 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 
 
 <body>
-<?php include_once('nav.php') ?>
+<?php
+$listarEmprestimo = 'SIM';
+include_once('nav.php')
+?>
 
 <div class="container">
 

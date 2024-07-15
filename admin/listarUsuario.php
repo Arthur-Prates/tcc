@@ -66,7 +66,7 @@
                         <button type="button" class="btn btn-info" style="float: right"
                                 onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')">
                             <i class="mdi mdi-file-edit-outline"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="mdi mdi-trash-can"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="deleletarUsuario('<?php echo $idusuario; ?>','deleteUsuario')"><i class="mdi mdi-trash-can"></i></button>
 
                     </div>
 

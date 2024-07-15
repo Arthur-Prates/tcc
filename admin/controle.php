@@ -14,7 +14,7 @@ if (!empty($controle) && isset($controle)) {
             include_once './listarEpi.php';
             break;
         case 'addEpi':
-            include_once './addEpi.php';
+            include_once 'addEpi.php';
             break;
         case 'editEpi':
             include_once 'editEpi.php';
@@ -33,6 +33,9 @@ if (!empty($controle) && isset($controle)) {
             break;
         case 'editUsuario':
             include_once './editUsuario.php';
+            break;
+        case 'deleteUsuario':
+            include_once './deleteUsuario.php';
             break;
     }
 } else {
