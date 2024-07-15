@@ -248,6 +248,67 @@ body {
 .qtdDeItensNoCarrinho {
     background-color: #940000;
     border-radius: 5px;
+    color: white;
+}
+
+.linkNavbarAdminSM{
+    color: black;
+    text-decoration: none;
+    transition: 1s ease;
+}
+.linkNavbarAdminSM:hover{
+    color:white !important;
+    transition: 1s ease;
+}
+
+.btnMenuNavbarSMAdmin{
+    background: transparent;
+    border: #212121 1px solid;
+    width: 100%;
+    border-radius: 10px;
+    text-align: left;
+    height: 50px;
+}
+
+
+.cardNavbarAdminSm{
+    border: none;
+    transition: 1s ease;
+}
+.cardNavbarAdminSm:hover{
+    background-color: #737373;
+    transition: 1s ease;
+}
+
+
+.linkNavbarSM{
+    text-decoration: none;
+    color: black;
+    transition: 1s ease;
+}
+
+.linkNavbarSM:hover{
+    color: white;
+    transition: 1s ease;
+}
+
+.btnMenuNavbarSM{
+    background: transparent;
+    border: #212121 1px solid;
+    width: 100%;
+    border-radius: 10px;
+    text-align: left;
+    height: 50px;
+}
+
+.cardNavbarSM{
+    border: none;
+    transition: 1s ease;
+}
+
+.cardNavbarSM:hover{
+    background-color: #737373;
+    transition: 1s ease;
 }
 
 .overflowTable {
@@ -299,6 +360,7 @@ body {
     flex-direction: column;
     align-content: space-between;
     min-height: 200px !important;
+    padding-bottom: 15px;
 }
 
 .cardCarrosselVisualizarAluguel {
@@ -306,7 +368,7 @@ body {
     /*flex-direction: column;*/
     /*align-content: space-between;*/
     min-height: 200px !important;
-
+    padding-bottom: 15px;
 }
 
 /*.tituloCard{*/
@@ -334,20 +396,22 @@ section .wave {
 
 .fotoEpi {
     object-fit: cover;
-    aspect-ratio: 1 / 1; !important ;
+    aspect-ratio: 1 / 1;
+!important;
     border-radius: 10px;
 }
+
 .circulo {
     border-radius: 50%;
 }
 
-.cardAlterarSenha{
+.cardAlterarSenha {
     width: 350px;
     border: none;
     background-color: #ffffff;
 }
 
-.inpAlterarSenha{
+.inpAlterarSenha {
     width: 100%;
     border: #656565 2px solid;
     height: 35px;
@@ -356,21 +420,21 @@ section .wave {
 
 /*DASH ADM*/
 
-.pesquisaAluguel{
+.pesquisaAluguel {
     display: flex;
 }
 
-.inputPesquisa{
+.inputPesquisa {
     border-radius: 3px;
-    width:90%;
+    width: 90%;
 }
 
-.nuvensSecao{
+.nuvensSecao {
     background-color: #259400;
 }
 
 
-.secaoGrafico{
+.secaoGrafico {
     background-color: #00bfff;
     margin-top: 30%;
 }
@@ -404,11 +468,9 @@ section .wave {
 }
 
 
-
 .btnAluguelPesquisa {
     height: 45px;
-    background: linear-gradient(140.14deg, rgba(3, 255, 161, 0.81) 15.05%, rgba(52, 138, 106, 0.81) 114.99%)
-    padding-box,
+    background: linear-gradient(140.14deg, rgba(3, 255, 161, 0.81) 15.05%, rgba(52, 138, 106, 0.81) 114.99%) padding-box,
     linear-gradient(142.51deg, rgba(52, 138, 106, 0.81) 8.65%, rgba(52, 138, 106, 0.81) 88.82%) border-box;
     border-radius: 7px;
     border: 2px solid transparent;
@@ -515,13 +577,13 @@ section.ondas-box {
     }
 }
 
-.alturaFotoPreview{
+.alturaFotoPreview {
     height: 250px !important;
     max-height: 250px !important;
     overflow: hidden;
 }
 
-.mdlVermaisUsuario{
+.mdlVermaisUsuario {
     background: transparent;
     border: none;
 }
