@@ -37,6 +37,12 @@ if (!empty($controle) && isset($controle)) {
         case 'deleteUsuario':
             include_once './deleteUsuario.php';
             break;
+        case 'devolverEpi':
+            include_once 'devolverEpi.php';
+            break;
+        case 'emprestimoDevolvido':
+            include_once 'emprestimoDevolvido.php';
+            break;
     }
 } else {
     ?>

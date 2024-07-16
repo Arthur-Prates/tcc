@@ -720,7 +720,27 @@ function alterar1Item($tabela, $campo, $valor, $identificar, $id)
         $conn->beginTransaction();
         $sqlLista = $conn->prepare("UPDATE $tabela SET $campo = ? WHERE $identificar = ?");
         $sqlLista->bindValue(1, $valor, PDO::PARAM_STR);
+        $sqlLista->bindValue(2, $id, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        return $sqlLista->rowCount() > 0;
+    } catch (PDOException $e) {
+        $conn->rollback();
+        return 'Exception -> ' . $e->getMessage();
+    } finally {
+        $conn = null;
+    }
+}
+
+function alterar1ItemDuploWhere($tabela, $campo, $valor, $identificar, $id, $identificar2, $id2)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("UPDATE $tabela SET $campo = ? WHERE $identificar = ? AND $identificar2 = ?");
+        $sqlLista->bindValue(1, $valor, PDO::PARAM_STR);
         $sqlLista->bindValue(2, $id, PDO::PARAM_INT);
+        $sqlLista->bindValue(3, $id2, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
         return $sqlLista->rowCount() > 0;
