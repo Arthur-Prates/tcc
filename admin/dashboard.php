@@ -49,39 +49,43 @@ include_once('nav.php');
 
     </div>
 </div>
-<div class="container-fluid">
+<div class="">
 
 
     <div id='show' class='show'>
         <section class="ondas-box">
 
-            <div class="titulo">
-                <div class="row  pesquisaAluguel">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <form action="verificarAluguel.php" method="get">
-                                <input type="text" id="emprestimo" name="emprestimo"
-                                       class="inputPesquisa text-center" placeholder="Código">
-                                <button type="submit" class="btn btnAluguelPesquisa"><i class="bi bi-search"></i>
-                                </button>
-                            </form>
-                        </div>
+            <div class="container">
+                <div class="row vai">
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                        <form action="verificarAluguel.php" method="get">
+                            <input type="text" id="emprestimo" name="emprestimo"
+                                   class="inputPesquisa text-center w-100  mt-2" placeholder="Código">
+
                     </div>
+                    <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2" >
+                        <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                    </form>
                 </div>
             </div>
+
         </section>
 
-        <img src="../img/wave.png" alt="onda" class="oondafoto">
+        <img src="../img/wave.svg" alt="onda" class="oondafoto">
         <section class="conteudo">
             <div class="row d-flex justify-content-between align-items-center ">
                 <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class=" d-flex justify-content-center align-items-center ">
+                    <div class=" d-flex justify-content-center align-items-center text-white">
                         <canvas id="myChart"></canvas>
                     </div>
 
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script>
                         const ctx = document.getElementById('myChart');
+                        Chart.defaults.color = '#ffffff';
+                        Chart.defaults.borderColor = 'rgba(255,255,255,0.1)';
                         new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -383,7 +387,8 @@ include_once('nav.php');
                         <label class="input-group-text" for="sobrenomeUsuarioEdit">Sobrenome</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control celular" id="telefoneUsuarioEdit" name="telefoneUsuarioEdit">
+                        <input type="text" class="form-control celular" id="telefoneUsuarioEdit"
+                               name="telefoneUsuarioEdit">
                         <label class="input-group-text" for="telefoneUsuarioEdit">Celular</label>
                     </div>
                     <div class="input-group mb-3">
@@ -413,13 +418,15 @@ include_once('nav.php');
                     <button class="btn btn-info text-white w-100 mb-3" id="btnAlterarSenha" type="button">
                         Alterar senha
                     </button>
-                    <button class="btn btn-secondary text-white w-100 mb-3" id="btnFecharAlterarSenha" type="button" style="display: none">
+                    <button class="btn btn-secondary text-white w-100 mb-3" id="btnFecharAlterarSenha" type="button"
+                            style="display: none">
                         Não alterar senha
                     </button>
                     <div id="dNone" style="display: none">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="novaSenhaUsuarioEdit" id="btn-senha"
-                                   onclick="mostrarsenha('novaSenhaUsuarioEdit')"><span class="bi bi-eye"></span></label>
+                                   onclick="mostrarsenha('novaSenhaUsuarioEdit')"><span
+                                        class="bi bi-eye"></span></label>
                             <input type="password" class="form-control" id="novaSenhaUsuarioEdit"
                                    name="novaSenhaUsuarioEdit">
                             <label class="input-group-text" for="novaSenhaUsuarioEdit">Digite a nova senha</label>
@@ -459,29 +466,35 @@ include_once('nav.php');
                 <div class="modal-body">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="nomeUsuarioVermais">Nome</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais" name="nomeUsuarioVermais" disabled>
+                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais"
+                               name="nomeUsuarioVermais" disabled>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="sobrenomeUsuarioVermais">Sobrenome</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="sobrenomeUsuarioVermais" name="sobrenomeUsuarioVermais" disabled>
+                        <input type="text" class="form-control mdlVermaisUsuario" id="sobrenomeUsuarioVermais"
+                               name="sobrenomeUsuarioVermais" disabled>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="telefoneUsuarioVermais">Celular</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="telefoneUsuarioVermais" name="telefoneUsuarioVermais" disabled>
+                        <input type="text" class="form-control mdlVermaisUsuario" id="telefoneUsuarioVermais"
+                               name="telefoneUsuarioVermais" disabled>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="CPFUsuarioVermais">CPF</label>
-                        <input type="text" class="form-control mdlVermaisUsuario cpf" id="CPFUsuarioVermais" name="CPFUsuarioVermais" disabled>
+                        <input type="text" class="form-control mdlVermaisUsuario cpf" id="CPFUsuarioVermais"
+                               name="CPFUsuarioVermais" disabled>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="nascimentoUsuarioVermais">Data de Nascimento</label>
-                        <input type="date" class="form-control mdlVermaisUsuario" id="nascimentoUsuarioVermais" name="nascimentoUsuarioVermais"
+                        <input type="date" class="form-control mdlVermaisUsuario" id="nascimentoUsuarioVermais"
+                               name="nascimentoUsuarioVermais"
                                value='<?php echo Data18AnosAtras() ?>' disabled>
                     </div>
 
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="nomeUsuarioVermais">Cargo</label>
-                        <select class="form-select mdlVermaisUsuario" aria-label="Default select example" id="cargoUsuarioVermais"
+                        <select class="form-select mdlVermaisUsuario" aria-label="Default select example"
+                                id="cargoUsuarioVermais"
                                 name="cargoUsuarioVermais" disabled>
                             <option value="adm">Adminstrador</option>
                             <option value="almoxarife">Almoxarife</option>
@@ -491,7 +504,8 @@ include_once('nav.php');
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="emailUsuarioVermais">Email de acesso</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="emailUsuarioVermais" name="emailUsuarioVermais" disabled>
+                        <input type="text" class="form-control mdlVermaisUsuario" id="emailUsuarioVermais"
+                               name="emailUsuarioVermais" disabled>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -504,8 +518,19 @@ include_once('nav.php');
     </div>
 </div>
 
+<?php
+$erro = $_GET['error'];
+if ($erro === 'CampoVazio') {
+    ?>
+    <script>
+        var inpute = document.getElementById('emprestimo')
+        inpute.placeholder = 'Este Campo não pode estar vazio!'
+        inpute.classList.add('red-placeholder');
+    </script>
 
-
+    <?php
+}
+?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -521,6 +546,7 @@ include_once('nav.php');
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
 <script src="../js/script.js"></script>
 
 

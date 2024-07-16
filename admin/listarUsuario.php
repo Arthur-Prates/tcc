@@ -4,7 +4,7 @@
 <div class="teste mt-5">
 
     <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
-    <button type="button" class="btn btn-dark" style="float: right"
+    <button type="button" class="btn btn-dark mb-3" style="float: right"
             onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'frmUsuarioAdd')">
         Cadastrar
     </button>

@@ -1,19 +1,22 @@
 <?php
 
 ?>
+<div class="container">
+
+
 <div class="teste mt-5">
     <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-    <button type="button" class="btn btn-dark" style="float: right" onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">Cadastrar</button>
+    <button type="button" class="btn btn-dark mb-3" style="float: right" onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">Cadastrar</button>
 
 </div>
 <table class="table table-hover table-bordered border-dark">
     <thead>
     <tr>
-        <th scope="col" style="width: 5%;" class="text-center">#</th>
-        <th scope="col" style="width: 10%;">Foto</th>
-        <th scope="col" style="width: 60%;">Epi</th>
-        <th scope="col" style="width: 15%;">Certificado</th>
-        <th scope="col" style="width: 10%;">Ação</th>
+        <th scope="col" style="width: 5%;" class="text-center bg-dark text-white">#</th>
+        <th scope="col" style="width: 10%;" class="bg-dark text-white">Foto</th>
+        <th scope="col" style="width: 60%;" class="bg-dark text-white">Epi</th>
+        <th scope="col" style="width: 15%;" class="bg-dark text-white">Certificado</th>
+        <th scope="col" style="width: 10%;" class="bg-dark text-white">Ação</th>
     </tr>
     </thead>
     <tbody>
@@ -57,3 +60,4 @@
     ?>
     </tbody>
 </table>
+</div>

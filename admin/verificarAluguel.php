@@ -9,16 +9,14 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
-//$testi = 1;
-//if ($testi == 1) {
-//    $codigoAluguel = '6696b1ae3fd8e';
-//} else {
-//    $codigoAluguel = '668e709850be1';
-//
-//}
+$codigoAluguel = filter_input(INPUT_GET, 'emprestimos', FILTER_SANITIZE_STRING);
 
-$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
-
+//$codigoAluguel = empty($codigoAluguel) ? addslashes($codigoAluguel) : 'vazio';
+if(empty($codigoAluguel)){
+    header('location: dashboard.php?error=CampoVazio');
+}else{
+    echo $codigoAluguel;
+}
 $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
 ?>
 
@@ -28,7 +26,7 @@ $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprest
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TESTES</title>
+    <title>Empréstimo - #<?php echo $codigoAluguel?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -152,7 +150,7 @@ foreach ($contarNao as $itemContar) {
             <p><b>Status do empréstimo:</b> <?php echo $statusEmprestimo ?></p>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-12">
+            <div class="col-lg-12 col-12 mt-5">
                 <h2 class="mt-5 mb-4">EPI(s) emprestadas</h2>
                 <div class="row">
                     <?php
