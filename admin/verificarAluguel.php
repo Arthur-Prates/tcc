@@ -9,10 +9,15 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
+$testi = 1;
+if ($testi == 1) {
+    $codigoAluguel = '6696b1ae3fd8e';
+} else {
+    $codigoAluguel = '668e709850be1';
 
-$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
+}
 
-$link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
+$link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
 ?>
 
 <!doctype html>
@@ -21,7 +26,7 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aluguel - <?php echo $codigoAluguel ?></title>
+    <title>TESTES</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -31,9 +36,6 @@ $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoAluguel"
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
@@ -47,7 +49,7 @@ include_once('nav.php')
 
 <div class="container">
 
-    <h1>Aluguel - #<?php echo $codigoAluguel ?></h1>
+    <h1>TESTES - #<?php echo $codigoAluguel ?></h1>
 
 
     <?php
@@ -105,12 +107,13 @@ include_once('nav.php')
         <div class="row">
             <div class="col-lg-12 col-12">
                 <h2 class="mt-5 mb-4">Ferramentas emprestadas</h2>
-                <div class="owl-carousel owl-theme">
+                <div class="row">
                     <?php
                     $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'b.codAluguel', $codigoAluguel, 'a.idepi', 'ASC');
 
                     if ($selectCompras) {
                         foreach ($selectCompras as $item) {
+                            $idepi = $item->idepi;
                             $nome = $item->nomeEpi;
                             $foto = $item->foto;
                             $CA = $item->certificado;
@@ -118,19 +121,37 @@ include_once('nav.php')
 
                             ?>
 
-                            <div class="item">
-                                <div class="card mb-3 item cardeCarrossel">
-                                    <div class="row g-0">
-                                        <div class="col-4">
-                                            <img src="../img/produtos/<?php echo $foto ?>"
-                                                 class="img-fluid rounded-start"
-                                                 alt="foto do epi: <?php echo $nome ?>">
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title tituloCard"><?php echo $nome ?></h5>
-                                                <p class="card-text">Número do CA: <?php echo $CA ?></p>
-                                                <p class="card-text">Quantidade: <?php echo $quantidade ?></p>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mt-3">
+                                <div class="accordion" id="idDoTrem<?php echo $idepi ?>">
+                                    <div class="accordion-item ">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button esticaTrem  collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#abrirTreco<?php echo $idepi ?>"
+                                                    aria-expanded="true" aria-controls="abrirTreco<?php echo $idepi ?>">
+                                                <h5 class="card-title tituloCard nomeProduto"><?php echo $nome ?></h5>
+                                            </button>
+                                        </h2>
+                                        <div id="abrirTreco<?php echo $idepi ?>"
+                                             class="accordion-collapse collapse"
+                                             data-bs-parent="#idDoTrem<?php echo $idepi ?>">
+                                            <div class="accordion-body">
+                                                <div class="card mb-3 item cardeCarrossel">
+                                                    <div class="row g-0 d-flex justify-content-center align-items-center">
+                                                        <div class="col-8 d-flex justify-content-center align-items-center">
+                                                            <img src="../img/produtos/<?php echo $foto ?>"
+                                                                 class="img-fluid rounded-start"
+                                                                 alt="foto do epi: <?php echo $nome ?>">
+                                                        </div>
+                                                        <div class="col-12 text-center">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title tituloCard"><?php echo $nome ?></h4>
+                                                                <p class="card-text"><?php echo $quantidade.' Unidade(s)' ?></p>
+                                                                <p class="card-text"><b>CA:</b> <?php echo $CA ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -140,66 +161,41 @@ include_once('nav.php')
                         }
                     }
                     ?>
-                </div>
 
-                <?php
-                } else {
-                    ?>
 
-                    <h4>Nenhum Aluguel cadastrado</h4>
+
                     <?php
-                }
-                ?>
+                    } else {
+                        ?>
+
+                        <h4>Nenhum Aluguel cadastrado</h4>
+                        <?php
+                    }
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"
-            integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <script src="../js/script.js"></script>
 
-    <script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+                integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+                integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"
+                integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+        <script src="../js/script.js"></script>
 
-        $(document).ready(function () {
-            $('.owl-carousel').owlCarousel({
-                loop: false,
-                navText: ['Voltar', 'Próximo'],
-                center: false,
-                nav: true,
-                margin: 10,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    500: {
-                        items: 2
-                    },
-                    600: {
-                        items: 3
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
 
-        });
-    </script>
 </body>
 
 </html>
