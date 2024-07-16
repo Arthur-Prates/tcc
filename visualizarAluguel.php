@@ -73,82 +73,97 @@ foreach ($cod as $itemCod) {
             <?php
             $tabelaAluguel = listarTabelaInnerJoinQuadruploWhere('*', 'aluguel', 'usuario', 'produtoAluguel', 'epi', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idepi', 'idepi', 'codAluguel', "$codigoAluguel", 'horaFim', 'DESC');
             if ($tabelaAluguel !== 'vazio') {
-                foreach ($tabelaAluguel as $item) {
-                    $id = $item->idusuario;
-                    $locatario = $item->nomeUsuario;
-                    $sobrenome = $item->sobrenome;
-                    $email = $item->email;
-                    $numero = $item->numero;
-                    $cpf = $item->cpf;
-                    $dataAluguel = $item->dataAluguel;
-                    $horaInicial = $item->horaInicial;
-                    $horaFinal = $item->horaFim;
-                    $prioridade = $item->prioridade;
-                    $observacao = $item->observacao;
+            foreach ($tabelaAluguel as $item) {
+                $id = $item->idusuario;
+                $locatario = $item->nomeUsuario;
+                $sobrenome = $item->sobrenome;
+                $email = $item->email;
+                $numero = $item->numero;
+                $cpf = $item->cpf;
+                $dataAluguel = $item->dataAluguel;
+                $horaInicial = $item->horaInicial;
+                $horaFinal = $item->horaFim;
+                $prioridade = $item->prioridade;
+                $observacao = $item->observacao;
 
-                    $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
+                $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
 
-                    if ($observacao == 'NAO' || $observacao == '') {
-                        $observacao = 'Nenhuma observação foi feita';
-                    }
-                    if ($prioridade == 'ALTA') {
-                        $prioridade = 'Alta';
-                    } else if ($prioridade == 'MEDIA') {
-                        $prioridade = 'Média';
-                    } else {
-                        $prioridade = 'Baixa';
-                    }
-
+                if ($observacao == 'NAO' || $observacao == '') {
+                    $observacao = 'Nenhuma observação foi feita';
+                }
+                if ($prioridade == 'ALTA') {
+                    $prioridade = 'Alta';
+                } else if ($prioridade == 'MEDIA') {
+                    $prioridade = 'Média';
+                } else {
+                    $prioridade = 'Baixa';
                 }
 
-                ?>
-                <p class="mt-3"><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
-                <p><b>Email:</b> <?php echo $email ?></p>
-                <p><b>Telefone:</b> <?php echo $numero ?></p>
-                <p><b>CPF:</b> <?php echo $cpf ?></p>
-                <p><b>Data do aluguel:</b> <?php echo $dataAluguel ?></p>
-                <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
-                <p><b>Hora final do aluguel:</b> <?php echo $horaFinal ?></p>
-                <p><b>Nível de prioridade:</b> <?php echo $prioridade ?></p>
-                <p><b>Observação:</b> <?php echo $observacao ?></p>
-                <?php
-            } else {
-                ?>
-                <div class="text-center">
-                    <h1>Nenhum EPI encontrado!</h1>
-                </div>
-                <?php
             }
 
             ?>
+            <p class="mt-3"><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
+            <p><b>Email:</b> <?php echo $email ?></p>
+            <p><b>Telefone:</b> <?php echo $numero ?></p>
+            <p><b>CPF:</b> <?php echo $cpf ?></p>
+            <p><b>Data do aluguel:</b> <?php echo $dataAluguel ?></p>
+            <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
+            <p><b>Hora final do aluguel:</b> <?php echo $horaFinal ?></p>
+            <p><b>Nível de prioridade:</b> <?php echo $prioridade ?></p>
+            <p><b>Observação:</b> <?php echo $observacao ?></p>
+
         </div>
     </div>
     <hr>
     <div class="row">
+
         <div class="col-lg-12 col-12">
-            <h3 class="mt-3 mb-3">EPI(s) emprestado(s)</h3>
-            <div class="owl-carousel owl-theme">
+            <h2 class="mt-5 mb-4">EPI(s) emprestadas</h2>
+            <div class="row">
                 <?php
-                if ($tabelaAluguel !== 'Vazio') {
-                    foreach ($tabelaAluguel as $item) {
-                        $nomeEpi = $item->nomeEpi;
-                        $codEpi = $item->certificado;
+                $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'b.codAluguel', $codigoAluguel, 'a.idepi', 'ASC');
+
+                if ($selectCompras) {
+                    foreach ($selectCompras as $item) {
+                        $idepi = $item->idepi;
+                        $nome = $item->nomeEpi;
                         $foto = $item->foto;
+                        $CA = $item->certificado;
                         $quantidade = $item->quantidade;
 
                         ?>
-                        <div class="item d-flex justify-content-center align-items-center">
-                            <div class="card mb-3 item cardCarrosselVisualizarAluguel">
-                                <div class="row g-0">
-                                    <div class="col-4">
-                                        <img src="./img/produtos/<?php echo $foto ?>" class="img-fluid rounded-start"
-                                             alt="foto do epi: <?php echo $nomeEpi ?>">
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title tituloCard"><?php echo $nomeEpi ?></h5>
-                                            <p class="card-text">Número do CA: <?php echo $codEpi ?></p>
-                                            <p>Quantidade: <?php echo $quantidade ?></p>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 mt-3">
+                            <div class="accordion" id="idDoTrem<?php echo $idepi ?>">
+                                <div class="accordion-item ">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button esticaTrem  collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#abrirTreco<?php echo $idepi ?>"
+                                                aria-expanded="true" aria-controls="abrirTreco<?php echo $idepi ?>">
+                                            <h5 class="card-title tituloCard nomeProduto"><?php echo $nome ?></h5>
+                                        </button>
+                                    </h2>
+                                    <div id="abrirTreco<?php echo $idepi ?>"
+                                         class="accordion-collapse collapse"
+                                         data-bs-parent="#idDoTrem<?php echo $idepi ?>">
+                                        <div class="accordion-body">
+                                            <div class="card mb-3 item cardeCarrossel">
+                                                <div class="row g-0 d-flex justify-content-center align-items-center">
+                                                    <div class="col-8 d-flex justify-content-center align-items-center">
+                                                        <img src="./img/produtos/<?php echo $foto ?>"
+                                                             class="img-fluid rounded-start"
+                                                             alt="foto do epi: <?php echo $nome ?>">
+                                                    </div>
+                                                    <div class="col-12 text-center">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title tituloCard"><?php echo $nome ?></h4>
+                                                            <p class="card-text"><?php echo $quantidade . ' Unidade(s)' ?></p>
+                                                            <p class="card-text"><b>CA:</b> <?php echo $CA ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -156,6 +171,17 @@ foreach ($cod as $itemCod) {
                         </div>
                         <?php
                     }
+                }
+                ?>
+
+
+                <?php
+                } else {
+                    ?>
+                    <div class="text-center">
+                        <h1>Nenhum EPI encontrado!</h1>
+                    </div>
+                    <?php
                 }
                 ?>
             </div>
