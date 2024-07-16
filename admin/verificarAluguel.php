@@ -9,13 +9,15 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
-$testi = 1;
-if ($testi == 1) {
-    $codigoAluguel = '6696b1ae3fd8e';
-} else {
-    $codigoAluguel = '668e709850be1';
+//$testi = 1;
+//if ($testi == 1) {
+//    $codigoAluguel = '6696b1ae3fd8e';
+//} else {
+//    $codigoAluguel = '668e709850be1';
+//
+//}
 
-}
+$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 
 $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
 ?>
@@ -44,12 +46,49 @@ $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprest
 <body>
 <?php
 $listarEmprestimo = 'SIM';
-include_once('nav.php')
+include_once('nav.php');
+
+$nao = 0;
+$contarNao = listarItemExpecifico('*', 'produtoAluguel', 'codAluguel', $codigoAluguel);
+foreach ($contarNao as $itemContar) {
+    $n = $itemContar->devolucao;
+    if ($n == 'N') {
+        ++$nao;
+    }
+}
 ?>
 
 <div class="container">
 
-    <h1>TESTES - #<?php echo $codigoAluguel ?></h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Aluguel - #<?php echo $codigoAluguel ?></h1>
+        <?php
+        if ($nao >= 1) {
+            ?>
+            <div>
+                <button class="btn btn-sm btn-secondary" disabled>Empréstimo NÃO devolvido</button>
+                <button class="btn btn-sm btn-success" disabled>Empréstimo devolvido</button>
+            </div>
+            <?php
+        } else {
+            ?>
+            <div>
+                <button class="btn btn-sm btn-secondary"
+                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','N')">
+                    Empréstimo
+                    NÃO devolvido
+                </button>
+                <button class="btn btn-sm btn-success"
+                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','S')">
+                    Empréstimo
+                    devolvido
+                </button>
+            </div>
+
+            <?php
+        }
+        ?>
+    </div>
 
 
     <?php
@@ -75,6 +114,13 @@ include_once('nav.php')
             $email = $item->email;
             $telefone = $item->numero;
             $observacao = $item->observacao;
+            $statusAluguel = $item->devolvido;
+
+            if ($statusAluguel == 'S') {
+                $statusEmprestimo = 'Empréstimo devolvido';
+            } else {
+                $statusEmprestimo = 'Empréstimo NÃO devolvido';
+            }
 
             if ($telefone == '' || $telefone == null) {
                 $telefone = 'Nenhum telefone cadastrado!';
@@ -103,6 +149,7 @@ include_once('nav.php')
             <p><b>Data:</b> <?php echo $dataAluguel ?></p>
             <p><b>Prioridade:</b> <?php echo $prioridade ?></p>
             <p><b>Observação:</b> <?php echo $observacao ?></p>
+            <p><b>Status do empréstimo:</b> <?php echo $statusEmprestimo ?></p>
         </div>
         <div class="row">
             <div class="col-lg-12 col-12">
@@ -118,6 +165,8 @@ include_once('nav.php')
                             $foto = $item->foto;
                             $CA = $item->certificado;
                             $quantidade = $item->quantidade;
+                            $idItemEpi = $item->idepi;
+                            $itemDevolvido = $item->devolucao;
 
                             ?>
 
@@ -146,8 +195,46 @@ include_once('nav.php')
                                                         <div class="col-12 text-center">
                                                             <div class="card-body">
                                                                 <h4 class="card-title tituloCard"><?php echo $nome ?></h4>
-                                                                <p class="card-text"><?php echo $quantidade.' Unidade(s)' ?></p>
+                                                                <p class="card-text"><?php echo $quantidade . ' Unidade(s)' ?></p>
                                                                 <p class="card-text"><b>CA:</b> <?php echo $CA ?></p>
+                                                                <hr>
+                                                                <div class="text-center divBtn">
+                                                                    <?php
+                                                                    if ($statusAluguel == 'S') {
+                                                                        if ($itemDevolvido == 'N') {
+                                                                            ?>
+                                                                            <button class="btn btn-sm btn-success"
+                                                                                    disabled>
+                                                                                Devolvido
+                                                                            </button>
+                                                                            <?php
+                                                                        } else {
+                                                                            ?>
+                                                                            <button class="btn btn-sm btn-secondary"
+                                                                                    disabled>
+                                                                                Não devolvido
+                                                                            </button>
+                                                                            <?php
+                                                                        }
+                                                                    } else {
+                                                                        if ($itemDevolvido == 'N') {
+                                                                            ?>
+                                                                            <button class="btn btn-sm btn-success"
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoAluguel ?>')">
+                                                                                Devolvido
+                                                                            </button>
+                                                                            <?php
+                                                                        } else {
+                                                                            ?>
+                                                                            <button class="btn btn-sm btn-secondary"
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoAluguel ?>')">
+                                                                                Não devolvido
+                                                                            </button>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -177,7 +264,6 @@ include_once('nav.php')
         </div>
 
 
-
         <script src="https://code.jquery.com/jquery-3.7.1.js"
                 integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -192,7 +278,8 @@ include_once('nav.php')
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                type="module"></script>
         <script src="../js/script.js"></script>
 
 

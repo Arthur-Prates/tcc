@@ -1122,3 +1122,80 @@ function deleletarUsuario(id, addEditDel) {
 
     });
 }
+
+function devolverEpi(idAluguelEpi, controle, valor,codAluguel) {
+    fetch('controle.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'controle=' + encodeURIComponent(`${controle}`) +
+            "&idDevolucao=" + encodeURIComponent(`${idAluguelEpi}`) +
+            "&valor=" + encodeURIComponent(`${valor}`) +
+            "&codAluguel=" + encodeURIComponent(`${codAluguel}`),
+    })
+        .then(response => response.json())
+        .then(data => {
+            setTimeout(function (){
+                window.location.reload();
+            },2500)
+            if (data.success) {
+
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: `${data.message}`,
+                    icon: "success"
+                });
+
+            } else {
+                Swal.fire({
+                    title: "Erro!",
+                    text: `${data.message}`,
+                    icon: "warning"
+                });
+
+            }
+
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
+}
+
+function devolverEmprestimo(controle,codAluguel,valor){
+    fetch('controle.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'controle=' + encodeURIComponent(`${controle}`) +
+            "&codAluguel=" + encodeURIComponent(`${codAluguel}`)+
+            "&valor=" + encodeURIComponent(`${valor}`),
+    })
+        .then(response => response.json())
+        .then(data => {
+            setTimeout(function (){
+                window.location.reload();
+            },2500)
+            if (data.success) {
+
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: `${data.message}`,
+                    icon: "success"
+                });
+
+            } else {
+                Swal.fire({
+                    title: "Erro!",
+                    text: `${data.message}`,
+                    icon: "warning"
+                });
+
+            }
+
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
+}
