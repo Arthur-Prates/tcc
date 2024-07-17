@@ -5,6 +5,11 @@ include_once('./func/funcoes.php');
 
 header('Content-Type: application/json');
 
+if (!isset($_SESSION['pedidoscarrinho'])) {
+    $_SESSION['pedidoscarrinho'] = array();
+}
+
+
 $totalItem = count($_SESSION['pedidoscarrinho']);
 
 echo json_encode(['carrinho' => $_SESSION['pedidoscarrinho'], 'qtdTotalCarrinho' => $totalItem]);

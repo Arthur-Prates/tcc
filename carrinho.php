@@ -56,27 +56,11 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
         <div class="col-12">
             <?php
             if (!empty($_SESSION['pedidoscarrinho']) && isset($_SESSION['pedidoscarrinho'])) {
-//                foreach ($_SESSION['pedidoscarrinho'] as $indice => $itemEpi) {
-//                    $indiceItem = $indice;
-//                    $nome = $itemEpi['nome'];
-//                    $id = $itemEpi['idproduto'];
-//                    $foto = $itemEpi['foto'];
-//                    $certificado = $itemEpi['certificado'];
-//                    $qtd = $itemEpi['quantidade'];
-
-//                $tabelaEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $id);
-//                foreach ($tabelaEstoque as $estoque) {
-//                    $qtdEstoque = $estoque->disponivel;
-//                }
-
                 ?>
                 <div class="row mt-5" id="listagemCarrinho">
+                    <!--A listagem doo carrinho está sendo feita via JS-->
                 </div>
                 <hr>
-
-                <?php
-//                }
-                ?>
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
                     <div class="row mb-5">
                         <div class="col-lg-6 col-md-6 col-12">
@@ -179,7 +163,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     <?php
                                 } else {
                                     ?>
-                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnLogin"
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnConcluirLogin"
                                             type="button"
                                             name="btnLogin" onclick="redireciona('fazer-login')">
                                         Concluir aluguel

@@ -217,6 +217,10 @@ body {
         display: none;
     }
 
+    .margemTop {
+        margin-top: 220px;
+    }
+
     .qtdLG {
         display: block;
     }
@@ -599,4 +603,8 @@ section.ondas-box {
 .mdlVermaisUsuario {
     background: transparent;
     border: none;
+}
+
+.margemTop {
+    margin-top: 50px;
 }

@@ -22,7 +22,15 @@ if ($produto !== false) {
         $codigo = $item->certificado;
         $estoque = $item->quantidade;
 
+
         if ($estoque > 0) {
+            foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
+                if ($produtoCarrinho['idproduto'] == $id) {
+                    $produtoCarrinho['quantidade'] += 1;
+                    $produtoADD = true;
+                    break;
+                }
+            }
             if (!$produtoADD) {
                 array_push(
                     $_SESSION['pedidoscarrinho'],

@@ -18,7 +18,7 @@ if (!empty($_SESSION['idFuncionario'])) {
             <a href="carrinho" class="text-decoration-none text-white margemEntreSacolaEForm">
 
                 <i class="bi bi-cart4 fs-5"></i><span> </span><sup class="qtdDeItensNoCarrinho "
-                                                                           id="qtdDeItensNoCarrinho">
+                                                                   id="qtdDeItensNoCarrinho1">
                     <?php
                     if (isset($_SESSION['pedidoscarrinho'])) {
                         $cont = count($_SESSION['pedidoscarrinho']);
@@ -69,8 +69,8 @@ if (!empty($_SESSION['idFuncionario'])) {
             </ul>
             <a href="carrinho" class="text-decoration-none text-white margemEntreSacolaEForm">
 
-                <i class="bi bi-cart4 fs-5"></i><span> Carrinho</span><sup class="qtdDeItensNoCarrinho"
-                                                                           id="qtdDeItensNoCarrinho">
+                <i class="bi bi-cart4 fs-5"></i>
+                <span> Carrinho</span><sup class="qtdDeItensNoCarrinho" id="qtdDeItensNoCarrinho2">
                     <?php
                     if (isset($_SESSION['pedidoscarrinho'])) {
                         $cont = count($_SESSION['pedidoscarrinho']);
