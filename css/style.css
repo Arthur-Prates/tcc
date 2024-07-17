@@ -194,11 +194,11 @@ body {
 }
 
 @media (max-width: 991px) {
-    #qtdMD {
+    .qtdMD {
         display: block;
     }
 
-    #qtdLG {
+    .qtdLG {
         display: none;
     }
 
@@ -213,11 +213,11 @@ body {
 }
 
 @media (min-width: 992px) {
-    #qtdMD {
+    .qtdMD {
         display: none;
     }
 
-    #qtdLG {
+    .qtdLG {
         display: block;
     }
 
