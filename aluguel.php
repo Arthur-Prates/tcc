@@ -46,7 +46,7 @@ if (!empty($_SESSION['idFuncionario'])) {
         <a href="pagina-inicial" class="btn btn-sm btn-outline-secondary">Voltar</a>
         Empréstimos</h2>
     <div class="card mt-3">
-        <div class="card-body">
+        <div class="card-body overflowTable">
             <table class="table">
                 <thead>
                 <tr>

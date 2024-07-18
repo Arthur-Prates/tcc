@@ -22,6 +22,7 @@ if ($produto !== false) {
         $codigo = $item->certificado;
         $estoque = $item->quantidade;
 
+
         if ($estoque > 0) {
             foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
                 if ($produtoCarrinho['idproduto'] == $id) {
@@ -43,17 +44,12 @@ if ($produto !== false) {
                 );
             }
         }
-
-
     }
     $cont = count($_SESSION['pedidoscarrinho']);
-    if ($produtoADD) {
-        echo json_encode(['success' => true, 'message' => "Quantidade do produto aumentada!", 'qtd' => $cont]);
-    } else {
-        echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!", 'qtd' => $cont]);
-    }
+    echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!", 'qtd' => $cont]);
+
 } else {
     $cont = count($_SESSION['pedidoscarrinho']);
-    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!",  'qtd' => $cont]);
+    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!", 'qtd' => $cont]);
 }
 

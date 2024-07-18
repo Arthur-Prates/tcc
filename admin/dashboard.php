@@ -131,8 +131,6 @@ include_once('nav.php');
 
                 </div>
 
-                //
-
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class=" d-flex justify-content-center align-items-center ">
                         <canvas id="myChart2"></canvas>

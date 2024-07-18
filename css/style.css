@@ -194,11 +194,11 @@ body {
 }
 
 @media (max-width: 991px) {
-    #qtdMD {
+    .qtdMD {
         display: block;
     }
 
-    #qtdLG {
+    .qtdLG {
         display: none;
     }
 
@@ -213,11 +213,15 @@ body {
 }
 
 @media (min-width: 992px) {
-    #qtdMD {
+    .qtdMD {
         display: none;
     }
 
-    #qtdLG {
+    .margemTop {
+        margin-top: 220px;
+    }
+
+    .qtdLG {
         display: block;
     }
 
@@ -316,8 +320,8 @@ body {
 
 .overflowTable {
     overflow-x: scroll !important;
-    /*text-overflow: ellipsis !important;*/
     white-space: nowrap;
+    /*text-overflow: ellipsis !important;*/
     /*direction: ltr;*/
 
 }
@@ -599,4 +603,8 @@ section.ondas-box {
 .mdlVermaisUsuario {
     background: transparent;
     border: none;
+}
+
+.margemTop {
+    margin-top: 50px;
 }

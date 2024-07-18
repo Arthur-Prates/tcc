@@ -5,7 +5,6 @@ include_once('./config/constantes.php');
 include_once('./func/funcoes.php');
 
 $dados = filter_input(INPUT_POST, 'idepi', FILTER_SANITIZE_NUMBER_INT);
-$fila = filter_input(INPUT_POST, 'num', FILTER_SANITIZE_NUMBER_INT);
 //echo json_encode($dados);
 //$testesss = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
