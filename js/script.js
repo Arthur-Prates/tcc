@@ -688,7 +688,6 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
         const submitHandler = function (event) {
             event.preventDefault();
             botoes.disabled = true;
-            console.log('submit')
             const form = event.target;
             const formData = new FormData(form);
 
@@ -713,9 +712,6 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         botoes.disabled = false;
                         ModalInstancia.hide();
                         form.reset();
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 2000)
                     } else {
                         formDados.removeEventListener('submit', submitHandler);
                         botoes.disabled = false;

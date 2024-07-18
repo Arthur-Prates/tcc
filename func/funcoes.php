@@ -764,7 +764,10 @@ function alterar1ItemDuploWhere($tabela, $campo, $valor, $identificar, $id, $ide
         $sqlLista->bindValue(3, $id2, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
-        return $sqlLista->rowCount() > 0;
+        if ($sqlLista->rowCount() > 0){
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return ;
     } catch (PDOException $e) {
         $conn->rollback();
         return 'Exception -> ' . $e->getMessage();

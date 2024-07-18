@@ -179,7 +179,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             } else {
                 ?>
                 <div class="d-flex justify-content-center align-items-center mt-5">
-                    <dotlottie-player src="https://lottie.host/f626c217-5dd4-4bd3-8bba-b85b46b06cb5/h13sx3Lc2a.json"
+                    <dotlottie-player src="./img/carrinhoVazio.json"
                                       background="transparent" speed="1" style="width: 300px; height: 300px;" loop
                                       autoplay></dotlottie-player>
                     <p class="fs-1">O seu carrinho está vazio!</p>

@@ -3,13 +3,6 @@ include_once('./config/conexao.php');
 include_once('./config/constantes.php');
 include_once('./func/funcoes.php');
 
-if (!empty($_SESSION['idFuncionario'])) {
-    $idFuncionario = $_SESSION['idFuncionario'];
-
-} else {
-    $idFuncionario = null;
-}
-
 if (!empty($_GET['pesquisa']) && isset($_GET['pesquisa'])) {
     $pesquisa = $_GET['pesquisa'];
 
@@ -17,11 +10,15 @@ if (!empty($_GET['pesquisa']) && isset($_GET['pesquisa'])) {
         $resultadoPesquisa = pesquisaLike('*', 'epi', 'nomeEpi', $pesquisa);
         if ($resultadoPesquisa == 'Vazio') {
             $resultadoPesquisa = pesquisaLike('*', 'epi', 'certificado', $pesquisa);
-
         }
+    } else {
+        $resultadoPesquisa = 'Vazio';
     }
 
+} else {
+    $resultadoPesquisa = 'Vazio';
 }
+
 
 
 ?>
@@ -49,7 +46,7 @@ if (!empty($_GET['pesquisa']) && isset($_GET['pesquisa'])) {
 <?php include_once('navbar.php') ?>
 <div class="container">
     <?php
-    if (!empty($_GET['pesquisa']) && isset($_GET['pesquisa'])) {
+    if ($resultadoPesquisa !== 'Vazio') {
         ?>
         <div class="mt-4">
             <h4>Exibindo resultado(s) da busca por: <?php echo $pesquisa ?></h4>
@@ -105,6 +102,16 @@ if (!empty($_GET['pesquisa']) && isset($_GET['pesquisa'])) {
             }
             ?>
         </div>
+        <?php
+    } else {
+        ?>
+        <div class="d-flex justify-content-center align-items-center">
+            <dotlottie-player src="./img/animacao-busca-vazia.lottie"
+                              background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                              autoplay></dotlottie-player>
+            <p class="fs-3">Nenhum resultado foi encontrado, tente novamente!</p>
+        </div>
+
         <?php
     }
     ?>

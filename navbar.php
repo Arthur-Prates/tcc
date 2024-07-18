@@ -81,7 +81,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                     ?>
                 </sup>
             </a>
-            <form action="resultadoPesquisa.php" method="get" name="pesquisaNavbarLG" class="d-flex" role="search">
+            <form action="resultado-da-busca" method="get" name="pesquisaNavbarLG" class="d-flex" role="search">
                 <input class="form-control me-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisar EPI" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
@@ -98,7 +98,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 
     <div class="offcanvas-body">
         <div>
-            <form action="resultadoPesquisa.php" method="get"  name="pesquisaNavbarSM" class="d-flex" role="search">
+            <form action="resultado-da-busca" method="get"  name="pesquisaNavbarSM" class="d-flex" role="search">
                 <input class="form-control me-2" id="pesquisaSM" name="pesquisa" type="search" placeholder="Pesquisar EPI" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
