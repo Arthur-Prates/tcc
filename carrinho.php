@@ -188,9 +188,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             }
 
             ?>
-
-        </
-        >
+        </div>
     </div>
 </div>
 

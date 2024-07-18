@@ -62,7 +62,6 @@ include_once('./func/funcoes.php');
 <script>
     const inputs = document.querySelectorAll(".inputForm");
 
-
     function addcl() {
         let parent = this.parentNode.parentNode;
         parent.classList.add("focus");
@@ -74,7 +73,6 @@ include_once('./func/funcoes.php');
             parent.classList.remove("focus");
         }
     }
-
 
     inputs.forEach(input => {
         input.addEventListener("focus", addcl);

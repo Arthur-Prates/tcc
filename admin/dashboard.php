@@ -513,19 +513,19 @@ include_once('nav.php');
 </div>
 
 <?php
-if (isset($_GET['error']) && !empty($_GET['error'])) {
-    $erro = $_GET['error'];
-    if ($erro === 'CampoVazio') {
-        ?>
-        <script>
-            var inpute = document.getElementById('emprestimo')
-            inpute.placeholder = 'Este Campo não pode estar vazio!'
-            inpute.classList.add('red-placeholder');
-        </script>
-
-        <?php
-    }
-}
+//if (isset($_GET['error']) && !empty($_GET['error'])) {
+//    $erro = $_GET['error'];
+//    if ($erro === 'CampoVazio') {
+//        ?>
+<!--        <script>-->
+<!--            var inpute = document.getElementById('emprestimo')-->
+<!--            inpute.placeholder = 'Este Campo não pode estar vazio!'-->
+<!--            inpute.classList.add('red-placeholder');-->
+<!--        </script>-->
+<!---->
+<!--        --><?php
+//    }
+//}
 
 ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

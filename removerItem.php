@@ -11,7 +11,6 @@ $produto = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'estoque', 'idepi
 if ($produto !== false) {
     foreach ($produto as $item) {
         $id = $item->idepi;
-
         foreach ($_SESSION['pedidoscarrinho'] as $index => &$produtoCarrinho) {
             if ($produtoCarrinho['idproduto'] == $id) {
                 $indice = $index;
