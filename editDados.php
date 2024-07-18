@@ -6,6 +6,7 @@ include_once('./func/funcoes.php');
 $idFuncionario = $_SESSION['idFuncionario'];
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+//echo json_encode($dados);
 
 if (isset($dados) && !empty($dados)) {
     $email = isset($dados['inpAlterarEmail']) ? addslashes($dados['inpAlterarEmail']) : '';
@@ -22,18 +23,9 @@ if (isset($dados) && !empty($dados)) {
     }
 
     if ($celular != '') {
-        $tabelaCelular = listarItemExpecifico('*', 'telefone', 'idusuario', $idFuncionario);
-
-        if ($tabelaCelular != 'Vazio') {
-            $updateCelular = alterar1Item('telefone', 'numero', $celular, 'idusuario', $idFuncionario);
-            if ($updateCelular) {
-                $updateCelular = true;
-            }
-        } else {
-            $updateCelular = insert3Item('telefone', 'idusuario, numero, cadastro', $idFuncionario, $celular, DATATIMEATUAL);
-            if ($updateCelular) {
-                $updateCelular = true;
-            }
+        $updateCelular = alterar1Item('usuario', 'numero', "$celular", 'idusuario', $idFuncionario);
+        if ($updateCelular) {
+            $updateCelular = true;
         }
     }
 
