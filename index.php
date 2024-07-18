@@ -33,8 +33,6 @@ if (!empty($_SESSION['idFuncionario'])) {
 </head>
 <body>
 <?php include_once('navbar.php') ?>
-<!--66844c87dab1e-->
-<!--66844c73924e1-->
 <div class="container">
     <div class="row justify-content-md-center">
         <?php

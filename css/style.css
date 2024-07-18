@@ -197,6 +197,13 @@ body {
     .qtdMD {
         display: block;
     }
+    .overflowTable {
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        /*text-overflow: ellipsis !important;*/
+        /*direction: ltr;*/
+
+    }
 
     .qtdLG {
         display: none;
@@ -316,14 +323,6 @@ body {
 .cardNavbarSM:hover {
     background-color: #737373;
     transition: 1s ease;
-}
-
-.overflowTable {
-    overflow-x: scroll !important;
-    white-space: nowrap;
-    /*text-overflow: ellipsis !important;*/
-    /*direction: ltr;*/
-
 }
 
 .tableNaoVazada {
@@ -607,4 +606,10 @@ section.ondas-box {
 
 .margemTop {
     margin-top: 50px;
+}
+
+.teste{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

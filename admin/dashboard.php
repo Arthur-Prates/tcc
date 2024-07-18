@@ -50,8 +50,6 @@ include_once('nav.php');
     </div>
 </div>
 <div class="">
-
-
     <div id='show' class='show'>
         <section class="ondas-box">
 
@@ -63,14 +61,13 @@ include_once('nav.php');
                                    class="inputPesquisa text-center w-100  mt-2" placeholder="Código">
 
                     </div>
-                    <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2" >
+                    <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2">
                         <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i>
                         </button>
                     </div>
                     </form>
                 </div>
             </div>
-
         </section>
 
         <img src="../img/wave.svg" alt="onda" class="oondafoto">
@@ -205,7 +202,6 @@ include_once('nav.php');
                 </div>
             </div>
         </section>
-
     </div>
 </div>
 
@@ -517,17 +513,20 @@ include_once('nav.php');
 </div>
 
 <?php
-$erro = $_GET['error'];
-if ($erro === 'CampoVazio') {
-    ?>
-    <script>
-        var inpute = document.getElementById('emprestimo')
-        inpute.placeholder = 'Este Campo não pode estar vazio!'
-        inpute.classList.add('red-placeholder');
-    </script>
+//if (isset($_GET['error']) && !empty($_GET['error'])) {
+//    $erro = $_GET['error'];
+//    if ($erro === 'CampoVazio') {
+//        ?>
+<!--        <script>-->
+<!--            var inpute = document.getElementById('emprestimo')-->
+<!--            inpute.placeholder = 'Este Campo não pode estar vazio!'-->
+<!--            inpute.classList.add('red-placeholder');-->
+<!--        </script>-->
+<!---->
+<!--        --><?php
+//    }
+//}
 
-    <?php
-}
 ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

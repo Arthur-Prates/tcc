@@ -9,13 +9,11 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
-$codigoAluguel = filter_input(INPUT_GET, 'emprestimos', FILTER_SANITIZE_STRING);
+$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 
 //$codigoAluguel = empty($codigoAluguel) ? addslashes($codigoAluguel) : 'vazio';
 if(empty($codigoAluguel)){
     header('location: dashboard.php?error=CampoVazio');
-}else{
-    echo $codigoAluguel;
 }
 $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
 ?>

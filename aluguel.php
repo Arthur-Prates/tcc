@@ -51,8 +51,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Código do aluguel</th>
-                    <th scope="col">Data do aluguel</th>
+                    <th scope="col">Código do empréstimo</th>
+                    <th scope="col">Data do empréstimo</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
@@ -121,18 +121,17 @@ if (!empty($_SESSION['idFuncionario'])) {
 <!-- Modal alerta -->
 <div class="modal fade" id="erroExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-danger">
+        <div class="modal-content">
             <div class="modal-header bg-danger text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Problemas ao excluir</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div class="modal-body">
                 <div class="alert alert-danger">
                     <h4>Você <b>não</b> pode excluir um empréstimo com devolução pendente</h4>
                 </div>
             </div>
-            <div class="modal-footer bg-danger">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
             </div>
         </div>
