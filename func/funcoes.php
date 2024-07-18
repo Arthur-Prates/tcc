@@ -42,6 +42,27 @@ function executaQuery($query)
     $conn = null;
 }
 
+function pesquisaLike($campos,$tabela, $campoDeBusca, $valorDoCampo){
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoDeBusca LIKE ?");
+        $sqlListaTabelas->bindValue(1, '%'.$valorDoCampo.'%', PDO::PARAM_STR);
+        $sqlListaTabelas->execute();
+        $conn->commit();
+        if ($sqlListaTabelas->rowCount() > 0) {
+            return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
+    } catch
+    (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2)
 {
     $conn = conectar();
