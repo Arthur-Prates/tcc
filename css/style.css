@@ -608,3 +608,9 @@ section.ondas-box {
 .margemTop {
     margin-top: 50px;
 }
+
+.teste{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
