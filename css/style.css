@@ -320,8 +320,8 @@ body {
 
 .overflowTable {
     overflow-x: scroll !important;
-    /*text-overflow: ellipsis !important;*/
     white-space: nowrap;
+    /*text-overflow: ellipsis !important;*/
     /*direction: ltr;*/
 
 }
