@@ -99,9 +99,6 @@ foreach ($cod as $itemCod) {
                     $prioridade = 'Baixa';
                 }
 
-                if ($numero == '' || $numero == null){
-                    $numero = 'Nenhum telefone cadastrado';
-                }
             }
 
             ?>
@@ -121,7 +118,7 @@ foreach ($cod as $itemCod) {
     <div class="row">
 
         <div class="col-lg-12 col-12">
-            <h2 class="mt-5 mb-4">EPI(s) emprestados</h2>
+            <h2 class="mt-5 mb-4">EPI(s) emprestadas</h2>
             <div class="row">
                 <?php
                 $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'b.codAluguel', $codigoAluguel, 'a.idepi', 'ASC');

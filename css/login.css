@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     padding: 0;
     margin: 0;
@@ -5,9 +7,11 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.87);
+    background-color: rgb(238, 233, 233);
+    font-family: "Poppins", sans-serif;
+    /*font-weight: 200;*/
+    /*font-style: normal;*/
 }
 
 .onda{
@@ -26,6 +30,7 @@ body{
     grid-gap :7rem;
     padding: 0 2rem;
 }
+
 
 .img{
     display: flex;
@@ -87,7 +92,7 @@ form{
 }
 
 .i{
-    color: #d9d9d9;
+    color: rgba(0, 0, 0, 0.87);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +112,7 @@ form{
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #999;
+    color: rgb(0, 0, 0);
     font-size: 18px;
     transition: .3s;
 }
@@ -194,9 +199,25 @@ a:hover{
     transition: .5s;
 }
 .btn:hover{
-    background-position: right;
+    /*background-position: right;*/
+    background: transparent;
+    color: #32be8f;
+    border: 2px solid #32be8f;
+
 }
 
+
+
+.title{
+    color: #000000 !important;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    /*font-family: "Playfair Display", serif;*/
+    /*font-optical-sizing: auto;*/
+    /*font-weight: 500;*/
+    /*font-style: normal;*/
+}
 
 @media screen and (max-width: 1050px){
     .container{

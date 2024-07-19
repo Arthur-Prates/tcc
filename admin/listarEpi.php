@@ -2,70 +2,62 @@
 
 ?>
 <div class="container">
-    <div class="teste mt-5">
-        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-        <button type="button" class="btn btn-dark mb-3" style="float: right"
-                onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
-            Cadastrar
-        </button>
 
-    </div>
-    <div class="overflowTable">
-        <table class="table table-hover table-bordered border-dark">
-            <thead>
-            <tr>
-                <th scope="col" style="width: 5%;" class="text-center bg-dark text-white">#</th>
-                <th scope="col" style="width: 10%;" class="bg-dark text-white">Foto</th>
-                <th scope="col" style="width: 60%;" class="bg-dark text-white">Epi</th>
-                <th scope="col" style="width: 15%;" class="bg-dark text-white">Certificado</th>
-                <th scope="col" style="width: 10%;" class="bg-dark text-white">Ação</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            $contar = 1;
-            $listaEpi = listarTabela("*", "epi");
-            if ($listaEpi) {
-                foreach ($listaEpi as $item) {
-                    $idepi = $item->idepi;
-                    $foto = $item->foto;
-                    $nomeEpi = $item->nomeEpi;
-                    $certificado = $item->certificado;
+
+<div class="teste mt-5">
+    <h1 style="margin-top: 20px;margin-bottom: 20px;" class="tituloListar">Epi(s)</h1>
+    <button type="button" class="btn btn-dark btnDark mb-3" style="float: right" onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">Cadastrar</button>
+
+</div>
+<table class="table table-hover table-bordered border-dark" >
+    <thead class="table-dark">
+    <tr>
+        <th scope="col" style="width: 5%;" class="text-center bg-dark text-white">#</th>
+        <th scope="col" style="width: 20%;" class="bg-dark text-white">Foto</th>
+        <th scope="col" style="width: 55%;" class="bg-dark text-white">Epi</th>
+        <th scope="col" style="width: 11.9%;" class="bg-dark text-white">Certificado</th>
+        <th scope="col" style="width: 8.1%;" class="bg-dark text-white">Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    $contar = 1;
+    $listaEpi = listarTabela("*", "epi");
+    if ($listaEpi) {
+        foreach ($listaEpi as $item) {
+            $idepi = $item->idepi;
+            $foto = $item->foto;
+            $nomeEpi = $item->nomeEpi;
+            $certificado = $item->certificado;
 
 //            idepi, nome, certificado, foto, cadastro, alteracao, ativo
-                    ?>
-                    <tr class="">
-                        <th scope="row" class="text-center"><?php echo $contar ?></th>
-                        <td class="centraliza">
-                            <img src="../img/produtos/<?php echo $foto ?>" width='50' alt=""
-                                 class="fotoPerfil  img-fluid fotoEpi ">
-                        </td>
-                        <td class=" align-items-center "><?php echo $nomeEpi ?></td>
-                        <td class=""><?php echo $certificado ?></td>
-                        <td class="">
-                            <button type="button" class="btn btn-primary"
-                                    onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto ?>','<?php echo $idepi ?>','idEditEpi','<?php echo $nomeEpi ?>','nomeEpiEdit','<?php echo $certificado; ?>','certificadoEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')">
-                                <span class="mdi mdi-file-document-edit-outline"></span></button>
-                            <button type="button" class="btn btn-danger"
-                                    onclick="deleletarEpi('<?php echo $idepi ?>','deleteEpi')"><span
-                                        class="mdi mdi-trash-can"></span></button>
-                        </td>
-
-                    </tr>
-                    <?php
-                    ++$contar;
-                }
-            } else {
-                ?>
-                <tr>
-                    <td colspan="4" class="text-center">
-                        <h4>Nenhum usuário cadastrado no banco</h4>
-                    </td>
-                </tr>
-                <?php
-            }
             ?>
-            </tbody>
-        </table>
-    </div>
+            <tr class="">
+                <th scope="row" class="text-center"><?php echo $contar ?></th>
+                <td class="centraliza">
+                        <img src="../img/produtos/<?php echo $foto ?>" width='50' alt="" class="fotoPerfil  img-fluid fotoEpi ">
+                </td>
+                <td class=" align-items-center "><?php echo $nomeEpi ?></td>
+                <td class=""><?php echo $certificado ?></td>
+                <td class="">
+                    <button type="button" class="btn btn-primary" onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto?>','<?php echo $idepi?>','idEditEpi','<?php echo $nomeEpi?>','nomeEpiEdit','<?php echo $certificado;?>','certificadoEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')"><span class="mdi mdi-file-document-edit-outline"></span> </button>
+                    <button type="button" class="btn btn-danger" onclick="deleletarEpi('<?php echo $idepi?>','deleteEpi')"><span class="mdi mdi-trash-can"></span> </button>
+                </td>
+
+            </tr>
+            <?php
+            ++$contar;
+        }
+    } else {
+        ?>
+        <tr>
+            <td colspan="4" class="text-center">
+                <h4>Nenhum usuário cadastrado no banco</h4>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
 </div>
