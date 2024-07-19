@@ -13,6 +13,7 @@ if (!isset($_SESSION['pedidoscarrinho'])) {
 $produtoADD = false;
 $produto = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', $dados, "a.idepi", "ASC");
 
+
 if ($produto !== false) {
     foreach ($produto as $item) {
         $id = $item->idepi;
@@ -20,7 +21,6 @@ if ($produto !== false) {
         $foto = $item->foto;
         $codigo = $item->certificado;
         $estoque = $item->quantidade;
-
 
         if ($estoque > 0) {
             foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
@@ -43,11 +43,17 @@ if ($produto !== false) {
                 );
             }
         }
+
+
     }
     $cont = count($_SESSION['pedidoscarrinho']);
-    echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!", 'qtd' => $cont]);
+    if ($produtoADD) {
+        echo json_encode(['success' => true, 'message' => "Quantidade do produto aumentada!", 'qtd' => $cont]);
+    } else {
+        echo json_encode(['success' => true, 'message' => "Produto adicionado ao carrinho!", 'qtd' => $cont]);
+    }
 } else {
     $cont = count($_SESSION['pedidoscarrinho']);
-    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!", 'qtd' => $cont]);
+    echo json_encode(['success' => false, 'message' => "Erro ao adicionar produto!",  'qtd' => $cont]);
 }
 

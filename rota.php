@@ -31,9 +31,6 @@ switch ($url[0]) {
     case 'logout':
         include_once('logout.php');
         break;
-    case 'resultado-da-busca':
-        include_once('resultadoPesquisa.php');
-        break;
     default:
         include_once('404.php');
         break;

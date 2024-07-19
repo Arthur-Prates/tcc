@@ -328,6 +328,7 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
     idVerimg.src = '../img/produtos/' + visualizaImg;
 
 
+
     idFoto.addEventListener('change', function (event) {
         let reader = new FileReader();
         reader.onload = () => {
@@ -400,7 +401,7 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
 }
 
 
-function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome, INPtelefone, IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome,INPtelefone,IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
@@ -489,12 +490,13 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             setInterval(confirmaSenha, 3500)
         })
 
-        btnFecharAlterarSenha.addEventListener('click', function () {
+        btnFecharAlterarSenha.addEventListener('click', function (){
             btnFecharAlterarSenha.style.display = 'none';
             btnAlterarSenha.style.display = 'block'
             dNone.style.display = 'none';
             alertaSenha.style.display = 'none';
         })
+
 
 
         const submitHandler = function (event) {
@@ -524,9 +526,9 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
                     }
                     ModalInstancia.hide();
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
         }
 
         const btnFecharModalAddUsuario = document.getElementById('btnFecharModalAddUsuario');
@@ -688,6 +690,7 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
         const submitHandler = function (event) {
             event.preventDefault();
             botoes.disabled = true;
+            console.log('submit')
             const form = event.target;
             const formData = new FormData(form);
 
@@ -712,6 +715,9 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         botoes.disabled = false;
                         ModalInstancia.hide();
                         form.reset();
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000)
                     } else {
                         formDados.removeEventListener('submit', submitHandler);
                         botoes.disabled = false;
@@ -779,12 +785,9 @@ function alertError(msg) {
 }
 
 function attCarrinho(quantidade) {
-    const qtdDeItensNoCarrinho1 = document.getElementById('qtdDeItensNoCarrinho1');
-    const qtdDeItensNoCarrinho2 = document.getElementById('qtdDeItensNoCarrinho2');
+    var qtdDeItensNoCarrinho = document.getElementById('qtdDeItensNoCarrinho')
 
-    qtdDeItensNoCarrinho1.innerText = quantidade;
-    qtdDeItensNoCarrinho2.innerText = quantidade;
-
+    qtdDeItensNoCarrinho.innerText = quantidade
 }
 
 function postCarrinho(produto) {
@@ -795,7 +798,7 @@ function postCarrinho(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
@@ -803,6 +806,9 @@ function postCarrinho(produto) {
                     // text: "You clicked the button!",
                     icon: "success"
                 });
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1500)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -817,57 +823,30 @@ function postCarrinho(produto) {
         });
 }
 
-function aumentarQuantidade(produto) {
-    fetch('aumentarQtd.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'idepi=' + encodeURIComponent(produto),
-    })
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data)
-            if (data.success) {
-                Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
-                    icon: "success"
-                });
-            } else {
-                Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
-                    icon: "danger"
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
-        });
-}
-
-
-function diminuirQuantidade(produto) {
+function removeCarrinho(produto, f) {
     fetch('removeCarrinho.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'idepi=' + encodeURIComponent(produto),
+        }, body: 'idepi=' + encodeURIComponent(produto) + '&num=' + encodeURIComponent(f),
     })
         .then(response => response.json())
         .then(data => {
             // console.log(data)
-
+            attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
                     icon: "success"
                 });
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1240)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
-                    icon: "warning"
+                    icon: "danger"
                 });
             }
         })
@@ -889,17 +868,21 @@ function excluirItem(id) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
-            attCarrinho(data.qtd)
+            console.log(data)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
+                    // text: "You clicked the button!",
                     icon: "success"
                 });
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1240)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
-                    icon: "error"
+                    // text: "You clicked the button!",
+                    icon: "danger"
                 });
             }
         })
@@ -910,6 +893,7 @@ function excluirItem(id) {
                 text: "Ocorreu um erro ao tentar remover o produto do carrinho.",
                 icon: "danger"
             });
+            alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
         });
 }
 
@@ -923,15 +907,17 @@ function limparCarrinho() {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
+            console.log(data);
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
+                    // text: "You clicked the button!",
                     icon: "success"
                 });
             } else {
                 Swal.fire({
                     title: `${data.message}`,
+                    // text: "You clicked the button!",
                     icon: "danger"
                 });
             }
@@ -940,7 +926,7 @@ function limparCarrinho() {
             }, 1500)
         })
         .catch(error => {
-            console.error('Erro:', error);
+            // console.error('Erro:', error);
             alertError('Ocorreu um erro ao tentar limpar o carrinho.');
         });
 }
@@ -1137,7 +1123,7 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
+function devolverEpi(idAluguelEpi, controle, valor,codAluguel) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
@@ -1150,9 +1136,9 @@ function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
     })
         .then(response => response.json())
         .then(data => {
-            setTimeout(function () {
+            setTimeout(function (){
                 window.location.reload();
-            }, 2500)
+            },2500)
             if (data.success) {
 
                 Swal.fire({
@@ -1176,21 +1162,21 @@ function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
         });
 }
 
-function devolverEmprestimo(controle, codAluguel, valor) {
+function devolverEmprestimo(controle,codAluguel,valor){
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&codAluguel=" + encodeURIComponent(`${codAluguel}`) +
+            "&codAluguel=" + encodeURIComponent(`${codAluguel}`)+
             "&valor=" + encodeURIComponent(`${valor}`),
     })
         .then(response => response.json())
         .then(data => {
-            setTimeout(function () {
+            setTimeout(function (){
                 window.location.reload();
-            }, 2500)
+            },2500)
             if (data.success) {
 
                 Swal.fire({
@@ -1213,124 +1199,3 @@ function devolverEmprestimo(controle, codAluguel, valor) {
             console.error('Erro na requisição:', error);
         });
 }
-
-
-//+++++++++++++++++++++++++++++++++++ CARRINHO ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-function fetchParaCarrinho() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'listarCarrinho.php', true);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            const data = JSON.parse(xhr.responseText);
-            atualizarCarrinhoAutomaticamente(data);
-        } else {
-            // console.error('Erro na requisição AJAX: ', xhr.statusText);
-        }
-    };
-    xhr.onerror = function () {
-        console.error('Erro na requisição AJAX');
-    };
-    xhr.send();
-}
-
-function atualizarCarrinhoAutomaticamente(data) {
-    const itemElement = document.getElementById('listagemCarrinho');
-
-    if (itemElement) {
-
-        itemElement.innerHTML = '';
-
-
-        data.carrinho.forEach(item => {
-            const colImg = document.createElement('div');
-            colImg.classList.add('col-lg-3', 'col-5', 'mt-4');
-
-            const imgEpiCarrinho = document.createElement('img');
-            imgEpiCarrinho.classList.add('text-center');
-            imgEpiCarrinho.setAttribute('width', '100%');
-            imgEpiCarrinho.id = 'imgEpiCarrinho';
-            imgEpiCarrinho.src = `./img/produtos/${item.foto}`;
-            colImg.appendChild(imgEpiCarrinho);
-            itemElement.appendChild(colImg);
-
-            const divCorpoProduto = document.createElement('div');
-            divCorpoProduto.classList.add('col-lg-9', 'col-7', 'mt-4')
-
-            const nomeEpiCarrinho = document.createElement('h3');
-            nomeEpiCarrinho.id = 'nomeEpiCarrinho';
-            nomeEpiCarrinho.innerText = `${item.nome}`;
-            nomeEpiCarrinho.classList.add('mb-4');
-            divCorpoProduto.appendChild(nomeEpiCarrinho);
-            itemElement.appendChild(divCorpoProduto);
-
-            const certificadoEpiCarrinho = document.createElement('p');
-            certificadoEpiCarrinho.id = 'certificadoEpiCarrinho';
-            certificadoEpiCarrinho.innerText = `Certificado de Aprovação: ${item.certificado}`;
-            divCorpoProduto.appendChild(certificadoEpiCarrinho);
-            itemElement.appendChild(divCorpoProduto);
-
-
-            const qtdLG = document.createElement('div');
-            qtdLG.classList.add('px-3');
-            qtdLG.classList.add('align-items-center', 'd-flex');
-            qtdLG.id = 'qtdLG';
-            qtdLG.innerText = `${item.quantidade}`;
-
-            const botaoMais = document.createElement('button');
-            botaoMais.classList.add('btn', 'btn-sm', 'btn-success', 'px-3');
-            botaoMais.innerText = '+';
-            botaoMais.addEventListener('click', function () {
-                aumentarQuantidade(`${item.idproduto}`)
-            })
-
-            const botaoMenos = document.createElement('button');
-            botaoMenos.classList.add('btn', 'btn-sm', 'btn-warning', 'px-3');
-            botaoMenos.innerText = '-';
-            if (item.quantidade == 1) {
-                botaoMenos.setAttribute('disabled', 'disabled');
-            }
-            botaoMenos.addEventListener('click', function () {
-                diminuirQuantidade(`${item.idproduto}`)
-            })
-
-            const btnRemover = document.createElement('button')
-            btnRemover.classList.add('btn', 'btn-sm', 'btn-danger', 'px-4')
-            btnRemover.innerHTML = '<i class="bi bi-trash"></i>'
-
-            btnRemover.addEventListener('click', function () {
-                excluirItem(`${item.idproduto}`)
-            })
-
-            const divQtdGrupo = document.createElement('div');
-            divQtdGrupo.classList.add('d-flex')
-
-            const divBotoesCarrinho = document.createElement('div')
-            divBotoesCarrinho.classList.add('d-flex', 'justify-content-between', 'align-items-center','margemTop')
-
-
-            divQtdGrupo.appendChild(botaoMais);
-            divQtdGrupo.appendChild(qtdLG);
-            divQtdGrupo.appendChild(botaoMenos);
-
-            divBotoesCarrinho.appendChild(divQtdGrupo);
-            divBotoesCarrinho.appendChild(btnRemover);
-
-            divCorpoProduto.appendChild(divBotoesCarrinho)
-            itemElement.appendChild(divCorpoProduto)
-
-        });
-        const btnConcluirAluguel = document.getElementById('btnConcluirAluguel');
-
-        if (data.qtdTotalCarrinho === 0) {
-            btnConcluirAluguel.setAttribute('disabled', 'disabled');
-
-        }
-
-    }
-}
-
-setInterval(fetchParaCarrinho, 500);
-
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

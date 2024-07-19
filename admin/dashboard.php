@@ -50,6 +50,8 @@ include_once('nav.php');
     </div>
 </div>
 <div class="">
+
+
     <div id='show' class='show'>
         <section class="ondas-box">
 
@@ -68,6 +70,7 @@ include_once('nav.php');
                     </form>
                 </div>
             </div>
+
         </section>
 
         <img src="../img/wave.svg" alt="onda" class="oondafoto">
@@ -127,6 +130,8 @@ include_once('nav.php');
                     </script>
 
                 </div>
+
+                //
 
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class=" d-flex justify-content-center align-items-center ">
@@ -202,6 +207,7 @@ include_once('nav.php');
                 </div>
             </div>
         </section>
+
     </div>
 </div>
 
@@ -211,33 +217,52 @@ include_once('nav.php');
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
+        <div class="modal-content ">
+            <div class="modal-header  text-white  verde">
+                <h1 class="modal-title textCenter fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
                 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
             <form method="post" name="frmEpiAdd" id="frmEpiAdd">
 
-                <div class="modal-body quasebranco ">
-                    <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd">
-                        <label class="input-group-text" for="fotoEpiAdd">Foto</label>
+                <div class="modal-body quasebranco justify-content-md-center">
+
+                    <div class="mb-3 divModalBody">
+                        <label for="fotoEpiAdd" class="custum-file-upload">
+                            <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                                              fill=""></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="text">
+                                <span>Selecione a imagem desejada</span>
+                            </div>
+                            <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd">
+                        </label>
+
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd">
-                        <label class="input-group-text" for="nomeEpiAdd">Nome do Epi</label>
+
+                    <div class=" mb-3 relative">
+                        <input class="input-cal input-base" id="nomeEpiAdd" name="nomeEpiAdd" placeholder="" type="text">
+                        <label id="label-input" for="nomeEpiAdd">Nome do Epi</label>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="certificadoEpiAdd" name="certificadoEpiAdd"
+
+                    <div class="relative mb-3">
+                        <input type="text" class="input-cal input-base" id="certificadoEpiAdd" name="certificadoEpiAdd" placeholder=""
                                maxlength="7" minlength="5">
-                        <label class="input-group-text" for="certificadoEpiAdd">Certificado</label>
+                        <label id="label-input"  for="certificadoEpiAdd">Certificado</label>
                     </div>
                 </div>
                 <div class="modal-footer quasebranco ">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
+                    <button type="button" class="btn btn-secondary btnCinza" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
                         Fechar
                     </button>
-                    <button type="submit" class="btn btn-success" id="btnEpiAdd">Cadastrar</button>
+                    <button type="submit" class="btn btn-success btnVerde" id="btnEpiAdd">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -248,9 +273,9 @@ include_once('nav.php');
 <!-- Modal edit epi -->
 <div class="modal fade" id="modalEpiEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header ">
+            <div class="modal-header azul">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar EPI</h1>
                 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
@@ -258,27 +283,31 @@ include_once('nav.php');
                 <div class="modal-body">
                     <input type="hidden" name="idEditEpi" id="idEditEpi">
                     <div class="col-12 text-center mb-2 alturaFotoPreview">
-                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="50%">
+                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="30%">
                     </div>
                     <div class="input-group mb-3 mt-4">
                         <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
                         <label class="input-group-text" for="fotoEpiEdit">Foto</label>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit">
-                        <label class="input-group-text" for="nomeEpiEdit">Nome do Epi</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="certificadoEpiEdit" name="certificadoEpiEdit"
+
+                    <div class="relative mb-3">
+                        <input type="text" class="input-cal input-base" id="nomeEpiEdit" name="nomeEpiEdit" placeholder=""
                                maxlength="7" minlength="5">
-                        <label class="input-group-text" for="certificadoEpiEdit">Certificado</label>
+                        <label id="label-input"  for="nomeEpiEdit">Nome do Epi</label>
                     </div>
+
+                    <div class="relative mb-3">
+                        <input type="text" class="input-cal input-base" id="certificadoEpiEdit" name="certificadoEpiEdit" placeholder=""
+                               maxlength="7" minlength="5">
+                        <label id="label-input"  for="certificadoEpiEdit">Certificado Epi</label>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                    <button type="button" class="btn btn-secondary btnCinza btn-sm" data-bs-dismiss="modal"
                             id="btnFecharModalEditEpi">Fechar
                     </button>
-                    <button type="submit" class="btn btn-primary btn-sm" id="btnEpiEdit">Alterar</button>
+                    <button type="submit" class="btn btn-primary btnAzul btn-sm" id="btnEpiEdit">Alterar</button>
                 </div>
             </form>
         </div>
@@ -513,20 +542,17 @@ include_once('nav.php');
 </div>
 
 <?php
-//if (isset($_GET['error']) && !empty($_GET['error'])) {
-//    $erro = $_GET['error'];
-//    if ($erro === 'CampoVazio') {
-//        ?>
-<!--        <script>-->
-<!--            var inpute = document.getElementById('emprestimo')-->
-<!--            inpute.placeholder = 'Este Campo não pode estar vazio!'-->
-<!--            inpute.classList.add('red-placeholder');-->
-<!--        </script>-->
-<!---->
-<!--        --><?php
-//    }
-//}
+$erro = $_GET['error'];
+if ($erro === 'CampoVazio') {
+    ?>
+    <script>
+        var inpute = document.getElementById('emprestimo')
+        inpute.placeholder = 'Este Campo não pode estar vazio!'
+        inpute.classList.add('red-placeholder');
+    </script>
 
+    <?php
+}
 ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

@@ -29,6 +29,8 @@ if (!empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="./css/style.css">
+<!--    <script src="./js/script.js"></script>-->
+
 </head>
 <body>
 <?php include_once('navbar.php') ?>
