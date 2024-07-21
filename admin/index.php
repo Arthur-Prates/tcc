@@ -24,7 +24,7 @@ include_once('../func/funcoes.php');
 
 </head>
 
-<body>
+<body class="bodyLoginDash">
     <div class="position-absolute top-50 start-50 translate-middle">
         <form class="form" method="post" action="#" name="frmLogin" id="frmLogin">
             <p class="title">Área restrita</p>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruda:wght@400..900&family=Sedgwick+Ave+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 body {
     margin: 0;
     padding: 0;
@@ -11,6 +11,18 @@ body {
     font-style: normal;
     background-color: #EDEEF3;
 }
+
+
+.bodyLoginDash{
+    width: 100%;
+    height: 100vh;
+    /*background-image: linear-gradient(to bottom right, #171616 50%, #868383 50%);*/
+    background-image: linear-gradient(to bottom right, #171515 50%, #868383 50%);
+    border-radius: 50%;
+
+
+}
+
 
 .cinza {
     background-color: #272626 !important;
@@ -439,7 +451,7 @@ section .wave {
     height: 45px;
     margin-right: 10px;
     color: white;
-    border: 1px solid #38d39f;
+    border: 2px solid #272626;
     border-radius: 10px;
     padding: 10px 25px;
     background-color: white;
@@ -449,7 +461,7 @@ section .wave {
 }
 
 .inputPesquisa::placeholder {
-    color: #38d39f;
+    color: rgba(0, 0, 0, 0.87);
     font-weight: bold;
 }
 
@@ -458,16 +470,16 @@ section .wave {
 }
 
 .inputPesquisa:focus {
-    border: 2px solid #38d39f;
-    color: black;
+    border: 3px solid rgb(72, 70, 70);
+    color: rgba(0, 0, 0, 0.87);
 }
 
 
 .btnAluguelPesquisa {
     height: 45px;
-    background: #38d39f;
+    background: #272626;
     border-radius: 7px;
-    border: 1px solid #38d39f;
+    border: none;
     padding: 10px 40px;
     line-height: 20px;
     cursor: pointer;
@@ -479,8 +491,8 @@ section .wave {
 
 .btnAluguelPesquisa:hover {
     background: transparent;
-    color: #38d39f;
-    border: 2px solid #38d39f;
+    color: rgba(0, 0, 0, 0.87);
+    border: 2.5px solid rgba(0, 0, 0, 0.87);
 }
 
 .titulo {
@@ -660,8 +672,6 @@ section.ondas-box {
 }
 .imgProduto:hover{
     background: transparent;
-    transform: scale(1.1);
-
 }
 
 
@@ -687,6 +697,40 @@ section.ondas-box {
 }
 .azul{
     background-color: #0020cc;!important;
+}
+
+.ciznaEscuro {
+    background-color: #272626;
+}
+
+.pretoNaoPreto{
+    background-color: #171616;
+}
+
+.btnPretoNaoPreto{
+    background-color:#171616;!important;
+    transition: 0.3s;
+    border: none;
+}
+
+.btnPretoNaoPreto:hover{
+    background-color: transparent;
+    border: 2px solid #171616;
+    color: #212121;
+    font-weight: 500;
+}
+
+.btnCinzaEscuro{
+    background-color:#272626;!important;
+    transition: 0.3s;
+    border: none;
+}
+
+.btnCinzaEscuro:hover{
+    background-color: transparent;
+    border: 2px solid #272626;
+    color: #212121;
+    font-weight: 500;
 }
 
 .btnVerde{
@@ -768,11 +812,11 @@ section.ondas-box {
     justify-content: center;
     gap: 20px;
     cursor: pointer;
-    border: 2px dashed #2cb28c;
+    border: 2px dashed #171616;
     background-color: rgba(255, 255, 255, 0.86);
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0px 48px 35px -48px #beeade;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.48);
     position: relative;
 }
 
@@ -786,7 +830,7 @@ section.ondas-box {
 
 .custum-file-upload .icon svg {
     height: 80px;
-    fill: #2cb28c;
+    fill: #171616;
 }
 
 .custum-file-upload .text {
@@ -797,7 +841,7 @@ section.ondas-box {
 
 .custum-file-upload .text span {
     font-weight: 400;
-    color: #2cb28c;
+    color: #171616;
 }
 
 .custum-file-upload input {
@@ -843,7 +887,7 @@ section.ondas-box {
 }
 
 #nomeEpiAdd:focus {
-    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px rgba(3, 255, 161, 0.81);
+    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px #171616;
     border: none;
 }
 
@@ -871,7 +915,7 @@ section.ondas-box {
 }
 
 #certificadoEpiAdd:focus {
-    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px rgba(3, 255, 161, 0.81);
+    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px #171616;
     border: none;
 }
 

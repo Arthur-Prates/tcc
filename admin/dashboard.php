@@ -86,6 +86,7 @@ include_once('nav.php');
                         const ctx = document.getElementById('myChart');
                         Chart.defaults.color = '#ffffff';
                         Chart.defaults.borderColor = 'rgba(255,255,255,0.1)';
+
                         new Chart(ctx, {
                             type: 'doughnut',
                             data: {
@@ -115,7 +116,8 @@ include_once('nav.php');
                                         padding: {
                                             top: 10,
                                             bottom: 30
-                                        }
+                                        },
+
                                     }
                                 },
                                 scales: {
@@ -218,7 +220,7 @@ include_once('nav.php');
 
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content ">
-            <div class="modal-header  text-white  verde">
+            <div class="modal-header  text-white  pretoNaoPreto">
                 <h1 class="modal-title textCenter fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
                 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
@@ -259,10 +261,10 @@ include_once('nav.php');
                     </div>
                 </div>
                 <div class="modal-footer quasebranco ">
-                    <button type="button" class="btn btn-secondary btnCinza" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
+                    <button type="button" class="btn btn-secondary btnCinza  btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
                         Fechar
                     </button>
-                    <button type="submit" class="btn btn-success btnVerde" id="btnEpiAdd">Cadastrar</button>
+                    <button type="submit" class="btn btn-dark btnPretoNaoPreto  btn-sm" id="btnEpiAdd">Cadastrar</button>
                 </div>
             </form>
         </div>
