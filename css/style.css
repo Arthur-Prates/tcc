@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruda:wght@400..900&family=Sedgwick+Ave+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -12,13 +11,12 @@ body {
     background-color: #EDEEF3;
 }
 
-
 .bodyLoginDash{
     width: 100%;
     height: 100vh;
     /*background-image: linear-gradient(to bottom right, #171616 50%, #868383 50%);*/
     background-image: linear-gradient(to bottom right, #171515 50%, #868383 50%);
-    border-radius: 50%;
+    /*border-radius: 50%;/*/
 
 
 }
@@ -32,6 +30,107 @@ body {
 .cinza::placeholder {
     color: white !important;
 
+}
+.verde{
+    background-color:#2cb28c;!important;
+}
+.azul{
+    background-color: #0020cc;!important;
+}
+
+.ciznaEscuro {
+    background-color: #272626; !important;
+}
+
+.pretoNaoPreto{
+    background-color: #171616; !important;
+}
+
+.btnPretoNaoPreto{
+    background-color:#171616;!important;
+    transition: 0.3s;
+    border: none;
+    color: white;
+}
+
+.btnPretoNaoPreto:hover{
+    background-color: transparent;
+    border: 1px solid #171616;
+    color: #212121;
+    font-weight: 500;
+}
+
+.btnCinzaEscuro{
+    background-color:#272626;!important;
+    transition: 0.3s;
+    border: none;
+}
+
+.btnCinzaEscuro:hover{
+    background-color: transparent;
+    border: 2px solid #272626;
+    color: #212121;
+    font-weight: 500;
+}
+
+.btnCinza{
+    background-color: #484646;!important;
+    transition: 0.3s;
+    border: none;
+    color: white;
+}
+
+.btnAzul{
+    background-color: #0020cc;!important;
+    transition: 0.3s;
+    border: none;
+}
+
+.btnAzul:hover{
+    background-color: transparent;
+    border: 2px solid #0020cc;
+    color: #0020cc;
+    font-weight: 500;
+}
+
+.btnCinza:hover{
+    background-color: transparent;
+    border: 1px solid #484646;
+    color: #484646;
+    font-weight: 500;
+}
+
+.btnVermelho{
+    transition: 0.3s;
+}
+.btnVermelho:hover{
+    background: transparent;
+    border: 1px solid crimson;
+    color: crimson;
+}
+
+.btnDark{
+
+}
+
+.btnDark:hover{
+    background: transparent;
+    border: 1px solid black;
+    color: black;
+    font-weight: 500;
+}
+
+.btnVerdePoucoNeon{
+    transition: .5s;
+    background-color: #38d39f;!important;
+    border: none;
+}
+
+.btnVerdePoucoNeon:hover{
+    background: transparent;
+    border: 1px solid #38d39f;
+    color: #38d39f;
+    font-weight: 600;
 }
 
 .erroBonito {
@@ -207,11 +306,18 @@ body {
 }
 
 @media (max-width: 991px) {
-    #qtdMD {
+    .qtdMD {
         display: block;
     }
+    .overflowTable {
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        /*text-overflow: ellipsis !important;*/
+        /*direction: ltr;*/
 
-    #qtdLG {
+    }
+
+    .qtdLG {
         display: none;
     }
 
@@ -226,11 +332,15 @@ body {
 }
 
 @media (min-width: 992px) {
-    #qtdMD {
+    .qtdMD {
         display: none;
     }
 
-    #qtdLG {
+    .margemTop {
+        margin-top: 220px;
+    }
+
+    .qtdLG {
         display: block;
     }
 
@@ -325,14 +435,6 @@ body {
 .cardNavbarSM:hover {
     background-color: #737373;
     transition: 1s ease;
-}
-
-.overflowTable {
-    overflow-x: scroll !important;
-    /*text-overflow: ellipsis !important;*/
-    white-space: nowrap;
-    /*direction: ltr;*/
-
 }
 
 .tableNaoVazada {
@@ -457,7 +559,7 @@ section .wave {
     background-color: white;
     font-size: 18px;
     outline: none;
-    font-family: "Bona Nova SC", serif;
+    transition: 0.1s;
 }
 
 .inputPesquisa::placeholder {
@@ -540,37 +642,16 @@ section.ondas-box {
     min-height: 100dvh !important;
 }
 
-.btnSair{
-    transition: 0.3s;
-}
-.btnSair:hover{
-    background: transparent;
-    border: 1px solid crimson;
-    color: crimson;
-}
-
-.btnDark{
-    /*transition: 0.3s;*/
-}
-
-.btnDark:hover{
-    background: transparent;
-    border: 2px solid black;
-    color: black;
-    font-weight: 500;
-}
-
-
 .onda {
     width: 100%;
-    height: 300px;
+    height: 300px; /* Aumente a altura para cobrir mais espaço */
     position: absolute;
     bottom: 0;
-    left: 0;
-    z-index: -1;
-    background-image: url('img/wave.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    left: 0; /* Posição à esquerda para ocupar toda a largura */
+    z-index: -1; /* Para colocar atrás do conteúdo */
+    background-image: url('img/wave.svg'); /* Verifique o caminho da imagem */
+    background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o espaço */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
 }
 
 #onda1 {
@@ -629,148 +710,17 @@ section.ondas-box {
     border: none;
 }
 
-.tituloListar {
-    font-family: "Bona Nova SC", serif;
-    font-weight: 700;
-    font-style: normal;
+.margemTop {
+    margin-top: 50px;
 }
 
-/*INDEX DA AREA PRINCIPAL*/
-
-.btnAddCarrinho {
-    transition: .5s;
-    background-color: #38d39f;
-!important;
-    border: none;
+.teste{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.btnAddCarrinho:hover {
-    background: transparent;
-    border: 1px solid #38d39f;
-    color: #38d39f;
-    font-weight: 600;
-}
-
-.cardExibirEpi {
-    text-align: center;
-!important;
-    /*border: none;*/
-    border-radius: 0px 0px 0px 0px ;
-    -moz-border-radius: 0px 0px 0px 0px ;
-    -webkit-border-radius: 0px 0px 0px 0px ;
-}
-
-.cardExibirEpi .nomeProduto {
-    font-weight: bold;
-}
-.imgProduto{
-    background-color: rgba(229, 248, 242, 0.81);!important;
-    border-radius: 0px 0px 24px 24px ;
-    -moz-border-radius: 0px 0px 24px 24px ;
-    -webkit-border-radius: 0px 0px 24px 24px;
-    background-color: rgba(229, 248, 242, 0.81);!important;
-}
-.imgProduto:hover{
-    background: transparent;
-}
-
-
-/*.cardExibirEpi .cardBodyExibirEpi2{*/
-/*    background-color: rgba(188, 227, 212, 0.81);!important;*/
-/*}*/
-
-/*.cardExibirEpi .cardBodyExibirEpi {*/
-/*    background-color: rgba(143, 183, 129, 0.81);!important;*/
-/*    border-radius: 31px 30px 0px 0px ;*/
-/*    -moz-border-radius: 31px 30px 0px 0px ;*/
-/*    -webkit-border-radius: 31px 30px 0px 0px ;*/
-/*}*/
-/*.cardBodyExibirEpi1{*/
-/*    background-color: rgba(143, 183, 129, 0.81);!important;*/
-/*}*/
-
-
-/*EDICAO DAS MODAIS*/
-
-.verde{
-    background-color:#2cb28c;!important;
-}
-.azul{
-    background-color: #0020cc;!important;
-}
-
-.ciznaEscuro {
-    background-color: #272626;
-}
-
-.pretoNaoPreto{
-    background-color: #171616;
-}
-
-.btnPretoNaoPreto{
-    background-color:#171616;!important;
-    transition: 0.3s;
-    border: none;
-}
-
-.btnPretoNaoPreto:hover{
-    background-color: transparent;
-    border: 2px solid #171616;
-    color: #212121;
-    font-weight: 500;
-}
-
-.btnCinzaEscuro{
-    background-color:#272626;!important;
-    transition: 0.3s;
-    border: none;
-}
-
-.btnCinzaEscuro:hover{
-    background-color: transparent;
-    border: 2px solid #272626;
-    color: #212121;
-    font-weight: 500;
-}
-
-.btnVerde{
-    background-color:#2cb28c;!important;
-    transition: 0.3s;
-    border: none;
-}
-.btnVerde:hover{
-    background-color: transparent;
-    border: 2px solid #38d39f;
-    color: #38d39f;
-    font-weight: 500;
-}
-
-.btnCinza{
-    background-color: #484646;!important;
-    transition: 0.3s;
-    border: none;
-}
-
-.btnAzul{
-    background-color: #0020cc;!important;
-    transition: 0.3s;
-    border: none;
-}
-
-.btnAzul:hover{
-    background-color: transparent;
-    border: 2px solid #0020cc;
-    color: #0020cc;
-    font-weight: 500;
-}
-
-.btnCinza:hover{
-    background-color: transparent;
-    border: 2px solid #484646;
-    color: #484646;
-    font-weight: 500;
-}
-
+/*AREA DA MODAL*/
 .modal-header {
     display: flex;
     justify-content: center;
@@ -803,10 +753,11 @@ section.ondas-box {
     width: 100%;
 }
 
+
 .custum-file-upload {
+    display: flex;
     height: 200px;
     width: 500px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -825,7 +776,6 @@ section.ondas-box {
     align-items: center;
     justify-content: center;
 }
-
 
 
 .custum-file-upload .icon svg {
@@ -848,132 +798,46 @@ section.ondas-box {
     display: none;
 }
 
-/*AREA DOS INPUT'S*/
+/*AREA DOS INPUT*/
+.formField {
+    margin: 10px;
+    position: relative;
+}
 
-#label-input {
-    transition: all 0.1s ease-in-out;
-    color: #2c2c54;
+.formField input {
+    padding: 20px 15px 10px 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 16px;
+    font-weight: 550;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 0 5px transparent;
+}
+
+.formField input:hover,
+.formField input:focus {
+    box-shadow: 0 0 0 2px #333;
+}
+
+.formField span {
     position: absolute;
-    top: 30%;
-    left: 18px;
-    transform: scale(0.95);
-    opacity: 1;
+    left: 0;
+    top: 0;
+    padding: 13px 15px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: -1px -1px 0 #f1f1f1, 1px -1px 0 #f1f1f1, -1px 1px 0 #f1f1f1,
+    1px 1px 0 #f1f1f1;
+    transition: 0.3s ease-in-out;
     pointer-events: none;
 }
 
-.input-base {
-    border-radius: 10px;
+.formField input:focus + span,
+.formField input:valid + span {
+    transform: translateY(-12px) translateX(-5px) scale(0.95);
+    transition: 0.3s ease-in-out;
 }
-
-#nomeEpiAdd:focus ~ label#label-input,
-#nomeEpiAdd:not(:placeholder-shown) ~ #label-input {
-    top: -20% !important;
-    left: 2px !important;
-    transform: scale(0.8);
-    background: white;
-    color: black;
-    padding: 0 6px;
-    opacity: 1;
-}
-
-#nomeEpiAdd {
-    transition: outline 0.2s ease;
-    font-size: 1rem;
-    outline-color: var(--button-text);
-    outline: unset;
-    border: 1px dashed #bbbbbb;
-    padding: 17px 10px 10px 17px;
-    width: 100%;
-}
-
-#nomeEpiAdd:focus {
-    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px #171616;
-    border: none;
-}
-
-/*Certficado */
-
-#certificadoEpiAdd:focus ~ label#label-input,
-#certificadoEpiAdd:not(:placeholder-shown) ~ #label-input {
-    top: -20% !important;
-    left: 2px !important;
-    transform: scale(0.8);
-    background: white;
-    color: black;
-    padding: 0 6px;
-    opacity: 1;
-}
-
-#certificadoEpiAdd {
-    transition: outline 0.2s ease;
-    font-size: 1rem;
-    outline-color: var(--button-text);
-    outline: unset;
-    border: 1px dashed #bbbbbb;
-    padding: 17px 10px 10px 17px;
-    width: 100%;
-}
-
-#certificadoEpiAdd:focus {
-    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px #171616;
-    border: none;
-}
-
-/*#Editar Nome Epi */
-#nomeEpiEdit:focus ~ label#label-input,
-#nomeEpiEdit:not(:placeholder-shown) ~ #label-input {
-    top: -20% !important;
-    left: 2px !important;
-    transform: scale(0.8);
-    background: white;
-    color: black;
-    padding: 0 6px;
-    opacity: 1;
-}
-
-#nomeEpiEdit {
-    transition: outline 0.2s ease;
-    font-size: 1rem;
-    outline-color: var(--button-text);
-    outline: unset;
-    border: 1px dashed #bbbbbb;
-    padding: 17px 10px 10px 17px;
-    width: 100%;
-}
-
-#nomeEpiEdit:focus {
-    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px #0020cc;
-    border: none;
-}
-/*Editar o certificado do Epi */
-#certificadoEpiEdit:focus ~ label#label-input,
-#certificadoEpiEdit:not(:placeholder-shown) ~ #label-input {
-    top: -20% !important;
-    left: 2px !important;
-    transform: scale(0.8);
-    background: white;
-    color: black;
-    padding: 0 6px;
-    opacity: 1;
-}
-
-#certificadoEpiEdit {
-    transition: outline 0.2s ease;
-    font-size: 1rem;
-    outline-color: var(--button-text);
-    outline: unset;
-    border: 1px dashed #bbbbbb;
-    padding: 17px 10px 10px 17px;
-    width: 100%;
-}
-
-#certificadoEpiEdit:focus {
-    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px #0020cc;
-    border: none;
-}
-
-.relative {
-    position: relative;
-    margin-bottom: 5px;
-}
-

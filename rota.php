@@ -3,7 +3,7 @@ include_once("./config/constantes.php");
 include_once("./config/conexao.php");
 include_once("./func/funcoes.php");
 
-$url = (isset($_GET['url'])) ? $_GET['url'] : 'index';
+$url = $_GET['url'] ?? 'index';
 $url = array_filter(explode('/', $url));
 
 switch ($url[0]) {
@@ -30,6 +30,12 @@ switch ($url[0]) {
         break;
     case 'logout':
         include_once('logout.php');
+        break;
+    case 'resultado-da-busca':
+        include_once('resultadoPesquisa.php');
+        break;
+    case 'inicio':
+        include_once('./admin/dashboard.php');
         break;
     default:
         include_once('404.php');

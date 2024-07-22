@@ -50,8 +50,6 @@ include_once('nav.php');
     </div>
 </div>
 <div class="">
-
-
     <div id='show' class='show'>
         <section class="ondas-box">
 
@@ -70,7 +68,6 @@ include_once('nav.php');
                     </form>
                 </div>
             </div>
-
         </section>
 
         <img src="../img/wave.svg" alt="onda" class="oondafoto">
@@ -86,13 +83,12 @@ include_once('nav.php');
                         const ctx = document.getElementById('myChart');
                         Chart.defaults.color = '#ffffff';
                         Chart.defaults.borderColor = 'rgba(255,255,255,0.1)';
-
                         new Chart(ctx, {
                             type: 'doughnut',
                             data: {
                                 labels: ['Reservado', 'Não Reservados'],
                                 datasets: [{
-                                    label: '',
+
 
                                     data: ['<?php  echo valoresGraficoQuantidadeEpi('indisponivel') ?>', '<?php  echo valoresGraficoQuantidadeEpi('disponivel');?>'],
 
@@ -105,7 +101,7 @@ include_once('nav.php');
                                         'rgba(42,197,143)'
 
                                     ],
-                                    borderWidth: 2
+                                    borderWidth: 2,
                                 }]
                             },
                             options: {
@@ -115,14 +111,13 @@ include_once('nav.php');
                                         text: 'Quantidade de Items Reservados',
                                         padding: {
                                             top: 10,
-                                            bottom: 30
-                                        },
-
+                                            bottom: 30,
+                                        }
                                     }
                                 },
                                 scales: {
                                     y: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
                                     }
                                 }
                             }
@@ -133,83 +128,91 @@ include_once('nav.php');
 
                 </div>
 
-                //
-
                 <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class=" d-flex justify-content-center align-items-center ">
-                        <canvas id="myChart2"></canvas>
-                    </div>
+                    <?php
+                    $verificarVazio = valoresGraficoTopFuncionarios();
+                    foreach ($verificarVazio as $chave => $valor) {
+                        if (!empty($valor)) {
+                            ?>
 
-                    <script>
-                        const ctx2 = document.getElementById('myChart2');
-                        new Chart(ctx2, {
-                            type: 'doughnut',
-                            data: {
-                                labels: [
-                                    <?php
-                                    $numPeople = 0;
-                                    $TOTALFIMEND = valoresGraficoTopFuncionarios();
-                                    foreach ($TOTALFIMEND as $key => $value) {
-                                        if ($numPeople < 5) {
+                            <div class=" d-flex justify-content-center align-items-center ">
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                            <script>
+                                const ctx2 = document.getElementById('myChart2');
+                                new Chart(ctx2, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: [
+                                            <?php
+                                            $numPeople = 0;
+                                            $TOTALFIMEND = valoresGraficoTopFuncionarios();
+                                            foreach ($TOTALFIMEND as $key => $value) {
+                                                if ($numPeople < 5) {
 
-                                            echo "'$key',";
+                                                    echo "'$key',";
 
-                                        }
-                                        $numPeople = $numPeople + 1;
-                                    }
-                                    ?>
-                                ],
-                                datasets: [{
-                                    label: 'Quantidade de Aluguéis feitos',
+                                                }
+                                                $numPeople = $numPeople + 1;
+                                            }
+                                            ?>
+                                        ],
+                                        datasets: [{
+                                            label: 'Quantidade de Aluguéis feitos',
 
-                                    data: [
-                                        <?php
-                                        $numValores = 0;
-                                        $TOTALFIMEND = valoresGraficoTopFuncionarios();
-                                        foreach ($TOTALFIMEND as $key => $value) {
-                                            if ($numValores < 5) {
-                                                echo "'$value',";
+                                            data: [
+                                                <?php
+                                                $numValores = 0;
+                                                $TOTALFIMEND = valoresGraficoTopFuncionarios();
+                                                foreach ($TOTALFIMEND as $key => $value) {
+                                                    if ($numValores < 5) {
+                                                        echo "'$value',";
 
-                                                $numValores = $numValores + 1;
+                                                        $numValores = $numValores + 1;
+                                                    }
+                                                }
+                                                ?>,
+                                            ],
+
+                                            backgroundColor: [
+                                                'rgba(183, 28, 28,0.8)',
+                                                'rgba(255, 111, 0,0.8)',
+                                                'rgba(255,186,8,0.8)',
+                                                'rgba(63,132,229,0.8)',
+                                                'rgba(22,152,115,0.8)',
+
+                                            ],
+                                            borderColor: [
+                                                'rgba(183, 28, 28)',
+                                                'rgba(255, 111, 0)',
+                                                'rgba(255,186,8)',
+                                                'rgba(63,132,229)',
+                                                'rgba(22,152,115)',
+
+
+                                            ],
+                                            borderWidth: 2
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
                                             }
                                         }
-                                        ?>,
-                                    ],
-
-                                    backgroundColor: [
-                                        'rgba(183, 28, 28,0.8)',
-                                        'rgba(255, 111, 0,0.8)',
-                                        'rgba(255,186,8,0.8)',
-                                        'rgba(63,132,229,0.8)',
-                                        'rgba(22,152,115,0.8)',
-
-                                    ],
-                                    borderColor: [
-                                        'rgba(183, 28, 28)',
-                                        'rgba(255, 111, 0)',
-                                        'rgba(255,186,8)',
-                                        'rgba(63,132,229)',
-                                        'rgba(22,152,115)',
-
-
-                                    ],
-                                    borderWidth: 2
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
                                     }
-                                }
-                            }
-                        });
-                    </script>
+                                });
+                            </script>
+                            <?php
+
+                        }
+
+                    }
+                    ?>
 
                 </div>
             </div>
         </section>
-
     </div>
 </div>
 
@@ -219,16 +222,17 @@ include_once('nav.php');
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content ">
-            <div class="modal-header  text-white  pretoNaoPreto">
-                <h1 class="modal-title textCenter fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
+        <div class="modal-content">
+            <div class="modal-header pretoNaoPreto text-white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
                 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
             <form method="post" name="frmEpiAdd" id="frmEpiAdd">
 
-                <div class="modal-body quasebranco justify-content-md-center">
+                <div class="modal-body quasebranco  ">
 
                     <div class="mb-3 divModalBody">
+
                         <label for="fotoEpiAdd" class="custum-file-upload">
                             <div class="icon">
                                 <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -242,29 +246,31 @@ include_once('nav.php');
                                 </svg>
                             </div>
                             <div class="text">
-                                <span>Selecione a imagem desejada</span>
+                                <span>Click to upload image</span>
                             </div>
                             <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd">
                         </label>
-
                     </div>
+<!--                    <div class="mb-3">-->
+<!--                        <input type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd">-->
+<!--                        <label class="input-group-text" for="nomeEpiAdd">Nome do Epi</label>-->
+<!--                    </div>-->
+<!--                    <div class=" mb-3">-->
+<!--                        <input type="text" class="form-control" id="certificadoEpiAdd" name="certificadoEpiAdd"-->
+<!--                                                   maxlength="7" minlength="5">-->
+<!--                        <label class="input-group-text" for="certificadoEpiAdd">Certificado</label>-->
+<!--                    </div>-->
+                    <form class="formField">
+                        <input required="" type="text" />
+                        <span>Placeholder</span>
+                    </form>
 
-                    <div class=" mb-3 relative">
-                        <input class="input-cal input-base" id="nomeEpiAdd" name="nomeEpiAdd" placeholder="" type="text">
-                        <label id="label-input" for="nomeEpiAdd">Nome do Epi</label>
-                    </div>
-
-                    <div class="relative mb-3">
-                        <input type="text" class="input-cal input-base" id="certificadoEpiAdd" name="certificadoEpiAdd" placeholder=""
-                               maxlength="7" minlength="5">
-                        <label id="label-input"  for="certificadoEpiAdd">Certificado</label>
-                    </div>
                 </div>
                 <div class="modal-footer quasebranco ">
-                    <button type="button" class="btn btn-secondary btnCinza  btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
+                    <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
                         Fechar
                     </button>
-                    <button type="submit" class="btn btn-dark btnPretoNaoPreto  btn-sm" id="btnEpiAdd">Cadastrar</button>
+                    <button type="submit" class="btn btnPretoNaoPreto btn-sm" id="btnEpiAdd">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -275,9 +281,9 @@ include_once('nav.php');
 <!-- Modal edit epi -->
 <div class="modal fade" id="modalEpiEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header azul">
+            <div class="modal-header ">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar EPI</h1>
                 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
@@ -285,31 +291,27 @@ include_once('nav.php');
                 <div class="modal-body">
                     <input type="hidden" name="idEditEpi" id="idEditEpi">
                     <div class="col-12 text-center mb-2 alturaFotoPreview">
-                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="30%">
+                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="50%">
                     </div>
                     <div class="input-group mb-3 mt-4">
                         <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
                         <label class="input-group-text" for="fotoEpiEdit">Foto</label>
                     </div>
-
-                    <div class="relative mb-3">
-                        <input type="text" class="input-cal input-base" id="nomeEpiEdit" name="nomeEpiEdit" placeholder=""
-                               maxlength="7" minlength="5">
-                        <label id="label-input"  for="nomeEpiEdit">Nome do Epi</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit">
+                        <label class="input-group-text" for="nomeEpiEdit">Nome do Epi</label>
                     </div>
-
-                    <div class="relative mb-3">
-                        <input type="text" class="input-cal input-base" id="certificadoEpiEdit" name="certificadoEpiEdit" placeholder=""
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="certificadoEpiEdit" name="certificadoEpiEdit"
                                maxlength="7" minlength="5">
-                        <label id="label-input"  for="certificadoEpiEdit">Certificado Epi</label>
+                        <label class="input-group-text" for="certificadoEpiEdit">Certificado</label>
                     </div>
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btnCinza btn-sm" data-bs-dismiss="modal"
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
                             id="btnFecharModalEditEpi">Fechar
                     </button>
-                    <button type="submit" class="btn btn-primary btnAzul btn-sm" id="btnEpiEdit">Alterar</button>
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnEpiEdit">Alterar</button>
                 </div>
             </form>
         </div>
@@ -543,19 +545,7 @@ include_once('nav.php');
     </div>
 </div>
 
-<?php
-$erro = $_GET['error'];
-if ($erro === 'CampoVazio') {
-    ?>
-    <script>
-        var inpute = document.getElementById('emprestimo')
-        inpute.placeholder = 'Este Campo não pode estar vazio!'
-        inpute.classList.add('red-placeholder');
-    </script>
 
-    <?php
-}
-?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

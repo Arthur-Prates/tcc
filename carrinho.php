@@ -56,58 +56,11 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
         <div class="col-12">
             <?php
             if (!empty($_SESSION['pedidoscarrinho']) && isset($_SESSION['pedidoscarrinho'])) {
-                foreach ($_SESSION['pedidoscarrinho'] as $indice => $itemEpi) {
-                    $indiceItem = $indice;
-                    $nome = $itemEpi['nome'];
-                    $id = $itemEpi['idproduto'];
-                    $foto = $itemEpi['foto'];
-                    $certificado = $itemEpi['certificado'];
-                    $qtd = $itemEpi['quantidade'];
-
-                    $tabelaEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $id);
-                    foreach ($tabelaEstoque as $estoque) {
-                        $qtdEstoque = $estoque->disponivel;
-                    }
-
-                    ?>
-                    <div class="row mt-5">
-                        <div class="col-lg-2 col-4">
-                            <img src="./img/produtos/<?php echo $foto ?>" alt="<?php echo $nome ?>" class=""
-                                 width="100%">
-                        </div>
-                        <div class="col-lg-8 col-8">
-                            <h4><?php echo $nome ?></h4>
-                            <p>Número CA: <?php echo $certificado ?></p>
-                            <p>Quantidade disponível: <?php echo $qtdEstoque; ?></p>
-                            <p class="mt-3" id="qtdMD">Quantidade no carrinho: <?php echo $qtd ?></p>
-                        </div>
-                        <div class="col-lg-2 col-12 qtdSacola text-center">
-
-                            <p class="mt-3" id="qtdLG">Quantidade: <?php echo $qtd ?></p>
-                            <div class="">
-                                <div class="w-100">
-                                    <button class="btn btn-sm btn-outline-success btnMaisEMenos" type="button"
-                                            onclick="postCarrinho('<?php echo $id ?>')">+
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-warning btnMaisEMenos" type="button"
-                                            onclick="removeCarrinho('<?php echo $id ?>')">-
-                                    </button>
-                                </div>
-
-                                <button class="btn btn-sm btn-outline-secondary mt-2 btnRemover"
-                                        onclick="excluirItem('<?php echo $indice ?>')">
-                                    Remover
-                                </button>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <hr>
-
-                    <?php
-                }
                 ?>
+                <div class="row mt-5" id="listagemCarrinho">
+                    <!--A listagem doo carrinho está sendo feita via JS-->
+                </div>
+                <hr>
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
                     <div class="row mb-5">
                         <div class="col-lg-6 col-md-6 col-12">
@@ -210,7 +163,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     <?php
                                 } else {
                                     ?>
-                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnLogin"
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnConcluirLogin"
                                             type="button"
                                             name="btnLogin" onclick="redireciona('fazer-login')">
                                         Concluir aluguel
@@ -226,7 +179,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             } else {
                 ?>
                 <div class="d-flex justify-content-center align-items-center mt-5">
-                    <dotlottie-player src="https://lottie.host/f626c217-5dd4-4bd3-8bba-b85b46b06cb5/h13sx3Lc2a.json"
+                    <dotlottie-player src="./img/carrinhoVazio.json"
                                       background="transparent" speed="1" style="width: 300px; height: 300px;" loop
                                       autoplay></dotlottie-player>
                     <p class="fs-1">O seu carrinho está vazio!</p>
@@ -235,9 +188,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             }
 
             ?>
-
-        </
-        >
+        </div>
     </div>
 </div>
 
@@ -258,6 +209,8 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 <script src="./js/script.js"></script>
+<script src="./js/fetchcarrinho.js"></script>
+
 </body>
 
 </html>

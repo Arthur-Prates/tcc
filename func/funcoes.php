@@ -42,6 +42,28 @@ function executaQuery($query)
     $conn = null;
 }
 
+function pesquisaLike($campos, $tabela, $campoDeBusca, $valorDoCampo)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoDeBusca LIKE ?");
+        $sqlListaTabelas->bindValue(1, '%' . $valorDoCampo . '%', PDO::PARAM_STR);
+        $sqlListaTabelas->execute();
+        $conn->commit();
+        if ($sqlListaTabelas->rowCount() > 0) {
+            return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
+    } catch
+    (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2)
 {
     $conn = conectar();
@@ -313,7 +335,8 @@ function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabe
     }
     $conn = null;
 }
-function listarTabelaInnerJoinTriploOrdenadaExpecifica2Where($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $campoExpecifico, $valorCampo,$campoExpecifico2,$valorCampo2, $ordem, $tipoOrdem)
+
+function listarTabelaInnerJoinTriploOrdenadaExpecifica2Where($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2, $ordem, $tipoOrdem)
 {
     $conn = conectar();
     try {
@@ -743,7 +766,10 @@ function alterar1ItemDuploWhere($tabela, $campo, $valor, $identificar, $id, $ide
         $sqlLista->bindValue(3, $id2, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
-        return $sqlLista->rowCount() > 0;
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return;
     } catch (PDOException $e) {
         $conn->rollback();
         return 'Exception -> ' . $e->getMessage();
@@ -1156,7 +1182,7 @@ function valoresGraficoTopFuncionarios()
     $arayPessoas = array();
     $contarAray = 0;
 
-    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,nomeUsuario, b.idusuario as idUser', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idUser', 'ASC');
+    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario, b.idusuario as idUser', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idUser', 'ASC');
 
     foreach ($selectAlugadores as $itemAlu) {
         $iduser = $itemAlu->idusuario;
@@ -1164,7 +1190,6 @@ function valoresGraficoTopFuncionarios()
         array_push($aray, "$iduser");
         array_push($arayPessoas, "$nomeUser");
     }
-
     $aray = array_unique($aray);
     $aray = array_values($aray);
     $arayPessoas = array_unique($arayPessoas);
@@ -1173,7 +1198,8 @@ function valoresGraficoTopFuncionarios()
         $id = $itemArray;
 
 
-        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'aluguel', 'usuario', 'produtoAluguel', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'a.idusuario', "$id",'d.devolucao','N' ,'total', 'ASC');
+        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'aluguel', 'usuario', 'produtoaluguel', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'a.idusuario', "$id", 'd.devolucao', 'N', 'total', 'ASC');
+
         foreach ($selectTopAluguel as $valor) {
             $fim = $valor->total;
 
@@ -1190,12 +1216,10 @@ function valoresGraficoTopFuncionarios()
     return $TOTALFIMEND;
 
 
-
-
-
-
 }
-function Data18AnosAtras() {
+
+function Data18AnosAtras()
+{
     // Obtém a data atual
     $today = new DateTime();
 

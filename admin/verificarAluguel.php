@@ -9,13 +9,10 @@ if ($_SESSION['idadm']) {
     header('location: index.php?error=404');
 }
 
-$codigoAluguel = filter_input(INPUT_GET, 'emprestimos', FILTER_SANITIZE_STRING);
-
-//$codigoAluguel = empty($codigoAluguel) ? addslashes($codigoAluguel) : 'vazio';
-if(empty($codigoAluguel)){
-    header('location: dashboard.php?error=CampoVazio');
-}else{
-    echo $codigoAluguel;
+$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
+$codigoAluguel = str_replace(' ','', $codigoAluguel);
+if (empty($codigoAluguel)) {
+    header('location: dashboard.php?error=404');
 }
 $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
 ?>
@@ -26,7 +23,7 @@ $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprest
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Empréstimo - #<?php echo $codigoAluguel?></title>
+    <title>Empréstimo - #<?php echo $codigoAluguel ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -48,11 +45,17 @@ include_once('nav.php');
 
 $nao = 0;
 $contarNao = listarItemExpecifico('*', 'produtoAluguel', 'codAluguel', $codigoAluguel);
-foreach ($contarNao as $itemContar) {
-    $n = $itemContar->devolucao;
-    if ($n == 'N') {
-        ++$nao;
+if ($contarNao !== 'Vazio') {
+
+    foreach ($contarNao as $itemContar) {
+        $n = $itemContar->devolucao;
+        if ($n == 'N') {
+            ++$nao;
+        }
+
     }
+} else {
+    header('location: dashboard.php?error=404');
 }
 ?>
 
@@ -64,22 +67,24 @@ foreach ($contarNao as $itemContar) {
         if ($nao >= 1) {
             ?>
             <div>
-                <button class="btn btn-sm btn-secondary" disabled>Empréstimo NÃO devolvido</button>
-                <button class="btn btn-sm btn-success" disabled>Empréstimo devolvido</button>
+                <button class="btn btn-sm btn-success" disabled>Fechar Emprestimo</button>
+<!--                <button class="btn btn-sm btn-primary"-->
+<!--                        onclick="devolverEmprestimo('emprestimoDevolvido','--><?php //echo $codigoAluguel ?><!--','N')">-->
+<!--                    Editar-->
+<!--                </button>-->
             </div>
             <?php
         } else {
             ?>
+
             <div>
-                <button class="btn btn-sm btn-secondary"
-                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','N')">
-                    Empréstimo
-                    NÃO devolvido
-                </button>
-                <button class="btn btn-sm btn-success"
+                <button class="btn btn-sm  btn-success" id="fecharEmprestimo"
                         onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','S')">
-                    Empréstimo
-                    devolvido
+                    Fechar Emprestimo
+                </button>
+                <button class="btn btn-sm  btn-primary" id="editarEmprestimo"
+                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','N')">
+                    Editar
                 </button>
             </div>
 
@@ -116,8 +121,13 @@ foreach ($contarNao as $itemContar) {
 
             if ($statusAluguel == 'S') {
                 $statusEmprestimo = 'Empréstimo devolvido';
+                ?>
+
+
+                <?php
             } else {
-                $statusEmprestimo = 'Empréstimo NÃO devolvido';
+                $statusEmprestimo = 'EPI(s) pendente(s)';
+                $statusEmprestimo = "$nao $statusEmprestimo";
             }
 
             if ($telefone == '' || $telefone == null) {
@@ -127,6 +137,39 @@ foreach ($contarNao as $itemContar) {
             $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
         }
     }
+if($statusAluguel == 'S') {
+    ?>
+    <script>
+        let emprestimo = document.getElementById('fecharEmprestimo');
+        let editar = document.getElementById('editarEmprestimo');
+        if(emprestimo){
+            emprestimo.hidden = true;
+            emprestimo.disabled = true;
+        }
+        if(editar){
+            editar.hidden = false;
+            editar.disabled = false;
+        }
+    </script>
+    <?php
+}else{
+   ?>
+    <script>
+        let emprestimo = document.getElementById('fecharEmprestimo');
+        let editar = document.getElementById('editarEmprestimo');
+        if(emprestimo){
+            emprestimo.hidden = false;
+            emprestimo.disabled = false;
+        }
+        if(editar){
+            editar.hidden = true;
+            editar.disabled = true;
+
+        }
+    </script>
+
+    <?php
+}
 
     ?>
     <div class="row">

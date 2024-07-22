@@ -328,7 +328,6 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
     idVerimg.src = '../img/produtos/' + visualizaImg;
 
 
-
     idFoto.addEventListener('change', function (event) {
         let reader = new FileReader();
         reader.onload = () => {
@@ -401,7 +400,7 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
 }
 
 
-function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome,INPtelefone,IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome, INPtelefone, IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
@@ -490,13 +489,12 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             setInterval(confirmaSenha, 3500)
         })
 
-        btnFecharAlterarSenha.addEventListener('click', function (){
+        btnFecharAlterarSenha.addEventListener('click', function () {
             btnFecharAlterarSenha.style.display = 'none';
             btnAlterarSenha.style.display = 'block'
             dNone.style.display = 'none';
             alertaSenha.style.display = 'none';
         })
-
 
 
         const submitHandler = function (event) {
@@ -526,9 +524,9 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
                     }
                     ModalInstancia.hide();
                 })
-            .catch(error => {
-                console.error('Erro na requisição:', error);
-            });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
 
         const btnFecharModalAddUsuario = document.getElementById('btnFecharModalAddUsuario');
@@ -690,7 +688,6 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
         const submitHandler = function (event) {
             event.preventDefault();
             botoes.disabled = true;
-            console.log('submit')
             const form = event.target;
             const formData = new FormData(form);
 
@@ -715,9 +712,6 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         botoes.disabled = false;
                         ModalInstancia.hide();
                         form.reset();
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 2000)
                     } else {
                         formDados.removeEventListener('submit', submitHandler);
                         botoes.disabled = false;
@@ -785,9 +779,12 @@ function alertError(msg) {
 }
 
 function attCarrinho(quantidade) {
-    var qtdDeItensNoCarrinho = document.getElementById('qtdDeItensNoCarrinho')
+    const qtdDeItensNoCarrinho1 = document.getElementById('qtdDeItensNoCarrinho1');
+    const qtdDeItensNoCarrinho2 = document.getElementById('qtdDeItensNoCarrinho2');
 
-    qtdDeItensNoCarrinho.innerText = quantidade
+    qtdDeItensNoCarrinho1.innerText = quantidade;
+    qtdDeItensNoCarrinho2.innerText = quantidade;
+
 }
 
 function postCarrinho(produto) {
@@ -798,7 +795,7 @@ function postCarrinho(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
+            console.log(data)
             attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
@@ -806,9 +803,6 @@ function postCarrinho(produto) {
                     // text: "You clicked the button!",
                     icon: "success"
                 });
-                setTimeout(function () {
-                    window.location.reload()
-                }, 1500)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -823,30 +817,57 @@ function postCarrinho(produto) {
         });
 }
 
-function removeCarrinho(produto, f) {
-    fetch('removeCarrinho.php', {
+function aumentarQuantidade(produto) {
+    fetch('aumentarQtd.php', {
         method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'idepi=' + encodeURIComponent(produto) + '&num=' + encodeURIComponent(f),
+        }, body: 'idepi=' + encodeURIComponent(produto),
     })
         .then(response => response.json())
         .then(data => {
             // console.log(data)
-            attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
                     icon: "success"
                 });
-                setTimeout(function () {
-                    window.location.reload()
-                }, 1240)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
                     // text: "You clicked the button!",
                     icon: "danger"
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alertError('Ocorreu um erro ao tentar adicionar o produto ao carrinho.');
+        });
+}
+
+
+function diminuirQuantidade(produto) {
+    fetch('removeCarrinho.php', {
+        method: 'POST', headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }, body: 'idepi=' + encodeURIComponent(produto),
+    })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data)
+
+            if (data.success) {
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "success"
+                });
+            } else {
+                Swal.fire({
+                    title: `${data.message}`,
+                    // text: "You clicked the button!",
+                    icon: "warning"
                 });
             }
         })
@@ -868,21 +889,17 @@ function excluirItem(id) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
+            attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
-                    // text: "You clicked the button!",
                     icon: "success"
                 });
-                setTimeout(function () {
-                    window.location.reload()
-                }, 1240)
             } else {
                 Swal.fire({
                     title: `${data.message}`,
-                    // text: "You clicked the button!",
-                    icon: "danger"
+                    icon: "error"
                 });
             }
         })
@@ -893,7 +910,6 @@ function excluirItem(id) {
                 text: "Ocorreu um erro ao tentar remover o produto do carrinho.",
                 icon: "danger"
             });
-            alertError('Ocorreu um erro ao tentar remover o produto do carrinho.');
         });
 }
 
@@ -907,17 +923,15 @@ function limparCarrinho() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
-                    // text: "You clicked the button!",
                     icon: "success"
                 });
             } else {
                 Swal.fire({
                     title: `${data.message}`,
-                    // text: "You clicked the button!",
                     icon: "danger"
                 });
             }
@@ -926,7 +940,7 @@ function limparCarrinho() {
             }, 1500)
         })
         .catch(error => {
-            // console.error('Erro:', error);
+            console.error('Erro:', error);
             alertError('Ocorreu um erro ao tentar limpar o carrinho.');
         });
 }
@@ -981,7 +995,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
                     });
                     formDados.removeEventListener('submit', submitHandler);
                     setTimeout(function () {
-                        window.location.href = 'aluguel.php'
+                        window.location.href = 'meus-alugueis'
                     }, 1500)
                 } else {
                     if (data.errodata) {
@@ -1123,7 +1137,7 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idAluguelEpi, controle, valor,codAluguel) {
+function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
@@ -1136,9 +1150,9 @@ function devolverEpi(idAluguelEpi, controle, valor,codAluguel) {
     })
         .then(response => response.json())
         .then(data => {
-            setTimeout(function (){
+            setTimeout(function () {
                 window.location.reload();
-            },2500)
+            }, 2500)
             if (data.success) {
 
                 Swal.fire({
@@ -1162,21 +1176,21 @@ function devolverEpi(idAluguelEpi, controle, valor,codAluguel) {
         });
 }
 
-function devolverEmprestimo(controle,codAluguel,valor){
+function devolverEmprestimo(controle, codAluguel, valor) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&codAluguel=" + encodeURIComponent(`${codAluguel}`)+
+            "&codAluguel=" + encodeURIComponent(`${codAluguel}`) +
             "&valor=" + encodeURIComponent(`${valor}`),
     })
         .then(response => response.json())
         .then(data => {
-            setTimeout(function (){
+            setTimeout(function () {
                 window.location.reload();
-            },2500)
+            }, 2500)
             if (data.success) {
 
                 Swal.fire({
@@ -1199,3 +1213,4 @@ function devolverEmprestimo(controle,codAluguel,valor){
             console.error('Erro na requisição:', error);
         });
 }
+

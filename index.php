@@ -33,8 +33,6 @@ if (!empty($_SESSION['idFuncionario'])) {
 </head>
 <body>
 <?php include_once('navbar.php') ?>
-<!--66844c87dab1e-->
-<!--66844c73924e1-->
 <div class="container">
     <div class="row justify-content-md-center">
         <?php
@@ -50,21 +48,21 @@ if (!empty($_SESSION['idFuncionario'])) {
 
                 ?>
                 <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4">
-                    <div class="card cardExibirEpi">
+                    <div class="card">
                         <div class="imgProduto">
+
                             <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top" alt="...">
                         </div>
-                        <div class="card-body cardBodyExibirEpi">
+                        <div class="card-body">
                             <h5 class="card-title nomeProduto"><?php echo $nome ?></h5>
                             <p class="card-text"></p>
                         </div>
-
-                        <ul class="list-group list-group-flush ">
-                            <li class="list-group-item cardBodyExibirEpi1">Nº CA: <?php echo $certificado ?></li>
-                            <li class="list-group-item cardBodyExibirEpi1 ">Quantidade disponível: <?php echo $estoque ?></li>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nº CA: <?php echo $certificado ?></li>
+                            <li class="list-group-item">Quantidade disponível: <?php echo $estoque ?></li>
                         </ul>
-                        <div class="card-body text-center cardBodyExibirEpi2">
-                            <button class="btn btn-sm btn-success btnAddCarrinho" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
+                        <div class="card-body text-center">
+                            <button class="btn btn-sm btn-success" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
                                 ao carrinho
                             </button>
                         </div>
@@ -94,6 +92,8 @@ if (!empty($_SESSION['idFuncionario'])) {
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 <script src="./js/script.js"></script>
+<script src="./js/fetchcarrinho.js"></script>
+
 </body>
 
 </html>

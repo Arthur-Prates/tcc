@@ -5,7 +5,6 @@ include_once('./config/constantes.php');
 include_once('./func/funcoes.php');
 
 $dados = filter_input(INPUT_POST, 'idepi', FILTER_SANITIZE_NUMBER_INT);
-$fila = filter_input(INPUT_POST, 'num', FILTER_SANITIZE_NUMBER_INT);
 //echo json_encode($dados);
 //$testesss = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -27,7 +26,6 @@ if ($produto !== 'vazio') {
             }
         }
 
-
     }
     $cont = count($_SESSION['pedidoscarrinho']);
     if ($produtoremove) {
@@ -35,7 +33,6 @@ if ($produto !== 'vazio') {
     }else{
         echo json_encode(['success' => false, 'message' => "Para remover do carrinho clique em 'remover'", 'qtd' => $cont]);
     }
-
 } else {
     $cont = count($_SESSION['pedidoscarrinho']);
     echo json_encode(['success' => false, 'message' => "Erro ao remover produto!", 'qtd' => $cont]);

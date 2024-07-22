@@ -20,20 +20,20 @@ include_once('./func/funcoes.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="./css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/login.css">
 
 </head>
 
 <body>
-<img class="onda" src="img/login/wave.png">
+<img class="onda" src="./img/login/wave.png">
 <div class="container">
     <div class="img">
         <img src="img/bg.svg">
     </div>
     <div class="login-content">
         <form action="index.html">
-            <img src="img/logo/icon.png">
+            <img src="img/logo/logologin.png" >
             <h2 class="title">Bem-Vindo</h2>
             <div class="input-div one">
                 <div class="i">
@@ -41,7 +41,7 @@ include_once('./func/funcoes.php');
                 </div>
                 <div class="div">
                     <h5>Email</h5>
-                    <input type="text" class="inputForm" placeholder="" required="required" name="email" id="email">
+                    <input type="text" class="inputForm text-black" placeholder="" required="required" name="email" id="email">
                 </div>
             </div>
             <div class="input-div pass">
@@ -50,7 +50,7 @@ include_once('./func/funcoes.php');
                 </div>
                 <div class="div">
                     <h5>Senha</h5>
-                    <input type="password" class="inputForm" placeholder="" required="required" name="senha" id="senha">
+                    <input type="password" class="inputForm text-black" placeholder="" required="required" name="senha" id="senha">
                 </div>
             </div>
             <div id="alertlog" class="alert alert-danger" style="display: none">
@@ -61,7 +61,6 @@ include_once('./func/funcoes.php');
 </div>
 <script>
     const inputs = document.querySelectorAll(".inputForm");
-
 
     function addcl() {
         let parent = this.parentNode.parentNode;
@@ -74,7 +73,6 @@ include_once('./func/funcoes.php');
             parent.classList.remove("focus");
         }
     }
-
 
     inputs.forEach(input => {
         input.addEventListener("focus", addcl);

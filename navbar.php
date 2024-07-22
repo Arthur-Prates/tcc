@@ -18,7 +18,7 @@ if (!empty($_SESSION['idFuncionario'])) {
             <a href="carrinho" class="text-decoration-none text-white margemEntreSacolaEForm">
 
                 <i class="bi bi-cart4 fs-5"></i><span> </span><sup class="qtdDeItensNoCarrinho "
-                                                                           id="qtdDeItensNoCarrinho">
+                                                                   id="qtdDeItensNoCarrinho1">
                     <?php
                     if (isset($_SESSION['pedidoscarrinho'])) {
                         $cont = count($_SESSION['pedidoscarrinho']);
@@ -69,8 +69,8 @@ if (!empty($_SESSION['idFuncionario'])) {
             </ul>
             <a href="carrinho" class="text-decoration-none text-white margemEntreSacolaEForm">
 
-                <i class="bi bi-cart4 fs-5"></i><span> Carrinho</span><sup class="qtdDeItensNoCarrinho"
-                                                                           id="qtdDeItensNoCarrinho">
+                <i class="bi bi-cart4 fs-5"></i>
+                <span> Carrinho</span><sup class="qtdDeItensNoCarrinho" id="qtdDeItensNoCarrinho2">
                     <?php
                     if (isset($_SESSION['pedidoscarrinho'])) {
                         $cont = count($_SESSION['pedidoscarrinho']);
@@ -81,8 +81,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                     ?>
                 </sup>
             </a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Pesquisar EPI" aria-label="Search">
+            <form action="resultado-da-busca" method="get" name="pesquisaNavbarLG" class="d-flex" role="search">
+                <input class="form-control me-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisar EPI" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
@@ -91,15 +91,15 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
+    <div class="offcanvas-header cinza">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAFETECH</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     <div class="offcanvas-body">
         <div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Pesquisar EPI" aria-label="Search">
+            <form action="resultado-da-busca" method="get"  name="pesquisaNavbarSM" class="d-flex" role="search">
+                <input class="form-control me-2" id="pesquisaSM" name="pesquisa" type="search" placeholder="Pesquisar EPI" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
