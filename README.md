@@ -1,3 +1,7 @@
+https://code-with-me.global.jetbrains.com/1fBagkOofGSdngKrdb3hbw#p=PS&fp=AC48C3862BD2D7D4817948C7419A2B8DCA893AC5685D686A28DCAC2937B1779E&newUi=true
+
+https://prod.liveshare.vsengsaas.visualstudio.com/join?BA4F2B07654F1EBF31933873DFA662A8D5C6
+
 <h1 align="center" style="display: inline_block">
 
 Bem vindo ao nosso trabalho de conclusão de curso
