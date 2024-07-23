@@ -10,7 +10,7 @@ if ($_SESSION['idadm']) {
 }
 
 $codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
-$codigoAluguel = str_replace(' ','', $codigoAluguel);
+$codigoAluguel = str_replace(' ', '', $codigoAluguel);
 if (empty($codigoAluguel)) {
     header('location: dashboard.php?error=404');
 }
@@ -55,7 +55,8 @@ if ($contarNao !== 'Vazio') {
 
     }
 } else {
-    header('location: dashboard.php?error=404');
+    header('location: dashboard.php?erro=emprestimo-nao-encontrado');
+
 }
 ?>
 
@@ -68,10 +69,11 @@ if ($contarNao !== 'Vazio') {
             ?>
             <div>
                 <button class="btn btn-sm btn-success" disabled>Fechar Emprestimo</button>
-<!--                <button class="btn btn-sm btn-primary"-->
-<!--                        onclick="devolverEmprestimo('emprestimoDevolvido','--><?php //echo $codigoAluguel ?><!--','N')">-->
-<!--                    Editar-->
-<!--                </button>-->
+                <!--                <button class="btn btn-sm btn-primary"-->
+                <!--                        onclick="devolverEmprestimo('emprestimoDevolvido','-->
+                <?php //echo $codigoAluguel ?><!--','N')">-->
+                <!--                    Editar-->
+                <!--                </button>-->
             </div>
             <?php
         } else {
@@ -137,39 +139,39 @@ if ($contarNao !== 'Vazio') {
             $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
         }
     }
-if($statusAluguel == 'S') {
+    if ($statusAluguel == 'S') {
+        ?>
+        <script>
+            let emprestimo = document.getElementById('fecharEmprestimo');
+            let editar = document.getElementById('editarEmprestimo');
+            if (emprestimo) {
+                emprestimo.hidden = true;
+                emprestimo.disabled = true;
+            }
+            if (editar) {
+                editar.hidden = false;
+                editar.disabled = false;
+            }
+        </script>
+    <?php
+    }else{
     ?>
-    <script>
-        let emprestimo = document.getElementById('fecharEmprestimo');
-        let editar = document.getElementById('editarEmprestimo');
-        if(emprestimo){
-            emprestimo.hidden = true;
-            emprestimo.disabled = true;
-        }
-        if(editar){
-            editar.hidden = false;
-            editar.disabled = false;
-        }
-    </script>
-    <?php
-}else{
-   ?>
-    <script>
-        let emprestimo = document.getElementById('fecharEmprestimo');
-        let editar = document.getElementById('editarEmprestimo');
-        if(emprestimo){
-            emprestimo.hidden = false;
-            emprestimo.disabled = false;
-        }
-        if(editar){
-            editar.hidden = true;
-            editar.disabled = true;
+        <script>
+            let emprestimo = document.getElementById('fecharEmprestimo');
+            let editar = document.getElementById('editarEmprestimo');
+            if (emprestimo) {
+                emprestimo.hidden = false;
+                emprestimo.disabled = false;
+            }
+            if (editar) {
+                editar.hidden = true;
+                editar.disabled = true;
 
-        }
-    </script>
+            }
+        </script>
 
-    <?php
-}
+        <?php
+    }
 
     ?>
     <div class="row">
@@ -303,25 +305,26 @@ if($statusAluguel == 'S') {
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.7.1.js"
-                integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-                integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"
-                integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-                type="module"></script>
-        <script src="../js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"
+            integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+            type="module"></script>
+    <script src="../js/script.js"></script>
 
 
 </body>

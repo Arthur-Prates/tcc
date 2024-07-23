@@ -2,6 +2,7 @@
 include_once('../config/conexao.php');
 include_once('../config/constantes.php');
 include_once('../func/funcoes.php');
+//include_once('listarEpi.php');
 
 if ($_SESSION['idadm']) {
     $idUsuario = $_SESSION['idadm'];
@@ -32,7 +33,6 @@ $listarEmprestimo = 'NAO';
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#ffffff">
-
 </head>
 
 <body>
@@ -40,6 +40,8 @@ $listarEmprestimo = 'NAO';
 include_once('nav.php');
 
 ?>
+
+
 <div class="row">
     <div class="col-2">
 
@@ -52,20 +54,27 @@ include_once('nav.php');
 <div class="">
     <div id='show' class='show'>
         <section class="ondas-box">
-
             <div class="container">
                 <div class="row vai">
                     <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
                         <form action="verificarAluguel.php" method="get">
                             <input type="text" id="emprestimo" name="emprestimo"
                                    class="inputPesquisa text-center w-100  mt-2" placeholder="Código">
-
                     </div>
                     <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2">
                         <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i>
                         </button>
                     </div>
                     </form>
+                    <div class="text-center">
+                        <?php
+                        if (isset($_GET['erro'])){
+                            ?>
+                            <p class="text-danger">Nenhum empréstimo encontrado!</p>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </section>
@@ -197,8 +206,7 @@ include_once('nav.php');
                                     options: {
                                         scales: {
                                             y: {
-                                                beginAtZero: true
-                                            }
+                                                beginAtZero: true                           }
                                         }
                                     }
                                 });
@@ -232,9 +240,8 @@ include_once('nav.php');
                 <div class="modal-body quasebranco  ">
 
                     <div class="mb-3 divModalBody">
-
                         <label for="fotoEpiAdd" class="custum-file-upload">
-                            <div class="icon">
+                            <div class="icon" id="icon">
                                 <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -245,32 +252,28 @@ include_once('nav.php');
                                     </g>
                                 </svg>
                             </div>
-                            <div class="text">
-                                <span>Click to upload image</span>
+                            <div class="text" id="text">
+                                <span>Selecione sua imagem</span>
                             </div>
+                            <img id="preview" src="" alt="Preview da imagem" class="img-fluid">
                             <input type="file" class="form-control" id="fotoEpiAdd" name="fotoEpiAdd">
                         </label>
                     </div>
-<!--                    <div class="mb-3">-->
-<!--                        <input type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd">-->
-<!--                        <label class="input-group-text" for="nomeEpiAdd">Nome do Epi</label>-->
-<!--                    </div>-->
-<!--                    <div class=" mb-3">-->
-<!--                        <input type="text" class="form-control" id="certificadoEpiAdd" name="certificadoEpiAdd"-->
-<!--                                                   maxlength="7" minlength="5">-->
-<!--                        <label class="input-group-text" for="certificadoEpiAdd">Certificado</label>-->
-<!--                    </div>-->
-                    <form class="formField">
-                        <input required="" type="text" />
-                        <span>Placeholder</span>
-                    </form>
-
+                    <div class="formField mb-3">
+                        <input required="" type="text" class="form-control" id="nomeEpiAdd" name="nomeEpiAdd"/>
+                        <span>Nome do Epi</span>
+                    </div>
+                    <div class="formField mb-3">
+                        <input required="" type="text" class="form-control" id="certificadoEpiAdd"
+                               name="certificadoEpiAdd"  maxlength="7" minlength="5"/>
+                        <span>Certificado</span>
+                    </div>
                 </div>
                 <div class="modal-footer quasebranco ">
                     <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
                         Fechar
                     </button>
-                    <button type="submit" class="btn btnPretoNaoPreto btn-sm" id="btnEpiAdd">Cadastrar</button>
+                    <button type="submit" class="btn btnDark btn-dark btn-sm" id="btnEpiAdd">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -281,9 +284,9 @@ include_once('nav.php');
 <!-- Modal edit epi -->
 <div class="modal fade" id="modalEpiEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header ">
+            <div class="modal-header azul">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar EPI</h1>
                 <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
@@ -291,27 +294,27 @@ include_once('nav.php');
                 <div class="modal-body">
                     <input type="hidden" name="idEditEpi" id="idEditEpi">
                     <div class="col-12 text-center mb-2 alturaFotoPreview">
-                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="50%">
+                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="30%">
                     </div>
-                    <div class="input-group mb-3 mt-4">
+
+                    <div class="formField mb-3 mt-4">
                         <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
-                        <label class="input-group-text" for="fotoEpiEdit">Foto</label>
+                        <span>Foto</span>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit">
-                        <label class="input-group-text" for="nomeEpiEdit">Nome do Epi</label>
+                    <div class="formField mb-3">
+                        <input required="" type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit"/>
+                        <span>Nome do Epi</span>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="certificadoEpiEdit" name="certificadoEpiEdit"
-                               maxlength="7" minlength="5">
-                        <label class="input-group-text" for="certificadoEpiEdit">Certificado</label>
+                    <div class="formField mb-3">
+                        <input required=""type="text" class="form-control" id="certificadoEpiEdit" name="certificadoEpiEdit" maxlength="7" minlength="5"/>
+                        <span>Certificado</span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                    <button type="button" class="btn btn-secondary btnCinza btn-sm" data-bs-dismiss="modal"
                             id="btnFecharModalEditEpi">Fechar
                     </button>
-                    <button type="submit" class="btn btn-primary btn-sm" id="btnEpiEdit">Alterar</button>
+                    <button type="submit" class="btn btn-primary btnAzul btn-sm" id="btnEpiEdit">Alterar</button>
                 </div>
             </form>
         </div>
@@ -322,38 +325,58 @@ include_once('nav.php');
 <!-- Modal Add Usuario -->
 <div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Usuario</h1>
             </div>
             <form action="#" method="post" name="frmUsuarioAdd" id="frmUsuarioAdd">
                 <div class="modal-body">
-
-                    <div class="input-group mb-3">
+                    <div class="formField mb-3">
                         <input required="required" type="text" class="form-control" id="nomeUsuarioAdd"
                                name="nomeUsuarioAdd">
-                        <label class="input-group-text" for="nomeUsuarioAdd">Nome</label>
+                        <span>Nome</span>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="formField mb-3">
                         <input required="required" type="text" class="form-control" id="sobrenomeUsuarioAdd"
                                name="sobrenomeUsuarioAdd">
-                        <label class="input-group-text" for="sobrenomeUsuarioAdd">Sobrenome</label>
+                        <span>Sobrenome</span>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="formField mb-3">
                         <input required="required" type="text" class="form-control celular" id="telefoneUsuarioAdd"
                                name="telefoneUsuarioAdd">
-                        <label class="input-group-text" for="telefoneUsuarioAdd">Celular</label>
+                        <span>Celular</span>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="formField mb-3">
                         <input required="required" type="text" class="form-control cpf" id="CPFUsuarioAdd"
                                name="CPFUsuarioAdd">
-                        <label class="input-group-text" for="CPFUsuarioAdd">CPF</label>
+                        <span>CPF</span>
                     </div>
-                    <div class="input-group mb-3">
+<!--                    <div class="input-group mb-3">-->
+<!--                        <input required="required" type="text" class="form-control" id="nomeUsuarioAdd"-->
+<!--                               name="nomeUsuarioAdd">-->
+<!--                        <label class="input-group-text" for="nomeUsuarioAdd">Nome</label>-->
+<!--                    </div>-->
+<!--                    <div class="input-group mb-3">-->
+<!--                        <input required="required" type="text" class="form-control" id="sobrenomeUsuarioAdd"-->
+<!--                               name="sobrenomeUsuarioAdd">-->
+<!--                        <label class="input-group-text" for="sobrenomeUsuarioAdd">Sobrenome</label>-->
+<!--                    </div>-->
+<!--                    <div class="input-group mb-3">-->
+<!--                        <input required="required" type="text" class="form-control celular" id="telefoneUsuarioAdd"-->
+<!--                               name="telefoneUsuarioAdd">-->
+<!--                        <label class="input-group-text" for="telefoneUsuarioAdd">Celular</label>-->
+<!--                    </div>-->
+<!--                    <div class="input-group mb-3">-->
+<!--                        <input required="required" type="text" class="form-control cpf" id="CPFUsuarioAdd"-->
+<!--                               name="CPFUsuarioAdd">-->
+<!--                        <label class="input-group-text" for="CPFUsuarioAdd">CPF</label>-->
+<!--                    </div>-->
+                    <div class="formField mb-3">
                         <input required="required" type="date" class="form-control" id="nascimentoUsuarioAdd"
                                name="nascimentoUsuarioAdd" value='<?php echo Data18AnosAtras() ?>'>
-                        <label class="input-group-text" for="nascimentoUsuarioAdd">Data de Nascimento</label>
+<!--                        <label class="input-group-text" for="nascimentoUsuarioAdd">Data de Nascimento</label>-->
+                        <span>Data de Nascimento</span>
                     </div>
 
                     <div class="input-group mb-3">
@@ -366,10 +389,11 @@ include_once('nav.php');
                         </select>
                         <label class="input-group-text" for="nomeUsuarioAdd">Cargo</label>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="formField mb-3">
                         <input required="required" type="email" class="form-control" id="emailUsuarioAdd"
                                name="emailUsuarioAdd">
-                        <label class="input-group-text" for="emailUsuarioAdd">Email de acesso</label>
+<!--                        <label class="input-group-text" for="emailUsuarioAdd">Email de acesso</label>-->
+                        <span>Email de acesso</span>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="senhaUsuarioAdd" id="btn-senha"
@@ -378,6 +402,7 @@ include_once('nav.php');
                         <input required="required" type="password" class="form-control" id="senhaUsuarioAdd"
                                name="senhaUsuarioAdd">
                         <label class="input-group-text" for="senhaUsuarioAdd">Senha de acesso</label>
+<!--                        <span>Senha de acesso</span>-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -481,7 +506,7 @@ include_once('nav.php');
     </div>
 </div>
 
-<!-- Modal Edit Usuario -->
+<!-- Modal Ver MAIS Usuario -->
 <div class="modal fade" id="modalUsuarioVermais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -561,10 +586,24 @@ include_once('nav.php');
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-
 <script src="../js/script.js"></script>
 
+<script>
+    document.getElementById('fotoEpiAdd').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview').style.display = 'block';
+                document.getElementById('icon').style.display = "none";
+                document.getElementById('text').style.display = "none";
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 
+</script>
 </body>
 
 </html>

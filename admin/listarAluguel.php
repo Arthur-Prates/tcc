@@ -2,17 +2,21 @@
 
 ?>
 <div class="container">
+    <div class="mt-5">
+        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Empréstimo(s)</h1>
+        <button class="btn btn-outline-warning text-black mx-1"  style="float: right" onclick="imprimir('Lista de Empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i></button>
+    </div>
 
-    <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Aluguel(éis)</h1>
-    <div class="overflowTable">
+    <div class="overflowTable" id="tabelaEmprestimo">
         <table class="table table-hover table-bordered border-dark text-center">
             <thead>
-            <tr >
+            <tr>
                 <th scope="col" width="5%">#</th>
                 <th scope="col">Locatário</th>
                 <th scope="col">Código do empréstimo</th>
                 <th scope="col" width="10%">Status</th>
-                <th scope="col" width="10%" >Ações</th>
+                <th scope="col" width="10%" class="no-print">Ações</th>
+
             </tr>
             </thead>
             <tbody>
@@ -30,7 +34,7 @@
                     ?>
                     <tr>
                         <th scope="row"><?php echo $contar ?></th>
-                        <td><?php echo"$nomeUsuario $sobrenome"?></td>
+                        <td><?php echo "$nomeUsuario $sobrenome" ?></td>
                         <td><?php echo $codigoAluguel ?></td>
                         <td><?php
 
@@ -46,7 +50,7 @@
                             <span class="mdi mdi-circle <?php echo $bg ?>"></span>
                             <?php
                             ?></td>
-                        <td>
+                        <td class="no-print">
                             <a href="verificarAluguel.php?emprestimo=<?php echo $codigoAluguel ?>"
                                class="btn btn-sm btn-success">Visualizar</a>
                         </td>
