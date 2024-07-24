@@ -6,13 +6,13 @@ if ($_SESSION['idadm']) {
     $idUsuario = $_SESSION['idadm'];
 } else {
     session_destroy();
-    header('location: index.php?error=404');
+    header('location: inicio?error=404');
 }
 
 $codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 $codigoAluguel = str_replace(' ', '', $codigoAluguel);
 if (empty($codigoAluguel)) {
-    header('location: dashboard.php?error=404');
+    header('location: inicio?error=404');
 }
 $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
 ?>
@@ -55,7 +55,7 @@ if ($contarNao !== 'Vazio') {
 
     }
 } else {
-    header('location: dashboard.php?erro=emprestimo-nao-encontrado');
+    header('location: inicio?erro=emprestimo-nao-encontrado');
 
 }
 ?>

@@ -13,9 +13,9 @@
         </div>
     </div>
     <div class="overflowTable" id="tabelaEpi">
-        <table class="table table-hover table-bordered border-dark rounded-table">
-            <thead>
-            <tr style="width: 10%">
+        <table class="table table-hover table-bordered border-dark rounded-table tabelaEpi">
+            <thead class="table-dark">
+            <tr style="height: 50%">
                 <th scope="col" style="width: 5%;" class="text-center bg-dark text-white">#</th>
                 <th scope="col" style="width: 10%;" class="bg-dark text-white">Foto</th>
                 <th scope="col" style="width: 60%;" class="bg-dark text-white">Epi</th>
