@@ -21,7 +21,6 @@ body {
 
 }
 
-
 .cinza {
     background-color: #272626 !important;
     color: white !important;
@@ -114,6 +113,7 @@ body {
     border: 1px solid #212529;
     color: white;
     font-weight: 500;
+    transition: 0.5s;
 }
 
 .btnDark:hover{
@@ -121,6 +121,7 @@ body {
     border: 1px solid black;
     color: black;
     font-weight: 500;
+    transition: 0.5s;
 }
 
 .btnVerdePoucoNeon{
@@ -585,7 +586,7 @@ section .wave {
     height: 45px;
     background: #272626;
     border-radius: 7px;
-    border: none;
+    border: 2.5px solid #272626;
     padding: 10px 40px;
     line-height: 20px;
     cursor: pointer;

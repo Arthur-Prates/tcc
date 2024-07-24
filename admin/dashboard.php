@@ -56,10 +56,10 @@ include_once('nav.php');
         <section class="ondas-box">
             <div class="container">
                 <div class="row vai">
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10 ">
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                         <form action="verificarAluguel.php" method="get">
                             <input type="text" id="emprestimo" name="emprestimo"
-                                   class="inputPesquisa text-center w-100  mt-2" placeholder="Código">
+                                   class="inputPesquisa text-center w-100 mt-2" placeholder="Código">
                     </div>
                     <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2">
                         <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i>
