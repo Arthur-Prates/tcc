@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/rota.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/rota.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deletarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/deletarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/fetchcarrinho.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/fetchcarrinho.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rota.php" beforeDir="false" afterPath="$PROJECT_DIR$/rota.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721818806501</updated>
-      <workItem from="1721818807946" duration="2773000" />
+      <workItem from="1721818807946" duration="5484000" />
     </task>
     <servers />
   </component>
