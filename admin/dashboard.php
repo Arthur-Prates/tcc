@@ -83,7 +83,7 @@ include_once('nav.php');
         <section class="conteudo">
             <div class="row d-flex justify-content-between align-items-center ">
                 <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class=" d-flex justify-content-center align-items-center text-white">
+                    <div class="d-flex justify-content-center align-items-center text-white">
                         <canvas id="myChart"></canvas>
                     </div>
 
@@ -134,7 +134,6 @@ include_once('nav.php');
 
 
                     </script>
-
                 </div>
 
                 <div class="col-lg-4 col-md-12 col-sm-12">
@@ -143,8 +142,7 @@ include_once('nav.php');
                     foreach ($verificarVazio as $chave => $valor) {
                         if (!empty($valor)) {
                             ?>
-
-                            <div class=" d-flex justify-content-center align-items-center ">
+                            <div class="d-flex justify-content-center align-items-center">
                                 <canvas id="myChart2"></canvas>
                             </div>
                             <script>
@@ -167,7 +165,7 @@ include_once('nav.php');
                                             ?>
                                         ],
                                         datasets: [{
-                                            label: 'Quantidade de Aluguéis feitos',
+                                            label: 'Quantidade de empréstimos feitos',
 
                                             data: [
                                                 <?php
@@ -206,7 +204,8 @@ include_once('nav.php');
                                     options: {
                                         scales: {
                                             y: {
-                                                beginAtZero: true                           }
+                                                beginAtZero: true
+                                            }
                                         }
                                     }
                                 });
