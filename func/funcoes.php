@@ -1260,7 +1260,7 @@ function valoresGraficoQuantidadeEpi($tipo)
     $indisponivel = $quantidade - $disponivel;
 
     if ($tipo == 'disponivel') {
-        return $quantidade;
+        return $disponivel;
     } else if ($tipo == 'indisponivel') {
 
         return $indisponivel;
