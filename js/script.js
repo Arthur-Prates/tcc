@@ -327,7 +327,6 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
 
     idVerimg.src = '../img/produtos/' + visualizaImg;
 
-
     idFoto.addEventListener('change', function (event) {
         let reader = new FileReader();
         reader.onload = () => {
@@ -522,6 +521,7 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
                         carregarConteudo('listarUsuario')
                         formDados.removeEventListener('submit', submitHandler);
                     }
+                    formDados.reset()
                     ModalInstancia.hide();
                 })
                 .catch(error => {
@@ -532,6 +532,7 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
         const btnFecharModalAddUsuario = document.getElementById('btnFecharModalAddUsuario');
         const btnFecharModalEditUsuario = document.getElementById('btnFecharModalEditUsuario');
         const btnFecharModalVermaisUsuario = document.getElementById('btnFecharModalVermaisUsuario');
+        const btnUsuarioAdd = document.getElementById('btnUsuarioAdd');
         if (btnFecharModalAddUsuario) {
             btnFecharModalAddUsuario.addEventListener('click', function () {
                 alertaSenha.style.display = 'none';
@@ -561,8 +562,8 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             console.error('ID do botão de fechar a modal está errado!');
         }
 
-
         formDados.addEventListener('submit', submitHandler);
+
     } else {
 
         ModalInstancia.hide();
@@ -798,11 +799,7 @@ function postCarrinho(produto) {
             console.log(data)
             attCarrinho(data.qtd)
             if (data.success) {
-                Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
-                    icon: "success"
-                });
+                alertSuccess(`${data.message}`,'#008f34')
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -827,11 +824,7 @@ function aumentarQuantidade(produto) {
         .then(data => {
             // console.log(data)
             if (data.success) {
-                Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
-                    icon: "success"
-                });
+                alertSuccess(`${data.message}`,'#008f34')
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -856,13 +849,9 @@ function diminuirQuantidade(produto) {
         .then(response => response.json())
         .then(data => {
             // console.log(data)
-
             if (data.success) {
-                Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
-                    icon: "success"
-                });
+                alertSuccess(`${data.message}`,'#008f34')
+
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -1213,4 +1202,53 @@ function devolverEmprestimo(controle, codAluguel, valor) {
             console.error('Erro na requisição:', error);
         });
 }
+function getdataFomartada() {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1; // Janeiro é 0
+    let year = date.getFullYear();
 
+    if (day < 10) {
+        day = '0' + day;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+
+    return day + '/' + month + '/' + year;
+}
+function imprimir(nomeTabela, tabela) {
+    const conteudo = document.getElementById(tabela).innerHTML;
+
+    let estilo = "<style>";
+    estilo += "table {width: 100%; font: 20px Calibri;}";
+    estilo += "th, td {border: solid 2px #000; border-collapse: collapse; padding: 4px 8px; text-align: center;}";
+    estilo += "button {display:none !important;}";
+    estilo += "a {display:none !important;}";
+    estilo += ".no-print {display: none !important;}";
+    estilo += "@media print { @page { size: landscape; margin: none; }}";
+    estilo += "</style>";
+
+    const win = window.open('', '_self', 'height=700,width=1000');
+
+    win.document.write('<!doctype html>');
+    win.document.write('<head>');
+    win.document.write('<title>Imprimir resultado</title>');
+    win.document.write(estilo);
+    win.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">');
+    win.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">');
+    win.document.write('<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">');
+    win.document.write('<link rel="stylesheet" href="../css/style.css">');
+    win.document.write('</head>');
+    win.document.write('<body>');
+    win.document.write('<h3>' + nomeTabela + '</h3>');
+    win.document.write(conteudo);
+    win.document.write('Dados imprimidos Em '+getdataFomartada() + '. <br>');
+    win.document.write('© SafeTech ' + new Date().getFullYear() + ' Todos os direitos reservados.');
+    win.document.write('</body>');
+    win.document.write('</html>');
+    win.document.write('<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>');
+    win.document.write('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>');
+
+    win.print();
+}

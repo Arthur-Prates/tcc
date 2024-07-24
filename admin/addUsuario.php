@@ -19,6 +19,12 @@ if (isset($dados) && !empty($dados)) {
     $senhaCrip = criarSenhaHash("$senha");
     $matricula = random_int(1000000, 99999999);
 
+    $verficarEmail = listarItemExpecifico('*','usuario','email',"$email");
+    if($verficarEmail != 'Vazio'){
+        echo json_encode(['success' => false, 'message' => "Email em uso!"]);
+    }else{
+
+
     $retornoInsert = insert10Item('usuario', 'nomeUsuario, sobrenome,numero, cpf, nascimento, matricula, cargo, email, senha, cadastro', "$nome", "$sobrenome", "$celular","$CPF", "$nascimento", "$matricula", "$cargo", "$email", "$senhaCrip", DATATIMEATUAL);
     if ($retornoInsert > 0) {
         echo json_encode(['success' => true, 'message' => "Usuario cadastrado com sucesso"]);
@@ -26,6 +32,7 @@ if (isset($dados) && !empty($dados)) {
         echo json_encode(['success' => false, 'message' => "Usuario não cadastrado!"]);
     }
 
+    }
 } else {
     echo json_encode(['success' => false, 'message' => "Erro, nenhum dado encontrado!"]);
 }

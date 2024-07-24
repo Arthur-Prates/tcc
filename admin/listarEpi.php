@@ -2,23 +2,25 @@
 
 ?>
 <div class="container">
-    <div class="teste mt-5">
+    <div class="mt-5 d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-        <button type="button" class="btn btn-dark mb-3" style="float: right"
-                onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
-            Cadastrar
-        </button>
-
+        <div>
+            <button class="btn btn-outline-warning text-black mx-1"  style="float: right" onclick="imprimir('Lista de Epi(s) do Sistema','tabelaEpi')"><i class="bi bi-printer"></i></button>
+            <button type="button" class="btn btn-dark mb-3 " style="float: right"
+                    onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
+                Cadastrar
+            </button>
+        </div>
     </div>
-    <div class="overflowTable">
-        <table class="table table-hover table-bordered border-dark">
+    <div class="overflowTable" id="tabelaEpi">
+        <table class="table table-hover table-bordered border-dark rounded-table">
             <thead>
-            <tr>
+            <tr style="width: 10%">
                 <th scope="col" style="width: 5%;" class="text-center bg-dark text-white">#</th>
                 <th scope="col" style="width: 10%;" class="bg-dark text-white">Foto</th>
                 <th scope="col" style="width: 60%;" class="bg-dark text-white">Epi</th>
                 <th scope="col" style="width: 15%;" class="bg-dark text-white">Certificado</th>
-                <th scope="col" style="width: 10%;" class="bg-dark text-white">Ação</th>
+                <th scope="col" style="width: 10%;" class="bg-dark text-white no-print">Ação</th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +44,7 @@
                         </td>
                         <td class=" align-items-center "><?php echo $nomeEpi ?></td>
                         <td class=""><?php echo $certificado ?></td>
-                        <td class="">
+                        <td class="no-print">
                             <button type="button" class="btn btn-primary"
                                     onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto ?>','<?php echo $idepi ?>','idEditEpi','<?php echo $nomeEpi ?>','nomeEpiEdit','<?php echo $certificado; ?>','certificadoEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')">
                                 <span class="mdi mdi-file-document-edit-outline"></span></button>

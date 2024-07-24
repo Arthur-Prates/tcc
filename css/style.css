@@ -21,7 +21,6 @@ body {
 
 }
 
-
 .cinza {
     background-color: #272626 !important;
     color: white !important;
@@ -110,7 +109,11 @@ body {
 }
 
 .btnDark{
-
+    background: #212529;
+    border: 1px solid #212529;
+    color: white;
+    font-weight: 500;
+    transition: 0.5s;
 }
 
 .btnDark:hover{
@@ -118,18 +121,20 @@ body {
     border: 1px solid black;
     color: black;
     font-weight: 500;
+    transition: 0.5s;
 }
 
 .btnVerdePoucoNeon{
     transition: .5s;
     background-color: #38d39f;!important;
     border: none;
+    color: white;
 }
 
 .btnVerdePoucoNeon:hover{
     background: transparent;
     border: 1px solid #38d39f;
-    color: #38d39f;
+    color: #38d39f; !important;
     font-weight: 600;
 }
 
@@ -581,7 +586,7 @@ section .wave {
     height: 45px;
     background: #272626;
     border-radius: 7px;
-    border: none;
+    border: 2.5px solid #272626;
     padding: 10px 40px;
     line-height: 20px;
     cursor: pointer;
@@ -714,12 +719,6 @@ section.ondas-box {
     margin-top: 50px;
 }
 
-.teste{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 /*AREA DA MODAL*/
 .modal-header {
     display: flex;
@@ -753,11 +752,10 @@ section.ondas-box {
     width: 100%;
 }
 
-
 .custum-file-upload {
     display: flex;
-    height: 200px;
-    width: 500px;
+    min-height: 200px;
+    min-width: 500px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -770,6 +768,7 @@ section.ondas-box {
     box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.48);
     position: relative;
 }
+
 
 .custum-file-upload .icon {
     display: flex;
@@ -805,6 +804,7 @@ section.ondas-box {
 }
 
 .formField input {
+    width: 100%;
     padding: 20px 15px 10px 15px;
     outline: none;
     border: none;
@@ -840,4 +840,20 @@ section.ondas-box {
 .formField input:valid + span {
     transform: translateY(-12px) translateX(-5px) scale(0.95);
     transition: 0.3s ease-in-out;
+}
+
+#preview {
+    margin-top: 20px;
+    max-width: 100%;
+    max-height: 300px;
+    display: none; /* Ocultar inicialmente */
+}
+.hidden {
+    display: none;
+}
+
+.rounded-table {
+    border: 1px solid #000;
+    border-radius: 5px;
+    overflow: hidden;
 }

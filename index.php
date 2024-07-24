@@ -18,7 +18,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Área Principal</title>
+    <title>Área Principal - Safetech</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -62,7 +62,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                             <li class="list-group-item">Quantidade disponível: <?php echo $estoque ?></li>
                         </ul>
                         <div class="card-body text-center">
-                            <button class="btn btn-sm btn-success" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
+                            <button class="btn btn-sm btnVerdePoucoNeon" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
                                 ao carrinho
                             </button>
                         </div>
