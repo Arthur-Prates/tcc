@@ -10,9 +10,9 @@ include_once("./func/funcoes.php");
 $url = ltrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $router = explode('/', $url);
 
-if ($router[1] === 'admin') {
+if ($router[2] === 'admin') {
     echo $router[2];
-    switch ($router[2]) {
+    switch ($router[3]) {
         case 'admin/inicio':
             include_once("./admin/dashboard.php");
             break;
@@ -24,7 +24,7 @@ if ($router[1] === 'admin') {
             break;
     }
 }else{
-    switch ($router[1]) {
+    switch ($router[2]) {
         case 'pagina-inicial':
             include_once('index.php');
             break;

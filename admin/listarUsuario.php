@@ -6,7 +6,7 @@
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
         <div class="d-flex align-items-center">
             <button class="btn btn-outline-warning text-black mx-1 " onclick="imprimir('Lista de Usuarios do Sistema','tabelaUser')"><i class="bi bi-printer"></i></button>
-            <button type="button" class="btn mb-3 btnDark"
+            <button type="button" class="btn btnDark"
                     onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'frmUsuarioAdd')">
                 Cadastrar
             </button>

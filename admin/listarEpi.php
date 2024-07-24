@@ -2,14 +2,15 @@
 
 ?>
 <div class="container">
-    <div class="mt-5">
+    <div class="mt-5 d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-        <button class="btn btn-outline-warning text-black mx-1"  style="float: right" onclick="imprimir('Lista de Epi(s) do Sistema','tabelaEpi')"><i class="bi bi-printer"></i></button>
-        <button type="button" class="btn btn-dark mb-3 " style="float: right"
-                onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
-            Cadastrar
-        </button>
-
+        <div>
+            <button class="btn btn-outline-warning text-black mx-1"  style="float: right" onclick="imprimir('Lista de Epi(s) do Sistema','tabelaEpi')"><i class="bi bi-printer"></i></button>
+            <button type="button" class="btn btn-dark mb-3 " style="float: right"
+                    onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
+                Cadastrar
+            </button>
+        </div>
     </div>
     <div class="overflowTable" id="tabelaEpi">
         <table class="table table-hover table-bordered border-dark rounded-table">
