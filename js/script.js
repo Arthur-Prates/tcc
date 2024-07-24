@@ -1252,3 +1252,16 @@ function imprimir(nomeTabela, tabela) {
 
     win.print();
 }
+document.getElementById('fotoEpiAdd').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('preview').style.display = 'block';
+            document.getElementById('icon').style.display = "none";
+            document.getElementById('text').style.display = "none";
+        }
+        reader.readAsDataURL(file);
+    }
+});

@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteBase /tcc/admin/
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ rotaAdmin.php?url=$1 [QSA,L]
