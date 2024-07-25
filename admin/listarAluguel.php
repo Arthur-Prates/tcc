@@ -22,23 +22,23 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaAluguel = executaQuery("SELECT * FROM aluguel a INNER JOIN usuario u ON a.idusuario = u.idusuario ORDER BY a.idaluguel DESC ");
-            if ($listaAluguel) {
-                foreach ($listaAluguel as $itemAluguel) {
-                    $idaluguel = $itemAluguel->idaluguel;
-                    $idusuario = $itemAluguel->idusuario;
-                    $nomeUsuario = $itemAluguel->nomeUsuario;
-                    $sobrenome = $itemAluguel->sobrenome;
-                    $codigoAluguel = $itemAluguel->codigoAluguel;
-                    $statusAluguel = $itemAluguel->devolvido;
+            $listaEmprestimo = executaQuery("SELECT * FROM emprestimo a INNER JOIN usuario u ON a.idusuario = u.idusuario ORDER BY a.idemprestimo DESC ");
+            if ($listaEmprestimo) {
+                foreach ($listaEmprestimo as $itemEmprestimo) {
+                    $idemprestimo = $itemEmprestimo->idemprestimo;
+                    $idusuario = $itemEmprestimo->idusuario;
+                    $nomeUsuario = $itemEmprestimo->nomeUsuario;
+                    $sobrenome = $itemEmprestimo->sobrenome;
+                    $codigoEmprestimo = $itemEmprestimo->codigoEmprestimo;
+                    $statusEmprestimo = $itemEmprestimo->devolvido;
                     ?>
                     <tr>
                         <th scope="row"><?php echo $contar ?></th>
                         <td><?php echo "$nomeUsuario $sobrenome" ?></td>
-                        <td><?php echo $codigoAluguel ?></td>
+                        <td><?php echo $codigoEmprestimo ?></td>
                         <td><?php
 
-                            if ($statusAluguel == 'S') {
+                            if ($statusEmprestimo == 'S') {
                                 $statusEmprestimo = 'Devolvido';
                                 $bg = 'text-danger';
                             } else {
@@ -51,7 +51,7 @@
                             <?php
                             ?></td>
                         <td class="no-print">
-                            <a href="verificarAluguel.php?emprestimo=<?php echo $codigoAluguel ?>"
+                            <a href="verificarAluguel.php?emprestimo=<?php echo $codigoEmprestimo ?>"
                                class="btn btn-sm btn-success">Visualizar</a>
                         </td>
                     </tr>
@@ -62,7 +62,7 @@
                 ?>
                 <tr>
                     <td colspan="4" class="text-center">
-                        <h4>Nenhum Aluguel cadastrado no banco</h4>
+                        <h4>Nenhum Emprestimo cadastrado no banco</h4>
                     </td>
                 </tr>
                 <?php

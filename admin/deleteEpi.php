@@ -6,15 +6,14 @@ include_once("../func/funcoes.php");
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$a = print_r($dados, true);
+//$a = print_r($dados, true);
 
-//echo json_encode(['success' => false, 'message' => "$a"]);
 
 if (isset($dados) && !empty($dados)) {
     $id = isset($dados['idDelete']) ? addslashes($dados['idDelete']) : '';
 
-
     $verificarVazio = listarItemExpecifico('*', 'estoque', 'idepi', "$id");
+echo json_encode(['success' => false, 'message' => "$verificarVazio"]);
 
     if ($verificarVazio !== 'Vazio'){
         foreach ($verificarVazio as $item) {
@@ -32,7 +31,6 @@ if (isset($dados) && !empty($dados)) {
             echo json_encode(['success' => false, 'message' => "Epi não deletado!"]);
         }
     }
-
 
 }else {
     echo json_encode(['success' => false, 'message' => "Erro, nenhum dado encontrado!"]);

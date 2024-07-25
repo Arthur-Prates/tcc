@@ -20,12 +20,17 @@ if (isset($dados) && !empty($dados)) {
             return;
         }
 
+        $listaPedidos = listarItemExpecifico('*','produtoemprestimo','idepi',$id);
+        if ($listaPedidos !== 'Vazio'){
+            echo json_encode(['success' => false, 'message' => "Este epi não consta no estoque!"]);
+            return;
+        }
+
         if ($disponivel == '0') {
             $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel', "$quantidade", "$quantidade", 'idepi', "$id");
         } else {
             $retornoUpdate = alterar1Item('estoque', 'quantidade', "$quantidade", 'idepi', "$id");
         }
-
 
         if ($retornoUpdate > 0) {
             echo json_encode(['success' => true, 'message' => "Estoque do Epi alterado com sucesso!"]);

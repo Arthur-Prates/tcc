@@ -97,11 +97,11 @@
                 <div class="card card-body cardNavbarAdminSm">
                     <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEpi')">EPI'S</button>
                     <hr>
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAluguel')">Aluguel</button>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAluguel')">Empréstimos</button>
                     <hr>
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarUsuario')">Usuário</button>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarUsuario')">Usuários</button>
                     <hr>
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Usuário</button>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Estoque</button>
                 </div>
             </div>
             <?php

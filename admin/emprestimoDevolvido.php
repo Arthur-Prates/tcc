@@ -6,15 +6,14 @@ include_once("../func/funcoes.php");
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$a = print_r($dados, true);
-
-//echo json_encode(['success' => false, 'message' => "$a"]);
+//echo json_encode($retornoUpdate);
+//echo json_encode($dados);
 
 if (isset($dados) && !empty($dados)) {
-    $codAluguel = isset($dados['codAluguel']) ? addslashes($dados['codAluguel']) : '';
+    $codEmprestimo = isset($dados['codEmprestimo']) ? addslashes($dados['codEmprestimo']) : '';
     $valor = isset($dados['valor']) ? addslashes($dados['valor']) : '';
 
-    $retornoUpdate = alterar1Item('aluguel', 'devolvido', "$valor",  'codigoAluguel', $codAluguel);
+    $retornoUpdate = alterar1Item('emprestimo', 'devolvido', "$valor",  'codigoEmprestimo', $codEmprestimo);
     if ($valor == 'S') {
         if ($retornoUpdate > 0) {
             echo json_encode(['success' => true, 'message' => "O empréstimo foi devolvido com sucesso"]);

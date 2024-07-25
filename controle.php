@@ -9,16 +9,16 @@ $controle = filter_input(INPUT_POST, 'controle', FILTER_SANITIZE_STRING);
 if (!empty($controle) && isset($controle)) {
     switch ($controle) {
         case 'addAluguel':
-            include_once('addAluguel.php');
+            include_once('addEmprestimo.php');
             break;
         case 'limparCarrinho':
             include_once('limparCarrinho.php');
             break;
         case 'listarAluguel':
-            include_once('aluguel.php');
+            include_once('emprestimo.php');
             break;
         case 'visualizarAluguel':
-            include_once('visualizarAluguel.php');
+            include_once('visualizarEmprestimo.php');
             break;
         case 'deletarAluguel':
             include_once('deletarAluguel.php');
