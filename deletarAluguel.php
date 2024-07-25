@@ -12,9 +12,9 @@ if (isset($dados) && !empty($dados)) {
     $retornoDelete = deletarCadastro('aluguel', 'idaluguel', "$idAluguel");
 
     if ($retornoDelete) {
-        echo json_encode(['success' => true, 'message' => "Empréstimo deletado com sucesso!"]);
+        echo json_encode(['success' => true, 'message' => "Aluguel deletado com sucesso!"]);
     } else {
-        echo json_encode(['success' => false, 'message' => "Empréstimo não deletado!"]);
+        echo json_encode(['success' => false, 'message' => "Aluguel não deletado!"]);
     }
 
 }
