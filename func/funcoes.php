@@ -270,6 +270,29 @@ function listarTabelaLeftJoinExpecifica($campos, $tabela1, $tabela2, $id1, $id2,
     $conn = null;
 }
 
+function listarTabelaOrdenadaLimite($campos, $tabela1, $campoOrdem, $tipoOrdem, $limite)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 ORDER BY $campoOrdem $tipoOrdem LIMIT $limite");
+//        $sqlLista->bindValue(1, $limite, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $sqlLista;
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
+
 function listarTabelaLeftJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, $campoOrdem, $tipoOrdem)
 {
     $conn = conectar();
