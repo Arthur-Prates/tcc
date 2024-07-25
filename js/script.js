@@ -672,6 +672,77 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
     }
 }
 
+function abrirModalAlterarEstoque(IDid, INPid, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`);
+    const botoes = document.getElementById(`${botao}`);
+    const modalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
+
+    if (!formDados || !botoes || !modalInstancia) {
+        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
+        return;
+    }
+
+    const INPidi = document.getElementById(`${INPid}`)
+    if (IDid !== 'nao') {
+        INPidi.value = IDid
+    }
+
+    if (abrirModal === 'A') {
+        modalInstancia.show();
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+            const form = event.target;
+            const formData = new FormData(form);
+            formData.append('controle', addEditDel);
+
+            fetch('controle.php', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        carregarConteudo('listarEstoque')
+                        Swal.fire({
+                            title: data.message,
+                            icon: "success"
+                        });
+                        botoes.disabled = false;
+                        modalInstancia.hide();
+                        form.reset();
+                        formDados.removeEventListener('submit', submitHandler);
+                    } else {
+                        Swal.fire({
+                            title: data.message,
+                            icon: "error"
+                        });
+                        formDados.removeEventListener('submit', submitHandler);
+                        botoes.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+        };
+
+        const btnFecharModalEstoque = document.getElementById('btnFecharModalEditEstoque');
+        if (btnFecharModalEstoque) {
+            btnFecharModalEstoque.addEventListener('click', function () {
+                modalInstancia.hide();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+
+        formDados.addEventListener('submit', submitHandler);
+    } else {
+        modalInstancia.hide();
+    }
+}
+
 
 function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`);
@@ -799,7 +870,7 @@ function postCarrinho(produto) {
             console.log(data)
             attCarrinho(data.qtd)
             if (data.success) {
-                alertSuccess(`${data.message}`,'#008f34')
+                alertSuccess(`${data.message}`, '#008f34')
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -824,7 +895,7 @@ function aumentarQuantidade(produto) {
         .then(data => {
             // console.log(data)
             if (data.success) {
-                alertSuccess(`${data.message}`,'#008f34')
+                alertSuccess(`${data.message}`, '#008f34')
             } else {
                 Swal.fire({
                     title: `${data.message}`,
@@ -850,7 +921,7 @@ function diminuirQuantidade(produto) {
         .then(data => {
             // console.log(data)
             if (data.success) {
-                alertSuccess(`${data.message}`,'#008f34')
+                alertSuccess(`${data.message}`, '#008f34')
 
             } else {
                 Swal.fire({
@@ -1202,6 +1273,7 @@ function devolverEmprestimo(controle, codAluguel, valor) {
             console.error('Erro na requisição:', error);
         });
 }
+
 function getdataFomartada() {
     const date = new Date();
     let day = date.getDate();
@@ -1217,6 +1289,7 @@ function getdataFomartada() {
 
     return day + '/' + month + '/' + year;
 }
+
 function imprimir(nomeTabela, tabela) {
     const conteudo = document.getElementById(tabela).innerHTML;
 
@@ -1243,7 +1316,7 @@ function imprimir(nomeTabela, tabela) {
     win.document.write('<body>');
     win.document.write('<h3>' + nomeTabela + '</h3>');
     win.document.write(conteudo);
-    win.document.write('Dados imprimidos Em '+getdataFomartada() + '. <br>');
+    win.document.write('Dados imprimidos Em ' + getdataFomartada() + '. <br>');
     win.document.write('© SafeTech ' + new Date().getFullYear() + ' Todos os direitos reservados.');
     win.document.write('</body>');
     win.document.write('</html>');
@@ -1252,3 +1325,17 @@ function imprimir(nomeTabela, tabela) {
 
     win.print();
 }
+
+document.getElementById('fotoEpiAdd').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('preview').style.display = 'block';
+            document.getElementById('icon').style.display = "none";
+            document.getElementById('text').style.display = "none";
+        }
+        reader.readAsDataURL(file);
+    }
+});

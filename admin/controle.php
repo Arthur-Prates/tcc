@@ -9,40 +9,50 @@ $controle = filter_input(INPUT_POST, 'controle', FILTER_SANITIZE_STRING);
 
 if (!empty($controle) && isset($controle)) {
     switch ($controle) {
+        case 'listarEstoque':
+            include_once('listarEstoque.php');
+            break;
+        case 'editEstoque':
+            include_once('editEstoque.php');
+            break;
 
         case 'listarEpi':
-            include_once './listarEpi.php';
+            include_once('listarEpi.php');
             break;
         case 'addEpi':
-            include_once 'addEpi.php';
+            include_once('addEpi.php');
             break;
         case 'editEpi':
-            include_once 'editEpi.php';
-            break;
-        case 'listarAluguel':
-            include_once './listarAluguel.php';
+            include_once('editEpi.php');
             break;
         case 'deleteEpi':
-            include_once './deleteEpi.php';
-            break;
-        case 'listarUsuario':
-            include_once './listarUsuario.php';
-            break;
-            case 'addUsuario':
-            include_once './addUsuario.php';
-            break;
-        case 'editUsuario':
-            include_once './editUsuario.php';
-            break;
-        case 'deleteUsuario':
-            include_once './deleteUsuario.php';
+            include_once('deleteEpi.php');
             break;
         case 'devolverEpi':
-            include_once 'devolverEpi.php';
+            include_once('devolverEpi.php');
+            break;
+
+        case 'listarAluguel':
+            include_once('listarAluguel.php');
             break;
         case 'emprestimoDevolvido':
-            include_once 'emprestimoDevolvido.php';
+            include_once('emprestimoDevolvido.php');
             break;
+
+        case 'listarUsuario':
+            include_once('listarUsuario.php');
+            break;
+        case 'addUsuario':
+            include_once('addUsuario.php');
+            break;
+        case 'editUsuario':
+            include_once('editUsuario.php');
+            break;
+        case 'deleteUsuario':
+            include_once('deleteUsuario.php');
+            break;
+
+
     }
 } else {
     ?>

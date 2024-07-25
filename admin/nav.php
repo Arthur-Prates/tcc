@@ -1,13 +1,13 @@
 
 <nav class="navbar navbar-expand-lg cinza">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" href="dashboard.php"><b>SAFETECH</b></a>
+        <a class="navbar-brand text-white" href="inicio"><b>SAFETECH</b></a>
         <!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"-->
         <!--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
         <!--            <span class="navbar-toggler-icon"></span>-->
         <!--        </button>-->
         <div class="navbar-toggler">
-            <a href="logout.php" class="btn btn-sm btn-danger margemEntreSacolaEForm">
+            <a href="sair" class="btn btn-sm btn-danger margemEntreSacolaEForm">
                 <i class="bi bi-door-open"></i> Sair
             </a>
             <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas"
@@ -19,35 +19,50 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="page" href="dashboard.php">Home</a>
+                    <a class="nav-link text-white" aria-current="page" href="inicio">Home</a>
                 </li>
                 <?php
                 if ($listarEmprestimo !== 'SIM') {
                     ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                        <button class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             Menu
-                        </a>
+                        </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" onclick="carregarConteudo('listarEpi')">EPI'S</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#"
-                                   onclick="carregarConteudo('listarAluguel')">Aluguel</a>
+                            <li><button class="dropdown-item" onclick="carregarConteudo('listarEpi')">
+                                    EPI'S
+                                </button>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#"
-                                   onclick="carregarConteudo('listarUsuario')">Usuário</a>
+                            <li>
+                                <button class="dropdown-item" onclick="carregarConteudo('listarAluguel')">
+                                    Empréstimos
+                                </button>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <button class="dropdown-item" onclick="carregarConteudo('listarUsuario')">
+                                    Usuário
+                                </button>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <button class="dropdown-item" onclick="carregarConteudo('listarEstoque')">
+                                    Estoque
+                                </button>
                             </li>
                         </ul>
                     </li>
                 <?php } ?>
             </ul>
-            <a href="logout.php" class="btn btn-sm btn-danger btnVermelho margemEntreSacolaEForm">
+            <a href="sair" class="btn btn-sm btn-danger btnVermelho margemEntreSacolaEForm">
                 <i class="bi bi-door-open"></i> Sair
             </a>
 
@@ -67,7 +82,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <a class="nav-link active" href="dashboard.php">Home</a>
+        <a class="nav-link active" href="inicio">Home</a>
         <hr>
         <?php
         if ($listarEmprestimo !== 'SIM') {
@@ -80,11 +95,13 @@
 
             <div class="collapse" id="collapseExample">
                 <div class="card card-body cardNavbarAdminSm">
-                    <a class="linkNavbarAdminSM" href="#" onclick="carregarConteudo('listarEpi')">EPI'S</a>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEpi')">EPI'S</button>
                     <hr>
-                    <a class="linkNavbarAdminSM" href="#" onclick="carregarConteudo('listarAluguel')">Aluguel</a>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAluguel')">Aluguel</button>
                     <hr>
-                    <a class="linkNavbarAdminSM" href="#" onclick="carregarConteudo('listarUsuario')">Usuário</a>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarUsuario')">Usuário</button>
+                    <hr>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Usuário</button>
                 </div>
             </div>
             <?php

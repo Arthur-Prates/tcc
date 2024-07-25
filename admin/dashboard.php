@@ -8,7 +8,7 @@ if ($_SESSION['idadm']) {
     $idUsuario = $_SESSION['idadm'];
 } else {
     session_destroy();
-    header('location: index.php?error=404');
+    header('location: login?error=404');
 }
 
 
@@ -33,6 +33,7 @@ $listarEmprestimo = 'NAO';
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#ffffff">
+
 </head>
 
 <body>
@@ -57,9 +58,9 @@ include_once('nav.php');
             <div class="container">
                 <div class="row vai">
                     <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <form action="verificarAluguel.php" method="get">
+                        <form action="visualizar-emprestimo" method="get">
                             <input type="text" id="emprestimo" name="emprestimo"
-                                   class="inputPesquisa text-center w-100 mt-2" placeholder="Código">
+                                   class="inputPesquisa text-center w-100 mt-2 text-dark" placeholder="Código">
                     </div>
                     <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2">
                         <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i>
@@ -68,7 +69,7 @@ include_once('nav.php');
                     </form>
                     <div class="text-center">
                         <?php
-                        if (isset($_GET['erro'])){
+                        if (isset($_GET['erro'])) {
                             ?>
                             <p class="text-danger">Nenhum empréstimo encontrado!</p>
                             <?php
@@ -264,7 +265,7 @@ include_once('nav.php');
                     </div>
                     <div class="formField mb-3">
                         <input required="" type="text" class="form-control" id="certificadoEpiAdd"
-                               name="certificadoEpiAdd"  maxlength="7" minlength="5"/>
+                               name="certificadoEpiAdd" maxlength="7" minlength="5"/>
                         <span>Certificado</span>
                     </div>
                 </div>
@@ -305,7 +306,8 @@ include_once('nav.php');
                         <span>Nome do Epi</span>
                     </div>
                     <div class="formField mb-3">
-                        <input required=""type="text" class="form-control" id="certificadoEpiEdit" name="certificadoEpiEdit" maxlength="7" minlength="5"/>
+                        <input required="" type="text" class="form-control" id="certificadoEpiEdit"
+                               name="certificadoEpiEdit" maxlength="7" minlength="5"/>
                         <span>Certificado</span>
                     </div>
                 </div>
@@ -351,30 +353,10 @@ include_once('nav.php');
                                name="CPFUsuarioAdd">
                         <span>CPF</span>
                     </div>
-<!--                    <div class="input-group mb-3">-->
-<!--                        <input required="required" type="text" class="form-control" id="nomeUsuarioAdd"-->
-<!--                               name="nomeUsuarioAdd">-->
-<!--                        <label class="input-group-text" for="nomeUsuarioAdd">Nome</label>-->
-<!--                    </div>-->
-<!--                    <div class="input-group mb-3">-->
-<!--                        <input required="required" type="text" class="form-control" id="sobrenomeUsuarioAdd"-->
-<!--                               name="sobrenomeUsuarioAdd">-->
-<!--                        <label class="input-group-text" for="sobrenomeUsuarioAdd">Sobrenome</label>-->
-<!--                    </div>-->
-<!--                    <div class="input-group mb-3">-->
-<!--                        <input required="required" type="text" class="form-control celular" id="telefoneUsuarioAdd"-->
-<!--                               name="telefoneUsuarioAdd">-->
-<!--                        <label class="input-group-text" for="telefoneUsuarioAdd">Celular</label>-->
-<!--                    </div>-->
-<!--                    <div class="input-group mb-3">-->
-<!--                        <input required="required" type="text" class="form-control cpf" id="CPFUsuarioAdd"-->
-<!--                               name="CPFUsuarioAdd">-->
-<!--                        <label class="input-group-text" for="CPFUsuarioAdd">CPF</label>-->
-<!--                    </div>-->
                     <div class="formField mb-3">
                         <input required="required" type="date" class="form-control" id="nascimentoUsuarioAdd"
                                name="nascimentoUsuarioAdd" value='<?php echo Data18AnosAtras() ?>'>
-<!--                        <label class="input-group-text" for="nascimentoUsuarioAdd">Data de Nascimento</label>-->
+                        <!--                        <label class="input-group-text" for="nascimentoUsuarioAdd">Data de Nascimento</label>-->
                         <span>Data de Nascimento</span>
                     </div>
 
@@ -391,7 +373,7 @@ include_once('nav.php');
                     <div class="formField mb-3">
                         <input required="required" type="email" class="form-control" id="emailUsuarioAdd"
                                name="emailUsuarioAdd">
-<!--                        <label class="input-group-text" for="emailUsuarioAdd">Email de acesso</label>-->
+                        <!--                        <label class="input-group-text" for="emailUsuarioAdd">Email de acesso</label>-->
                         <span>Email de acesso</span>
                     </div>
                     <div class="input-group mb-3">
@@ -401,7 +383,7 @@ include_once('nav.php');
                         <input required="required" type="password" class="form-control" id="senhaUsuarioAdd"
                                name="senhaUsuarioAdd">
                         <label class="input-group-text" for="senhaUsuarioAdd">Senha de acesso</label>
-<!--                        <span>Senha de acesso</span>-->
+                        <!--                        <span>Senha de acesso</span>-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -515,11 +497,21 @@ include_once('nav.php');
             </div>
             <form action="#" method="post" name="frmUsuarioVermais" id="frmUsuarioVermais">
                 <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="nomeUsuarioVermais">Nome</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais"
-                               name="nomeUsuarioVermais" disabled>
+                    <div class="coolinput mb-3">
+                        <label for="input" class="text">Name:</label>
+                        <input type="text" class="form-control mdlVermaisUsuario input" id="nomeUsuarioVermais"
+                        name="nomeUsuarioVermais" disabled>
                     </div>
+
+                    <!--                    <div class="form-group">-->
+<!--                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais"-->
+<!--                               name="nomeUsuarioVermais" placeholder="Nome" disabled>-->
+<!--                    </div>-->
+<!--                    <div class="input-group mb-3">-->
+<!--                        <label class="input-group-text" for="nomeUsuarioVermais">Nome</label>-->
+<!--                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais"-->
+<!--                               name="nomeUsuarioVermais" disabled>-->
+<!--                    </div>-->
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="sobrenomeUsuarioVermais">Sobrenome</label>
                         <input type="text" class="form-control mdlVermaisUsuario" id="sobrenomeUsuarioVermais"
@@ -569,6 +561,33 @@ include_once('nav.php');
     </div>
 </div>
 
+<!-- Modal edit estoque -->
+<div class="modal fade" id="modalEstoqueEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header azul">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar estoque</h1>
+            </div>
+            <form action="" method="post" name="frmEstoqueEdit" id="frmEstoqueEdit">
+                <div class="modal-body">
+                    <input type="hidden" name="idEditEstoque" id="idEditEstoque">
+                    <div class="formField mb-3">
+                        <input required="required" type="number" class="form-control" id="quantidadeEstoqueEdit" name="quantidadeEstoqueEdit"/>
+                        <span>Quantidade total:</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btnCinza btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalEditEstoque">Fechar
+                    </button>
+                    <button type="submit" class="btn btn-primary btnAzul btn-sm" id="btnEstoqueEdit">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -587,22 +606,6 @@ include_once('nav.php');
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 <script src="../js/script.js"></script>
 
-<script>
-    document.getElementById('fotoEpiAdd').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-                document.getElementById('preview').style.display = 'block';
-                document.getElementById('icon').style.display = "none";
-                document.getElementById('text').style.display = "none";
-            }
-            reader.readAsDataURL(file);
-        }
-    });
-
-</script>
 </body>
 
 </html>

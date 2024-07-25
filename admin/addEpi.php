@@ -21,7 +21,15 @@ if (isset($dados) && !empty($dados)) {
         $fotoPath = uniqid() . '_' . $fotoName;
 
         if (move_uploaded_file($fotoTmpName, $uploadDir . '/' . $fotoPath)) {
+
             $retornoInsert = insert4Item('epi', 'nomeEpi, certificado, foto, cadastro', "$nome", "$certificado", "$fotoPath", DATATIMEATUAL);
+
+            $teste = listarTabelaOrdenadaLimite('*','epi','idepi','DESC',1);
+            foreach ($teste as $row) {
+                $idepi = $row->idepi;
+            }
+            $insertNoEstoque = insert4Item('estoque','idepi, quantidade, disponivel, cadastro',"$idepi",'0','0',DATATIMEATUAL);
+
             if ($retornoInsert > 0) {
                 echo json_encode(['success' => true, 'message' => "Epi cadastrado com sucesso"]);
             } else {

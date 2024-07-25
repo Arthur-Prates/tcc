@@ -30,7 +30,7 @@ include_once('../func/funcoes.php');
     <dotlottie-player autoplay loop mode="normal" src="../img/erro/erro-404.json"
                       style="width: 500px;"></dotlottie-player>
     <div class="text-center text-danger">
-        ERRO 404: Página não encontrada <a href="dashboard.php">retornar</a>
+        ERRO 404: Página não encontrada <a href="inicio">retornar</a>
     </div>
 </div>
 

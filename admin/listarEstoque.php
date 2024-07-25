@@ -7,7 +7,9 @@
 <div class="container">
     <div class="mt-5 d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Estoque dos EPI(s)</h1>
-        <button class="btn btn-outline-warning text-black mx-1"  style="float: right" onclick="imprimir('Lista de Empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i></button>
+        <button class="btn btn-outline-warning text-black mx-1" style="float: right"
+                onclick="imprimir('Lista de Empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i>
+        </button>
     </div>
 
     <div class="overflowTable" id="tabelaEmprestimo">
@@ -26,15 +28,22 @@
             <tbody>
             <?php
             $contar = 1;
-            $listarEstoque = listarTabelaInnerJoinOrdenada('*','estoque','epi','idepi','idepi','a.idepi','ASC');
+            $listarEstoque = listarTabelaLeftJoinOrdenada('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', 'ASC');
             if ($listarEstoque) {
                 foreach ($listarEstoque as $itemEstoque) {
-                    $idEpi = $itemEstoque -> idepi;
-                    $nomeEpi = $itemEstoque -> nomeEpi;
-                    $quantidadeTotal = $itemEstoque -> quantidade;
-                    $quantidadeDisponivel = $itemEstoque -> disponivel;
-                    $foto = $itemEstoque -> foto;
-                    $certificado = $itemEstoque -> certificado;
+                    $idEpi = $itemEstoque->idepi;
+                    $nomeEpi = $itemEstoque->nomeEpi;
+                    $quantidadeTotal = $itemEstoque->quantidade;
+                    $quantidadeDisponivel = $itemEstoque->disponivel;
+                    $certificado = $itemEstoque->certificado;
+
+
+                    if ($quantidadeDisponivel == null || $quantidadeDisponivel == '') {
+                        $quantidadeDisponivel = 0;
+                    }
+                    if ($quantidadeTotal == null || $quantidadeTotal == '') {
+                        $quantidadeTotal = 0;
+                    }
                     ?>
                     <tr>
                         <th scope="row"><?php echo $contar ?></th>
@@ -47,10 +56,15 @@
                             <?php echo $quantidadeDisponivel ?>
                         </td>
                         <td class="no-print">
-
+                            <button class="btn btn-primary btn-sm"
+                                    onclick="abrirModalAlterarEstoque('<?php echo $idEpi ?>','idEditEstoque','modalEstoqueEdit','A','btnEstoqueEdit','editEstoque','frmEstoqueEdit')">
+                                Editar
+                            </button>
                         </td>
                     </tr>
+
                     <?php
+
                     ++$contar;
                 }
             } else {

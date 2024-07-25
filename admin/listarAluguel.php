@@ -8,8 +8,8 @@
     </div>
 
     <div class="overflowTable" id="tabelaEmprestimo">
-        <table class="table table-hover table-bordered border-dark text-center">
-            <thead>
+        <table class="table table-hover table-bordered border-dark text-center rounded-table">
+            <thead class="table-dark">
             <tr>
                 <th scope="col" width="5%">#</th>
                 <th scope="col">Locatário</th>

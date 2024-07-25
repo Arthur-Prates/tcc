@@ -1,6 +1,5 @@
 //+++++++++++++++++++++++++++++++++++ CARRINHO ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
 function fetchParaCarrinho() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'listarCarrinho.php', true);
@@ -17,10 +16,6 @@ function fetchParaCarrinho() {
     };
     xhr.send();
 }
-
-
-
-
 
 function atualizarCarrinhoAutomaticamente(data) {
     const itemElement = document.getElementById('listagemCarrinho');
