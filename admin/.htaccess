@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /phpMarco/tcc/admin/
+RewriteBase /tcc/admin/
 
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d

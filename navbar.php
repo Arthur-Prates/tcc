@@ -56,7 +56,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                         ?>
                         <ul class="dropdown-menu ">
                             <li class=""><a class="dropdown-item" href="meu-perfil">Meu perfil</a></li>
-                            <li class=""><a class="dropdown-item" href="meus-alugueis">Meus aluguéis</a></li>
+                            <li class=""><a class="dropdown-item" href="meus-emprestimos">Meus empréstimos</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -130,7 +130,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                             <div class="card card-body cardNavbarSM">
                                 <a class="linkNavbarSM" href="meu-perfil">Meu perfil</a>
                                 <hr>
-                                <a class="linkNavbarSM" href="meus-alugueis">Meus aluguéis</a>
+                                <a class="linkNavbarSM" href="meus-emprestimos">Meus empréstimos</a>
                                 <hr>
                                 <a class="linkNavbarSM" href="logout">Sair</a>
                             </div>

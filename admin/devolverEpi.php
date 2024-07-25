@@ -13,10 +13,10 @@ $a = print_r($dados, true);
 if (isset($dados) && !empty($dados)) {
     $id = isset($dados['idDevolucao']) ? addslashes($dados['idDevolucao']) : '';
     $valor = isset($dados['valor']) ? addslashes($dados['valor']) : '';
-    $codAluguel = isset($dados['codAluguel']) ? addslashes($dados['codAluguel']) : '';
+    $codEmprestimo = isset($dados['codEmprestimo']) ? addslashes($dados['codEmprestimo']) : '';
 
 
-    $retornoInsert = alterar1ItemDuploWhere('produtoAluguel', 'devolucao', "$valor", 'idepi', "$id", 'codAluguel', $codAluguel);
+    $retornoInsert = alterar1ItemDuploWhere('produtoemprestimo', 'devolucao', "$valor", 'idepi', "$id", 'codEmprestimo', $codEmprestimo);
     if ($valor == 'S') {
         if ($retornoInsert > 0) {
             echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso"]);

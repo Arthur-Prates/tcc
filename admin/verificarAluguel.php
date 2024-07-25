@@ -9,12 +9,12 @@ if ($_SESSION['idadm']) {
     header('location: login?error=404');
 }
 
-$codigoAluguel = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
-$codigoAluguel = str_replace(' ', '', $codigoAluguel);
-if (empty($codigoAluguel)) {
+$codigoEmprestimo = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
+$codigoEmprestimo = str_replace(' ', '', $codigoEmprestimo);
+if (empty($codigoEmprestimo)) {
     header('location: inicio?error=404');
 }
-$link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoAluguel"
+$link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoEmprestimo"
 ?>
 
 <!doctype html>
@@ -23,7 +23,7 @@ $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprest
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Empréstimo - #<?php echo $codigoAluguel ?></title>
+    <title>Empréstimo - #<?php echo $codigoEmprestimo ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -44,7 +44,7 @@ $listarEmprestimo = 'SIM';
 include_once('nav.php');
 
 $nao = 0;
-$contarNao = listarItemExpecifico('*', 'produtoAluguel', 'codAluguel', $codigoAluguel);
+$contarNao = listarItemExpecifico('*', 'produtoemprestimo', 'codEmprestimo', $codigoEmprestimo);
 if ($contarNao !== 'Vazio') {
 
     foreach ($contarNao as $itemContar) {
@@ -63,29 +63,25 @@ if ($contarNao !== 'Vazio') {
 <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Aluguel - #<?php echo $codigoAluguel ?></h1>
+        <h1>Empréstimo - #<?php echo $codigoEmprestimo ?></h1>
         <?php
+
         if ($nao >= 1) {
             ?>
             <div>
                 <button class="btn btn-sm btn-success" disabled>Fechar Emprestimo</button>
-                <!--                <button class="btn btn-sm btn-primary"-->
-                <!--                        onclick="devolverEmprestimo('emprestimoDevolvido','-->
-                <?php //echo $codigoAluguel ?><!--','N')">-->
-                <!--                    Editar-->
-                <!--                </button>-->
             </div>
             <?php
         } else {
             ?>
 
             <div>
-                <button class="btn btn-sm  btn-success" id="fecharEmprestimo"
-                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','S')">
+                <button class="btn btn-sm btn-success" id="fecharEmprestimo"
+                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoEmprestimo ?>','S')">
                     Fechar Emprestimo
                 </button>
-                <button class="btn btn-sm  btn-primary" id="editarEmprestimo"
-                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoAluguel ?>','N')">
+                <button class="btn btn-sm btn-primary" id="editarEmprestimo"
+                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoEmprestimo ?>','N')">
                     Editar
                 </button>
             </div>
@@ -98,7 +94,7 @@ if ($contarNao !== 'Vazio') {
 
     <?php
 
-    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('*', 'aluguel', 'usuario', 'produtoAluguel', 'epi', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'idepi', 'idepi', 'd.codAluguel', "$codigoAluguel", 'horaFim', 'DESC');
+    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('*', 'emprestimo', 'usuario', 'produtoEmprestimo', 'epi', 'idusuario', 'idusuario', 'codigoEmprestimo', 'codEmprestimo', 'idepi', 'idepi', 'd.codEmprestimo', "$codigoEmprestimo", 'horaFim', 'DESC');
     if ($listaAlguel !== 'Vazio') {
     $nomeEpi = array();
     $idepi = array();
@@ -115,13 +111,13 @@ if ($contarNao !== 'Vazio') {
             $epi = array_combine($idepi, $nomeEpi);
             array_push($quantidade, $item->quantidade);
             $prioridade = $item->prioridade;
-            $dataAluguel = $item->dataAluguel;
+            $dataEmprestimo = $item->dataEmprestimo;
             $email = $item->email;
             $telefone = $item->numero;
             $observacao = $item->observacao;
-            $statusAluguel = $item->devolvido;
-
-            if ($statusAluguel == 'S') {
+            $statusEmprestimo = $item->devolvido;
+            $status = $statusEmprestimo;
+            if ($statusEmprestimo == 'S') {
                 $statusEmprestimo = 'Empréstimo devolvido';
                 ?>
 
@@ -136,10 +132,10 @@ if ($contarNao !== 'Vazio') {
                 $telefone = 'Nenhum telefone cadastrado!';
             }
 
-            $dataAluguel = implode("/", array_reverse(explode("-", $dataAluguel)));
+            $dataEmprestimo = implode("/", array_reverse(explode("-", $dataEmprestimo)));
         }
     }
-    if ($statusAluguel == 'S') {
+    if ($status == 'S') {
         ?>
         <script>
             let emprestimo = document.getElementById('fecharEmprestimo');
@@ -180,7 +176,7 @@ if ($contarNao !== 'Vazio') {
                 <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=250x250"
                      class="card-img-top" alt="...">
                 <div class="card-body text-center">
-                    <p class="card-text"><?php echo $codigoAluguel ?></p>
+                    <p class="card-text"><?php echo $codigoEmprestimo ?></p>
 
                 </div>
             </div>
@@ -189,7 +185,7 @@ if ($contarNao !== 'Vazio') {
             <p><b>Nome:</b> <?php echo $nomeUsuario ?></p>
             <p><b>Email:</b> <?php echo $email ?></p>
             <p><b>Telefone:</b> <?php echo $telefone ?></p>
-            <p><b>Data:</b> <?php echo $dataAluguel ?></p>
+            <p><b>Data:</b> <?php echo $dataEmprestimo ?></p>
             <p><b>Prioridade:</b> <?php echo $prioridade ?></p>
             <p><b>Observação:</b> <?php echo $observacao ?></p>
             <p><b>Status do empréstimo:</b> <?php echo $statusEmprestimo ?></p>
@@ -199,7 +195,7 @@ if ($contarNao !== 'Vazio') {
                 <h2 class="mt-5 mb-4">EPI(s) emprestadas</h2>
                 <div class="row">
                     <?php
-                    $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoaluguel', 'idepi', 'idepi', 'b.codAluguel', $codigoAluguel, 'a.idepi', 'ASC');
+                    $selectCompras = listarTabelaInnerJoinOrdenadaExpecifica('*', 'epi', 'produtoemprestimo', 'idepi', 'idepi', 'b.codEmprestimo', $codigoEmprestimo, 'a.idepi', 'ASC');
 
                     if ($selectCompras) {
                         foreach ($selectCompras as $item) {
@@ -243,7 +239,7 @@ if ($contarNao !== 'Vazio') {
                                                                 <hr>
                                                                 <div class="text-center divBtn">
                                                                     <?php
-                                                                    if ($statusAluguel == 'S') {
+                                                                    if ($status == 'S') {
                                                                         if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
@@ -263,14 +259,14 @@ if ($contarNao !== 'Vazio') {
                                                                         if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoAluguel ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoEmprestimo ?>')">
                                                                                 Devolvido
                                                                             </button>
                                                                             <?php
                                                                         } else {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-secondary"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoAluguel ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>')">
                                                                                 Não devolvido
                                                                             </button>
                                                                             <?php
@@ -298,7 +294,7 @@ if ($contarNao !== 'Vazio') {
                     } else {
                         ?>
 
-                        <h4>Nenhum Aluguel cadastrado</h4>
+                        <h4>Nenhum Emprestimo cadastrado</h4>
                         <?php
                     }
                     ?>

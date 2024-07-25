@@ -53,7 +53,7 @@ body {
 .btnPretoNaoPreto{
     background-color:#171616;!important;
     transition: 0.3s;
-    border: none;
+    border: 1px solid #171616;
     color: white;
 }
 
@@ -67,12 +67,12 @@ body {
 .btnCinzaEscuro{
     background-color:#272626;!important;
     transition: 0.3s;
-    border: none;
+    border: 1px solid #272626;
 }
 
 .btnCinzaEscuro:hover{
     background-color: transparent;
-    border: 2px solid #272626;
+    border: 1px solid #272626;
     color: #212121;
     font-weight: 500;
 }
@@ -809,6 +809,10 @@ section.ondas-box {
     margin: 10px;
     position: relative;
 }
+.formField2 {
+    margin: 10px;
+    position: relative;
+}
 
 .formField input {
     width: 100%;
@@ -824,8 +828,28 @@ section.ondas-box {
     box-shadow: 0 0 0 5px transparent;
 }
 
+.formField2 select {
+    width: 100%;
+    padding: 20px 15px 10px 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 16px;
+    font-weight: 550;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 0 5px transparent;
+}
+
+
 .formField input:hover,
 .formField input:focus {
+    box-shadow: 0 0 0 2px #333;
+}
+
+.formField2 select:hover,
+.formField2 select:focus {
     box-shadow: 0 0 0 2px #333;
 }
 
@@ -843,8 +867,28 @@ section.ondas-box {
     pointer-events: none;
 }
 
+.formField2 span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 13px 15px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: -1px -1px 0 #f1f1f1, 1px -1px 0 #f1f1f1, -1px 1px 0 #f1f1f1,
+    1px 1px 0 #f1f1f1;
+    transition: 0.3s ease-in-out;
+    pointer-events: none;
+}
+
 .formField input:focus + span,
 .formField input:valid + span {
+    transform: translateY(-12px) translateX(-5px) scale(0.95);
+    transition: 0.3s ease-in-out;
+}
+
+.formField2 select:focus + span,
+.formField2 select:valid + span {
     transform: translateY(-12px) translateX(-5px) scale(0.95);
     transition: 0.3s ease-in-out;
 }
@@ -927,4 +971,10 @@ section.ondas-box {
 
 .coolinput input[type=text].input:focus {
     outline: none;
+}
+
+.olhinho{
+    position: absolute;
+    right: 3rem;
+    top: 17.7rem;
 }

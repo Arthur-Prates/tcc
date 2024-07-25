@@ -769,13 +769,15 @@ function alterar1Item($tabela, $campo, $valor, $identificar, $id)
         $sqlLista->bindValue(2, $id, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
-        return $sqlLista->rowCount() > 0;
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
     } catch (PDOException $e) {
         $conn->rollback();
         return 'Exception -> ' . $e->getMessage();
-    } finally {
-        $conn = null;
     }
+        $conn = null;
 }
 
 function alterar1ItemDuploWhere($tabela, $campo, $valor, $identificar, $id, $identificar2, $id2)
@@ -1205,7 +1207,7 @@ function valoresGraficoTopFuncionarios()
     $arayPessoas = array();
     $contarAray = 0;
 
-    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario, b.idusuario as idUser', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idUser', 'ASC');
+    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario, b.idusuario as idUser', 'usuario', 'emprestimo', 'idusuario', 'idusuario', 'idUser', 'ASC');
 
     foreach ($selectAlugadores as $itemAlu) {
         $iduser = $itemAlu->idusuario;
@@ -1221,7 +1223,7 @@ function valoresGraficoTopFuncionarios()
         $id = $itemArray;
 
 
-        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'aluguel', 'usuario', 'produtoaluguel', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'a.idusuario', "$id", 'd.devolucao', 'N', 'total', 'ASC');
+        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'emprestimo', 'usuario', 'produtoemprestimo', 'idusuario', 'idusuario', 'codigoEmprestimo', 'codEmprestimo', 'a.idusuario', "$id", 'd.devolucao', 'N', 'total', 'ASC');
 
         foreach ($selectTopAluguel as $valor) {
             $fim = $valor->total;
@@ -1308,7 +1310,7 @@ function valoresGraficoQuantidadeEpi($tipo)
 
         $arayEpiAlugadoTable = array();
         $epiResultado = array();
-        $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
+        $arayEpiAlugadoTable = listarTabela('idepi', 'emprestimo');
 
 
         foreach ($arayEpiAlugadoTable as $epiItems2) {

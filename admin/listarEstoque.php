@@ -1,15 +1,18 @@
 <?php
 ?>
-
-<?php
-
-?>
 <div class="container">
     <div class="mt-5 d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Estoque dos EPI(s)</h1>
-        <button class="btn btn-outline-warning text-black mx-1" style="float: right"
-                onclick="imprimir('Lista de Empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i>
-        </button>
+        <div>
+            <button class="btn btnDark" onclick="abrirModalAlterarEstoque('nao','nao','modalEstoqueAdd','A','btnEstoqueAdd','addEstoque','frmEstoqueAdd')">
+                Cadastrar
+            </button>
+
+            <button class="btn btn-outline-warning text-black mx-1" style="float: right"
+                    onclick="imprimir('Lista de Empréstimo(s) do Sistema','tabelaEmprestimo')">
+                <i class="bi bi-printer"></i>
+            </button>
+        </div>
     </div>
 
     <div class="overflowTable" id="tabelaEmprestimo">
@@ -28,7 +31,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listarEstoque = listarTabelaLeftJoinOrdenada('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', 'ASC');
+            $listarEstoque = listarTabelaLeftJoinOrdenada('a.idepi,a.nomeEpi,b.quantidade,b.disponivel,a.certificado', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', 'ASC');
             if ($listarEstoque) {
                 foreach ($listarEstoque as $itemEstoque) {
                     $idEpi = $itemEstoque->idepi;

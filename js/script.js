@@ -34,7 +34,7 @@ function fazerLogin() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "pagina-inicial";
@@ -129,7 +129,7 @@ function fazerLoginAdm() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "dashboard.php";
@@ -703,6 +703,7 @@ function abrirModalAlterarEstoque(IDid, INPid, nomeModal, abrirModal = 'A', bota
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data)
                     if (data.success) {
                         carregarConteudo('listarEstoque')
                         Swal.fire({
@@ -722,9 +723,9 @@ function abrirModalAlterarEstoque(IDid, INPid, nomeModal, abrirModal = 'A', bota
                         botoes.disabled = false;
                     }
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
         };
 
         const btnFecharModalEstoque = document.getElementById('btnFecharModalEditEstoque');
@@ -1055,7 +1056,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
                     });
                     formDados.removeEventListener('submit', submitHandler);
                     setTimeout(function () {
-                        window.location.href = 'meus-alugueis'
+                        window.location.href = 'meus-emprestimos'
                     }, 1500)
                 } else {
                     if (data.errodata) {
@@ -1095,7 +1096,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 }
 
 
-function deleletarEpi(id, addEditDel) {
+function deletarEpi(id, addEditDel) {
     Swal.fire({
         title: "Você tem certeza?",
         text: "Esta ação não pode ser desfeita",
@@ -1119,8 +1120,8 @@ function deleletarEpi(id, addEditDel) {
                 .then(response => response.json())
                 .then(data => {
                     carregarConteudo('listarEpi')
+                    console.log(data)
                     if (data.success) {
-
                         Swal.fire({
                             title: "Deletado!",
                             text: `${data.message}`,
@@ -1135,14 +1136,11 @@ function deleletarEpi(id, addEditDel) {
                         });
 
                     }
-
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
         }
-
-
     });
 }
 
@@ -1197,22 +1195,23 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
+function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&idDevolucao=" + encodeURIComponent(`${idAluguelEpi}`) +
+            "&idDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) +
             "&valor=" + encodeURIComponent(`${valor}`) +
-            "&codAluguel=" + encodeURIComponent(`${codAluguel}`),
+            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`),
     })
         .then(response => response.json())
         .then(data => {
             setTimeout(function () {
                 window.location.reload();
             }, 2500)
+
             if (data.success) {
 
                 Swal.fire({
@@ -1236,14 +1235,14 @@ function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
         });
 }
 
-function devolverEmprestimo(controle, codAluguel, valor) {
+function devolverEmprestimo(controle, codEmprestimo, valor) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&codAluguel=" + encodeURIComponent(`${codAluguel}`) +
+            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) +
             "&valor=" + encodeURIComponent(`${valor}`),
     })
         .then(response => response.json())
@@ -1251,8 +1250,8 @@ function devolverEmprestimo(controle, codAluguel, valor) {
             setTimeout(function () {
                 window.location.reload();
             }, 2500)
-            if (data.success) {
 
+            if (data.success) {
                 Swal.fire({
                     title: "Sucesso!",
                     text: `${data.message}`,
