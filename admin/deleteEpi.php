@@ -6,32 +6,34 @@ include_once("../func/funcoes.php");
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-//$a = print_r($dados, true);
-
+$a = print_r($dados, true);
+//echo json_encode(['success' => false, 'message' => $a]);
 
 if (isset($dados) && !empty($dados)) {
     $id = isset($dados['idDelete']) ? addslashes($dados['idDelete']) : '';
 
     $verificarVazio = listarItemExpecifico('*', 'estoque', 'idepi', "$id");
-echo json_encode(['success' => false, 'message' => "$verificarVazio"]);
-
-    if ($verificarVazio !== 'Vazio'){
+    if ($verificarVazio !== 'Vazio') {
         foreach ($verificarVazio as $item) {
             $quantidade = $item->quantidade;
             $disponivel = $item->disponivel;
-            if ($disponivel < $quantidade) {
+
+            if ($quantidade > $disponivel) {
                 echo json_encode(['success' => false, 'message' => "Epi em Uso"]);
+            } else {
+                $retornoDelete = deletarCadastro('epi', 'idepi', "$id");
+                if ($retornoDelete) {
+                    echo json_encode(['success' => true, 'message' => "Epi deletado com sucesso"]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => "Epi não deletado!"]);
+                }
             }
         }
-    }else{
-        $retornoInsert = deletarCadastro('epi', 'idepi', "$id");
-        if ($retornoInsert > 0) {
-            echo json_encode(['success' => true, 'message' => "Epi deletado com sucesso"]);
-        } else {
-            echo json_encode(['success' => false, 'message' => "Epi não deletado!"]);
-        }
+    } else {
+        echo json_encode(['success' => false, 'message' => "Este EPI não consta no estoque!"]);
+
     }
 
-}else {
+} else {
     echo json_encode(['success' => false, 'message' => "Erro, nenhum dado encontrado!"]);
 }

@@ -44,9 +44,8 @@ $listarEmprestimo = 'SIM';
 include_once('nav.php');
 
 $nao = 0;
-$contarNao = listarItemExpecifico('*', 'produtoemprestimo', 'codEmprestimo', $codigoEmprestimo);
+$contarNao = listarItemExpecifico('*', 'produtoemprestimo', 'codEmprestimo', "$codigoEmprestimo");
 if ($contarNao !== 'Vazio') {
-
     foreach ($contarNao as $itemContar) {
         $n = $itemContar->devolucao;
         if ($n == 'N') {
@@ -55,9 +54,11 @@ if ($contarNao !== 'Vazio') {
 
     }
 } else {
-    header('location: inicio?erro=emprestimo-nao-encontrado');
+//    header('location: inicio?erro=emprestimo-nao-encontrado');
+    $nao = 1;
 
 }
+
 ?>
 
 <div class="container">
@@ -259,14 +260,14 @@ if ($contarNao !== 'Vazio') {
                                                                         if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoEmprestimo ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>')">
                                                                                 Devolvido
                                                                             </button>
                                                                             <?php
                                                                         } else {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-secondary"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>')">
                                                                                 Não devolvido
                                                                             </button>
                                                                             <?php
@@ -293,8 +294,16 @@ if ($contarNao !== 'Vazio') {
                     <?php
                     } else {
                         ?>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <dotlottie-player src="../img/animacao-busca-vazia.lottie"
+                                              background="transparent" speed="1" style="width: 300px; height: 300px;"
+                                              loop
+                                              autoplay></dotlottie-player>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p class="fs-3">Nenhum epi foi encontrado nesse empréstimo!</p>
 
-                        <h4>Nenhum Emprestimo cadastrado</h4>
+                        </div>
                         <?php
                     }
                     ?>

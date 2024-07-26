@@ -22,7 +22,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaEmprestimo = executaQuery("SELECT * FROM emprestimo a INNER JOIN usuario u ON a.idusuario = u.idusuario ORDER BY a.idemprestimo DESC ");
+            $listaEmprestimo = listarTabelaInnerJoinOrdenada('*','emprestimo','usuario','idusuario','idusuario','a.idemprestimo', 'DESC');
             if ($listaEmprestimo) {
                 foreach ($listaEmprestimo as $itemEmprestimo) {
                     $idemprestimo = $itemEmprestimo->idemprestimo;
@@ -51,7 +51,7 @@
                             <?php
                             ?></td>
                         <td class="no-print">
-                            <a href="verificarAluguel.php?emprestimo=<?php echo $codigoEmprestimo ?>"
+                            <a href="visualizar-emprestimo?emprestimo=<?php echo $codigoEmprestimo ?>"
                                class="btn btn-sm btn-success">Visualizar</a>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
             } else {
                 ?>
                 <tr>
-                    <td colspan="4" class="text-center">
+                    <td colspan="5" class="text-center">
                         <h4>Nenhum Emprestimo cadastrado no banco</h4>
                     </td>
                 </tr>

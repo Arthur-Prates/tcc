@@ -357,6 +357,7 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                         carregarConteudo('listarEpi')
                         formDados.removeEventListener('submit', submitHandler);
                         form.reset()
+                        idVerimg.src = ''
                     } else {
                         botoes.disabled = false;
                         alertError(data.message)
@@ -671,79 +672,6 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
         modalInstancia.hide();
     }
 }
-
-function abrirModalAlterarEstoque(IDid, INPid, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
-    const formDados = document.getElementById(`${formulario}`);
-    const botoes = document.getElementById(`${botao}`);
-    const modalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
-
-    if (!formDados || !botoes || !modalInstancia) {
-        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
-        return;
-    }
-
-    const INPidi = document.getElementById(`${INPid}`)
-    if (IDid !== 'nao') {
-        INPidi.value = IDid
-    }
-
-    if (abrirModal === 'A') {
-        modalInstancia.show();
-
-        const submitHandler = function (event) {
-            event.preventDefault();
-            botoes.disabled = true;
-            const form = event.target;
-            const formData = new FormData(form);
-            formData.append('controle', addEditDel);
-
-            fetch('controle.php', {
-                method: 'POST',
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    if (data.success) {
-                        carregarConteudo('listarEstoque')
-                        Swal.fire({
-                            title: data.message,
-                            icon: "success"
-                        });
-                        botoes.disabled = false;
-                        modalInstancia.hide();
-                        form.reset();
-                        formDados.removeEventListener('submit', submitHandler);
-                    } else {
-                        Swal.fire({
-                            title: data.message,
-                            icon: "error"
-                        });
-                        formDados.removeEventListener('submit', submitHandler);
-                        botoes.disabled = false;
-                    }
-                })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
-        };
-
-        const btnFecharModalEstoque = document.getElementById('btnFecharModalEditEstoque');
-        if (btnFecharModalEstoque) {
-            btnFecharModalEstoque.addEventListener('click', function () {
-                modalInstancia.hide();
-                formDados.removeEventListener('submit', submitHandler);
-            });
-        } else {
-            console.error('ID do botão de fechar a modal está errado!');
-        }
-
-        formDados.addEventListener('submit', submitHandler);
-    } else {
-        modalInstancia.hide();
-    }
-}
-
 
 function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`);
@@ -1195,7 +1123,7 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo) {
+function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo,qtdDevolucao) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
@@ -1204,35 +1132,32 @@ function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo) {
         body: 'controle=' + encodeURIComponent(`${controle}`) +
             "&idDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) +
             "&valor=" + encodeURIComponent(`${valor}`) +
-            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`),
+            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) +
+            "&qtdDevolucao=" + encodeURIComponent(`${qtdDevolucao}`),
     })
         .then(response => response.json())
         .then(data => {
+            // console.log(data)
             setTimeout(function () {
                 window.location.reload();
             }, 2500)
-
             if (data.success) {
-
                 Swal.fire({
                     title: "Sucesso!",
                     text: `${data.message}`,
                     icon: "success"
                 });
-
             } else {
                 Swal.fire({
                     title: "Erro!",
                     text: `${data.message}`,
                     icon: "warning"
                 });
-
             }
-
         })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-        });
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
 }
 
 function devolverEmprestimo(controle, codEmprestimo, valor) {

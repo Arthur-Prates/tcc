@@ -268,6 +268,11 @@ include_once('nav.php');
                                name="certificadoEpiAdd" maxlength="7" minlength="5"/>
                         <span>Certificado</span>
                     </div>
+                    <div class="formField mb-3">
+                        <input required="" type="number" class="form-control" id="quantidadeEpiAdd"
+                               name="quantidadeEpiAdd" maxlength="7" minlength="5"/>
+                        <span>Quantidade total</span>
+                    </div>
                 </div>
                 <div class="modal-footer quasebranco ">
                     <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
@@ -309,6 +314,11 @@ include_once('nav.php');
                         <input required="" type="text" class="form-control" id="certificadoEpiEdit"
                                name="certificadoEpiEdit" maxlength="7" minlength="5"/>
                         <span>Certificado</span>
+                    </div>
+                    <div class="formField mb-3">
+                        <input required="" type="number" class="form-control" id="quantidadeEpiEdit"
+                               name="quantidadeEpiEdit" maxlength="7"/>
+                        <span>Quantidade total</span>
                     </div>
                 </div>
                 <div class="modal-footer">
