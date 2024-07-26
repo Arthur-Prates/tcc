@@ -10,6 +10,7 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (isset($dados) && !empty($dados)) {
     $nome = isset($dados['nomeEpiAdd']) ? addslashes($dados['nomeEpiAdd']) : '';
     $certificado = isset($dados['certificadoEpiAdd']) ? addslashes($dados['certificadoEpiAdd']) : '';
+    $quantidade = isset($dados['quantidadeEpiAdd']) ? addslashes($dados['quantidadeEpiAdd']) : '';
 
 
     if (isset($_FILES["fotoEpiAdd"]) && $_FILES["fotoEpiAdd"]['error'] === UPLOAD_ERR_OK) {
@@ -28,7 +29,7 @@ if (isset($dados) && !empty($dados)) {
             foreach ($teste as $row) {
                 $idepi = $row->idepi;
             }
-            $insertNoEstoque = insert4Item('estoque','idepi, quantidade, disponivel, cadastro',"$idepi",'0','0',DATATIMEATUAL);
+            $insertNoEstoque = insert4Item('estoque','idepi, quantidade, disponivel, cadastro',"$idepi","$quantidade","$quantidade",DATATIMEATUAL);
 
             if ($retornoInsert > 0) {
                 echo json_encode(['success' => true, 'message' => "Epi cadastrado com sucesso"]);

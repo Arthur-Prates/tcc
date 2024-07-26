@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="" />
+    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/admin/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/addEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/addEpi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/deleteEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/deleteEpi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/devolverEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/devolverEpi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/editEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/editEpi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listarEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarEstoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +50,11 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -57,6 +75,7 @@
       <updated>1721818806501</updated>
       <workItem from="1721818807946" duration="2773000" />
       <workItem from="1721906295381" duration="3078000" />
+      <workItem from="1721996335468" duration="9695000" />
     </task>
     <servers />
   </component>

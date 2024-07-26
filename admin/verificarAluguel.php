@@ -44,9 +44,8 @@ $listarEmprestimo = 'SIM';
 include_once('nav.php');
 
 $nao = 0;
-$contarNao = listarItemExpecifico('*', 'produtoemprestimo', 'codEmprestimo', $codigoEmprestimo);
+$contarNao = listarItemExpecifico('*', 'produtoemprestimo', 'codEmprestimo', "$codigoEmprestimo");
 if ($contarNao !== 'Vazio') {
-
     foreach ($contarNao as $itemContar) {
         $n = $itemContar->devolucao;
         if ($n == 'N') {
@@ -259,14 +258,14 @@ if ($contarNao !== 'Vazio') {
                                                                         if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoEmprestimo ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade?>')">
                                                                                 Devolvido
                                                                             </button>
                                                                             <?php
                                                                         } else {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-secondary"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade?>')">
                                                                                 Não devolvido
                                                                             </button>
                                                                             <?php
