@@ -15,10 +15,11 @@ function listarTabela($campos, $tabela)
         return False;
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function executaQuery($query)
@@ -36,10 +37,11 @@ function executaQuery($query)
         return 'Vazio';
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function pesquisaLike($campos, $tabela, $campoDeBusca, $valorDoCampo)
@@ -58,10 +60,11 @@ function pesquisaLike($campos, $tabela, $campoDeBusca, $valorDoCampo)
     } catch
     (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
-    };
-    $conn = null;
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
 }
 
 function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2)
@@ -81,10 +84,11 @@ function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valo
     } catch
     (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
-    };
-    $conn = null;
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
 }
 
 function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
@@ -94,7 +98,6 @@ function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
         $conn->beginTransaction();
         $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoExpecifico = ?");
         $sqlListaTabelas->bindValue(1, $valorCampo, PDO::PARAM_STR);
-
         $sqlListaTabelas->execute();
         $conn->commit();
         if ($sqlListaTabelas->rowCount() > 0) {
@@ -104,10 +107,11 @@ function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
     } catch
     (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarItemExpecificoOrdem($campos, $tabela, $campoExpecifico, $valorCampo, $ordem, $tipoOrdem)
@@ -129,10 +133,11 @@ function listarItemExpecificoOrdem($campos, $tabela, $campoExpecifico, $valorCam
     } catch
     (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -152,10 +157,11 @@ function listarTabelaOrdenada($campos, $tabela, $campoOrdem, $ASCouDESC)
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem)
@@ -174,10 +180,11 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem)
@@ -196,10 +203,11 @@ function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $id1, $id2, $campoExpecifico, $valorCampo, $ordem, $tipoOrdem)
@@ -218,10 +226,11 @@ function listarTabelaInnerJoinOrdenadaExpecifica($campos, $tabela1, $tabela2, $i
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinOrdenadaDuploWhere($campos, $tabela1, $tabela2, $id1, $id2, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2, $ordem, $tipoOrdem)
@@ -241,10 +250,11 @@ function listarTabelaInnerJoinOrdenadaDuploWhere($campos, $tabela1, $tabela2, $i
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -264,10 +274,11 @@ function listarTabelaLeftJoinExpecifica($campos, $tabela1, $tabela2, $id1, $id2,
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaOrdenadaLimite($campos, $tabela1, $campoOrdem, $tipoOrdem, $limite)
@@ -286,10 +297,11 @@ function listarTabelaOrdenadaLimite($campos, $tabela1, $campoOrdem, $tipoOrdem, 
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -309,10 +321,11 @@ function listarTabelaLeftJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, $
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -331,10 +344,11 @@ function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tab
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $campoExpecifico, $valorCampo, $ordem, $tipoOrdem)
@@ -353,10 +367,11 @@ function listarTabelaInnerJoinTriploOrdenadaExpecifica($campos, $tabelaA1, $tabe
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinTriploOrdenadaExpecifica2Where($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2, $ordem, $tipoOrdem)
@@ -376,10 +391,11 @@ function listarTabelaInnerJoinTriploOrdenadaExpecifica2Where($campos, $tabelaA1,
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinTriploWhere($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $quando, $idquando, $ordem, $tipoOrdem)
@@ -397,10 +413,11 @@ function listarTabelaInnerJoinTriploWhere($campos, $tabelaA1, $tabelaB2, $tabela
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function listarTabelaInnerJoinQuadruploWhere($campos, $tabelaA1, $tabelaB2, $tabelaD3, $tabelaF5, $idA1, $idB2, $idA3, $idD3, $idA5, $idF5, $quando, $idquando, $ordem, $tipoOrdem)
@@ -419,10 +436,11 @@ function listarTabelaInnerJoinQuadruploWhere($campos, $tabelaA1, $tabelaB2, $tab
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
-        return ($e->getMessage());
         $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert1Item($tabela, $dados, $novosDados1)
@@ -442,8 +460,9 @@ function insert1Item($tabela, $dados, $novosDados1)
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert2Item($tabela, $dados, $novosDados1, $novosDados2)
@@ -463,8 +482,9 @@ function insert2Item($tabela, $dados, $novosDados1, $novosDados2)
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert3Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3)
@@ -510,8 +530,9 @@ function insert4Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert5Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5)
@@ -535,8 +556,9 @@ function insert5Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert6Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5, $novosDados6)
@@ -561,8 +583,9 @@ function insert6Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         $conn->rollback();
         echo 'Exception -> ';
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert7Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5, $novosDados6, $novosDados7)
@@ -588,8 +611,9 @@ function insert7Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -617,8 +641,9 @@ function insert8Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 
@@ -648,8 +673,9 @@ function insert9Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, 
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert10Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5, $novosDados6, $novosDados7, $novosDados8, $novosDados9, $novosDados10)
@@ -679,8 +705,9 @@ function insert10Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3,
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function insert11Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4, $novosDados5, $novosDados6, $novosDados7, $novosDados8, $novosDados9, $novosDados10, $novosDados11)
@@ -711,30 +738,40 @@ function insert11Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3,
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function deletarCadastro($tabela, $NomeDoCampoId, $id)
 {
     $conn = conectar();
+    if ($conn == null) {
+        echo "Falha na conexão com o banco de dados.";
+        return false;
+    }
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("DELETE FROM $tabela WHERE $NomeDoCampoId = ? ");
-        $sqlLista->bindValue(1, $id, PDO::PARAM_INT);
+        $sqlLista = $conn->prepare("DELETE FROM $tabela WHERE $NomeDoCampoId = $id");
+//        $sqlLista->bindValue(1, $id, PDO::PARAM_INT);
+//        $sqlLista->debugDumpParams();
         $sqlLista->execute();
         $conn->commit();
         if ($sqlLista->rowCount() > 0) {
             return true;
         }
-        return null;
+        return false;
 
     } catch (PDOException $e) {
-        echo 'Exception -> ';
+        echo 'Exception -> ' . $e->getMessage();
         $conn->rollback();
-        return ($e->getMessage());
+        return false;
+    } catch (Exception $e) {
+        echo 'General Exception -> ' . $e->getMessage();
+        return false;
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function alterarItemGlobal($tabela, $comando, $identificar, $id)
@@ -755,8 +792,9 @@ function alterarItemGlobal($tabela, $comando, $identificar, $id)
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
-    };
-    $conn = null;
+    } finally {
+        $conn = null;
+    }
 }
 
 function alterar1Item($tabela, $campo, $valor, $identificar, $id)
@@ -769,7 +807,10 @@ function alterar1Item($tabela, $campo, $valor, $identificar, $id)
         $sqlLista->bindValue(2, $id, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
-        return $sqlLista->rowCount() > 0;
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
     } catch (PDOException $e) {
         $conn->rollback();
         return 'Exception -> ' . $e->getMessage();
@@ -821,8 +862,9 @@ function alterar2Item($tabela, $campo, $campo2, $valor, $valor2, $identificar, $
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function alterar3Item($tabela, $campo1, $campo2, $campo3, $valor, $valor2, $valor3, $identificar, $id)
@@ -847,8 +889,9 @@ function alterar3Item($tabela, $campo1, $campo2, $campo3, $valor, $valor2, $valo
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
-    };
-    $conn = null;
+    } finally {
+        $conn = null;
+    }
 }
 
 
@@ -873,8 +916,9 @@ function alterar4Item($tabela, $campo1, $campo2, $campo3, $campo4, $valor, $valo
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
-    };
-    $conn = null;
+    } finally {
+        $conn = null;
+    }
 }
 
 function alterar5Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $valor, $valor2, $valor3, $valor4, $valor5, $identificar, $id)
@@ -900,8 +944,9 @@ function alterar5Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $val
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
-    };
-    $conn = null;
+    } finally {
+        $conn = null;
+    }
 }
 
 function alterar6Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $identificar, $id)
@@ -928,8 +973,9 @@ function alterar6Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function alterar7Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $campo7, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7, $identificar, $id)
@@ -957,8 +1003,9 @@ function alterar7Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function alterar8Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $campo7, $campo8, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7, $valor8, $identificar, $id)
@@ -987,8 +1034,9 @@ function alterar8Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function alterar9Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $campo7, $campo8, $campo9, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7, $valor8, $valor9, $identificar, $id)
@@ -1018,8 +1066,9 @@ function alterar9Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $cam
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function alterar10Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $campo6, $campo7, $campo8, $campo9, $campo10, $valor, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7, $valor8, $valor9, $valor10, $identificar, $id)
@@ -1050,8 +1099,9 @@ function alterar10Item($tabela, $campo1, $campo2, $campo3, $campo4, $campo5, $ca
         echo 'Exception -> ';
         $conn->rollback();
         return ($e->getMessage());
+    } finally {
+        $conn = null;
     }
-    $conn = null;
 }
 
 function verificarSenhaCriptografada($campos, $tabela, $campoBdEmail, $campoEmail, $campoBdSenha, $campoSenha, $campoBdAtivo, $campoAtivo)
@@ -1205,7 +1255,7 @@ function valoresGraficoTopFuncionarios()
     $arayPessoas = array();
     $contarAray = 0;
 
-    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario, b.idusuario as idUser', 'usuario', 'aluguel', 'idusuario', 'idusuario', 'idUser', 'ASC');
+    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario, b.idusuario as idUser', 'usuario', 'emprestimo', 'idusuario', 'idusuario', 'idUser', 'ASC');
 
     foreach ($selectAlugadores as $itemAlu) {
         $iduser = $itemAlu->idusuario;
@@ -1221,7 +1271,7 @@ function valoresGraficoTopFuncionarios()
         $id = $itemArray;
 
 
-        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'aluguel', 'usuario', 'produtoaluguel', 'idusuario', 'idusuario', 'codigoAluguel', 'codAluguel', 'a.idusuario', "$id", 'd.devolucao', 'N', 'total', 'ASC');
+        $selectTopAluguel = listarTabelaInnerJoinTriploOrdenadaExpecifica2Where('sum(quantidade) as total', 'emprestimo', 'usuario', 'produtoemprestimo', 'idusuario', 'idusuario', 'codigoEmprestimo', 'codEmprestimo', 'a.idusuario', "$id", 'd.devolucao', 'N', 'total', 'ASC');
 
         foreach ($selectTopAluguel as $valor) {
             $fim = $valor->total;
@@ -1293,7 +1343,6 @@ function valoresGraficoQuantidadeEpi($tipo)
 
     } else if ($tipo == 'contar') {
 
-
         $arayEpiTable = array();
         $epi = listarTabela('idepi', 'epi');
         foreach ($epi as $epiItems) {
@@ -1308,7 +1357,7 @@ function valoresGraficoQuantidadeEpi($tipo)
 
         $arayEpiAlugadoTable = array();
         $epiResultado = array();
-        $arayEpiAlugadoTable = listarTabela('idepi', 'aluguel');
+        $arayEpiAlugadoTable = listarTabela('idepi', 'emprestimo');
 
 
         foreach ($arayEpiAlugadoTable as $epiItems2) {

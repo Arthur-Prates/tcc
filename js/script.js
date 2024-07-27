@@ -34,7 +34,7 @@ function fazerLogin() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "pagina-inicial";
@@ -129,7 +129,7 @@ function fazerLoginAdm() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "dashboard.php";
@@ -357,6 +357,7 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                         carregarConteudo('listarEpi')
                         formDados.removeEventListener('submit', submitHandler);
                         form.reset()
+                        idVerimg.src = ''
                     } else {
                         botoes.disabled = false;
                         alertError(data.message)
@@ -672,78 +673,6 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
     }
 }
 
-function abrirModalAlterarEstoque(IDid, INPid, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
-    const formDados = document.getElementById(`${formulario}`);
-    const botoes = document.getElementById(`${botao}`);
-    const modalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
-
-    if (!formDados || !botoes || !modalInstancia) {
-        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
-        return;
-    }
-
-    const INPidi = document.getElementById(`${INPid}`)
-    if (IDid !== 'nao') {
-        INPidi.value = IDid
-    }
-
-    if (abrirModal === 'A') {
-        modalInstancia.show();
-
-        const submitHandler = function (event) {
-            event.preventDefault();
-            botoes.disabled = true;
-            const form = event.target;
-            const formData = new FormData(form);
-            formData.append('controle', addEditDel);
-
-            fetch('controle.php', {
-                method: 'POST',
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        carregarConteudo('listarEstoque')
-                        Swal.fire({
-                            title: data.message,
-                            icon: "success"
-                        });
-                        botoes.disabled = false;
-                        modalInstancia.hide();
-                        form.reset();
-                        formDados.removeEventListener('submit', submitHandler);
-                    } else {
-                        Swal.fire({
-                            title: data.message,
-                            icon: "error"
-                        });
-                        formDados.removeEventListener('submit', submitHandler);
-                        botoes.disabled = false;
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
-        };
-
-        const btnFecharModalEstoque = document.getElementById('btnFecharModalEditEstoque');
-        if (btnFecharModalEstoque) {
-            btnFecharModalEstoque.addEventListener('click', function () {
-                modalInstancia.hide();
-                formDados.removeEventListener('submit', submitHandler);
-            });
-        } else {
-            console.error('ID do botão de fechar a modal está errado!');
-        }
-
-        formDados.addEventListener('submit', submitHandler);
-    } else {
-        modalInstancia.hide();
-    }
-}
-
-
 function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`);
     const botoes = document.getElementById(`${botao}`);
@@ -1055,7 +984,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
                     });
                     formDados.removeEventListener('submit', submitHandler);
                     setTimeout(function () {
-                        window.location.href = 'meus-alugueis'
+                        window.location.href = 'meus-emprestimos'
                     }, 1500)
                 } else {
                     if (data.errodata) {
@@ -1095,7 +1024,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 }
 
 
-function deleletarEpi(id, addEditDel) {
+function deletarEpi(id, addEditDel) {
     Swal.fire({
         title: "Você tem certeza?",
         text: "Esta ação não pode ser desfeita",
@@ -1119,8 +1048,8 @@ function deleletarEpi(id, addEditDel) {
                 .then(response => response.json())
                 .then(data => {
                     carregarConteudo('listarEpi')
+                    console.log(data)
                     if (data.success) {
-
                         Swal.fire({
                             title: "Deletado!",
                             text: `${data.message}`,
@@ -1135,14 +1064,11 @@ function deleletarEpi(id, addEditDel) {
                         });
 
                     }
-
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
         }
-
-
     });
 }
 
@@ -1197,53 +1123,51 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idAluguelEpi, controle, valor, codAluguel) {
+function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo,qtdDevolucao) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&idDevolucao=" + encodeURIComponent(`${idAluguelEpi}`) +
+            "&idDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) +
             "&valor=" + encodeURIComponent(`${valor}`) +
-            "&codAluguel=" + encodeURIComponent(`${codAluguel}`),
+            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) +
+            "&qtdDevolucao=" + encodeURIComponent(`${qtdDevolucao}`),
     })
         .then(response => response.json())
         .then(data => {
+            // console.log(data)
             setTimeout(function () {
                 window.location.reload();
             }, 2500)
             if (data.success) {
-
                 Swal.fire({
                     title: "Sucesso!",
                     text: `${data.message}`,
                     icon: "success"
                 });
-
             } else {
                 Swal.fire({
                     title: "Erro!",
                     text: `${data.message}`,
                     icon: "warning"
                 });
-
             }
-
         })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-        });
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
 }
 
-function devolverEmprestimo(controle, codAluguel, valor) {
+function devolverEmprestimo(controle, codEmprestimo, valor) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&codAluguel=" + encodeURIComponent(`${codAluguel}`) +
+            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) +
             "&valor=" + encodeURIComponent(`${valor}`),
     })
         .then(response => response.json())
@@ -1251,8 +1175,8 @@ function devolverEmprestimo(controle, codAluguel, valor) {
             setTimeout(function () {
                 window.location.reload();
             }, 2500)
-            if (data.success) {
 
+            if (data.success) {
                 Swal.fire({
                     title: "Sucesso!",
                     text: `${data.message}`,

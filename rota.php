@@ -13,8 +13,8 @@ switch ($url[0]) {
     case 'meu-perfil':
         include_once('perfil.php');
         break;
-    case 'meus-alugueis':
-        include_once('aluguel.php');
+    case 'meus-emprestimos':
+        include_once('emprestimo.php');
         break;
     case 'carrinho':
         include_once('carrinho.php');
@@ -25,8 +25,8 @@ switch ($url[0]) {
     case 'alterar-senha':
         include_once('alterarSenha.php');
         break;
-    case 'visualizar-aluguel':
-        include_once('visualizarAluguel.php');
+    case 'visualizar-emprestimo':
+        include_once('visualizarEmprestimo.php');
         break;
     case 'logout':
         include_once('logout.php');
