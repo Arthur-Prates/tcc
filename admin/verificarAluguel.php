@@ -43,6 +43,15 @@ $link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprest
 $listarEmprestimo = 'SIM';
 include_once('nav.php');
 
+$verificarSeCodEmprestimoExiste = listarItemExpecifico('*','emprestimo','codigoEmprestimo',$codigoEmprestimo);
+if ($verificarSeCodEmprestimoExiste !== 'Vazio'){
+    foreach ($verificarSeCodEmprestimoExiste as $itemVerificar){
+        $verficacao = true;
+    }
+}else{
+    header('location: inicio?erro=emprestimo-nao-encontrado');
+}
+
 $nao = 0;
 $contarNao = listarItemExpecifico('*', 'produtoemprestimo', 'codEmprestimo', "$codigoEmprestimo");
 if ($contarNao !== 'Vazio') {
@@ -54,10 +63,10 @@ if ($contarNao !== 'Vazio') {
 
     }
 } else {
-//    header('location: inicio?erro=emprestimo-nao-encontrado');
     $nao = 1;
-
 }
+
+
 
 ?>
 
@@ -187,7 +196,17 @@ if ($contarNao !== 'Vazio') {
             <p><b>Email:</b> <?php echo $email ?></p>
             <p><b>Telefone:</b> <?php echo $telefone ?></p>
             <p><b>Data:</b> <?php echo $dataEmprestimo ?></p>
-            <p><b>Prioridade:</b> <?php echo $prioridade ?></p>
+            <p><b>Prioridade:</b> <?php
+                if ($prioridade == '3'){
+                    $prioridadeVisivel = 'Alta';
+                }else if ($prioridade == '2'){
+                    $prioridadeVisivel = 'Média';
+                }else{
+                    $prioridadeVisivel = 'Baixa';
+                }
+
+                echo $prioridadeVisivel;
+                ?></p>
             <p><b>Observação:</b> <?php echo $observacao ?></p>
             <p><b>Status do empréstimo:</b> <?php echo $statusEmprestimo ?></p>
         </div>

@@ -53,7 +53,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                     <th scope="col">#</th>
                     <th scope="col">Código do empréstimo</th>
                     <th scope="col">Data do empréstimo</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col">Prioridade</th>
+                    <th scope="col" width="15%">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,15 @@ if (!empty($_SESSION['idFuncionario'])) {
                         $codigoEmprestimo = $emprestimo->codigoEmprestimo;
                         $dataEmprestimo = $emprestimo->dataEmprestimo;
                         $devolvido = $emprestimo->devolvido;
+                        $prioridade = $emprestimo-> prioridade;
+
+                        if ($prioridade == '3'){
+                            $prioridadeVisivel = 'Alta';
+                        }else if ($prioridade == '2'){
+                            $prioridadeVisivel = 'Média';
+                        }else{
+                            $prioridadeVisivel = 'Baixa';
+                        }
 
                         $dataEmprestimo = implode("/", array_reverse(explode("-", $dataEmprestimo)));
                         ?>
@@ -73,6 +83,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                             <th scope="row"><?php echo $cont ?></th>
                             <td><?php echo $codigoEmprestimo ?></td>
                             <td><?php echo $dataEmprestimo ?></td>
+                            <td><?php echo $prioridadeVisivel ?></td>
                             <td class="d-flex">
                                 <form action="visualizar-emprestimo" name="frmCodAluguel" id="frmCodAluguel"
                                       method="post">

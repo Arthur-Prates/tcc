@@ -71,7 +71,7 @@ include_once('nav.php');
                         <?php
                         if (isset($_GET['erro'])) {
                             ?>
-                            <p class="text-danger">Nenhum empréstimo encontrado!</p>
+                            <p class="text-danger">Código de empréstimo inexistente!</p>
                             <?php
                         }
                         ?>

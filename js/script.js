@@ -132,7 +132,7 @@ function fazerLoginAdm() {
             // console.log(data)
             if (data.success) {
                 setTimeout(function () {
-                    window.location.href = "dashboard.php";
+                    window.location.href = "inicio";
                     esconderProcessando();
                 }, 3000);
                 //alert(data.message);

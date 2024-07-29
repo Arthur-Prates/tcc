@@ -15,16 +15,17 @@ if (isset($dados) && !empty($dados)) {
     $updateEmail = false;
     $updateCelular = false;
 
+
     if ($email != '') {
         $updateEmail = alterar1Item('usuario', 'email', $email, 'idusuario', $idFuncionario);
-        if ($updateEmail) {
+        if ($updateEmail > 0) {
             $updateEmail = true;
         }
     }
 
     if ($celular != '') {
         $updateCelular = alterar1Item('usuario', 'numero', "$celular", 'idusuario', $idFuncionario);
-        if ($updateCelular) {
+        if ($updateCelular >0) {
             $updateCelular = true;
         }
     }

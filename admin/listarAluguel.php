@@ -14,6 +14,7 @@
                 <th scope="col" width="5%">#</th>
                 <th scope="col">Locatário</th>
                 <th scope="col">Código do empréstimo</th>
+                <th scope="col">Prioridade</th>
                 <th scope="col" width="10%">Status</th>
                 <th scope="col" width="10%" class="no-print">Ações</th>
 
@@ -22,7 +23,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaEmprestimo = listarTabelaInnerJoinOrdenada('*','emprestimo','usuario','idusuario','idusuario','a.idemprestimo', 'DESC');
+            $listaEmprestimo = listarTabelaInnerJoinOrdenada('*','emprestimo','usuario','idusuario','idusuario','prioridade', 'DESC');
             if ($listaEmprestimo) {
                 foreach ($listaEmprestimo as $itemEmprestimo) {
                     $idemprestimo = $itemEmprestimo->idemprestimo;
@@ -31,11 +32,20 @@
                     $sobrenome = $itemEmprestimo->sobrenome;
                     $codigoEmprestimo = $itemEmprestimo->codigoEmprestimo;
                     $statusEmprestimo = $itemEmprestimo->devolvido;
+                    $prioridade = $itemEmprestimo-> prioridade;
+                    if ($prioridade == '3'){
+                        $prioridadeVisivel = 'Alta';
+                    }else if ($prioridade == '2'){
+                        $prioridadeVisivel = 'Média';
+                    }else{
+                        $prioridadeVisivel = 'Baixa';
+                    }
                     ?>
                     <tr>
                         <th scope="row"><?php echo $contar ?></th>
                         <td><?php echo "$nomeUsuario $sobrenome" ?></td>
                         <td><?php echo $codigoEmprestimo ?></td>
+                        <td><?php echo $prioridadeVisivel ?></td>
                         <td><?php
 
                             if ($statusEmprestimo == 'S') {

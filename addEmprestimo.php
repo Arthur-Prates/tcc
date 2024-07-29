@@ -81,7 +81,7 @@ if (isset($dados) && !empty($dados)) {
             ++$limite;
         }
         if ($sucesso) {
-            echo json_encode(['success' => true, 'errodata' => false, 'message' => "Produto(s) alugado(s)!"]);
+            echo json_encode(['success' => true, 'errodata' => false, 'message' => "Empréstimo relizado com sucesso!"]);
             unset($_SESSION['pedidoscarrinho']);
         } else {
             echo json_encode(['success' => false, 'errodata' => false, 'message' => "Quantidade de produto indisponível!"]);
