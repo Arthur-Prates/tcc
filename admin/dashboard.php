@@ -2,7 +2,6 @@
 include_once('../config/conexao.php');
 include_once('../config/constantes.php');
 include_once('../func/funcoes.php');
-//include_once('listarEpi.php');
 
 if ($_SESSION['idadm']) {
     $idUsuario = $_SESSION['idadm'];
@@ -224,6 +223,301 @@ include_once('nav.php');
     </div>
 </div>
 
+
+<!-- Modal Add Usuario -->
+<div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Usuario</h1>
+            </div>
+            <form action="#" method="post" name="frmUsuarioAdd" id="frmUsuarioAdd">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="text" class="form-control" id="nomeUsuarioAdd"
+                                       name="nomeUsuarioAdd">
+                                <span>Nome</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="text" class="form-control" id="sobrenomeUsuarioAdd"
+                                       name="sobrenomeUsuarioAdd">
+                                <span>Sobrenome</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="text" class="form-control celular"
+                                       id="telefoneUsuarioAdd"
+                                       name="telefoneUsuarioAdd">
+                                <span>Celular</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="text" class="form-control cpf" id="CPFUsuarioAdd"
+                                       name="CPFUsuarioAdd">
+                                <span>CPF</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="date" class="form-control" id="nascimentoUsuarioAdd"
+                                       name="nascimentoUsuarioAdd" value='<?php echo Data18AnosAtras() ?>'>
+                                <span>Data de Nascimento</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField2 mb-3">
+                                <select required="required" class="form-select" aria-label="Default select example"
+                                        id="cargoUsuarioAdd" name="cargoUsuarioAdd">
+                                    <option value="adm">Adminstrador</option>
+                                    <option value="almoxarife">Almoxarife</option>
+                                    <option selected value="funcionario">Funcionário</option>
+                                    <option value="rh">Recursos Humanos</option>
+                                </select>
+                                <span>Cargo</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="email" class="form-control" id="emailUsuarioAdd"
+                                       name="emailUsuarioAdd">
+                                <span>Email de acesso</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input required="required" type="password" class="form-control" id="senhaUsuarioAdd"
+                                       name="senhaUsuarioAdd">
+                                <span>Senha de acesso</span>
+                            </div>
+                            <label for="senhaUsuarioAdd"
+                                   class="olhinho" id="olhinho" onclick="mostrarsenha('senhaUsuarioAdd')"><span
+                                        id="btn-senha" class="bi bi-eye"></span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCinza   btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalAddUsuario">Fechar
+                    </button>
+                    <button type="submit" class="btn btnDark btn-sm" id="btnUsuarioAdd">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Usuario -->
+<div class="modal fade" id="modalUsuarioEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario</h1>
+            </div>
+            <form action="#" method="post" name="frmUsuarioEdit" id="frmUsuarioEdit">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="formField d-none mb-3">
+                                <input type="text" class="form-control" id="idUsuarioEdit" name="idUsuarioEdit">
+                                <label class="input-group-text" for="idUsuarioEdit">id</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input type="text" class="form-control" id="nomeUsuarioEdit" name="nomeUsuarioEdit">
+                                <span for="nomeUsuarioEdit">Nome</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input type="text" class="form-control" id="sobrenomeUsuarioEdit"
+                                       name="sobrenomeUsuarioEdit">
+                                <span for="sobrenomeUsuarioEdit">Sobrenome</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input type="text" class="form-control celular" id="telefoneUsuarioEdit"
+                                       name="telefoneUsuarioEdit">
+                                <span for="telefoneUsuarioEdit" >Celular</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input type="text" class="form-control cpf" id="CPFUsuarioEdit" name="CPFUsuarioEdit">
+                                <span for="CPFUsuarioEdit">CPF</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField mb-3">
+                                <input type="date" class="form-control" id="nascimentoUsuarioEdit"
+                                       name="nascimentoUsuarioEdit"
+                                       value='<?php echo Data18AnosAtras() ?>'>
+                                <span for="nascimentoUsuarioEdit">Data de Nascimento</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="formField2 mb-3">
+                                <select class="form-select" aria-label="Default select example" id="cargoUsuarioEdit"
+                                        name="cargoUsuarioEdit">
+                                    <option value="adm">Adminstrador</option>
+                                    <option value="almoxarife">Almoxarife</option>
+                                    <option value="funcionario">Funcionário</option>
+                                    <option value="rh">Recursos Humanos</option>
+                                </select>
+                                <span for="cargoUsuarioEdit">Cargo</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="formField mb-3">
+                                <input type="text" class="form-control" id="emailUsuarioEdit" name="emailUsuarioEdit">
+                                <span for="emailUsuarioEdit">Email de Acesso</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-info text-white w-100 mb-3" id="btnAlterarSenha" type="button">
+                            Alterar senha
+                        </button>
+                        <button class="btn btn-secondary text-white w-100 mb-3" id="btnFecharAlterarSenha" type="button"
+                                style="display: none">
+                            Não alterar senha
+                        </button>
+                        <div id="dNone" style="display: none">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="formField mb-3">
+                                        <input type="password" class="form-control" id="novaSenhaUsuarioEdit"
+                                               name="novaSenhaUsuarioEdit">
+                                        <span for="novaSenhaUsuarioEdit">Digite a nova senha</span>
+                                    </div>
+                                    <label for="novaSenhaUsuarioEdit" class="olhinho2"  id="btn-senha olhinho2" onclick="mostrarsenha('novaSenhaUsuarioEdit')">
+                                        <span class="bi bi-eye"></span>
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="formField mb-3">
+                                        <input type="password" class="form-control" id="confirmNovaSenhaUsuarioEdit"
+                                               name="confirmNovaSenhaUsuarioEdit">
+                                        <span for="confirmNovaSenhaUsuarioEdit">Repita a senha</span>
+                                    </div>
+                                    <label class=" olhinho3" for="confirmNovaSenhaUsuarioEdit" id="btn-senha olhinho3"
+                                           onclick="mostrarsenha('confirmNovaSenhaUsuarioEdit')"><span
+                                                class="bi bi-eye"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="text-danger text-center" id="alertaSenha" style="display: none"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalEditUsuario">Fechar
+                    </button>
+                    <button type="submit" class="btn btnAzulBostrap btn-sm" id="btnUsuarioEdit">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Ver MAIS Usuario -->
+<div class="modal fade" id="modalUsuarioVermais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ver mais</h1>
+            </div>
+            <form action="#" method="post" name="frmUsuarioVermais" id="frmUsuarioVermais">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label for="input" class="text">Name</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input" id="nomeUsuarioVermais"
+                                       name="nomeUsuarioVermais" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="sobrenomeUsuarioVermais">Sobrenome</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input"
+                                       id="sobrenomeUsuarioVermais"
+                                       name="sobrenomeUsuarioVermais" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="telefoneUsuarioVermais">Celular</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input"
+                                       id="telefoneUsuarioVermais"
+                                       name="telefoneUsuarioVermais" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="CPFUsuarioVermais">CPF</label>
+                                <input type="text" class="form-control mdlVermaisUsuario cpf input"
+                                       id="CPFUsuarioVermais"
+                                       name="CPFUsuarioVermais" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="nascimentoUsuarioVermais">Data de Nascimento</label>
+                                <input type="date" class="form-control mdlVermaisUsuario input"
+                                       id="nascimentoUsuarioVermais"
+                                       name="nascimentoUsuarioVermais"
+                                       value='<?php echo Data18AnosAtras() ?>' disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="nomeUsuarioVermais">Cargo</label>
+                                <select class="form-select mdlVermaisUsuario select" aria-label="Default select example"
+                                        id="cargoUsuarioVermais"
+                                        name="cargoUsuarioVermais" disabled>
+                                    <option value="adm">Adminstrador</option>
+                                    <option value="almoxarife">Almoxarife</option>
+                                    <option value="funcionario">Funcionário</option>
+                                    <option value="rh">Recursos Humanos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="emailUsuarioVermais">Email de acesso</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input" id="emailUsuarioVermais"
+                                       name="emailUsuarioVermais" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalVermaisUsuario">Fechar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Modal add epi -->
 
 <div class="modal fade" id="modalEpiAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -333,283 +627,6 @@ include_once('nav.php');
 </div>
 
 
-<!-- Modal Add Usuario -->
-<div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Usuario</h1>
-            </div>
-            <form action="#" method="post" name="frmUsuarioAdd" id="frmUsuarioAdd">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="text" class="form-control" id="nomeUsuarioAdd"
-                                       name="nomeUsuarioAdd">
-                                <span>Nome</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="text" class="form-control" id="sobrenomeUsuarioAdd"
-                                       name="sobrenomeUsuarioAdd">
-                                <span>Sobrenome</span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="text" class="form-control celular"
-                                       id="telefoneUsuarioAdd"
-                                       name="telefoneUsuarioAdd">
-                                <span>Celular</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="text" class="form-control cpf" id="CPFUsuarioAdd"
-                                       name="CPFUsuarioAdd">
-                                <span>CPF</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="date" class="form-control" id="nascimentoUsuarioAdd"
-                                       name="nascimentoUsuarioAdd" value='<?php echo Data18AnosAtras() ?>'>
-                                <span>Data de Nascimento</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="formField2 mb-3">
-                                <select required="required" class="form-select" aria-label="Default select example"
-                                        id="cargoUsuarioAdd" name="cargoUsuarioAdd">
-                                    <option value="adm">Adminstrador</option>
-                                    <option value="almoxarife">Almoxarife</option>
-                                    <option selected value="funcionario">Funcionário</option>
-                                    <option value="rh">Recursos Humanos</option>
-                                </select>
-                                <span>Cargo</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="email" class="form-control" id="emailUsuarioAdd"
-                                       name="emailUsuarioAdd">
-                                <span>Email de acesso</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="formField mb-3">
-                                <input required="required" type="password" class="form-control" id="senhaUsuarioAdd"
-                                       name="senhaUsuarioAdd">
-                                <span>Senha de acesso</span>
-                            </div>
-                                <label for="senhaUsuarioAdd"
-                                      class="olhinho" id="olhinho" onclick="mostrarsenha('senhaUsuarioAdd')"><span id="btn-senha" class="bi bi-eye"></span></label>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btnCinza   btn-sm" data-bs-dismiss="modal"
-                            id="btnFecharModalAddUsuario">Fechar
-                    </button>
-                    <button type="submit" class="btn btnDark btn-sm" id="btnUsuarioAdd">Cadastrar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Edit Usuario -->
-<div class="modal fade" id="modalUsuarioEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-info text-white">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario</h1>
-            </div>
-            <form action="#" method="post" name="frmUsuarioEdit" id="frmUsuarioEdit">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="input-group d-none mb-3">
-                                <input type="text" class="form-control" id="idUsuarioEdit" name="idUsuarioEdit">
-                                <label class="input-group-text" for="idUsuarioEdit">id</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="nomeUsuarioEdit" name="nomeUsuarioEdit">
-                                <label class="input-group-text" for="nomeUsuarioEdit">Nome</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="sobrenomeUsuarioEdit" name="sobrenomeUsuarioEdit">
-                                <label class="input-group-text" for="sobrenomeUsuarioEdit">Sobrenome</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control celular" id="telefoneUsuarioEdit"
-                                       name="telefoneUsuarioEdit">
-                                <label class="input-group-text" for="telefoneUsuarioEdit">Celular</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control cpf" id="CPFUsuarioEdit" name="CPFUsuarioEdit">
-                                <label class="input-group-text" for="CPFUsuarioEdit">CPF</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="date" class="form-control" id="nascimentoUsuarioEdit" name="nascimentoUsuarioEdit"
-                                       value='<?php echo Data18AnosAtras() ?>'>
-                                <label class="input-group-text" for="nascimentoUsuarioEdit">Data de Nascimento</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Default select example" id="cargoUsuarioEdit"
-                                        name="cargoUsuarioEdit">
-                                    <option value="adm">Adminstrador</option>
-                                    <option value="almoxarife">Almoxarife</option>
-                                    <option value="funcionario">Funcionário</option>
-                                    <option value="rh">Recursos Humanos</option>
-                                </select>
-                                <label class="input-group-text" for="nomeUsuarioEdit">Cargo</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="emailUsuarioEdit" name="emailUsuarioEdit">
-                                <label class="input-group-text" for="emailUsuarioEdit">Email de acesso</label>
-                            </div>
-                        </div>
-
-                        <button class="btn btn-info text-white w-100 mb-3" id="btnAlterarSenha" type="button">
-                            Alterar senha
-                        </button>
-                        <button class="btn btn-secondary text-white w-100 mb-3" id="btnFecharAlterarSenha" type="button"
-                                style="display: none">
-                            Não alterar senha
-                        </button>
-                        <div id="dNone" style="display: none">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="novaSenhaUsuarioEdit" id="btn-senha"
-                                               onclick="mostrarsenha('novaSenhaUsuarioEdit')"><span
-                                                    class="bi bi-eye"></span></label>
-                                        <input type="password" class="form-control" id="novaSenhaUsuarioEdit"
-                                               name="novaSenhaUsuarioEdit">
-                                        <label class="input-group-text" for="novaSenhaUsuarioEdit">Digite a nova senha</label>
-                                    </div> </div>
-                                <div class="col-md-6">
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="confirmNovaSenhaUsuarioEdit" id="btn-senha"
-                                               onclick="mostrarsenha('confirmNovaSenhaUsuarioEdit')"><span
-                                                    class="bi bi-eye"></span></label>
-                                        <input type="password" class="form-control" id="confirmNovaSenhaUsuarioEdit"
-                                               name="confirmNovaSenhaUsuarioEdit">
-                                        <label class="input-group-text" for="confirmNovaSenhaUsuarioEdit">Repita a senha</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-danger text-center" id="alertaSenha" style="display: none"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
-                            id="btnFecharModalEditUsuario">Fechar
-                    </button>
-                    <button type="submit" class="btn btn-dark btn-sm" id="btnUsuarioEdit">Alterar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Ver MAIS Usuario -->
-<div class="modal fade" id="modalUsuarioVermais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ver mais</h1>
-            </div>
-            <form action="#" method="post" name="frmUsuarioVermais" id="frmUsuarioVermais">
-                <div class="modal-body">
-                    <div class="coolinput mb-3">
-                        <label for="input" class="text">Name:</label>
-                        <input type="text" class="form-control mdlVermaisUsuario input" id="nomeUsuarioVermais"
-                               name="nomeUsuarioVermais" disabled>
-                    </div>
-
-                    <!--                    <div class="form-group">-->
-                    <!--                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais"-->
-                    <!--                               name="nomeUsuarioVermais" placeholder="Nome" disabled>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="input-group mb-3">-->
-                    <!--                        <label class="input-group-text" for="nomeUsuarioVermais">Nome</label>-->
-                    <!--                        <input type="text" class="form-control mdlVermaisUsuario" id="nomeUsuarioVermais"-->
-                    <!--                               name="nomeUsuarioVermais" disabled>-->
-                    <!--                    </div>-->
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="sobrenomeUsuarioVermais">Sobrenome</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="sobrenomeUsuarioVermais"
-                               name="sobrenomeUsuarioVermais" disabled>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="telefoneUsuarioVermais">Celular</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="telefoneUsuarioVermais"
-                               name="telefoneUsuarioVermais" disabled>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="CPFUsuarioVermais">CPF</label>
-                        <input type="text" class="form-control mdlVermaisUsuario cpf" id="CPFUsuarioVermais"
-                               name="CPFUsuarioVermais" disabled>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="nascimentoUsuarioVermais">Data de Nascimento</label>
-                        <input type="date" class="form-control mdlVermaisUsuario" id="nascimentoUsuarioVermais"
-                               name="nascimentoUsuarioVermais"
-                               value='<?php echo Data18AnosAtras() ?>' disabled>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="nomeUsuarioVermais">Cargo</label>
-                        <select class="form-select mdlVermaisUsuario" aria-label="Default select example"
-                                id="cargoUsuarioVermais"
-                                name="cargoUsuarioVermais" disabled>
-                            <option value="adm">Adminstrador</option>
-                            <option value="almoxarife">Almoxarife</option>
-                            <option value="funcionario">Funcionário</option>
-                            <option value="rh">Recursos Humanos</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="emailUsuarioVermais">Email de acesso</label>
-                        <input type="text" class="form-control mdlVermaisUsuario" id="emailUsuarioVermais"
-                               name="emailUsuarioVermais" disabled>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
-                            id="btnFecharModalVermaisUsuario">Fechar
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
