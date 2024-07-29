@@ -13,7 +13,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 
 <nav class="navbar navbar-expand-lg cinza" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="pagina-inicial">SAFETECH</a>
+        <a class="navbar-brand" href="pagina-inicial"><b>SAFETECH</b></a>
         <div class="navbar-toggler">
             <a href="carrinho" class="text-decoration-none text-white margemEntreSacolaEForm">
 

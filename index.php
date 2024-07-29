@@ -54,7 +54,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                             <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top" alt="...">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title nomeProduto"><?php echo $nome ?></h5>
+                            <h5 class="card-title nomeProduto text-center"><b><?php echo $nome ?></b></h5>
                             <p class="card-text"></p>
                         </div>
                         <ul class="list-group list-group-flush">
