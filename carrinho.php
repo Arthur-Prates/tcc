@@ -67,7 +67,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             <div class="mt-4">
                                 <label for="dataAluguel">Selecione a data do aluguel:</label>
                                 <input type="date" id="dataAluguel" name="dataAluguel" class="form-control"
-                                       value="<?php echo DATAATUAL ?>" required="required">
+                                       value="2024-10-08" required="required">
                                 <p id="alertData" style="display: none"></p>
                             </div>
                             <div class="mt-4">
@@ -107,7 +107,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                         required="required">
                                     <?php
                                     $minuto = '0';
-                                    $hora = 0;
+                                    $hora = 17;
                                     while ($hora < 24) {
                                         if ($hora < 10) {
                                             ?>

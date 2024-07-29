@@ -1,4 +1,6 @@
-
+<?php
+$idFuncionario = $_SESSION['idadm'];
+?>
 <nav class="navbar navbar-expand-lg cinza">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="inicio"><b>SAFETECH</b></a>
@@ -26,38 +28,54 @@
                     ?>
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                                aria-expanded="false">
                             Menu
                         </button>
                         <ul class="dropdown-menu">
-                            <li><button class="dropdown-item" onclick="carregarConteudo('listarEpi')">
-                                    EPI'S
-                                </button>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <button class="dropdown-item" onclick="carregarConteudo('listarAluguel')">
-                                    Empréstimos
-                                </button>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            <?php
+                            $verificarCargo = listarItemExpecifico('*', 'usuario', 'idusuario', $idFuncionario);
+                            if ($verificarCargo !== 'Vazio') {
+                                foreach ($verificarCargo as $verificacao) {
+                                    $cargo = $verificacao->cargo;
+
+                                    if ($cargo == 'almoxarife' || $cargo == 'adm') {
+                                        ?>
+                                        <li>
+                                            <button class="dropdown-item" onclick="carregarConteudo('listarEpi')">
+                                                EPI'S
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" onclick="carregarConteudo('listarAluguel')">
+                                                Empréstimos
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" onclick="carregarConteudo('listarEstoque')">
+                                                Estoque
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <?php
+                                    }
+                                }
+                            }
+                            ?>
+
                             <li>
                                 <button class="dropdown-item" onclick="carregarConteudo('listarUsuario')">
                                     Usuário
                                 </button>
                             </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <button class="dropdown-item" onclick="carregarConteudo('listarEstoque')">
-                                    Estoque
-                                </button>
-                            </li>
+
                         </ul>
                     </li>
                 <?php } ?>

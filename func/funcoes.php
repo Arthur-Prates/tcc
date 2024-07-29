@@ -21,6 +21,54 @@ function listarTabela($campos, $tabela)
         $conn = null;
     }
 }
+function listarTabelaPaginada($campos, $tabela, $pagina, $limit) {
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+
+        // Calcular o offset com base na página atual
+        $offset = $pagina * $limit;
+
+        // Preparar a consulta com OFFSET e LIMIT
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela LIMIT :limit OFFSET :offset");
+
+        // Bind dos parâmetros
+        $sqlListaTabelas->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        $sqlListaTabelas->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+
+        // Executar a consulta
+        $sqlListaTabelas->execute();
+
+        $conn->commit();
+
+        if ($sqlListaTabelas->rowCount() > 0) {
+            return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        return false;
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        $conn->rollBack();
+        return false;
+    } finally {
+        $conn = null;
+    }
+}
+function contarRegistros($tabela) {
+    $conn = conectar();
+    try {
+        $sql = $conn->prepare("SELECT COUNT(*) as total FROM $tabela");
+        $sql->execute();
+        $result = $sql->fetch(PDO::FETCH_OBJ);
+        return $result->total;
+    } catch (PDOException $e) {
+        echo 'Exception -> ' . $e->getMessage();
+        return 0;
+    } finally {
+        $conn = null;
+    }
+}
+
 
 function executaQuery($query)
 {
@@ -193,6 +241,28 @@ function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1
     try {
         $conn->beginTransaction();
         $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 ORDER BY $ordem $tipoOrdem");
+        //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'VAZIO';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
+function paginacao($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem,$limite )
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 ORDER BY $ordem $tipoOrdem LIMIT $limite");
         //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
         $sqlLista->execute();
         $conn->commit();

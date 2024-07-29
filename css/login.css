@@ -242,7 +242,9 @@ a:hover{
     .wave{
         display: none;
     }
-
+    .onda{
+        display: none;
+    }
     .login-content{
         justify-content: center;
     }
