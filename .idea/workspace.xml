@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addEmprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/addEmprestimo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/deleteEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/deleteEpi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarAluguel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/carrinho.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editDados.php" beforeDir="false" afterPath="$PROJECT_DIR$/editDados.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/emprestimo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +42,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Marco",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/xampp/htdocs/phpMarco/tcc-Marco",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -66,6 +76,7 @@
       <workItem from="1721818807946" duration="2773000" />
       <workItem from="1721906295381" duration="3078000" />
       <workItem from="1721996335468" duration="10653000" />
+      <workItem from="1722251660241" duration="7674000" />
     </task>
     <servers />
   </component>

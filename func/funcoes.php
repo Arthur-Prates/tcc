@@ -238,7 +238,7 @@ function listarTabelaInnerJoinOrdenadaDuploWhere($campos, $tabela1, $tabela2, $i
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 WHERE $campoExpecifico = ? AND WHERE $campoExpecifico2 = ?  ORDER BY $ordem $tipoOrdem");
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 WHERE $campoExpecifico = ? AND $campoExpecifico2 = ?  ORDER BY $ordem $tipoOrdem");
         $sqlLista->bindValue(1, $valorCampo, PDO::PARAM_STR);
         $sqlLista->bindValue(2, $valorCampo2, PDO::PARAM_STR);
         $sqlLista->execute();

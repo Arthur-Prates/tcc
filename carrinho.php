@@ -138,9 +138,9 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                 <label for="addPrioridade" class="label-control">Selecione a prioridade:</label>
                                 <select name="addPrioridade" id="addPrioridade" class="form-control"
                                         required="required">
-                                    <option value="BAIXA" selected>Baixa</option>
-                                    <option value="MEDIA">Média</option>
-                                    <option value="ALTA">Alta</option>
+                                    <option value="1" selected>Baixa</option>
+                                    <option value="2">Média</option>
+                                    <option value="3">Alta</option>
                                 </select>
                             </div>
                             <div class="input-group mt-4">
