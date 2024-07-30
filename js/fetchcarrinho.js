@@ -61,14 +61,14 @@ function atualizarCarrinhoAutomaticamente(data) {
             qtdLG.innerText = `${item.quantidade}`;
 
             const botaoMais = document.createElement('button');
-            botaoMais.classList.add('btn', 'btn-sm', 'btn-success', 'px-3');
+            botaoMais.classList.add('btn', 'btn-sm', 'btn-success', 'rounded-bolinha');
             botaoMais.innerText = '+';
             botaoMais.addEventListener('click', function () {
                 aumentarQuantidade(`${item.idproduto}`)
             })
 
             const botaoMenos = document.createElement('button');
-            botaoMenos.classList.add('btn', 'btn-sm', 'btn-warning', 'px-3');
+            botaoMenos.classList.add('btn', 'btn-sm', 'btn-warning', 'rounded-bolinha');
             botaoMenos.innerText = '-';
             if (item.quantidade == 1) {
                 botaoMenos.setAttribute('disabled', 'disabled');
@@ -78,7 +78,7 @@ function atualizarCarrinhoAutomaticamente(data) {
             })
 
             const btnRemover = document.createElement('button')
-            btnRemover.classList.add('btn', 'btn-sm', 'btn-danger', 'px-4')
+            btnRemover.classList.add('btn', 'btn-sm', 'btn-danger', 'px-4', 'rounded-4')
             btnRemover.innerHTML = '<i class="bi bi-trash"></i>'
 
             btnRemover.addEventListener('click', function () {

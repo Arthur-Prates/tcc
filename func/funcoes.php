@@ -1320,18 +1320,21 @@ function validaCPF($cpf)
 
 function valoresGraficoTopFuncionarios()
 {
+    $TOTALFIMEND = array();
     $aray = array();
     $topTotal = array();
     $arayPessoas = array();
     $contarAray = 0;
 
-    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario, b.idusuario as idUser', 'usuario', 'emprestimo', 'idusuario', 'idusuario', 'idUser', 'ASC');
+    $selectAlugadores = listarTabelaInnerJoinOrdenadaLimitada('a.idusuario,a.nomeUsuario,a.sobrenome, b.idusuario as idUser', 'usuario', 'emprestimo', 'idusuario', 'idusuario', 'idUser', 'ASC');
 
     foreach ($selectAlugadores as $itemAlu) {
         $iduser = $itemAlu->idusuario;
         $nomeUser = $itemAlu->nomeUsuario;
+        $sobrenomeUser = $itemAlu->sobrenome;
+        $pessoa = "$nomeUser $sobrenomeUser";
         array_push($aray, "$iduser");
-        array_push($arayPessoas, "$nomeUser");
+        array_push($arayPessoas, "$pessoa");
     }
     $aray = array_unique($aray);
     $aray = array_values($aray);

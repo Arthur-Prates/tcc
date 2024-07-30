@@ -22,7 +22,9 @@ include_once('./func/funcoes.php');
     <meta name="theme-color" content="#000000">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/login.css">
-
+    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/2.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>

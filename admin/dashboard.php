@@ -32,6 +32,9 @@ $listarEmprestimo = 'NAO';
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" sizes="16x16"  href="../img/favicon/4.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#90bae0">
 
 </head>
 
@@ -83,11 +86,11 @@ include_once('nav.php');
         <section class="conteudo">
             <div class="row d-flex justify-content-between align-items-center ">
                 <div class="col-lg-4 col-md-12 col-sm-12">
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <div class="d-flex justify-content-center align-items-center text-white">
                         <canvas id="myChart"></canvas>
                     </div>
 
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script>
                         const ctx = document.getElementById('myChart');
                         Chart.defaults.color = '#ffffff';
@@ -123,11 +126,6 @@ include_once('nav.php');
                                             bottom: 30,
                                         }
                                     }
-                                },
-                                scales: {
-                                    y: {
-                                        beginAtZero: true,
-                                    }
                                 }
                             }
                         });
@@ -138,86 +136,94 @@ include_once('nav.php');
 
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <?php
-                    $verificarVazio = valoresGraficoTopFuncionarios();
-                    foreach ($verificarVazio as $chave => $valor) {
-                        if (!empty($valor)) {
-                            ?>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <canvas id="myChart2"></canvas>
-                            </div>
-                            <script>
-                                const ctx2 = document.getElementById('myChart2');
-                                new Chart(ctx2, {
-                                    type: 'doughnut',
-                                    data: {
-                                        labels: [
-                                            <?php
-                                            $numPeople = 0;
-                                            $TOTALFIMEND = valoresGraficoTopFuncionarios();
-                                            foreach ($TOTALFIMEND as $key => $value) {
-                                                if ($numPeople < 5) {
+                    // Obtém os dados da função valoresGraficoTopFuncionarios()
+                    $dadosGrafico = valoresGraficoTopFuncionarios();
 
-                                                    echo "'$key',";
+                    // Verifica se os dados não estão vazios
+                    if (!empty($dadosGrafico)) {
+                        // Inicializa arrays para labels e dados
+                        $labels = [];
+                        $dados = [];
+                        $contador = 0;
 
-                                                }
-                                                $numPeople = $numPeople + 1;
-                                            }
-                                            ?>
-                                        ],
-                                        datasets: [{
-                                            label: 'Quantidade de empréstimos feitos',
-
-                                            data: [
-                                                <?php
-                                                $numValores = 0;
-                                                $TOTALFIMEND = valoresGraficoTopFuncionarios();
-                                                foreach ($TOTALFIMEND as $key => $value) {
-                                                    if ($numValores < 5) {
-                                                        echo "'$value',";
-
-                                                        $numValores = $numValores + 1;
-                                                    }
-                                                }
-                                                ?>,
-                                            ],
-
-                                            backgroundColor: [
-                                                'rgba(183, 28, 28,0.8)',
-                                                'rgba(255, 111, 0,0.8)',
-                                                'rgba(255,186,8,0.8)',
-                                                'rgba(63,132,229,0.8)',
-                                                'rgba(22,152,115,0.8)',
-
-                                            ],
-                                            borderColor: [
-                                                'rgba(183, 28, 28)',
-                                                'rgba(255, 111, 0)',
-                                                'rgba(255,186,8)',
-                                                'rgba(63,132,229)',
-                                                'rgba(22,152,115)',
-
-
-                                            ],
-                                            borderWidth: 2
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                });
-                            </script>
-                            <?php
-
+                        // Popula os arrays de labels e dados, limitando a 5 elementos
+                        foreach ($dadosGrafico as $chave => $valor) {
+                            if ($contador < 5) {
+                                $labels[] = "'$chave'";
+                                $dados[] = $valor;
+                                $contador++;
+                            }
                         }
 
+                        // Converte arrays para strings para serem usados no JavaScript
+                        $labels = implode(",", $labels);
+                        $dados = implode(",", $dados);
+                    } else {
+                        // Caso não haja dados, define valores padrão
+                        $labels = "'Sem dados'";
+                        $dados = "0";
                     }
                     ?>
 
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                    <script>
+                        // Inicializa o gráfico do tipo 'doughnut' usando Chart.js
+                        const ctx2 = document.getElementById('myChart2').getContext('2d');
+                        Chart.defaults.color = '#ffffff';
+                        Chart.defaults.borderColor = 'rgba(255,255,255,0.1)';
+                        new Chart(ctx2, {
+                            type: 'doughnut',
+                            data: {
+                                labels: [<?php echo $labels; ?>],
+                                datasets: [{
+                                    label: 'Quantidade de empréstimos feitos',
+                                    data: [<?php echo $dados; ?>],
+                                    backgroundColor: [
+                                        'rgba(183, 28, 28,0.8)',
+                                        'rgba(255, 111, 0,0.8)',
+                                        'rgba(255,186,8,0.8)',
+                                        'rgba(63,132,229,0.8)',
+                                        'rgba(22,152,115,0.8)',
+                                    ],
+                                    borderColor: [
+                                        'rgba(183, 28, 28)',
+                                        'rgba(255, 111, 0)',
+                                        'rgba(255,186,8)',
+                                        'rgba(63,132,229)',
+                                        'rgba(22,152,115)',
+                                    ],
+                                    borderWidth: 2
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Líderes em EPI Pendentes',
+                                        padding: {
+                                            top: 10,
+                                            bottom: 30,
+                                        }
+                                    },
+                                    legend: {
+                                        display: true
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                                            }
+                                        }
+                                    },
+                                }
+                            }
+                        });
+                    </script>
                 </div>
+
             </div>
         </section>
     </div>
