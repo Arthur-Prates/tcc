@@ -4,7 +4,16 @@
 <div class="container">
     <div class="mt-5 d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
+
+        <form action="" method="post" name="buscaUsuario" id="buscaUsuario" class="buscaUsuario">
+            <div class="formField3">
+                <input type="text" class="" id="buscarUsuario" name="buscarUsuario" placeholder="">
+                <span>Digite o nome do usuário</span>
+            </div>
+            <button type="submit" class="btn btnDark btnDarkUsuario"><i class="bi bi-search"></i></button>
+        </form>
         <div class="d-flex align-items-center">
+
             <button class="btn btnAmareloBos mx-1 " onclick="imprimir('Lista de Usuarios do Sistema','tabelaUser')"><i
                         class="bi bi-printer"></i></button>
             <button type="button" class="btn btnDark"
@@ -71,7 +80,7 @@
                                     <i class="bi bi-person-lines-fill"></i>
                                 </button>
                                 <?php
-                                if ($_SESSION['cargo'] == 'rh' || $_SESSION['cargo'] == 'adm') {
+                                if ($_SESSION['cargo'] !== 'almoxarife') {
                                     ?>
                                     <button type="button" class="btn btn-info" style="float: right"
                                             onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')">

@@ -20,8 +20,8 @@ if ($servidorLocal) {
     define('PASS', '');
     define('DBNAME', 'tcc');
 } else {
-    define('HOST', '');
-    define('USER', '');
-    define('PASS', '');
-    define('DBNAME', '');
+    define('HOST', '15.235.55.95');
+    define('USER', 'uarthur');
+    define('PASS', 'Wold51@2');
+    define('DBNAME', 'tcc');
 }

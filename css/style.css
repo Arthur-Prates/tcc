@@ -4,10 +4,10 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
+    /*font-family: "Poppins", sans-serif;*/
 
-    font-weight: 500;
-    font-style: normal;
+    /*font-weight: 500; */
+    /*font-style: normal;*/
     background-color: #EDEEF3;
 }
 
@@ -858,6 +858,10 @@ section.ondas-box {
     position: relative;
 }
 .formField2 {
+     margin: 10px;
+     position: relative;
+ }
+.formField3 {
     margin: 10px;
     position: relative;
 }
@@ -889,7 +893,24 @@ section.ondas-box {
     transition: 0.3s ease-in-out;
     box-shadow: 0 0 0 5px transparent;
 }
+.formField3 input {
+    width: 100%;
+    padding: 20px 15px 10px 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 16px;
+    font-weight: 550;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 0 5px transparent;
+}
 
+.formField3 input:hover,
+.formField3 input:focus {
+    box-shadow: 0 0 0 2px #333;
+}
 
 .formField input:hover,
 .formField input:focus {
@@ -929,6 +950,20 @@ section.ondas-box {
     pointer-events: none;
 }
 
+.formField3 span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 13px 15px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: -1px -1px 0 #f1f1f1, 1px -1px 0 #f1f1f1, -1px 1px 0 #f1f1f1,
+    1px 1px 0 #f1f1f1;
+    transition: 0.3s ease-in-out;
+    pointer-events: none;
+}
+
 .formField input:focus + span,
 .formField input:valid + span {
     transform: translateY(-12px) translateX(-5px) scale(0.95);
@@ -940,6 +975,13 @@ section.ondas-box {
     transform: translateY(-12px) translateX(-5px) scale(0.95);
     transition: 0.3s ease-in-out;
 }
+
+.formField3 input:focus + span,
+.formField3 input:valid + span {
+    transform: translateY(-12px) translateX(-5px) scale(0.95);
+    transition: 0.3s ease-in-out;
+}
+
 
 #preview {
     margin-top: 20px;
@@ -1065,5 +1107,48 @@ section.ondas-box {
     position: absolute;
     left: 46rem;
     top: 26.1rem;
+}
+
+.inputBuscaUsuario{
+    width: 300px;
+    margin-right: 15px;
+}
+
+.buscaUsuario{
+    display: flex;
+
+}
+.inputCarrinho {
+    width: 50%;
+    height: 100%;
+    border: 1px solid #ccc; /* Adiciona uma borda sutil para um visual mais refinado */
+    outline: none;
+    border-radius: 10px; /* Ajusta o raio da borda para um arredondamento mais sutil */
+    padding: 1em;
+    background-color: #ffffff;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1); /* Sombra interna leve para um efeito mais suave */
+    transition: all 300ms ease-in-out; /* Garantia de que todas as propriedades de transição sejam suaves */
+}
+
+.inputCarrinho:focus {
+    background-color: #f9f9f9; /* Leve mudança na cor de fundo ao focar */
+    transform: scale(1.02); /* Ajusta a escala para um efeito mais discreto */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra externa leve e suave */
+    border-color: #007bff; /* Adiciona uma cor de borda destacada ao focar */
+}
+
+.cardCarrinho{
+padding: 40px;
+
+}
+
+.rowCarrinho{
+    padding: 40px;
+}
+
+.rounded-bolinha{
+    border-radius:50%;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 

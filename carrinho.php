@@ -29,7 +29,9 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="./css/style.css">
-
+    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/2.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
@@ -39,40 +41,52 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 ?>
 
 <div class="container">
+    <div class="card mt-3 rounded-4 cardCarrinho">
+        <div class="card-body cardBodyCarrinho">
     <?php
     if (isset($_SESSION['pedidoscarrinho']) && !empty($_SESSION['pedidoscarrinho'])) {
         ?>
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class="mt-3">Itens para empréstimo</h3>
-            <button class="btn btn-sm btn-danger" type="button" id="btnLimparCarrinho"
-                    onclick="limparCarrinho('apagar')">Limpar carrinho
+            <h2 class="mt-2"><b>Itens para Empréstimo</b></h2>
+
+
+            <button class="CartBtn">
+  <span class="IconContainer">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
+  </span>
+                <p class="text">Add to Cart</p>
             </button>
+<!--            <button class="btn btn-sm btn-danger rounded-5" type="button" id="btnLimparCarrinho"-->
+<!--                    onclick="limparCarrinho('apagar')">Limpar carrinho-->
+<!--            </button>-->
+
         </div>
         <?php
     }
 
     ?>
     <div class="row">
+
         <div class="col-12">
             <?php
             if (!empty($_SESSION['pedidoscarrinho']) && isset($_SESSION['pedidoscarrinho'])) {
                 ?>
-                <div class="row mt-5" id="listagemCarrinho">
+                <div class="row mt-5 rowCarrinho" id="listagemCarrinho">
                     <!--A listagem doo carrinho está sendo feita via JS-->
                 </div>
                 <hr>
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
-                    <div class="row mb-5">
+                    <div class="row mb-5  justify-content-md-centert ">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="mt-4">
                                 <label for="dataAluguel">Selecione a data do aluguel:</label>
-                                <input type="date" id="dataAluguel" name="dataAluguel" class="form-control"
-                                       value="2024-08-08" required="required">
+                                <input type="date" id="dataAluguel" name="dataAluguel" class="form-control inputCarrinho"
+                                       value="2024-08-08" required="required"  autocomplete="off">
                                 <p id="alertData" style="display: none"></p>
                             </div>
                             <div class="mt-4">
                                 <label for="horaInicialAluguel">Selecione a hora de início do aluguel:</label>
-                                <select name="horaInicialAluguel" id="horaInicialAluguel" class="form-control"
+                                <select name="horaInicialAluguel" id="horaInicialAluguel" autocomplete="off" class="form-control inputCarrinho"
                                         required="required">
                                     <?php
                                     $minuto = '0';
@@ -103,7 +117,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             </div>
                             <div class="mt-4">
                                 <label for="horaFinalAluguel">Selecione a hora de término do aluguel:</label>
-                                <select name="horaFinalAluguel" id="horaFinalAluguel" class="form-control"
+                                <select name="horaFinalAluguel" id="horaFinalAluguel" autocomplete="off" class="form-control inputCarrinho"
                                         required="required">
                                     <?php
                                     $minuto = '0';
@@ -136,7 +150,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                         <div class="col-lg-6 col-md-6 col-12 ">
                             <div class="mt-4">
                                 <label for="addPrioridade" class="label-control">Selecione a prioridade:</label>
-                                <select name="addPrioridade" id="addPrioridade" class="form-control"
+                                <select name="addPrioridade" id="addPrioridade" autocomplete="off" class="form-control inputCarrinho"
                                         required="required">
                                     <option value="1" selected>Baixa</option>
                                     <option value="2">Média</option>
@@ -145,7 +159,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             </div>
                             <div class="input-group mt-4">
                                 <span class="input-group-text">Observação</span>
-                                <textarea class="form-control" aria-label="With textarea" name="addObservacao"
+                                <textarea class="form-control inputCarrinho" aria-label="With textarea" name="addObservacao"
                                           id="addObservacao"></textarea>
                             </div>
                         </div>
@@ -188,6 +202,8 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             }
 
             ?>
+        </div>
+    </div>
         </div>
     </div>
 </div>
