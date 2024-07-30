@@ -30,7 +30,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaUsuario = listarTabela("*", "usuario");
+            $listaUsuario = listarTabela("*", 'usuario');
             if ($listaUsuario) {
                 foreach ($listaUsuario as $item) {
                     $idusuario = $item->idusuario;
@@ -40,39 +40,50 @@
                     $nascimento = $item->nascimento;
                     $cpf = $item->cpf;
                     $cargo = $item->cargo;
-                    if ($cargo == 'adm') {
-                        $cargo = "Adminstrador";
-                    } else if ($cargo == 'funcionario') {
-                        $cargo = 'Funcionário';
-                    } else if ($cargo = 'rh') {
-                        $cargo = "Recursos Humanos";
-                    } else if ($cargo == 'almoxarife') {
-                        $cargo = "Almoxarife";
-                    } else {
-                        $cargo = 'Sem cargo';
-                    }
                     $email = $item->email;
                     if ($telefone == '') {
                         $telefone = 'Sem telefone';
                     }
+
+                    if ($cargo == 'adm') {
+                        $cargoTela = "Administrator";
+                    } else if ($cargo == 'funcionario') {
+                        $cargoTela = 'Funcionário';
+                    } else if ($cargo == 'rh') {
+                        $cargoTela = "Recursos Humanos";
+                    } else if ($cargo == 'almoxarife') {
+                        $cargoTela = "Almoxarife";
+                    } else {
+                        $cargoTela = 'Sem cargo';
+                    }
+
                     ?>
                     <tr>
                         <th scope="row"><?php echo $contar ?></th>
                         <td><?php echo "$nome $sobrenome" ?></td>
                         <td><?php echo $cpf ?></td>
-                        <td><?php echo $cargo ?></td>
+                        <td><?php echo $cargoTela ?></td>
                         <td><?php echo $email ?></td>
                         <td class="no-print">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="button" class="btn btn-success" style="float: right"
                                         onclick="abrirModalUsuario('nao','nao','nomeUsuarioVermais','<?php echo $nome; ?>', 'sobrenomeUsuarioVermais','<?php echo $sobrenome; ?>','telefoneUsuarioVermais','<?php echo $telefone ?>', 'CPFUsuarioVermais','<?php echo $cpf; ?>', 'nascimentoUsuarioVermais','<?php echo $nascimento; ?>', 'cargoUsuarioVermais','<?php echo $cargo; ?>', 'emailUsuarioVermais','<?php echo $email; ?>', 'nao','nao','modalUsuarioVermais', 'A', 'nao', 'editUsuario', 'frmUsuarioVermais')">
-                                    <i class="bi bi-person-lines-fill"></i></button>
-                                <button type="button" class="btn btn-info" style="float: right"
-                                        onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')">
-                                    <i class="mdi mdi-file-edit-outline"></i></button>
-                                <button type="button" class="btn btn-danger"
-                                        onclick="deleletarUsuario('<?php echo $idusuario; ?>','deleteUsuario')"><i
-                                            class="mdi mdi-trash-can"></i></button>
+                                    <i class="bi bi-person-lines-fill"></i>
+                                </button>
+                                <?php
+                                if ($_SESSION['cargo'] == 'rh' || $_SESSION['cargo'] == 'adm') {
+                                    ?>
+                                    <button type="button" class="btn btn-info" style="float: right"
+                                            onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')">
+                                        <i class="mdi mdi-file-edit-outline"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger"
+                                            onclick="deleletarUsuario('<?php echo $idusuario; ?>','deleteUsuario')"><i
+                                                class="mdi mdi-trash-can"></i>
+                                    </button>
+                                    <?php
+                                }
+                                ?>
 
                             </div>
 

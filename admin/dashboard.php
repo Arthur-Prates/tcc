@@ -486,7 +486,7 @@ include_once('nav.php');
                         </div>
                         <div class="col-md-6">
                             <div class="coolinput mb-3">
-                                <label class="text" for="nomeUsuarioVermais">Cargo</label>
+                                <label class="text" for="cargoUsuarioVermais">Cargo</label>
                                 <select class="form-select mdlVermaisUsuario select" aria-label="Default select example"
                                         id="cargoUsuarioVermais"
                                         name="cargoUsuarioVermais" disabled>

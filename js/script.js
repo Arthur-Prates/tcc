@@ -132,8 +132,11 @@ function fazerLoginAdm() {
             // console.log(data)
             if (data.success) {
                 setTimeout(function () {
-                    window.location.href = "inicio";
                     esconderProcessando();
+                    telaBemvindo(data.nome)
+                }, 1000)
+                setTimeout(function () {
+                    window.location.href = "inicio";
                 }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
@@ -175,6 +178,26 @@ function mostrarProcessandoAdm() {
     document.body.appendChild(divProcessando);
 }
 
+function telaBemvindo(nome) {
+    var divFundoClaro = document.createElement('div');
+    divFundoClaro.id = 'fundoEscuro';
+    divFundoClaro.style.position = 'fixed';
+    divFundoClaro.style.top = '0';
+    divFundoClaro.style.left = '0';
+    divFundoClaro.style.width = '100%';
+    divFundoClaro.style.height = '100%';
+    divFundoClaro.style.backgroundColor = 'rgba(255,255,255,0.95)';
+    document.body.appendChild(divFundoClaro);
+
+    var divBemvindo = document.createElement("div");
+    divBemvindo.id = "telaBemVindo";
+    divBemvindo.style.position = "fixed";
+    divBemvindo.style.top = "50%";
+    divBemvindo.style.left = "50%";
+    divBemvindo.style.transform = "translate(-50%, -50%)";
+    divBemvindo.innerHTML = '<h4>Bem-vindo, ' + nome + ' !</h4>';
+    document.body.appendChild(divBemvindo);
+}
 
 // FUNCAO DE ESCONDER O LOADING
 function esconderProcessando() {
@@ -433,17 +456,6 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
     }
     const INPtrabalho = document.getElementById(`${INPcargo}`)
     if (IDcargo !== 'nao') {
-        if (IDcargo === 'Adminstrador') {
-            IDcargo = 'adm'
-        } else if (IDcargo === 'Almoxarife') {
-            IDcargo = 'almoxarife'
-        } else if (IDcargo === 'Funcionário') {
-            IDcargo = 'funcionario'
-        } else if (IDcargo === 'Recursos Humanos') {
-            IDcargo = 'rh'
-        } else {
-            IDcargo = 'sem Cargo'
-        }
         INPtrabalho.value = IDcargo
     }
 
@@ -1123,7 +1135,7 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo,qtdDevolucao) {
+function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevolucao) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
@@ -1155,9 +1167,9 @@ function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo,qtdDevoluca
                 });
             }
         })
-        // .catch(error => {
-        //     console.error('Erro na requisição:', error);
-        // });
+    // .catch(error => {
+    //     console.error('Erro na requisição:', error);
+    // });
 }
 
 function devolverEmprestimo(controle, codEmprestimo, valor) {
