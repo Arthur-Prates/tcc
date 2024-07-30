@@ -67,7 +67,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                             <div class="mt-4">
                                 <label for="dataAluguel">Selecione a data do aluguel:</label>
                                 <input type="date" id="dataAluguel" name="dataAluguel" class="form-control"
-                                       value="2024-10-08" required="required">
+                                       value="2024-08-08" required="required">
                                 <p id="alertData" style="display: none"></p>
                             </div>
                             <div class="mt-4">
