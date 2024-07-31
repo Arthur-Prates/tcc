@@ -6,15 +6,15 @@ if ($_SESSION['idadm']) {
     $idUsuario = $_SESSION['idadm'];
 } else {
     session_destroy();
-    header('location: login?error=404');
+    header('location: index.php?error=404');
 }
 
 $codigoEmprestimo = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 $codigoEmprestimo = str_replace(' ', '', $codigoEmprestimo);
 if (empty($codigoEmprestimo)) {
-    header('location: inicio?error=404');
+    header('location: index.php?error=404');
 }
-$link = "http://localhost/devtarde/prates/tcc/admin/verificarAluguel.php?emprestimo=$codigoEmprestimo"
+$link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$codigoEmprestimo"
 ?>
 
 <!doctype html>
@@ -51,7 +51,7 @@ if ($verificarSeCodEmprestimoExiste !== 'Vazio'){
         $verficacao = true;
     }
 }else{
-    header('location: inicio?erro=emprestimo-nao-encontrado');
+    header('location: dashboard.php?erro=emprestimo-nao-encontrado');
 }
 
 $nao = 0;

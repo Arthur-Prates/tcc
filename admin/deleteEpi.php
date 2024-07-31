@@ -12,9 +12,6 @@ $a = print_r($dados, true);
 if (isset($dados) && !empty($dados)) {
     $id = isset($dados['idDelete']) ? addslashes($dados['idDelete']) : '';
 
-
-
-
     $verificarVazio = listarItemExpecifico('*', 'estoque', 'idepi', "$id");
     if ($verificarVazio !== 'Vazio') {
         foreach ($verificarVazio as $item) {
@@ -24,25 +21,32 @@ if (isset($dados) && !empty($dados)) {
             if ($quantidade > $disponivel) {
                 echo json_encode(['success' => false, 'message' => "Epi em Uso"]);
             } else {
-                $verificarEmprestimoPendente = listarTabelaInnerJoinOrdenadaDuploWhere('a.idepi,b.devolvido','produtoemprestimo','emprestimo','codEmprestimo','codigoEmprestimo','a.idepi', $id,'devolvido','N','a.idepi','ASC');
-                if ($verificarEmprestimoPendente !== 'Vazio'){
+                $verificarEmprestimoPendente = listarTabelaInnerJoinOrdenadaDuploWhere('a.idepi,b.devolvido', 'produtoemprestimo', 'emprestimo', 'codEmprestimo', 'codigoEmprestimo', 'a.idepi', "$id", 'devolvido', 'N', 'a.idepi', 'ASC');
+                if ($verificarEmprestimoPendente !== 'Vazio') {
                     foreach ($verificarEmprestimoPendente as $emprestimo) {
-                        $idTeste = $emprestimo -> idepi;
-                        $devolucao = $emprestimo -> devolvido;
+                        $idTeste = $emprestimo->idepi;
+                        $devolucao = $emprestimo->devolvido;
 
-                        if ($idTeste == $id && $devolucao == 'N'){
+                        if ($idTeste == $id && $devolucao == 'N') {
                             echo json_encode(['success' => false, 'message' => "Este EPI consta em um empréstimo não concluído!"]);
                             return;
-                        }else{
-                            $retornoDelete = deletarCadastro('epi', 'idepi', "$id");
-                            if ($retornoDelete) {
-                                echo json_encode(['success' => true, 'message' => "Epi deletado com sucesso"]);
-                            } else {
-                                echo json_encode(['success' => false, 'message' => "Epi não deletado!"]);
-                            }
+                        }
+
+                        $retornoDelete = deletarCadastro('epi', 'idepi', "$id");
+                        if ($retornoDelete) {
+                            echo json_encode(['success' => true, 'message' => "Epi deletado com sucesso"]);
+                        } else {
+                            echo json_encode(['success' => false, 'message' => "Epi não deletado!"]);
                         }
 
 
+                    }
+                }else{
+                    $retornoDelete = deletarCadastro('epi', 'idepi', "$id");
+                    if ($retornoDelete) {
+                        echo json_encode(['success' => true, 'message' => "Epi deletado com sucesso"]);
+                    } else {
+                        echo json_encode(['success' => false, 'message' => "Epi não deletado!"]);
                     }
                 }
 

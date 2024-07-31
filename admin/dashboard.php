@@ -7,7 +7,7 @@ if ($_SESSION['idadm']) {
     $idUsuario = $_SESSION['idadm'];
 } else {
     session_destroy();
-    header('location: login?error=404');
+    header('location: index.php?error=404');
 }
 
 
@@ -60,7 +60,7 @@ include_once('nav.php');
             <div class="container">
                 <div class="row vai">
                     <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <form action="visualizar-emprestimo" method="get">
+                        <form action="verificarAluguel.php" method="get">
                             <input type="text" id="emprestimo" name="emprestimo"
                                    class="inputPesquisa text-center w-100 mt-2 text-dark" placeholder="Código">
                     </div>
@@ -85,7 +85,7 @@ include_once('nav.php');
         <img src="../img/wave.svg" alt="onda" class="oondafoto">
         <section class="conteudo">
             <div class="row d-flex justify-content-between align-items-center ">
-                <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class=" col-12 col-lg-4 col-md-12 col-sm-12">
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <div class="d-flex justify-content-center align-items-center text-white">
                         <canvas id="myChart"></canvas>
@@ -134,7 +134,7 @@ include_once('nav.php');
                     </script>
                 </div>
 
-                <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="col-12col-lg-4 col-md-12 col-sm-12">
                     <?php
                     // Obtém os dados da função valoresGraficoTopFuncionarios()
                     $dadosGrafico = valoresGraficoTopFuncionarios();

@@ -61,7 +61,7 @@
                             <?php
                             ?></td>
                         <td class="no-print">
-                            <a href="visualizar-emprestimo?emprestimo=<?php echo $codigoEmprestimo ?>"
+                            <a href="verificarAluguel.php?emprestimo=<?php echo $codigoEmprestimo ?>"
                                class="btn btn-sm btn-success">Visualizar</a>
                         </td>
                     </tr>

@@ -78,7 +78,7 @@ function atualizarCarrinhoAutomaticamente(data) {
             })
 
             const btnRemover = document.createElement('button')
-            btnRemover.classList.add('btn', 'btn-sm', 'btn-danger', 'px-4', 'rounded-4')
+            btnRemover.classList.add('btn', 'btn-sm', 'btnVermelhoRonan', 'px-4', 'rounded-4')
             btnRemover.innerHTML = '<i class="bi bi-trash"></i>'
 
             btnRemover.addEventListener('click', function () {
