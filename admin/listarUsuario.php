@@ -5,12 +5,12 @@
     <div class="mt-5 d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
 
-        <form action="" method="post" name="buscaUsuario" id="buscaUsuario" class="buscaUsuario">
+        <form action="#" method="post" name="buscaUsuarios" id="buscaUsuarios" class="buscaUsuario">
             <div class="formField3">
                 <input type="text" class="" id="buscarUsuario" name="buscarUsuario" placeholder="">
                 <span>Digite o nome do usuário</span>
             </div>
-            <button type="submit" class="btn btnDark btnDarkUsuario"><i class="bi bi-search"></i></button>
+            <button type="submit" class="btn btnDark btnDarkUsuario" id="btnBuscaUsuario" onclick="buscaUsuario('buscaUsuarios','btnBuscaUsuario', 'buscaUsuarios')"><i class="bi bi-search"></i></button>
         </form>
         <div class="d-flex align-items-center">
 
@@ -24,7 +24,7 @@
     </div>
 
     <div class="overflowTable" id="tabelaUser">
-        <table class="table table-hover table-bordered border-dark  rounded-table">
+        <table class="table table-hover table-bordered border-dark rounded-table">
             <thead class="table-dark ">
             <tr>
 
@@ -67,7 +67,7 @@
                     }
 
                     ?>
-                    <tr>
+                    <tr id="row-<?php echo $idusuario; ?>" class="bg-custom-row">
                         <th scope="row"><?php echo $contar ?></th>
                         <td><?php echo "$nome $sobrenome" ?></td>
                         <td><?php echo $cpf ?></td>
@@ -76,14 +76,14 @@
                         <td class="no-print">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="button" class="btn btn-success" style="float: right"
-                                        onclick="abrirModalUsuario('nao','nao','nomeUsuarioVermais','<?php echo $nome; ?>', 'sobrenomeUsuarioVermais','<?php echo $sobrenome; ?>','telefoneUsuarioVermais','<?php echo $telefone ?>', 'CPFUsuarioVermais','<?php echo $cpf; ?>', 'nascimentoUsuarioVermais','<?php echo $nascimento; ?>', 'cargoUsuarioVermais','<?php echo $cargo; ?>', 'emailUsuarioVermais','<?php echo $email; ?>', 'nao','nao','modalUsuarioVermais', 'A', 'nao', 'editUsuario', 'frmUsuarioVermais')">
+                                        onclick="abrirModalUsuario('nao','nao','nomeUsuarioVermais','<?php echo $nome; ?>', 'sobrenomeUsuarioVermais','<?php echo $sobrenome; ?>','telefoneUsuarioVermais','<?php echo $telefone ?>', 'CPFUsuarioVermais','<?php echo $cpf; ?>', 'nascimentoUsuarioVermais','<?php echo $nascimento; ?>', 'cargoUsuarioVermais','<?php echo $cargo; ?>', 'emailUsuarioVermais','<?php echo $email; ?>', 'nao','nao','modalUsuarioVermais', 'A', 'nao', 'editUsuario','listarUsuario', 'frmUsuarioVermais')">
                                     <i class="bi bi-person-lines-fill"></i>
                                 </button>
                                 <?php
                                 if ($_SESSION['cargo'] !== 'almoxarife') {
                                     ?>
                                     <button type="button" class="btn btn-info" style="float: right"
-                                            onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario', 'frmUsuarioEdit')">
+                                            onclick="abrirModalUsuario('idUsuarioEdit','<?php echo $idusuario; ?>','nomeUsuarioEdit','<?php echo $nome; ?>', 'sobrenomeUsuarioEdit','<?php echo $sobrenome; ?>','telefoneUsuarioEdit','<?php echo $telefone ?>', 'CPFUsuarioEdit','<?php echo $cpf; ?>', 'nascimentoUsuarioEdit','<?php echo $nascimento; ?>', 'cargoUsuarioEdit','<?php echo $cargo; ?>', 'emailUsuarioEdit','<?php echo $email; ?>', 'nao','nao','modalUsuarioEdit', 'A', 'btnUsuarioEdit', 'editUsuario','listarUsuario', 'frmUsuarioEdit')">
                                         <i class="mdi mdi-file-edit-outline"></i>
                                     </button>
                                     <button type="button" class="btn btn-danger"
@@ -105,7 +105,7 @@
                 ?>
                 <tr>
                     <td colspan="4" class="text-center">
-                        <h4>Nenhum Usuario cadastrado no banco</h4>
+                        <h4>Nenhum usuário cadastrado no banco</h4>
                     </td>
                 </tr>
                 <?php

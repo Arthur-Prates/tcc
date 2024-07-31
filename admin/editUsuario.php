@@ -26,9 +26,9 @@ if (isset($dados) && !empty($dados)) {
     }
 
     if ($retornoUpdate > 0) {
-        echo json_encode(['success' => true, 'message' => "Usuario alterado com sucesso"]);
+        echo json_encode(['success' => true, 'message' => "Usuário alterado com sucesso", 'idUsuario' => $id]);
     } else {
-        echo json_encode(['success' => false, 'message' => "Usuario não alterado!"]);
+        echo json_encode(['success' => false, 'message' => "Usuário não alterado!"]);
     }
 
 } else {
