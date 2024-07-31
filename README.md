@@ -1,6 +1,6 @@
-https://code-with-me.global.jetbrains.com/56z9tuYG9WVmmP1NNULP4w#p=PS&fp=07209F170882AD445AFDA05237DCA8F84E8F9D325952154CE809DCA856DBD54D&newUi=true
+https://code-with-me.global.jetbrains.com/SqHeUWSXZWbB9IkBwLmRgQ#p=PS&fp=D7B0FE2A22E6B103ECFDA9E61EBD0E2A25873054D1099407C1C7D5B6F276B011&newUi=true
 
-https://prod.liveshare.vsengsaas.visualstudio.com/join?87BE019499D603F6A1C62BC57CDD28703BC6
+https://prod.liveshare.vsengsaas.visualstudio.com/join?FA12C342A6914D523E7369FE0B70C31C68DE
 
 <h1 align="center" style="display: inline_block">
 
