@@ -52,7 +52,12 @@ if (!empty($controle) && isset($controle)) {
             include_once('deleteUsuario.php');
             break;
 
-
+        case 'buscaUsuarios':
+            include_once('busca.php');
+            break;
+        case 'listarBusca':
+            include_once ('listaBusca.php');
+            break;
     }
 } else {
     ?>

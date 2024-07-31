@@ -423,7 +423,7 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
 }
 
 
-function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome, INPtelefone, IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobrenome, IDsobrenome, INPtelefone, IDtelefone, INPcpf, IDcpf, INPnascimento, IDnascimento, INPcargo, IDcargo, INPemail, IDemail, INPsenha, IDsenha, nomeModal, abrirModal = 'A', botao, addEditDel, listagem, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
@@ -522,16 +522,19 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             })
                 .then(response => response.json())
                 .then(data => {
-                    // console.log(data)
+                    console.log(data)
                     if (data.success) {
                         botoes.disabled = false;
                         alertSuccess(data.message, '#30B27F')
-                        carregarConteudo('listarUsuario')
+                        carregarConteudo(`${listagem}`)
                         formDados.removeEventListener('submit', submitHandler);
+                        setTimeout(function () {
+                            destacarLinha(IDid)
+                        }, 500)
                     } else {
                         botoes.disabled = false;
                         alertError(data.message)
-                        carregarConteudo('listarUsuario')
+                        carregarConteudo(`${listagem}`)
                         formDados.removeEventListener('submit', submitHandler);
                     }
                     formDados.reset()
@@ -1035,6 +1038,22 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
 }
 
+function destacarLinha(idDoUsuario) {
+    const row = document.getElementById('row-' + idDoUsuario);
+    if (row) {
+        row.classList.add('table-info');
+        row.classList.add('border-dark');
+        setTimeout(function () {
+            row.scrollIntoView({behavior: 'smooth', block: 'center'});
+        }, 550)
+
+        setTimeout(() => {
+            row.classList.remove('border-dark');
+            row.classList.remove('table-info');
+        }, 3000);
+    }
+}
+
 
 function deletarEpi(id, addEditDel) {
     Swal.fire({
@@ -1275,3 +1294,39 @@ document.getElementById('fotoEpiAdd').addEventListener('change', function (event
         reader.readAsDataURL(file);
     }
 });
+
+function buscaUsuario(formulario, botoes, addEditDel) {
+    const formDados = document.getElementById(formulario);
+
+    let formEnviado = false;
+    const submitHandler = function (event) {
+        event.preventDefault();
+        botoes.disabled = true;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        formData.append('controle', addEditDel);
+
+        fetch('controle.php', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                formEnviado = true;
+                if (data.success) {
+                    formDados.removeEventListener('submit', submitHandler);
+                    carregarConteudo('listarBusca')
+                } else {
+                    alertError(data.message);
+                    formDados.removeEventListener('submit', submitHandler);
+                }
+            })
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
+    };
+    formDados.addEventListener('submit', submitHandler);
+}
