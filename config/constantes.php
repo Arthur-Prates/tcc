@@ -21,7 +21,7 @@ if ($servidorLocal) {
     define('DBNAME', 'tcc');
 } else {
     define('HOST', '15.235.55.95');
-    define('USER', 'uarthur');
+    define('USER', 'tccmarco');
     define('PASS', 'Wold51@2');
-    define('DBNAME', 'tcc');
+    define('DBNAME', 'tccmarco');
 }

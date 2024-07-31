@@ -16,7 +16,7 @@ $cod = listarItemExpecifico('*', 'emprestimo', 'codigoEmprestimo', $codigoEmpres
 foreach ($cod as $itemCod) {
     $codAluguel = $itemCod->codigoEmprestimo;
     if ($codAluguel) {
-        $link = "http://localhost/tcc/verificarAluguel.php?codigoAluguel=$codigoEmprestimo";
+        $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$codigoEmprestimo";
     } else {
         echo '';
     }

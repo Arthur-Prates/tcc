@@ -116,7 +116,7 @@ function fazerLoginAdm() {
         alertlog.style.display = "none";
     }
     mostrarProcessandoAdm();
-    fetch("login.php", {
+    fetch("../admin/login.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -129,14 +129,14 @@ function fazerLoginAdm() {
     })
         .then((response) => response.json())
         .then((data) => {
-            // console.log(data)
+            console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     esconderProcessando();
                     telaBemvindo(data.nome)
                 }, 1000)
                 setTimeout(function () {
-                    window.location.href = "inicio";
+                    window.location.href = "../admin/dashboard.php";
                 }, 3000);
                 //alert(data.message);
                 alertlog.classList.remove("erroBonito");
@@ -150,9 +150,9 @@ function fazerLoginAdm() {
 
             }
         })
-        .catch((error) => {
-            console.error("Erro na requisição", error);
-        });
+        // .catch((error) => {
+        //     console.error("Erro na requisição", error);
+        // });
 }
 
 // FUNCAO DE LOADING
@@ -1096,9 +1096,9 @@ function deletarEpi(id, addEditDel) {
 
                     }
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
         }
     });
 }
@@ -1149,8 +1149,6 @@ function deleletarUsuario(id, addEditDel) {
                     console.error('Erro na requisição:', error);
                 });
         }
-
-
     });
 }
 
@@ -1186,9 +1184,9 @@ function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevoluc
                 });
             }
         })
-    // .catch(error => {
-    //     console.error('Erro na requisição:', error);
-    // });
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
 }
 
 function devolverEmprestimo(controle, codEmprestimo, valor) {

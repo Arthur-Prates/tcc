@@ -28,6 +28,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="./css/teste.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/2.png">
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -41,7 +42,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 ?>
 
 <div class="container">
-    <div class="card mt-3 rounded-4 cardCarrinho">
+    <div class="card rounded-4 cardCarrinho">
         <div class="card-body cardBodyCarrinho">
     <?php
     if (isset($_SESSION['pedidoscarrinho']) && !empty($_SESSION['pedidoscarrinho'])) {
@@ -50,23 +51,17 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             <h2 class="mt-2"><b>Itens para Empréstimo</b></h2>
 
 
-            <button class="CartBtn">
+            <button class="CartBtn" type="button" id="btnLimparCarrinho" onclick="limparCarrinho('apagar')" >
   <span class="IconContainer">
-    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="white" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
   </span>
-                <p class="text">Add to Cart</p>
+                <p class="text mt-3">Limpar carrinho</p>
             </button>
-<!--            <button class="btn btn-sm btn-danger rounded-5" type="button" id="btnLimparCarrinho"-->
-<!--                    onclick="limparCarrinho('apagar')">Limpar carrinho-->
-<!--            </button>-->
-
         </div>
         <?php
     }
-
     ?>
     <div class="row">
-
         <div class="col-12">
             <?php
             if (!empty($_SESSION['pedidoscarrinho']) && isset($_SESSION['pedidoscarrinho'])) {
@@ -76,94 +71,101 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                 </div>
                 <hr>
                 <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
-                    <div class="row mb-5  justify-content-md-centert ">
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="mt-4">
-                                <label for="dataAluguel">Selecione a data do aluguel:</label>
-                                <input type="date" id="dataAluguel" name="dataAluguel" class="form-control inputCarrinho"
-                                       value="2024-08-08" required="required"  autocomplete="off">
-                                <p id="alertData" style="display: none"></p>
-                            </div>
-                            <div class="mt-4">
-                                <label for="horaInicialAluguel">Selecione a hora de início do aluguel:</label>
-                                <select name="horaInicialAluguel" id="horaInicialAluguel" autocomplete="off" class="form-control inputCarrinho"
-                                        required="required">
-                                    <?php
-                                    $minuto = '0';
-                                    $hora = 0;
-                                    while ($hora < 24) {
-                                        if ($hora < 10) {
-                                            ?>
-                                            <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
-                                            <?php
+                    <div class="row mb-5  ">
 
-                                        } else {
+                        <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center">
+                            <div>
+                                <div class="mt-4">
+                                    <label for="dataAluguel">Selecione a data do empréstimo:</label>
+                                    <input type="date" id="dataAluguel" name="dataAluguel" class="form-control inputCarrinho"
+                                           value="2024-08-08" required="required"  autocomplete="off">
+                                    <p id="alertData" style="display: none"></p>
+                                </div>
 
-                                            ?>
-                                            <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
-                                            <?php
+                                <div class="mt-4">
+                                    <label for="horaInicialAluguel">Selecione a hora de início do empréstimo:</label>
+                                    <select name="horaInicialAluguel" id="horaInicialAluguel" autocomplete="off" class="form-control inputCarrinho"
+                                            required="required">
+                                        <?php
+                                        $minuto = '0';
+                                        $hora = 0;
+                                        while ($hora < 24) {
+                                            if ($hora < 10) {
+                                                ?>
+                                                <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
+                                                <?php
+
+                                            } else {
+
+                                                ?>
+                                                <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
+                                                <?php
+                                            }
+
+                                            if ($minuto == '0') {
+                                                $minuto = '3';
+                                            } else {
+                                                $minuto = '0';
+                                                $hora = $hora + 1;
+                                            }
                                         }
+                                        ?>
+                                    </select>
+                                    <p id="alertHoraInicial" style="display: none"></p>
+                                </div>
+                                <div class="mt-4">
+                                    <label for="horaFinalAluguel">Selecione a hora de término do empréstimo:</label>
+                                    <select name="horaFinalAluguel" id="horaFinalAluguel" autocomplete="off" class="form-control inputCarrinho"
+                                            required="required">
+                                        <?php
+                                        $minuto = '0';
+                                        $hora = 17;
+                                        while ($hora < 24) {
+                                            if ($hora < 10) {
+                                                ?>
+                                                <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
+                                                <?php
 
-                                        if ($minuto == '0') {
-                                            $minuto = '3';
-                                        } else {
-                                            $minuto = '0';
-                                            $hora = $hora + 1;
+                                            } else {
+
+                                                ?>
+                                                <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
+                                                <?php
+                                            }
+
+                                            if ($minuto == '0') {
+                                                $minuto = '3';
+                                            } else {
+                                                $minuto = '0';
+                                                $hora = $hora + 1;
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </select>
-                                <p id="alertHoraInicial" style="display: none"></p>
-                            </div>
-                            <div class="mt-4">
-                                <label for="horaFinalAluguel">Selecione a hora de término do aluguel:</label>
-                                <select name="horaFinalAluguel" id="horaFinalAluguel" autocomplete="off" class="form-control inputCarrinho"
-                                        required="required">
-                                    <?php
-                                    $minuto = '0';
-                                    $hora = 17;
-                                    while ($hora < 24) {
-                                        if ($hora < 10) {
-                                            ?>
-                                            <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
-                                            <?php
-
-                                        } else {
-
-                                            ?>
-                                            <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
-                                            <?php
-                                        }
-
-                                        if ($minuto == '0') {
-                                            $minuto = '3';
-                                        } else {
-                                            $minuto = '0';
-                                            $hora = $hora + 1;
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                                <p id="alertHoraFinal" style="display: none"></p>
+                                        ?>
+                                    </select>
+                                    <p id="alertHoraFinal" style="display: none"></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-12 ">
-                            <div class="mt-4">
-                                <label for="addPrioridade" class="label-control">Selecione a prioridade:</label>
-                                <select name="addPrioridade" id="addPrioridade" autocomplete="off" class="form-control inputCarrinho"
-                                        required="required">
-                                    <option value="1" selected>Baixa</option>
-                                    <option value="2">Média</option>
-                                    <option value="3">Alta</option>
-                                </select>
-                            </div>
-                            <div class="input-group mt-4">
-                                <span class="input-group-text">Observação</span>
-                                <textarea class="form-control inputCarrinho" aria-label="With textarea" name="addObservacao"
-                                          id="addObservacao"></textarea>
+
+                        <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center">
+                            <div>
+                                <div class="mt-4">
+                                    <label for="addPrioridade" class="label-control">Selecione aqui a prioridade do empréstimo:</label>
+                                    <select name="addPrioridade" id="addPrioridade" autocomplete="off" class="form-control inputCarrinho"
+                                            required="required">
+                                        <option value="1" selected>Baixa</option>
+                                        <option value="2">Média</option>
+                                        <option value="3">Alta</option>
+                                    </select>
+                                </div>
+                                <div class=" mt-4">
+                                    <span class="">Observação:</span>
+                                    <textarea class="form-control inputCarrinho" aria-label="With textarea" name="addObservacao "
+                                              id="addObservacao"></textarea>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 ">
                             <div class="text-center mt-4">
                                 <?php
                                 if (isset($_SESSION['idFuncionario'])) {
@@ -177,10 +179,10 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                     <?php
                                 } else {
                                     ?>
-                                    <button class="btn btn-success btn-sm btnConcluirAluguel" id="btnConcluirLogin"
+                                    <button class="btn btn-success btn-sm btnConcluirAluguel " id="btnConcluirLogin"
                                             type="button"
                                             name="btnLogin" onclick="redireciona('fazer-login')">
-                                        Concluir aluguel
+                                        <span>  Concluir empréstimo</span>
                                     </button>
                                     <?php
                                 }

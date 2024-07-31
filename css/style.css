@@ -37,13 +37,25 @@ body {
     background-color: #0020cc;!important;
 }
 
+.vermelhoRonan{
+    background-color: rgb(215, 36, 36);
+}
+
+
+
 .ciznaEscuro {
     background-color: #272626; !important;
 }
 
 .btnVerdeBostrap{
+    background-color: #1a8754;
+    border: 1px solid #1a8754;
+    color: white;
+}
+.btnVerdeBostrap:hover{
     background: transparent;
     border: 1px solid #1a8754;
+    color: #1a8754;
 }
 
 .btnAzulBostrap{
@@ -59,12 +71,26 @@ body {
 
 }
 
+.btnVermelhoRonan{
+    background-color: rgb(215, 36, 36);
+    border: 1px solid  rgb(215, 36, 36);
+    color: white;
+
+}
+
+.btnVermelhoRonan:hover{
+    background-color: rgb(204, 7, 7);
+    border: 1px solid  rgb(204, 7, 7);
+    color: white;
+}
+
+
 .amareloBos {
     background: #ffc108;!important;
 }
 
 .btnAmareloBos{
-    background: #ffc108;!important;
+    background-color: #ffc108;!important;
     border: 1px solid #ffc108;
     color: white;
 }
@@ -1119,27 +1145,32 @@ section.ondas-box {
 
 }
 .inputCarrinho {
-    width: 50%;
-    height: 100%;
-    border: 1px solid #ccc; /* Adiciona uma borda sutil para um visual mais refinado */
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
     outline: none;
-    border-radius: 10px; /* Ajusta o raio da borda para um arredondamento mais sutil */
+    border-radius: 10px;
     padding: 1em;
     background-color: #ffffff;
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1); /* Sombra interna leve para um efeito mais suave */
-    transition: all 300ms ease-in-out; /* Garantia de que todas as propriedades de transição sejam suaves */
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+    transition: all 300ms ease-in-out;
+}
+
+.inputCarrinho2{
+    width: 100%;!important;
+    height: 100%;
 }
 
 .inputCarrinho:focus {
-    background-color: #f9f9f9; /* Leve mudança na cor de fundo ao focar */
-    transform: scale(1.02); /* Ajusta a escala para um efeito mais discreto */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra externa leve e suave */
-    border-color: #007bff; /* Adiciona uma cor de borda destacada ao focar */
+    background-color: #f9f9f9;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-color: #007bff;
 }
 
 .cardCarrinho{
 padding: 40px;
-
+    margin-top: 7%;
 }
 
 .rowCarrinho{
@@ -1150,4 +1181,43 @@ padding: 40px;
     border-radius:50%;
     padding-right: 10px;
     padding-left: 10px;
+}
+.btnConcluirAluguel {
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #1a8754;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 50%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btnConcluirAluguel span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btnConcluirAluguel span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+}
+
+.btnConcluirAluguel:hover span {
+    padding-right: 15px;
+}
+
+.btnConcluirAluguel:hover span:after {
+    opacity: 1;
+    right: 0;
 }

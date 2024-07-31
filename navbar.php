@@ -11,7 +11,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 }
 ?>
 
-<nav class="navbar navbar-expand-lg cinza" data-bs-theme="dark">
+<nav class="navbar fixed-top navbar-expand-lg cinza" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="pagina-inicial"><b>SAFETECH</b></a>
         <div class="navbar-toggler">
