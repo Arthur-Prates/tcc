@@ -150,9 +150,9 @@ function fazerLoginAdm() {
 
             }
         })
-        // .catch((error) => {
-        //     console.error("Erro na requisição", error);
-        // });
+    // .catch((error) => {
+    //     console.error("Erro na requisição", error);
+    // });
 }
 
 // FUNCAO DE LOADING
@@ -1038,8 +1038,15 @@ function realizarAluguel(formulario, addEditDel, botoes) {
 
 }
 
-function destacarLinha(idDoUsuario) {
-    const row = document.getElementById('row-' + idDoUsuario);
+function buscarLinha(listaPagina, idBusca) {
+    carregarConteudo(`${listaPagina}`)
+    setTimeout(function () {
+        destacarLinha(`${idBusca}`)
+    }, 300)
+}
+
+function destacarLinha(idLinhaParaDestaque) {
+    const row = document.getElementById('row-' + idLinhaParaDestaque);
     if (row) {
         row.classList.add('table-info');
         row.classList.add('border-dark');
@@ -1096,9 +1103,9 @@ function deletarEpi(id, addEditDel) {
 
                     }
                 })
-            .catch(error => {
-                console.error('Erro na requisição:', error);
-            });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
     });
 }
@@ -1312,9 +1319,10 @@ function buscaUsuario(formulario, botoes, addEditDel) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 formEnviado = true;
                 if (data.success) {
+                    form.reset()
                     formDados.removeEventListener('submit', submitHandler);
                     carregarConteudo('listarBusca')
                 } else {
@@ -1322,9 +1330,26 @@ function buscaUsuario(formulario, botoes, addEditDel) {
                     formDados.removeEventListener('submit', submitHandler);
                 }
             })
-        // .catch(error => {
-        //     console.error('Erro na requisição:', error);
-        // });
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
     };
     formDados.addEventListener('submit', submitHandler);
+}
+
+// Quando o usuário rolar a página, execute a função scrollFunction
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+    // Se o usuário rolar a página para baixo 20px a partir do topo da página, mostre o botão
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        document.getElementById("btnTopo").style.display = "block";
+    } else {
+        document.getElementById("btnTopo").style.display = "none";
+    }
+}
+
+// Quando o usuário clicar no botão, role para o topo da página
+function voltarAoTopo() {
+    document.body.scrollTop = 0; // Para Safari
+    document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
 }

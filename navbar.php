@@ -82,7 +82,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                 </sup>
             </a>
             <form action="resultado-da-busca" method="get" name="pesquisaNavbarLG" class="d-flex" role="search">
-                <input class="form-control me-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisar EPI" aria-label="Search">
+                <input class="form-control me-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisar EPI"
+                       aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
@@ -98,8 +99,9 @@ if (!empty($_SESSION['idFuncionario'])) {
 
     <div class="offcanvas-body">
         <div>
-            <form action="resultado-da-busca" method="get"  name="pesquisaNavbarSM" class="d-flex" role="search">
-                <input class="form-control me-2" id="pesquisaSM" name="pesquisa" type="search" placeholder="Pesquisar EPI" aria-label="Search">
+            <form action="resultado-da-busca" method="get" name="pesquisaNavbarSM" class="d-flex" role="search">
+                <input class="form-control me-2" id="pesquisaSM" name="pesquisa" type="search"
+                       placeholder="Pesquisar EPI" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
@@ -107,41 +109,35 @@ if (!empty($_SESSION['idFuncionario'])) {
         <div class="" id="">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="pagina-inicial">Início</a>
+                    <a class="nav-link" aria-current="page" href="pagina-inicial">Início</a>
                 </li>
                 <hr>
                 <li class="nav-item dropdown">
-                    <button class="btnMenuNavbarSM" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <span class="mdi mdi-account-circle-outline"></span> Menu
-                    </button>
                     <?php
                     if ($idFuncionario == null) {
-                        ?>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body cardNavbarSM">
-                                <a class="linkNavbarSM" href="fazer-login">Fazer login</a>
-                            </div>
-                        </div>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body cardNavbarSM">
-                                <a class="linkNavbarSM" href="meu-perfil">Meu perfil</a>
-                                <hr>
-                                <a class="linkNavbarSM" href="meus-emprestimos">Meus empréstimos</a>
-                                <hr>
-                                <a class="linkNavbarSM" href="logout">Sair</a>
-                            </div>
-                        </div>
-                        <?php
-                    }
                     ?>
+                <li class="nav-item">
+                        <a class="linkNavbarSM" href="fazer-login">Fazer login</a>
                 </li>
-            </ul>
-            <hr>
+                <?php
+                } else {
+                    ?>
 
+                    <li class="nav-item">
+                        <a class="linkNavbarSM" href="meu-perfil">Meu perfil</a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a class="linkNavbarSM" href="meus-emprestimos">Meus empréstimos</a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a class="linkNavbarSM" href="logout">Sair</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
 
         </div>
     </div>

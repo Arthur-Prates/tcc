@@ -460,6 +460,8 @@ body {
 
 
 .linkNavbarAdminSM {
+    width: 100%;
+    text-align: start;
     background: transparent;
     border: none;
     color: black;
@@ -467,10 +469,6 @@ body {
     transition: 1s ease;
 }
 
-.linkNavbarAdminSM:hover {
-    color: white !important;
-    transition: 1s ease;
-}
 
 .btnMenuNavbarSMAdmin {
     background: transparent;
@@ -496,11 +494,6 @@ body {
 .linkNavbarSM {
     text-decoration: none;
     color: black;
-    transition: 1s ease;
-}
-
-.linkNavbarSM:hover {
-    color: white;
     transition: 1s ease;
 }
 
@@ -1220,4 +1213,23 @@ padding: 40px;
 .btnConcluirAluguel:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+#btnTopo {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    border: none;
+    outline: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    padding: 15px 20px 15px 20px;
+    border-radius: 50%;
+}
+
+#btnTopo:hover {
+    background-color: #333;
 }

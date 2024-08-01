@@ -32,7 +32,7 @@ $listarEmprestimo = 'NAO';
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#ffffff">
-    <link rel="icon" type="image/png" sizes="16x16"  href="../img/favicon/4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#90bae0">
 
@@ -44,18 +44,8 @@ include_once('nav.php');
 
 ?>
 
-
-<div class="row">
-    <div class="col-2">
-
-    </div>
-    <div class="col-10">
-
-
-    </div>
-</div>
 <div class="">
-    <div id='show' class='show'>
+    <div id='show' class='show '>
         <section class="ondas-box">
             <div class="container">
                 <div class="row vai">
@@ -134,7 +124,7 @@ include_once('nav.php');
                     </script>
                 </div>
 
-                <div class="col-12col-lg-4 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-4 col-md-12 col-sm-12">
                     <?php
                     // Obtém os dados da função valoresGraficoTopFuncionarios()
                     $dadosGrafico = valoresGraficoTopFuncionarios();
@@ -213,7 +203,7 @@ include_once('nav.php');
                                     },
                                     tooltip: {
                                         callbacks: {
-                                            label: function(tooltipItem) {
+                                            label: function (tooltipItem) {
                                                 return tooltipItem.label + ': ' + tooltipItem.raw;
                                             }
                                         }
@@ -227,6 +217,7 @@ include_once('nav.php');
             </div>
         </section>
     </div>
+    <button onclick="voltarAoTopo()" id="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
 </div>
 
 
@@ -354,7 +345,7 @@ include_once('nav.php');
                             <div class="formField mb-3">
                                 <input type="text" class="form-control celular" id="telefoneUsuarioEdit"
                                        name="telefoneUsuarioEdit">
-                                <span for="telefoneUsuarioEdit" >Celular</span>
+                                <span for="telefoneUsuarioEdit">Celular</span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -405,7 +396,8 @@ include_once('nav.php');
                                                name="novaSenhaUsuarioEdit">
                                         <span for="novaSenhaUsuarioEdit">Digite a nova senha</span>
                                     </div>
-                                    <label for="novaSenhaUsuarioEdit" class="olhinho2"  id="btn-senha olhinho2" onclick="mostrarsenha('novaSenhaUsuarioEdit')">
+                                    <label for="novaSenhaUsuarioEdit" class="olhinho2" id="btn-senha olhinho2"
+                                           onclick="mostrarsenha('novaSenhaUsuarioEdit')">
                                         <span class="bi bi-eye"></span>
                                     </label>
                                 </div>
@@ -523,7 +515,6 @@ include_once('nav.php');
 </div>
 
 
-
 <!-- Modal add epi -->
 
 <div class="modal fade" id="modalEpiAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -631,8 +622,6 @@ include_once('nav.php');
         </div>
     </div>
 </div>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

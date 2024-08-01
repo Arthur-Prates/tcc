@@ -7,32 +7,20 @@
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/busca.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/busca.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/deleteEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/deleteEpi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/listarUsuario- pagina.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listaBusca.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listaBusca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listarEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarEpi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listarUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarUsuario.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/nav.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/rotaAdmin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/constantes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/constantes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/navbar.php" afterDir="false" />
     </list>
-    <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="">
-      <change beforePath="$PROJECT_DIR$/carrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/carrinho.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/teste.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/teste.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/fetchcarrinho.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/fetchcarrinho.js" afterDir="false" />
-    </list>
-    <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="">
-      <change beforePath="$PROJECT_DIR$/admin/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/404.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/listarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/testes.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/testes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualizarEmprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/visualizarEmprestimo.php" afterDir="false" />
-    </list>
+    <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
+    <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,27 +31,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/admin/dashboard.php">
-      <ranges>
-        <range start1="9" end1="10" start2="9" end2="10" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="62" end1="63" start2="62" end2="63" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="87" end1="88" start2="87" end2="88" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="136" end1="137" start2="136" end2="137" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/js/script.js">
-      <ranges>
-        <range start1="118" end1="119" start2="118" end2="119" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="131" end1="132" start2="131" end2="132" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="138" end1="139" start2="138" end2="139" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="152" end1="155" start2="152" end2="155" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="1098" end1="1101" start2="1098" end2="1101" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="1151" end1="1153" start2="1151" end2="1151" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="1188" end1="1191" start2="1186" end2="1189" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -102,7 +69,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.14475.35" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.18034.69" />
+        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.18034.69" />
       </set>
     </attachedChunks>
   </component>
@@ -123,6 +91,7 @@
       <workItem from="1722425495781" duration="8767000" />
       <workItem from="1722442260359" duration="1921000" />
       <workItem from="1722444304316" duration="9962000" />
+      <workItem from="1722511107846" duration="8249000" />
     </task>
     <servers />
   </component>

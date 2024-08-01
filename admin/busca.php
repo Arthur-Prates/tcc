@@ -9,12 +9,14 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 $busca = $dados['buscarUsuario'];
 
-$resultadoPesquisa = pesquisaLike('*', 'usuario', 'nomeUsuario', $busca);
+$resultadoPesquisaUser = pesquisaLikeDuplo('idusuario,nomeUsuario,sobrenome,numero,cpf,nascimento,matricula,cargo,email', 'usuario', 'nomeUsuario', 'sobrenome', $busca, $busca);
+$resultadoPesquisaEPI = pesquisaLike('idepi,nomeEpi,certificado', 'epi', 'nomeEpi', $busca);
 
-unset($_SESSION['resultadoPesquisa']);
+unset($_SESSION['resultadoPesquisaUser']);
+unset($_SESSION['resultadoPesquisaEpi']);
 
-if ($resultadoPesquisa !== 'Vazio') {
-    foreach ($resultadoPesquisa as $resultado) {
+if ($resultadoPesquisaUser !== 'Vazio') {
+    foreach ($resultadoPesquisaUser as $resultado) {
         $idUsuario = $resultado->idusuario;
         $nomeUsuario = $resultado->nomeUsuario;
         $sobrenome = $resultado->sobrenome;
@@ -25,7 +27,7 @@ if ($resultadoPesquisa !== 'Vazio') {
         $cargo = $resultado->cargo;
         $email = $resultado->email;
 
-        $_SESSION['resultadoPesquisa'][] = [
+        $_SESSION['resultadoPesquisaUser'][] = [
             'idUsuario' => $idUsuario,
             'nomeUsuario' => $nomeUsuario,
             'sobrenome' => $sobrenome,
@@ -39,10 +41,33 @@ if ($resultadoPesquisa !== 'Vazio') {
 
     }
 
-//    print_r($_SESSION['resultadoPesquisa']);
-
-    echo json_encode(['success' => true, 'message' => 'Busca realizada com sucesso!']);
-
+//    print_r($_SESSION['resultadoPesquisaUser']);
+    $pesquisaUser = 'Resultados encontrados';
 } else {
+    $pesquisaUser = 'Vazio';
+}
+
+
+if ($resultadoPesquisaEPI !== 'Vazio') {
+    foreach ($resultadoPesquisaEPI as $resultado) {
+        $idEpi = $resultado->idepi;
+        $nomeEpi = $resultado->nomeEpi;
+        $certificado = $resultado->certificado;
+
+        $_SESSION['resultadoPesquisaEpi'][] = [
+            'idEpi' => $idEpi,
+            'nomeEpi' => $nomeEpi,
+            'certificado' => $certificado,
+        ];
+    }
+
+    $pesquisaEpi = 'Resultados encontrados';
+} else {
+    $pesquisaEpi = 'Vazio';
+}
+
+if ($pesquisaEpi !== 'Vazio' || $pesquisaUser !== 'Vazio') {
+    echo json_encode(['success' => true, 'message' => 'Busca realizada com sucesso!']);
+}else{
     echo json_encode(['success' => false, 'message' => 'Nenhum resultado encontrado!']);
 }
