@@ -2,7 +2,7 @@
 
 ?>
 <div class="container">
-    <div class="mt-5 d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
         <div>
             <button class="btn btnAmareloBos mx-1" style="float: right"

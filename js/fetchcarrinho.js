@@ -27,7 +27,7 @@ function atualizarCarrinhoAutomaticamente(data) {
 
         data.carrinho.forEach(item => {
             const colImg = document.createElement('div');
-            colImg.classList.add('col-lg-3', 'col-5', 'mt-4');
+            colImg.classList.add('col-lg-3', 'col-12', 'mt-4');
 
             const imgEpiCarrinho = document.createElement('img');
             imgEpiCarrinho.classList.add('text-center');
@@ -38,7 +38,7 @@ function atualizarCarrinhoAutomaticamente(data) {
             itemElement.appendChild(colImg);
 
             const divCorpoProduto = document.createElement('div');
-            divCorpoProduto.classList.add('col-lg-9', 'col-7', 'mt-4')
+            divCorpoProduto.classList.add('col-lg-9', 'col-12', 'mt-4')
 
             const nomeEpiCarrinho = document.createElement('h3');
             nomeEpiCarrinho.id = 'nomeEpiCarrinho';

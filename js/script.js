@@ -1070,7 +1070,8 @@ function deletarEpi(id, addEditDel) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sim, eu tenho certeza!"
+        confirmButtonText: "Sim, eu tenho certeza!",
+        cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
 
@@ -1118,7 +1119,8 @@ function deleletarUsuario(id, addEditDel) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sim, eu tenho certeza!"
+        confirmButtonText: "Sim, eu tenho certeza!",
+        cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
 
@@ -1330,15 +1332,18 @@ function buscaUsuario(formulario, botoes, addEditDel) {
                     formDados.removeEventListener('submit', submitHandler);
                 }
             })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-        });
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+            });
     };
     formDados.addEventListener('submit', submitHandler);
 }
 
 // Quando o usuário rolar a página, execute a função scrollFunction
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+    scrollFunction()
+};
+
 function scrollFunction() {
     // Se o usuário rolar a página para baixo 20px a partir do topo da página, mostre o botão
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {

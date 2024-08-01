@@ -51,22 +51,19 @@ if (!empty($_SESSION['idFuncionario'])) {
 
                 ?>
                 <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4">
-                    <div class="card">
+                    <div class="card rounded-4">
                         <div class="imgProduto">
-
-                            <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top" alt="...">
+                            <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top p-2" alt="...">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title nomeProduto"><?php echo $nome ?></h5>
-                            <p class="card-text"></p>
+                            <h4 class="card-title nomeProduto"><?php echo $nome ?></h4>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Nº CA: <?php echo $certificado ?></li>
-                            <li class="list-group-item">Quantidade disponível: <?php echo $estoque ?></li>
-                        </ul>
+                        <div style='margin-left: 15px;'>
+                            <h6 class="">Nº CA: <?php echo $certificado ?></h6>
+                            <h6 class="text-secondary">Quantidade disponível: <?php echo $estoque ?></h6>
+                        </div>
                         <div class="card-body text-center">
-                            <button class="btn btn-sm btnVerdePoucoNeon" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
-                                ao carrinho
+                            <button class="btn btn-sm btnVerdePoucoNeon rounded-4" onclick="postCarrinho(<?php echo $id ?>)">Adicionar
                             </button>
                         </div>
                     </div>
