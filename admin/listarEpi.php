@@ -37,7 +37,7 @@
                     $certificado = $item->certificado;
                     $quantidade = $item->quantidade;
                     ?>
-                    <tr class="">
+                    <tr class="" id="row-<?php echo $idepi?>">
                         <th scope="row" class="text-center"><?php echo $contar ?></th>
                         <td class="centraliza">
                             <img src="../img/produtos/<?php echo $foto ?>" width='50' alt=""

@@ -76,6 +76,23 @@ $idFuncionario = $_SESSION['idadm'];
                     </li>
                 <?php } ?>
             </ul>
+            <form action="#" method="post" class="d-flex mx-2" role="search" name="buscaUsuarios" id="buscaUsuarios">
+                <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"
+                       id="buscarUsuario" name="buscarUsuario">
+                <button class="btn btn-outline-success" type="submit" id="btnBuscaUsuario"
+                        onclick="buscaUsuario('buscaUsuarios','btnBuscaUsuario', 'buscaUsuarios')">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+            <!--            <form action="#" method="post" name="buscaUsuarios" id="buscaUsuarios" class="">-->
+            <!--                <div class="formField3">-->
+            <!--                    <input type="text" class="" id="buscarUsuario" name="buscarUsuario" placeholder="">-->
+            <!--                    <span>Digite o nome do usuário</span>-->
+            <!--                    <button type="submit" class="btn btn-success" id="btnBuscaUsuario"-->
+            <!--                            onclick="buscaUsuario('buscaUsuarios','btnBuscaUsuario', 'buscaUsuarios')"><i-->
+            <!--                                class="bi bi-search"></i></button>-->
+            <!--                </div>-->
+            <!--            </form>-->
             <a href="logout.php" class="btn btn-sm btn-danger btnVermelho margemEntreSacolaEForm">
                 <i class="bi bi-door-open"></i> Sair
             </a>
@@ -90,25 +107,38 @@ $idFuncionario = $_SESSION['idadm'];
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <a class="nav-link active" href="dashboard.php">Home</a>
-        <hr>
-        <?php
-        if ($listarEmprestimo !== 'SIM') {
-            ?>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body cardNavbarAdminSm">
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEpi')">EPI'S</button>
-                    <hr>
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAluguel')">Empréstimos</button>
-                    <hr>
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarUsuario')">Usuários</button>
-                    <hr>
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Estoque</button>
-                </div>
-            </div>
+        <form action="#" method="post" class="d-flex mx-2 mb-5" role="search" name="buscaUsuarioSM" id="buscaUsuarioSM">
+            <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"
+                   id="buscarUsuarioSM" name="buscarUsuario">
+            <button class="btn btn-outline-success" type="submit" id="btnBuscaUsuarioSM"
+                    onclick="buscaUsuario('buscaUsuarioSM','btnBuscaUsuarioSM', 'buscaUsuarios')">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a class="linkNavbarAdminSM" href="dashboard.php">Home</a>
+            </li>
             <?php
-        }
-        ?>
+            if ($listarEmprestimo !== 'SIM') {
+                ?>
+                <li class="list-group-item">
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEpi')">EPI'S</button>
+                </li>
+                <li class="list-group-item">
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAluguel')">Empréstimos</button>
+                </li>
+                <li class="list-group-item">
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarUsuario')">Usuários</button>
+                </li>
+                <li class="list-group-item">
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Estoque</button>
+                </li>
+                <?php
+            }
+            ?>
+        </ul>
+
 
     </div>
 </div>

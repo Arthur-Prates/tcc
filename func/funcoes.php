@@ -115,6 +115,31 @@ function pesquisaLike($campos, $tabela, $campoDeBusca, $valorDoCampo)
     }
 }
 
+function pesquisaLikeDuplo($campos, $tabela, $campoDeBusca,$campoDeBusca2, $valorDoCampo, $valorDoCampo2)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoDeBusca LIKE ? OR $campoDeBusca2 LIKE ?");
+        $sqlListaTabelas->bindValue(1, '%' . $valorDoCampo . '%', PDO::PARAM_STR);
+        $sqlListaTabelas->bindValue(2, '%' . $valorDoCampo2 . '%', PDO::PARAM_STR);
+        $sqlListaTabelas->execute();
+        $conn->commit();
+        if ($sqlListaTabelas->rowCount() > 0) {
+            return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
+    } catch
+    (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
+
+
 function listarItensExpecificosProduto($campos, $tabela, $campoExpecifico, $valorCampo, $campoExpecifico2, $valorCampo2)
 {
     $conn = conectar();
