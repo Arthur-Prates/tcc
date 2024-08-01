@@ -877,9 +877,9 @@ section.ondas-box {
     position: relative;
 }
 .formField2 {
-     margin: 10px;
-     position: relative;
- }
+    margin: 10px;
+    position: relative;
+}
 .formField3 {
     margin: 10px;
     position: relative;
@@ -1162,7 +1162,7 @@ section.ondas-box {
 }
 
 .cardCarrinho{
-padding: 40px;
+    padding: 40px;
     margin-top: 7%;
 }
 
@@ -1175,6 +1175,7 @@ padding: 40px;
     padding-right: 10px;
     padding-left: 10px;
 }
+
 .btnConcluirAluguel {
     display: inline-block;
     border-radius: 20px;
@@ -1220,7 +1221,7 @@ padding: 40px;
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 100;
+    z-index: 999999999;
     border: none;
     outline: none;
     background-color: #555;

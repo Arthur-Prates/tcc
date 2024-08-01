@@ -1,7 +1,7 @@
 <?php
 $idFuncionario = $_SESSION['idadm'];
 ?>
-<nav class="navbar fixed-top navbar-expand-lg cinza">
+<nav class="navbar navbar-expand-lg cinza">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="dashboard.php"><b>SAFETECH</b></a>
         <div class="navbar-toggler">
@@ -84,15 +84,6 @@ $idFuncionario = $_SESSION['idadm'];
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <!--            <form action="#" method="post" name="buscaUsuarios" id="buscaUsuarios" class="">-->
-            <!--                <div class="formField3">-->
-            <!--                    <input type="text" class="" id="buscarUsuario" name="buscarUsuario" placeholder="">-->
-            <!--                    <span>Digite o nome do usuário</span>-->
-            <!--                    <button type="submit" class="btn btn-success" id="btnBuscaUsuario"-->
-            <!--                            onclick="buscaUsuario('buscaUsuarios','btnBuscaUsuario', 'buscaUsuarios')"><i-->
-            <!--                                class="bi bi-search"></i></button>-->
-            <!--                </div>-->
-            <!--            </form>-->
             <a href="logout.php" class="btn btn-sm btn-danger btnVermelho margemEntreSacolaEForm">
                 <i class="bi bi-door-open"></i> Sair
             </a>

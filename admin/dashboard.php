@@ -213,14 +213,11 @@ include_once('nav.php');
                         });
                     </script>
                 </div>
-
             </div>
         </section>
     </div>
     <button onclick="voltarAoTopo()" id="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
 </div>
-
-
 <!-- Modal Add Usuario -->
 <div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -310,7 +307,6 @@ include_once('nav.php');
         </div>
     </div>
 </div>
-
 <!-- Modal Edit Usuario -->
 <div class="modal fade" id="modalUsuarioEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -428,7 +424,6 @@ include_once('nav.php');
         </div>
     </div>
 </div>
-
 <!-- Modal Ver MAIS Usuario -->
 <div class="modal fade" id="modalUsuarioVermais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -455,7 +450,6 @@ include_once('nav.php');
                                        name="sobrenomeUsuarioVermais" disabled>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="coolinput mb-3">
                                 <label class="text" for="telefoneUsuarioVermais">Celular</label>
@@ -513,23 +507,16 @@ include_once('nav.php');
         </div>
     </div>
 </div>
-
-
 <!-- Modal add epi -->
-
 <div class="modal fade" id="modalEpiAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header pretoNaoPreto text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Epi</h1>
-                <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
             <form method="post" name="frmEpiAdd" id="frmEpiAdd">
-
                 <div class="modal-body quasebranco  ">
-
                     <div class="mb-3 divModalBody">
                         <label for="fotoEpiAdd" class="custum-file-upload">
                             <div class="icon" id="icon">
@@ -575,8 +562,6 @@ include_once('nav.php');
         </div>
     </div>
 </div>
-
-
 <!-- Modal edit epi -->
 <div class="modal fade" id="modalEpiEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -584,7 +569,6 @@ include_once('nav.php');
         <div class="modal-content">
             <div class="modal-header azul">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Alterar EPI</h1>
-                <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
             <form action="#" method="post" name="frmEpiEdit" id="frmEpiEdit">
                 <div class="modal-body">
@@ -607,7 +591,7 @@ include_once('nav.php');
                         <span>Certificado</span>
                     </div>
                     <div class="formField mb-3">
-                        <input required="" type="number" class="form-control" id="quantidadeEpiEdit"
+                        <input type="number" class="form-control" id="quantidadeEpiEdit"
                                name="quantidadeEpiEdit" maxlength="7"/>
                         <span>Quantidade total</span>
                     </div>

@@ -2,7 +2,7 @@
 
 ?>
 <div class="container">
-    <div class="mt-5 d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
 
         <div class="d-flex align-items-center">
@@ -10,7 +10,7 @@
             <button class="btn btnAmareloBos mx-1 " onclick="imprimir('Lista de Usuarios do Sistema','tabelaUser')"><i
                         class="bi bi-printer"></i></button>
             <button type="button" class="btn btnDark"
-                    onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'frmUsuarioAdd')">
+                    onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'listarUsuario', 'frmUsuarioAdd')">
                 Cadastrar
             </button>
         </div>
@@ -32,7 +32,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaUsuario = listarTabela("*", 'usuario');
+            $listaUsuario = listarTabelaOrdenada("*", 'usuario','nomeUsuario','ASC');
             if ($listaUsuario) {
                 foreach ($listaUsuario as $item) {
                     $idusuario = $item->idusuario;

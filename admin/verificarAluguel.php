@@ -12,7 +12,7 @@ if ($_SESSION['idadm']) {
 $codigoEmprestimo = filter_input(INPUT_GET, 'emprestimo', FILTER_SANITIZE_STRING);
 $codigoEmprestimo = str_replace(' ', '', $codigoEmprestimo);
 if (empty($codigoEmprestimo)) {
-    header('location: index.php?error=404');
+    header('location: dashboard.php?error=404');
 }
 $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$codigoEmprestimo"
 ?>
@@ -34,7 +34,7 @@ $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$c
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16"  href="../img/favicon/2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/2.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 </head>
@@ -45,13 +45,11 @@ $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$c
 $listarEmprestimo = 'SIM';
 include_once('nav.php');
 
-$verificarSeCodEmprestimoExiste = listarItemExpecifico('*','emprestimo','codigoEmprestimo',$codigoEmprestimo);
-if ($verificarSeCodEmprestimoExiste !== 'Vazio'){
-    foreach ($verificarSeCodEmprestimoExiste as $itemVerificar){
+$verificarSeCodEmprestimoExiste = listarItemExpecifico('*', 'emprestimo', 'codigoEmprestimo', $codigoEmprestimo);
+if ($verificarSeCodEmprestimoExiste !== 'Vazio') {
+    foreach ($verificarSeCodEmprestimoExiste as $itemVerificar) {
         $verficacao = true;
     }
-}else{
-    header('location: dashboard.php?erro=emprestimo-nao-encontrado');
 }
 
 $nao = 0;
@@ -67,7 +65,6 @@ if ($contarNao !== 'Vazio') {
 } else {
     $nao = 1;
 }
-
 
 
 ?>
@@ -183,27 +180,22 @@ if ($contarNao !== 'Vazio') {
 
     ?>
     <div class="row">
-        <div class="col-lg-6 mt-4 d-flex justify-content-center">
-            <div class="card" style=" max-width: 250px!important">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=250x250"
-                     class="card-img-top" alt="...">
-                <div class="card-body text-center">
-                    <p class="card-text"><?php echo $codigoEmprestimo ?></p>
-
-                </div>
-            </div>
+        <div class="col-lg-12 col-12 mt-4 text-center">
+            <p><b>Data:</b> <?php echo $dataEmprestimo ?></p>
         </div>
-        <div class="col-lg-6 col-12 mt-4">
+        <div class="col-lg-6 col-12 mt-4 text-center">
             <p><b>Nome:</b> <?php echo $nomeUsuario ?></p>
             <p><b>Email:</b> <?php echo $email ?></p>
             <p><b>Telefone:</b> <?php echo $telefone ?></p>
-            <p><b>Data:</b> <?php echo $dataEmprestimo ?></p>
+
+        </div>
+        <div class="col-lg-6 col-12 mt-4 text-center">
             <p><b>Prioridade:</b> <?php
-                if ($prioridade == '3'){
+                if ($prioridade == '3') {
                     $prioridadeVisivel = 'Alta';
-                }else if ($prioridade == '2'){
+                } else if ($prioridade == '2') {
                     $prioridadeVisivel = 'Média';
-                }else{
+                } else {
                     $prioridadeVisivel = 'Baixa';
                 }
 
@@ -212,6 +204,7 @@ if ($contarNao !== 'Vazio') {
             <p><b>Observação:</b> <?php echo $observacao ?></p>
             <p><b>Status do empréstimo:</b> <?php echo $statusEmprestimo ?></p>
         </div>
+
         <div class="row">
             <div class="col-lg-12 col-12 mt-5">
                 <h2 class="mt-5 mb-4">EPI(s) emprestadas</h2>
@@ -308,21 +301,17 @@ if ($contarNao !== 'Vazio') {
                             <?php
                         }
                     }
-                    ?>
 
-
-
-                    <?php
                     } else {
                         ?>
                         <div class="d-flex justify-content-center align-items-center">
-                            <dotlottie-player src="../img/animacao-busca-vazia.lottie"
+                            <dotlottie-player src="../img/animacao-busca-vazia.json"
                                               background="transparent" speed="1" style="width: 300px; height: 300px;"
                                               loop
                                               autoplay></dotlottie-player>
                         </div>
                         <div class="d-flex justify-content-center align-items-center">
-                            <p class="fs-3">Nenhum epi foi encontrado nesse empréstimo!</p>
+                            <p class="fs-3">Empréstimo inexistente!</p>
 
                         </div>
                         <?php
