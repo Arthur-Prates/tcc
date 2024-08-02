@@ -8,7 +8,7 @@
             <button class="btn btnAmareloBos mx-1" style="float: right"
                     onclick="imprimir('Lista de Epi(s) do Sistema','tabelaEpi')"><i class="bi bi-printer"></i></button>
             <button type="button" class="btn btnDark mb-3 " style="float: right"
-                    onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
+                    onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">
                 Cadastrar
             </button>
         </div>
@@ -48,7 +48,7 @@
                         <td class=""><?php echo $certificado ?></td>
                         <td class="no-print text-center">
                             <button type="button" class="btn btnAzul"
-                                    onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto ?>','<?php echo $idepi ?>','idEditEpi','<?php echo $nomeEpi ?>','nomeEpiEdit','<?php echo $certificado; ?>','certificadoEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')">
+                                    onclick="abrirModalEpiAdd('fotoEpiEdit','<?php echo $foto ?>','<?php echo $idepi ?>','idEditEpi','<?php echo $nomeEpi ?>','nomeEpiEdit','<?php echo $certificado; ?>','certificadoEpiEdit','<?php echo $quantidade?>','quantidadeEpiEdit', 'modalEpiEdit','A', 'btnEpiEdit', 'editEpi', 'frmEpiEdit')">
                                 <span class="mdi mdi-file-document-edit-outline"></span></button>
                             <button type="button" class="btn btnVermelho"
                                     onclick="deletarEpi('<?php echo $idepi ?>','deleteEpi')"><span

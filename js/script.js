@@ -323,7 +323,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
     }
 }
 
-function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, idCertificado, inpIdCertificado, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, idCertificado, inpIdCertificado,idQuantidade,inpIdQuantidade, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
@@ -344,6 +344,10 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
     if (idCertificado !== 'nao') {
         certificado.value = idCertificado
     }
+    const quantidade = document.getElementById(`${inpIdQuantidade}`)
+    if (idQuantidade !== 'nao') {
+        quantidade.value = idQuantidade
+    }
     const idFoto = document.getElementById(img1)
     const idVerimg = document.getElementById('imgPreview')
     const visualizaImg = `${nomeFoto}`
@@ -357,6 +361,20 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
         }
         reader.readAsDataURL(idFoto.files[0])
     })
+
+    document.getElementById('fotoEpiAdd').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview').style.display = 'block';
+                document.getElementById('icon').style.display = "none";
+                document.getElementById('text').style.display = "none";
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 
     if (abrirModal === 'A') {
         ModalInstancia.show();
@@ -1288,20 +1306,6 @@ function imprimir(nomeTabela, tabela) {
     win.print();
 }
 
-document.getElementById('fotoEpiAdd').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById('preview').src = e.target.result;
-            document.getElementById('preview').style.display = 'block';
-            document.getElementById('icon').style.display = "none";
-            document.getElementById('text').style.display = "none";
-        }
-        reader.readAsDataURL(file);
-    }
-});
-
 function buscaUsuario(formulario, botoes, addEditDel) {
     const formDados = document.getElementById(formulario);
 
@@ -1339,13 +1343,11 @@ function buscaUsuario(formulario, botoes, addEditDel) {
     formDados.addEventListener('submit', submitHandler);
 }
 
-// Quando o usuário rolar a página, execute a função scrollFunction
 window.onscroll = function () {
     scrollFunction()
 };
 
 function scrollFunction() {
-    // Se o usuário rolar a página para baixo 20px a partir do topo da página, mostre o botão
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         document.getElementById("btnTopo").style.display = "block";
     } else {
@@ -1353,8 +1355,7 @@ function scrollFunction() {
     }
 }
 
-// Quando o usuário clicar no botão, role para o topo da página
 function voltarAoTopo() {
-    document.body.scrollTop = 0; // Para Safari
-    document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
