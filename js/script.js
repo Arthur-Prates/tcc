@@ -34,7 +34,6 @@ function fazerLogin() {
     })
         .then((response) => response.json())
         .then((data) => {
-            // console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     window.location.href = "pagina-inicial";
@@ -129,7 +128,6 @@ function fazerLoginAdm() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             if (data.success) {
                 setTimeout(function () {
                     esconderProcessando();
@@ -150,9 +148,9 @@ function fazerLoginAdm() {
 
             }
         })
-    // .catch((error) => {
-    //     console.error("Erro na requisição", error);
-    // });
+    .catch((error) => {
+        console.error("Erro na requisição", error);
+    });
 }
 
 // FUNCAO DE LOADING
@@ -261,7 +259,6 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 formEnviado = true;
                 if (data.success) {
                     ModalInstancia.hide();
@@ -540,7 +537,6 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
                     if (data.success) {
                         botoes.disabled = false;
                         alertSuccess(data.message, '#30B27F')
@@ -733,7 +729,6 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
             })
                 .then(response => response.json())
                 .then(data => {
-                    // console.log(data)
                     if (data.success) {
                         setTimeout(function () {
                             window.location.reload()
@@ -829,7 +824,6 @@ function postCarrinho(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             attCarrinho(data.qtd)
             if (data.success) {
                 alertSuccess(`${data.message}`, '#008f34')
@@ -855,7 +849,6 @@ function aumentarQuantidade(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
             if (data.success) {
                 alertSuccess(`${data.message}`, '#008f34')
             } else {
@@ -881,7 +874,6 @@ function diminuirQuantidade(produto) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
             if (data.success) {
                 alertSuccess(`${data.message}`, '#008f34')
 
@@ -911,7 +903,6 @@ function excluirItem(id) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
             attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
@@ -945,7 +936,6 @@ function limparCarrinho() {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
             if (data.success) {
                 Swal.fire({
                     title: `${data.message}`,
@@ -1193,7 +1183,6 @@ function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevoluc
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
             setTimeout(function () {
                 window.location.reload();
             }, 2500)
@@ -1325,7 +1314,6 @@ function buscaUsuario(formulario, botoes, addEditDel) {
         })
             .then(response => response.json())
             .then(data => {
-                // console.log(data)
                 formEnviado = true;
                 if (data.success) {
                     form.reset()

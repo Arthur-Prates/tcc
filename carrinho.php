@@ -203,6 +203,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                 </div>
                             </div>
                         </form>
+
                         <?php
                     } else {
                         ?>
@@ -221,6 +222,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
             </div>
         </div>
     </div>
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
 </div>
 
 
