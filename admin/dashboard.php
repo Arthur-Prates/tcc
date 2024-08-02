@@ -216,7 +216,7 @@ include_once('nav.php');
             </div>
         </section>
     </div>
-    <button onclick="voltarAoTopo()" id="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
 </div>
 <!-- Modal Add Usuario -->
 <div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

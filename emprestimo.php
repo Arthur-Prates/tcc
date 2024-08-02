@@ -128,7 +128,7 @@ if (!empty($_SESSION['idFuncionario'])) {
             </table>
         </div>
     </div>
-
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
 </div>
 
 <!-- Modal alerta -->

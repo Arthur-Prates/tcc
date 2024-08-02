@@ -1216,7 +1216,7 @@ section.ondas-box {
     right: 0;
 }
 
-#btnTopo {
+.btnTopo {
     display: none;
     position: fixed;
     bottom: 20px;
@@ -1231,6 +1231,6 @@ section.ondas-box {
     border-radius: 50%;
 }
 
-#btnTopo:hover {
+.btnTopo:hover {
     background-color: #333;
 }
