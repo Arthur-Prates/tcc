@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/nav.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/carrinho.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/fetchcarrinho.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/fetchcarrinho.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/navbar.php" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
@@ -88,7 +83,7 @@
       <workItem from="1722444304316" duration="9962000" />
       <workItem from="1722511107846" duration="8728000" />
       <workItem from="1722601415999" duration="6328000" />
-      <workItem from="1722693485869" duration="5028000" />
+      <workItem from="1722693485869" duration="6018000" />
     </task>
     <servers />
   </component>

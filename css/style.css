@@ -427,6 +427,9 @@ body {
         align-items: center;
         justify-content: center;
     }
+    .btnConcluirAluguel{
+        width: 100%;
+    }
 }
 
 @media (min-width: 768px){
@@ -450,6 +453,9 @@ body {
     .tituloDoCardCarrinho{
         height: 50px;
 
+    }
+    .btnConcluirAluguel{
+        width: 50%;
     }
 }
 
@@ -509,9 +515,6 @@ body {
 
 }
 
-.btnConcluirAluguel {
-    width: 90%;
-}
 
 .nomeProduto {
     /*white-space: nowrap;*/
@@ -1270,7 +1273,6 @@ section.ondas-box {
     text-align: center;
     font-size: 17px;
     padding: 16px;
-    width: 50%;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
