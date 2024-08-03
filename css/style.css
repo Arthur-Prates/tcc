@@ -11,7 +11,7 @@ body {
     background-color: #EDEEF3;
 }
 
-.bodyLoginDash{
+.bodyLoginDash {
     width: 100%;
     height: 100vh;
     /*background-image: linear-gradient(to bottom right, #171616 50%, #868383 50%);*/
@@ -30,164 +30,182 @@ body {
     color: white !important;
 
 }
-.verde{
-    background-color:#2cb28c;!important;
-}
-.azul{
-    background-color: #0020cc;!important;
+
+.verde {
+    background-color: #2cb28c;
+!important;
 }
 
-.vermelhoRonan{
+.azul {
+    background-color: #0020cc;
+!important;
+}
+
+.vermelhoRonan {
     background-color: rgb(215, 36, 36);
 }
 
 
-
 .ciznaEscuro {
-    background-color: #272626; !important;
+    background-color: #272626;
+!important;
 }
 
-.btnVerdeBostrap{
+.btnVerdeBostrap {
     background-color: #1a8754;
     border: 1px solid #1a8754;
     color: white;
 }
-.btnVerdeBostrap:hover{
+
+.btnVerdeBostrap:hover {
     background: transparent;
     border: 1px solid #1a8754;
     color: #1a8754;
 }
 
-.btnAzulBostrap{
+.btnAzulBostrap {
     background: #0ccaf0;
     border: 1px solid #0ccaf0;
     font-weight: 500;
-    transition:0.5s;
+    transition: 0.5s;
     color: white;
 }
-.btnAzulBostrap:hover{
+
+.btnAzulBostrap:hover {
     background: transparent;
     border: 1px solid #0ccaf0;
 
 }
 
-.btnVermelhoRonan{
+.btnVermelhoRonan {
     background-color: rgb(215, 36, 36);
-    border: 1px solid  rgb(215, 36, 36);
+    border: 1px solid rgb(215, 36, 36);
     color: white;
 
 }
 
-.btnVermelhoRonan:hover{
+.btnVermelhoRonan:hover {
     background-color: rgb(204, 7, 7);
-    border: 1px solid  rgb(204, 7, 7);
+    border: 1px solid rgb(204, 7, 7);
     color: white;
 }
 
 
 .amareloBos {
-    background: #ffc108;!important;
+    background: #ffc108;
+!important;
 }
 
-.btnAmareloBos{
-    background-color: #ffc108;!important;
+.btnAmareloBos {
+    background-color: #ffc108;
+!important;
     border: 1px solid #ffc108;
     color: white;
 }
 
-.btnAmareloBos:hover{
+.btnAmareloBos:hover {
     background: transparent;
     border: 1px solid #ffc108;
     color: #ffc108;
 }
 
-.pretoNaoPreto{
-    background-color: #171616; !important;
+.pretoNaoPreto {
+    background-color: #171616;
+!important;
 }
 
-.btnPretoNaoPreto{
-    background-color:#171616;!important;
+.btnPretoNaoPreto {
+    background-color: #171616;
+!important;
     transition: 0.3s;
     border: 1px solid #171616;
     color: white;
 }
 
-.btnPretoNaoPreto:hover{
+.btnPretoNaoPreto:hover {
     background-color: transparent;
     border: 1px solid #171616;
     color: #212121;
     font-weight: 500;
 }
 
-.btnCinzaEscuro{
-    background-color:#272626;!important;
+.btnCinzaEscuro {
+    background-color: #272626;
+!important;
     transition: 0.3s;
     border: 1px solid #272626;
 }
 
-.btnCinzaEscuro:hover{
+.btnCinzaEscuro:hover {
     background-color: transparent;
     border: 1px solid #272626;
     color: #212121;
     font-weight: 500;
 }
 
-.btnCinza{
-    background-color: #484646;!important;
+.btnCinza {
+    background-color: #484646;
+!important;
     transition: 0.3s;
     border: 1px solid #484646;
     color: white;
 }
 
-.btnCinzaSemHover{
-    background-color: #484646;!important;
+.btnCinzaSemHover {
+    background-color: #484646;
+!important;
     transition: 0.3s;
     border: 1px solid #484646;
     color: #484646;
 }
 
-.btnAzul{
-    background-color: #0020cc;!important;
+.btnAzul {
+    background-color: #0020cc;
+!important;
     transition: 0.3s;
     border: 1px solid #0020cc;
     color: white;
 }
 
-.btnAzul:hover{
+.btnAzul:hover {
     background-color: transparent;
     border: 1px solid #0020cc;
-    color: #0020cc; !important;
+    color: #0020cc;
+!important;
     font-weight: 500;
 }
 
-.btnAzulSemHover{
-    background-color: #0020cc;!important;
+.btnAzulSemHover {
+    background-color: #0020cc;
+!important;
     transition: 0.3s;
     border: 1px solid #0020cc;
     color: white;
 }
 
 
-.btnCinza:hover{
+.btnCinza:hover {
     background-color: transparent;
     border: 1px solid #484646;
     color: #484646;
     font-weight: 500;
 }
 
-.btnVermelho{
-    background: #db3545;!important;
+.btnVermelho {
+    background: #db3545;
+!important;
     transition: 0.3s;
     border: 1px solid crimson;
     color: white;
 }
-.btnVermelho:hover{
+
+.btnVermelho:hover {
     background: transparent;
     border: 1px solid crimson;
     color: crimson;
 }
 
-.btnDark{
+.btnDark {
     background: #212529;
     border: 1px solid #212529;
     color: white;
@@ -195,7 +213,7 @@ body {
     transition: 0.5s;
 }
 
-.btnDark:hover{
+.btnDark:hover {
     background: transparent;
     border: 1px solid black;
     color: black;
@@ -203,17 +221,19 @@ body {
     transition: 0.5s;
 }
 
-.btnVerdePoucoNeon{
+.btnVerdePoucoNeon {
     transition: .5s;
-    background-color: #38d39f;!important;
+    background-color: #38d39f;
+!important;
     border: 1px solid #38d39f;
     color: white;
 }
 
-.btnVerdePoucoNeon:hover{
+.btnVerdePoucoNeon:hover {
     background: transparent;
     border: 1px solid #38d39f;
-    color: #38d39f; !important;
+    color: #38d39f;
+!important;
     font-weight: 600;
 }
 
@@ -384,15 +404,61 @@ body {
     background-color: #797979;
 }
 
+.tituloDoCardCarrinho{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 @media (max-width: 768px) {
+    .divItensEBotao{
+        display: block;
+    }
+    .itensEmprestimo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .btnLimparCarrinho {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
+
+@media (min-width: 768px){
+
+    .divItensEBotao{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .itensEmprestimo {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .btnLimparCarrinho {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+    .tituloDoCardCarrinho{
+        height: 50px;
+
+    }
+}
+
 
 @media (max-width: 991px) {
     .qtdMD {
         display: block;
     }
+
     .overflowTable {
         overflow-x: scroll !important;
         white-space: nowrap;
@@ -436,6 +502,11 @@ body {
     .btnRemover {
         width: 75%;
     }
+
+    .nomeProduto{
+        height: 60px;
+    }
+
 }
 
 .btnConcluirAluguel {
@@ -443,9 +514,14 @@ body {
 }
 
 .nomeProduto {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    pointer-events: none;
+    user-select: none;
 }
 
 .margemEntreSacolaEForm {
@@ -800,9 +876,9 @@ section.ondas-box {
     align-items: center;
     /*background-color: #38d39f; !* Verde para ilustrar *!*/
     color: white;
-    border-radius: 0px 0px 37px 30px ;
-    -moz-border-radius: 0px 0px 37px 30px ;
-    -webkit-border-radius: 0px 0px 37px 30px ;
+    border-radius: 0px 0px 37px 30px;
+    -moz-border-radius: 0px 0px 37px 30px;
+    -webkit-border-radius: 0px 0px 37px 30px;
 }
 
 .modal-title {
@@ -814,7 +890,7 @@ section.ondas-box {
     text-align: center;
 }
 
-.modalCadEpi{
+.modalCadEpi {
     align-items: center;
 }
 
@@ -876,10 +952,12 @@ section.ondas-box {
     margin: 10px;
     position: relative;
 }
+
 .formField2 {
     margin: 10px;
     position: relative;
 }
+
 .formField3 {
     margin: 10px;
     position: relative;
@@ -912,6 +990,7 @@ section.ondas-box {
     transition: 0.3s ease-in-out;
     box-shadow: 0 0 0 5px transparent;
 }
+
 .formField3 input {
     width: 100%;
     padding: 20px 15px 10px 15px;
@@ -1008,6 +1087,7 @@ section.ondas-box {
     max-height: 300px;
     display: none; /* Ocultar inicialmente */
 }
+
 .hidden {
     display: none;
 }
@@ -1048,14 +1128,17 @@ section.ondas-box {
     font-size: 12px;
     color: #666;
 }
+
 .coolinput {
     display: flex;
     flex-direction: column;
     width: fit-content;
     position: static;
     max-width: 100%;
-    max-height: 100%; !important;
-    background-color: white;!important;
+    max-height: 100%;
+!important;
+    background-color: white;
+!important;
     width: 100%;
 }
 
@@ -1110,33 +1193,34 @@ section.ondas-box {
     outline: none;
 }
 
-.olhinho{
+.olhinho {
     position: absolute;
     right: 3rem;
     top: 17.7rem;
 }
 
-.olhinho2{
+.olhinho2 {
     position: absolute;
     left: 21rem;
     top: 26.1rem;
 }
 
-.olhinho3{
+.olhinho3 {
     position: absolute;
     left: 46rem;
     top: 26.1rem;
 }
 
-.inputBuscaUsuario{
+.inputBuscaUsuario {
     width: 300px;
     margin-right: 15px;
 }
 
-.buscaUsuario{
+.buscaUsuario {
     display: flex;
 
 }
+
 .inputCarrinho {
     width: 100%;
     height: auto;
@@ -1145,33 +1229,34 @@ section.ondas-box {
     border-radius: 10px;
     padding: 1em;
     background-color: #ffffff;
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 300ms ease-in-out;
 }
 
-.inputCarrinho2{
-    width: 100%;!important;
+.inputCarrinho2 {
+    width: 100%;
+!important;
     height: 100%;
 }
 
 .inputCarrinho:focus {
     background-color: #f9f9f9;
     transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-color: #007bff;
 }
 
-.cardCarrinho{
+.cardCarrinho {
     padding: 40px;
     margin-top: 7%;
 }
 
-.rowCarrinho{
+.rowCarrinho {
     padding: 40px;
 }
 
-.rounded-bolinha{
-    border-radius:50%;
+.rounded-bolinha {
+    border-radius: 50%;
     padding-right: 10px;
     padding-left: 10px;
 }
