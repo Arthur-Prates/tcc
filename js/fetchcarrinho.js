@@ -8,7 +8,7 @@ function fetchParaCarrinho() {
             const data = JSON.parse(xhr.responseText);
             atualizarCarrinhoAutomaticamente(data);
         } else {
-            // console.error('Erro na requisição AJAX: ', xhr.statusText);
+            console.error('Erro na requisição AJAX: ', xhr.statusText);
         }
     };
     xhr.onerror = function () {
@@ -21,42 +21,45 @@ function atualizarCarrinhoAutomaticamente(data) {
     const itemElement = document.getElementById('listagemCarrinho');
 
     if (itemElement) {
-
         itemElement.innerHTML = '';
 
-
         data.carrinho.forEach(item => {
+            const colItem = document.createElement('div')
+            colItem.classList.add('col-lg-6', 'col-md-12', 'col-12')
+
+            const card = document.createElement('div');
+            card.classList.add('card', 'mb-3');
+
+            const row = document.createElement('div');
+            row.classList.add('row', 'g-0');
+
             const colImg = document.createElement('div');
-            colImg.classList.add('col-lg-3', 'col-12', 'mt-4');
+            colImg.classList.add('col-md-3');
 
             const imgEpiCarrinho = document.createElement('img');
-            imgEpiCarrinho.classList.add('text-center');
-            imgEpiCarrinho.setAttribute('width', '100%');
-            imgEpiCarrinho.id = 'imgEpiCarrinho';
+            imgEpiCarrinho.classList.add('img-fluid', 'rounded-start');
             imgEpiCarrinho.src = `./img/produtos/${item.foto}`;
+            imgEpiCarrinho.alt = item.nome;
             colImg.appendChild(imgEpiCarrinho);
-            itemElement.appendChild(colImg);
 
-            const divCorpoProduto = document.createElement('div');
-            divCorpoProduto.classList.add('col-lg-9', 'col-12', 'mt-4')
+            const colBody = document.createElement('div');
+            colBody.classList.add('col-md-9');
 
-            const nomeEpiCarrinho = document.createElement('h3');
-            nomeEpiCarrinho.id = 'nomeEpiCarrinho';
-            nomeEpiCarrinho.innerText = `${item.nome}`;
-            nomeEpiCarrinho.classList.add('mb-4');
-            divCorpoProduto.appendChild(nomeEpiCarrinho);
-            itemElement.appendChild(divCorpoProduto);
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+
+            const nomeEpiCarrinho = document.createElement('h5');
+            nomeEpiCarrinho.classList.add('card-title','tituloDoCardCarrinho');
+            nomeEpiCarrinho.innerText = item.nome;
+            cardBody.appendChild(nomeEpiCarrinho);
 
             const certificadoEpiCarrinho = document.createElement('p');
-            certificadoEpiCarrinho.id = 'certificadoEpiCarrinho';
+            certificadoEpiCarrinho.classList.add('card-text');
             certificadoEpiCarrinho.innerText = `Certificado de Aprovação: ${item.certificado}`;
-            divCorpoProduto.appendChild(certificadoEpiCarrinho);
-            itemElement.appendChild(divCorpoProduto);
-
+            cardBody.appendChild(certificadoEpiCarrinho);
 
             const qtdLG = document.createElement('div');
-            qtdLG.classList.add('px-3');
-            qtdLG.classList.add('align-items-center', 'd-flex');
+            qtdLG.classList.add('px-3', 'align-items-center', 'd-flex');
             qtdLG.id = 'qtdLG';
             qtdLG.innerText = `${item.quantidade}`;
 
@@ -64,8 +67,8 @@ function atualizarCarrinhoAutomaticamente(data) {
             botaoMais.classList.add('btn', 'btn-sm', 'btn-success', 'rounded-bolinha');
             botaoMais.innerText = '+';
             botaoMais.addEventListener('click', function () {
-                aumentarQuantidade(`${item.idproduto}`)
-            })
+                aumentarQuantidade(`${item.idproduto}`);
+            });
 
             const botaoMenos = document.createElement('button');
             botaoMenos.classList.add('btn', 'btn-sm', 'btn-warning', 'rounded-bolinha');
@@ -74,23 +77,21 @@ function atualizarCarrinhoAutomaticamente(data) {
                 botaoMenos.setAttribute('disabled', 'disabled');
             }
             botaoMenos.addEventListener('click', function () {
-                diminuirQuantidade(`${item.idproduto}`)
-            })
+                diminuirQuantidade(`${item.idproduto}`);
+            });
 
-            const btnRemover = document.createElement('button')
-            btnRemover.classList.add('btn', 'btn-sm', 'btnVermelhoRonan', 'px-4', 'rounded-4')
-            btnRemover.innerHTML = '<i class="bi bi-trash"></i>'
-
+            const btnRemover = document.createElement('button');
+            btnRemover.classList.add('btn', 'btn-sm', 'btnVermelhoRonan', 'px-4', 'rounded-4');
+            btnRemover.innerHTML = '<i class="bi bi-trash"></i>';
             btnRemover.addEventListener('click', function () {
-                excluirItem(`${item.idproduto}`)
-            })
+                excluirItem(`${item.idproduto}`);
+            });
 
             const divQtdGrupo = document.createElement('div');
-            divQtdGrupo.classList.add('d-flex')
+            divQtdGrupo.classList.add('d-flex');
 
-            const divBotoesCarrinho = document.createElement('div')
-            divBotoesCarrinho.classList.add('d-flex', 'justify-content-between', 'align-items-center','margemTop')
-
+            const divBotoesCarrinho = document.createElement('div');
+            divBotoesCarrinho.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'margemTop');
 
             divQtdGrupo.appendChild(botaoMais);
             divQtdGrupo.appendChild(qtdLG);
@@ -99,19 +100,24 @@ function atualizarCarrinhoAutomaticamente(data) {
             divBotoesCarrinho.appendChild(divQtdGrupo);
             divBotoesCarrinho.appendChild(btnRemover);
 
-            divCorpoProduto.appendChild(divBotoesCarrinho)
-            itemElement.appendChild(divCorpoProduto)
+            cardBody.appendChild(divBotoesCarrinho);
+            colBody.appendChild(cardBody);
+            row.appendChild(colImg);
+            row.appendChild(colBody);
+            card.appendChild(row);
+            colItem.appendChild(card)
 
+            itemElement.appendChild(colItem);
         });
+
         const btnConcluirAluguel = document.getElementById('btnConcluirAluguel');
 
         if (data.qtdTotalCarrinho === 0) {
             btnConcluirAluguel.setAttribute('disabled', 'disabled');
-
         }
-
     }
 }
+
 
 setInterval(fetchParaCarrinho, 500);
 

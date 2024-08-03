@@ -95,7 +95,7 @@ $idFuncionario = $_SESSION['idadm'];
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAFETECH - Área restrita</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <form action="#" method="post" class="d-flex mx-2 mb-5" role="search" name="buscaUsuarioSM" id="buscaUsuarioSM">

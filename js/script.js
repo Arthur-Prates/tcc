@@ -1332,10 +1332,10 @@ function buscaUsuario(formulario, botoes, addEditDel) {
 }
 
 window.onscroll = function () {
-    scrollFunction()
+    mostrarBotaoTopo()
 };
 
-function scrollFunction() {
+function mostrarBotaoTopo() {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         document.getElementById("btnTopo").style.display = "block";
     } else {
