@@ -202,7 +202,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                             <?php
                                         } else {
                                             ?>
-                                            <button class="btn btn-success btn-sm btnConcluirAluguel "
+                                            <button class="btn btn-success btn-sm btnConcluirAluguel"
                                                     id="btnConcluirLogin"
                                                     type="button"
                                                     name="btnLogin" onclick="redireciona('fazer-login')">
@@ -225,7 +225,9 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                                   background="transparent" speed="1"
                                                   style="width: 300px; height: 300px;"
                                                   loop
-                                                  autoplay></dotlottie-player>
+                                                  autoplay>
+
+                                </dotlottie-player>
                             </div>
                             <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center mt-5">
                                 <p class="fs-1">O seu carrinho está vazio!</p>
