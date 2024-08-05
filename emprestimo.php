@@ -35,7 +35,7 @@ if (!empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/2.png">
+    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 </head>
@@ -48,9 +48,9 @@ if (!empty($_SESSION['idFuncionario'])) {
         <a href="pagina-inicial" class="btn btn-sm btn-outline-secondary">Voltar</a>
         Empréstimos</h2>
     <div class="card mt-3">
-        <div class="card-body overflowTable">
-            <table class="table">
-                <thead>
+        <div class="card-body overflowTable ">
+            <table class="table table table-hover table-bordered border-dark  rounded-table">
+                <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Código do empréstimo</th>
@@ -119,7 +119,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                 }else{
                     ?>
                     <tr>
-                        <td colspan="4" class="text-center">Nenhum empréstimo para ser mostrado!</td>
+                        <td colspan="5" class="text-center"><h2>Nenhum empréstimo para ser mostrado!</h2></td>
                     </tr>
                     <?php
                 }

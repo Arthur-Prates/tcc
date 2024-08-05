@@ -1347,3 +1347,13 @@ function voltarAoTopo() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var inputPesquisa = document.getElementById('emprestimo');
+    var formPesquisa = document.getElementById('emprestimoForm');
+
+    inputPesquisa.addEventListener('blur', function() {
+        formPesquisa.submit();
+    });
+});

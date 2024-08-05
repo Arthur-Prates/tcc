@@ -27,12 +27,12 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="./css/teste.css">
+    <link rel="stylesheet" href="css/carrinho.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/2.png">
-    <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#90bae0">
 </head>
 
 <body>

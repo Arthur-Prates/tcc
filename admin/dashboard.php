@@ -49,15 +49,14 @@ include_once('nav.php');
         <section class="ondas-box">
             <div class="container">
                 <div class="row vai">
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <form action="verificarAluguel.php" method="get">
+                    <form action="verificarAluguel.php" method="get" class="d-flex flex-wrap justify-content-center" id="emprestimoForm">
+                        <div class="col-12 col-sm-10 col-md-10 col-lg-10 p-0 d-flex align-items-center">
                             <input type="text" id="emprestimo" name="emprestimo"
                                    class="inputPesquisa text-center w-100 mt-2 text-dark" placeholder="Código">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center col-12 col-sm-12 col-md-2 col-lg-2 mt-2">
-                        <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i>
-                        </button>
-                    </div>
+                        </div>
+                        <div class="col-12 col-sm-2 col-md-2 col-lg-2 p-0 d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+                            <button type="submit" class="btnAluguelPesquisa"><i class="bi bi-search"></i></button>
+                        </div>
                     </form>
                     <div class="text-center">
                         <?php
@@ -216,7 +215,8 @@ include_once('nav.php');
             </div>
         </section>
     </div>
-    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i
+                class="bi bi-arrow-up-short"></i></button>
 </div>
 <!-- Modal Add Usuario -->
 <div class="modal fade" id="modalUsuarioAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -573,13 +573,15 @@ include_once('nav.php');
             <form action="#" method="post" name="frmEpiEdit" id="frmEpiEdit">
                 <div class="modal-body">
                     <input type="hidden" name="idEditEpi" id="idEditEpi">
-                    <div class="col-12 text-center mb-2 alturaFotoPreview">
-                        <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="30%">
+                    <div class="mb-3 divModalBody2">
+                        <label for="fotoEpiEdit" class="custum-file-upload2">
+                            <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="30%">
+                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit>
+                        </label>
                     </div>
-
-                    <div class="formField mb-3 mt-4">
-                        <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
-                        <span>Foto</span>
+                    <div class=" formField mb-3 mt-4">
+                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
+                            <span>Sua Foto</span>
                     </div>
                     <div class="formField mb-3">
                         <input required="" type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit"/>

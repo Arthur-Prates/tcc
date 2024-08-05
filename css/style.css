@@ -404,7 +404,7 @@ body {
     background-color: #797979;
 }
 
-.tituloDoCardCarrinho{
+.tituloDoCardCarrinho {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -413,9 +413,10 @@ body {
 }
 
 @media (max-width: 768px) {
-    .divItensEBotao{
+    .divItensEBotao {
         display: block;
     }
+
     .itensEmprestimo {
         display: flex;
         align-items: center;
@@ -427,18 +428,20 @@ body {
         align-items: center;
         justify-content: center;
     }
-    .btnConcluirAluguel{
+
+    .btnConcluirAluguel {
         width: 100%;
     }
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
 
-    .divItensEBotao{
+    .divItensEBotao {
         display: flex;
         width: 100%;
         justify-content: space-between;
     }
+
     .itensEmprestimo {
         display: flex;
         align-items: center;
@@ -450,11 +453,13 @@ body {
         align-items: center;
         justify-content: end;
     }
-    .tituloDoCardCarrinho{
+
+    .tituloDoCardCarrinho {
         height: 50px;
 
     }
-    .btnConcluirAluguel{
+
+    .btnConcluirAluguel {
         width: 50%;
     }
 }
@@ -509,7 +514,7 @@ body {
         width: 75%;
     }
 
-    .nomeProduto{
+    .nomeProduto {
         height: 60px;
     }
 
@@ -734,7 +739,6 @@ section .wave {
     color: rgba(0, 0, 0, 0.87);
 }
 
-
 .btnAluguelPesquisa {
     height: 45px;
     background: #272626;
@@ -752,7 +756,7 @@ section .wave {
 .btnAluguelPesquisa:hover {
     background: transparent;
     color: rgba(0, 0, 0, 0.87);
-    border: 2.5px solid rgba(0, 0, 0, 0.87);
+    border: 1px solid rgba(0, 0, 0, 0.87);
 }
 
 .titulo {
@@ -802,27 +806,27 @@ section.ondas-box {
 
 .onda {
     width: 100%;
-    height: 300px; /* Aumente a altura para cobrir mais espaço */
+    height: 300px;
     position: absolute;
     bottom: 0;
-    left: 0; /* Posição à esquerda para ocupar toda a largura */
-    z-index: -1; /* Para colocar atrás do conteúdo */
-    background-image: url('img/wave.svg'); /* Verifique o caminho da imagem */
-    background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o espaço */
-    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    left: 0;
+    z-index: -1;
+    background-image: url('img/wave.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #onda1 {
     z-index: 1000;
     opacity: 1;
-    background-position-x: 400px; /* Adicione a unidade (px) aqui */
+    background-position-x: 400px;
     animation: ondaAnimada 5s ease-in-out infinite alternate;
 }
 
 #onda2 {
     z-index: 999;
     opacity: 0.5;
-    background-position-x: 300px; /* Adicione a unidade (px) aqui */
+    background-position-x: 300px;
     animation: ondaAnimada 5s ease-in-out infinite alternate;
 }
 
@@ -836,7 +840,7 @@ section.ondas-box {
 #onda4 {
     z-index: 997;
     opacity: 0.8;
-    background-position-x: 100px; /* Adicione a unidade (px) aqui */
+    background-position-x: 100px;
     animation: ondaAnimada 5s ease-in-out infinite alternate;
 }
 
@@ -844,8 +848,8 @@ section.ondas-box {
     margin-bottom: -10px;
     width: 100%;
     height: 150%;
-    position: relative; /* Importante para z-index funcionar */
-    z-index: 999; /* Valor alto para colocar a imagem na frente */
+    position: relative;
+    z-index: 999;
 }
 
 @keyframes ondaAnimada {
@@ -905,10 +909,18 @@ section.ondas-box {
     width: 100%;
 }
 
+.divModalBody2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
 .custum-file-upload {
     display: flex;
     min-height: 200px;
-    min-width: 500px;
+    min-width: 400px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -922,8 +934,31 @@ section.ondas-box {
     position: relative;
 }
 
+.custum-file-upload2 {
+    display: flex;
+    min-height: 50px;
+    min-width: 100px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    cursor: pointer;
+    border: 2px dashed #171616;
+    background-color: rgba(255, 255, 255, 0.86);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.48);
+    position: relative;
+}
+
 
 .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload2 .icon2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -935,7 +970,19 @@ section.ondas-box {
     fill: #171616;
 }
 
+.custum-file-upload2 .icon2 svg {
+    height: 80px;
+    fill: #171616;
+}
+
+
 .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload2 .text2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -947,6 +994,10 @@ section.ondas-box {
 }
 
 .custum-file-upload input {
+    display: none;
+}
+
+.custum-file-upload2 input {
     display: none;
 }
 
@@ -1320,4 +1371,57 @@ section.ondas-box {
 
 .btnTopo:hover {
     background-color: #333;
+}
+
+
+.listing-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.listing-item {
+    margin-bottom: 15px;
+}
+
+.listing-item p {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.listing-item b {
+    color: #000;
+    font-size: 16px;
+}
+
+
+@media (max-width: 900px) {
+    .olhinho2 {
+        left: 25rem;
+        top: 41rem;
+    }
+
+    .olhinho3 {
+        left: 25rem;
+        top: 46rem;
+    }
+
+    .vai{
+        display: flex;!important;
+    }
+}
+
+@media (max-width: 576px) {
+    .inputPesquisa {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .btnAluguelPesquisa {
+        width: 100%;
+        padding: 10px;
+    }
 }

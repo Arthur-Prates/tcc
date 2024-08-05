@@ -44,7 +44,7 @@ foreach ($cod as $itemCod) {
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/2.png">
+    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
