@@ -125,6 +125,11 @@ if ($contarNao !== 'Vazio') {
             $observacao = $item->observacao;
             $statusEmprestimo = $item->devolvido;
             $status = $statusEmprestimo;
+
+            if ($observacao == 'NAO'){
+                $observacao = 'Não';
+            }
+
             if ($statusEmprestimo == 'S') {
                 $statusEmprestimo = 'Empréstimo devolvido';
                 ?>
@@ -220,6 +225,7 @@ if ($contarNao !== 'Vazio') {
                             $quantidade = $item->quantidade;
                             $idItemEpi = $item->idepi;
                             $itemDevolvido = $item->devolucao;
+
 
                             ?>
 
