@@ -38,6 +38,7 @@ function atualizarCarrinhoAutomaticamente(data) {
 
             const imgEpiCarrinho = document.createElement('img');
             imgEpiCarrinho.classList.add('img-fluid', 'rounded-start');
+            imgEpiCarrinho.setAttribute('title',item.nome)
             imgEpiCarrinho.src = `./img/produtos/${item.foto}`;
             imgEpiCarrinho.alt = item.nome;
             colImg.appendChild(imgEpiCarrinho);

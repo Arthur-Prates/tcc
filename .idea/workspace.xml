@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/bd/backup Local 20240805 1354.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bd/bd tcc SAFETECH 20240805 1351.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/produtos/66b0fa18bb316_cinturao-tipo-paraquedista.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bd/backup do backup 20240730 1504.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bd/outrosBd/backup do backup 20240730 1504.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bd/banco online 20240801 1654.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bd/outrosBd/banco online 20240801 1654.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bd/bd com os registros totais 20240730 1448.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bd/outrosBd/bd com os registros totais 20240730 1448.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="">
-      <change beforePath="$PROJECT_DIR$/admin/listarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +21,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/js/script.js">
-      <ranges>
-        <range start1="1270" end1="1271" start2="1270" end2="1270" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="1273" end1="1274" start2="1272" end2="1275" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="1276" end1="1277" start2="1277" end2="1278" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
-        <range start1="1289" end1="1289" start2="1290" end2="1291" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="1296" end1="1298" start2="1298" end2="1302" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-        <range start1="1299" end1="1300" start2="1303" end2="1307" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -61,7 +39,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Marco",
     "ignore_missing_gitignore": "true",
     "last_opened_file_path": "C:/xampp/htdocs/motovia",
     "node.js.detected.package.eslint": "true",
