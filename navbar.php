@@ -83,7 +83,7 @@ if (!empty($_SESSION['idFuncionario'])) {
             </a>
             <form action="resultado-da-busca" method="get" name="pesquisaNavbarLG" class="d-flex" role="search">
                 <input class="form-control me-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisar EPI"
-                       aria-label="Search">
+                       aria-label="Search" style="background: transparent;border: 1px solid black">
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>

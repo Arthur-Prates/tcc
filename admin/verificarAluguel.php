@@ -34,7 +34,7 @@ $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$c
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 </head>
@@ -69,10 +69,10 @@ if ($contarNao !== 'Vazio') {
 
 ?>
 
-<div class="container">
+<div class="container  listing-container">
 
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Empréstimo - #<?php echo $codigoEmprestimo ?></h1>
+        <h1 class="mt-1">Empréstimo - <b> #<?php echo $codigoEmprestimo ?></b></h1>
         <?php
 
         if ($nao >= 1) {
@@ -180,16 +180,16 @@ if ($contarNao !== 'Vazio') {
 
     ?>
     <div class="row">
-        <div class="col-lg-12 col-12 mt-4 text-center">
+        <div class="col-lg-12 col-12 mt-4 text-center listing-item">
             <p><b>Data:</b> <?php echo $dataEmprestimo ?></p>
         </div>
-        <div class="col-lg-6 col-12 mt-4 text-center">
+        <div class="col-lg-6 col-12 mt-4 text-center listing-item">
             <p><b>Nome:</b> <?php echo $nomeUsuario ?></p>
             <p><b>Email:</b> <?php echo $email ?></p>
             <p><b>Telefone:</b> <?php echo $telefone ?></p>
 
         </div>
-        <div class="col-lg-6 col-12 mt-4 text-center">
+        <div class="col-lg-6 col-12 mt-4 text-center listing-item">
             <p><b>Prioridade:</b> <?php
                 if ($prioridade == '3') {
                     $prioridadeVisivel = 'Alta';
