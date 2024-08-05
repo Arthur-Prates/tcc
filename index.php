@@ -53,7 +53,7 @@ if (!empty($_SESSION['idFuncionario'])) {
                 <div class="col-6 col-md-6 col-lg-3 col-xl-3 mt-4">
                     <div class="card rounded-4">
                         <div class="imgProduto">
-                            <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top p-2" alt="...">
+                            <img src="./img/produtos/<?php echo $foto ?>" class="card-img-top p-2" alt="<?php echo $nome ?>"  title="<?php echo $nome ?>">
                         </div>
                         <div class="card-body">
                             <h4 class="card-title nomeProduto"><?php echo $nome ?></h4>
