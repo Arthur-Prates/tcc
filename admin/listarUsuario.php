@@ -7,7 +7,7 @@
 
         <div class="d-flex align-items-center">
 
-            <button class="btn btnAmareloBos mx-1 " onclick="imprimir('Lista de Usuarios do Sistema','tabelaUser')"><i
+            <button class="btn btnAmareloBos mx-1 " onclick="imprimir('Lista de usuários do Sistema','tabelaUser')"><i
                         class="bi bi-printer"></i></button>
             <button type="button" class="btn btnDark"
                     onclick="abrirModalUsuario('nao','nao','nao','nao', 'nao','nao','nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'nao','nao', 'modalUsuarioAdd', 'A', 'btnUsuarioAdd', 'addUsuario', 'listarUsuario', 'frmUsuarioAdd')">

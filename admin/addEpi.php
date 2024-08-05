@@ -32,7 +32,11 @@ if (isset($dados) && !empty($dados)) {
             $insertNoEstoque = insert4Item('estoque','idepi, quantidade, disponivel, cadastro',"$idepi","$quantidade","$quantidade",DATATIMEATUAL);
 
             if ($retornoInsert > 0) {
-                echo json_encode(['success' => true, 'message' => "Epi cadastrado com sucesso"]);
+                $listarEpi = listarTabelaOrdenadaLimite('idepi','epi','idepi','DESC',1);
+                foreach ($listarEpi as $item) {
+                    $idepi = $item->idepi;
+                }
+                echo json_encode(['success' => true, 'message' => "Epi cadastrado com sucesso", 'idEpi' => $idepi]);
             } else {
                 echo json_encode(['success' => false, 'message' => "Epi não cadastrado!"]);
             }

@@ -52,7 +52,7 @@ if (isset($dados) && !empty($dados)) {
             }
 
             if ($retornoInsert > 0 || $retornoUpdate > 0) {
-                echo json_encode(['success' => true, 'message' => "Epi alterado com sucesso"]);
+                echo json_encode(['success' => true, 'message' => "Epi alterado com sucesso", 'idEpi' => $id]);
             } else {
                 echo json_encode(['success' => false, 'message' => "Epi não alterado!"]);
             }
@@ -86,7 +86,7 @@ if (isset($dados) && !empty($dados)) {
         }
 
         if ($retornoInsert > 0 || $retornoUpdate > 0) {
-            echo json_encode(['success' => true, 'message' => "Epi alterado com sucesso"]);
+            echo json_encode(['success' => true, 'message' => "Epi alterado com sucesso", 'idEpi' => $id]);
         } else {
             echo json_encode(['success' => false, 'message' => "Epi não alterado!"]);
         }

@@ -237,6 +237,29 @@ function listarTabelaOrdenada($campos, $tabela, $campoOrdem, $ASCouDESC)
     }
 }
 
+function listarTabelaOrdenadaLimitada($campos, $tabela, $campoOrdem, $ASCouDESC,$qtdLimite)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela ORDER BY $campoOrdem $ASCouDESC LIMIT $qtdLimite");
+        //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return False;
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
+
 function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem)
 {
     $conn = conectar();
