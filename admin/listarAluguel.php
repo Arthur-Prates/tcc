@@ -23,7 +23,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaEmprestimo = listarTabelaInnerJoinOrdenada('*','emprestimo','usuario','idusuario','idusuario','prioridade', 'DESC');
+            $listaEmprestimo = listarTabelaInnerJoinOrdenadaDuplo('*','emprestimo','usuario','idusuario','idusuario','prioridade', 'DESC','a.devolvido','ASC');
             if ($listaEmprestimo) {
                 foreach ($listaEmprestimo as $itemEmprestimo) {
                     $idemprestimo = $itemEmprestimo->idemprestimo;
@@ -33,6 +33,7 @@
                     $codigoEmprestimo = $itemEmprestimo->codigoEmprestimo;
                     $statusEmprestimo = $itemEmprestimo->devolvido;
                     $prioridade = $itemEmprestimo-> prioridade;
+                    $cadastro = $itemEmprestimo-> cadastro;
                     if ($prioridade == '3'){
                         $prioridadeVisivel = 'Alta';
                     }else if ($prioridade == '2'){

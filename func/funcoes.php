@@ -282,7 +282,28 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
         $conn = null;
     }
 }
+function listarTabelaInnerJoinOrdenadaDuplo($campos, $tabela1, $tabela2, $id1, $id2, $ordem1, $tipoOrdem1, $ordem2, $tipoOrdem2)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 ORDER BY $ordem1 $tipoOrdem1 , $ordem2 $tipoOrdem2 ");
+        //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'VAZIO';
 
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
 function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem)
 {
     $conn = conectar();

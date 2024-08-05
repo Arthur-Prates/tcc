@@ -1268,13 +1268,14 @@ function imprimir(nomeTabela, tabela) {
     let estilo = "<style>";
     estilo += "table {width: 100%; font: 20px Calibri;}";
     estilo += "th, td {border: solid 2px #000; border-collapse: collapse; padding: 4px 8px; text-align: center;}";
-    estilo += "button {display:none !important;}";
     estilo += "a {display:none !important;}";
     estilo += ".no-print {display: none !important;}";
-    estilo += "@media print { @page { size: landscape; margin: none; }}";
+    estilo += "@media print { @page { size: landscape; margin: none; } .no-print {\n" +
+        "                display: none;\n" +
+        "            }}";
     estilo += "</style>";
 
-    const win = window.open('', '_self', 'height=700,width=1000');
+    const win = window.open('', '_blank', 'height=0,width=0');
 
     win.document.write('<!doctype html>');
     win.document.write('<head>');
@@ -1294,8 +1295,11 @@ function imprimir(nomeTabela, tabela) {
     win.document.write('</html>');
     win.document.write('<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>');
     win.document.write('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>');
+    setTimeout(() => {
+        win.print();
 
-    win.print();
+    }, 1500)
+
 }
 
 function buscaUsuario(formulario, botoes, addEditDel) {
