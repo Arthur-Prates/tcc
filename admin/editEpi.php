@@ -35,11 +35,15 @@ if (isset($dados) && !empty($dados)) {
                             $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel', "$quantidade", "$quantidade", 'idepi', "$id");
                         } else {
                             $diferencaQtdTotalANDqtdDisponivel = $qtdTotal - $qtdDisponivel;
-
                             $novaQtdDisponivel = $quantidade - $diferencaQtdTotalANDqtdDisponivel;
 
-
-                            $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel',"$quantidade","$novaQtdDisponivel", 'idepi', "$id");
+                            if ($quantidade < $diferencaQtdTotalANDqtdDisponivel) {
+                                echo json_encode(['success' => false, 'message' => "A quantidade digitada é menor \n que a quantidade de EPIs reservados!"]);
+                                $retornoUpdate = 0;
+                                return;
+                            } else {
+                                $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel', "$quantidade", "$novaQtdDisponivel", 'idepi', "$id");
+                            }
                         }
                     }
 
@@ -61,8 +65,8 @@ if (isset($dados) && !empty($dados)) {
         }
 
     } else {
-        $retornoInsert = alterar2Item('epi', 'nomeEpi', 'certificado', "$nome", "$certificado", 'idepi', "$id");
         if ($quantidade !== '') {
+            $retornoInsert = alterar2Item('epi', 'nomeEpi', 'certificado', "$nome", "$certificado", 'idepi', "$id");
             $verificacao = listarItemExpecifico('*', 'estoque', 'idepi', $id);
             if ($verificacao !== 'Vazio') {
                 foreach ($verificacao as $item) {
@@ -75,7 +79,13 @@ if (isset($dados) && !empty($dados)) {
                         $diferencaQtdTotalANDqtdDisponivel = $qtdTotal - $qtdDisponivel;
                         $novaQtdDisponivel = $quantidade - $diferencaQtdTotalANDqtdDisponivel;
 
-                        $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel',"$quantidade","$novaQtdDisponivel", 'idepi', "$id");
+                        if ($quantidade < $diferencaQtdTotalANDqtdDisponivel) {
+                            echo json_encode(['success' => false, 'message' => "A quantidade digitada é menor do \n que a quantidade de EPIs reservados!"]);
+                            $retornoUpdate = 0;
+                            return;
+                        } else {
+                            $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel', "$quantidade", "$novaQtdDisponivel", 'idepi', "$id");
+                        }
                     }
                 }
             } else {
