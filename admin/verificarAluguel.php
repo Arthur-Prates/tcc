@@ -237,7 +237,7 @@ if ($contarNao !== 'Vazio') {
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#abrirTreco<?php echo $idepi ?>"
                                                     aria-expanded="true" aria-controls="abrirTreco<?php echo $idepi ?>">
-                                                <h5 class="card-title tituloCard nomeProduto"><?php echo $nome ?></h5>
+                                                <h5 class="card-title tituloCard"><?php echo $nome ?></h5>
                                             </button>
                                         </h2>
                                         <div id="abrirTreco<?php echo $idepi ?>"

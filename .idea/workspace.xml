@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deletarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/deletarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualizarEmprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/visualizarEmprestimo.php" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="">
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualizarEmprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/visualizarEmprestimo.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +28,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/visualizarEmprestimo.php">
+      <ranges>
+        <range start1="46" end1="47" start2="46" end2="47" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="63" end1="64" start2="63" end2="64" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="65" end1="66" start2="65" end2="66" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="67" end1="68" start2="67" end2="68" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="104" end1="105" start2="104" end2="105" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="110" end1="119" start2="110" end2="129" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="120" end1="120" start2="130" end2="132" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="149" end1="150" start2="161" end2="162" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

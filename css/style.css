@@ -652,11 +652,11 @@ body {
     padding-bottom: 15px;
 }
 
-/*.tituloCard{*/
-/*    white-space: nowrap;*/
-/*    overflow: hidden;*/
-/*    text-overflow: ellipsis;*/
-/*}*/
+.tituloCard{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .wave-box {
     position: relative;
