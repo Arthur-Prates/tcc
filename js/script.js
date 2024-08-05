@@ -148,9 +148,9 @@ function fazerLoginAdm() {
 
             }
         })
-    .catch((error) => {
-        console.error("Erro na requisição", error);
-    });
+        .catch((error) => {
+            console.error("Erro na requisição", error);
+        });
 }
 
 // FUNCAO DE LOADING
@@ -320,7 +320,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
     }
 }
 
-function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, idCertificado, inpIdCertificado,idQuantidade,inpIdQuantidade, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, idCertificado, inpIdCertificado, idQuantidade, inpIdQuantidade, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
     var botoes = document.getElementById(`${botao}`);
     const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
@@ -396,6 +396,9 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                         formDados.removeEventListener('submit', submitHandler);
                         form.reset()
                         idVerimg.src = ''
+                        setTimeout(function () {
+                            destacarLinha(data.idEpi)
+                        }, 300)
                     } else {
                         botoes.disabled = false;
                         alertError(data.message)
@@ -543,7 +546,7 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
                         carregarConteudo(`${listagem}`)
                         formDados.removeEventListener('submit', submitHandler);
                         setTimeout(function () {
-                            destacarLinha(IDid)
+                            destacarLinha(data.idUsuario)
                         }, 500)
                     } else {
                         botoes.disabled = false;
@@ -1349,11 +1352,13 @@ function voltarAoTopo() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var inputPesquisa = document.getElementById('emprestimo');
     var formPesquisa = document.getElementById('emprestimoForm');
 
-    inputPesquisa.addEventListener('blur', function() {
-        formPesquisa.submit();
-    });
+    if (inputPesquisa) {
+        inputPesquisa.addEventListener('blur', function () {
+            formPesquisa.submit();
+        });
+    }
 });

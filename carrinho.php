@@ -70,7 +70,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     <?php
                     if (!empty($_SESSION['pedidoscarrinho']) && isset($_SESSION['pedidoscarrinho'])) {
                         ?>
-                        <div class="row mt-5 rowCarrinho" id="listagemCarrinho">
+                        <div class="row mt-5 rowCarrinho d-flex justify-content-center align-items-center" id="listagemCarrinho">
                             <!--A listagem doo carrinho está sendo feita via JS-->
                             <div class="d-flex justify-content-center align-items-center">
                                 <dotlottie-player src="./img/carregandoCarrinho.json"

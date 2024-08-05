@@ -45,7 +45,7 @@ include_once('nav.php');
 ?>
 
 <div class="">
-    <div id='show' class='show '>
+    <div id='show' class='show'>
         <section class="ondas-box">
             <div class="container">
                 <div class="row vai">
@@ -64,6 +64,10 @@ include_once('nav.php');
                             ?>
                             <p class="text-danger">Código de empréstimo inexistente!</p>
                             <?php
+                        }else if (isset($_GET['error'])){
+                            ?>
+                            <p class="text-danger">O campo de pesquisa não pode ficar vazio!</p>
+                        <?php
                         }
                         ?>
                     </div>
@@ -576,11 +580,11 @@ include_once('nav.php');
                     <div class="mb-3 divModalBody2">
                         <label for="fotoEpiEdit" class="custum-file-upload2">
                             <img src="../img/produtos/" id="imgPreview" alt="foto-do-epi" width="30%">
-                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit>
+                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
                         </label>
                     </div>
-                    <div class=" formField mb-3 mt-4">
-                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">
+                    <div class="formField mb-3 mt-4">
+<!--                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">-->
                             <span>Sua Foto</span>
                     </div>
                     <div class="formField mb-3">

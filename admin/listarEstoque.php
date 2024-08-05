@@ -5,7 +5,7 @@
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Estoque dos EPI(s)</h1>
         <div>
             <button class="btn btnAmareloBos mx-1" style="float: right"
-                    onclick="imprimir('Lista de Empréstimo(s) do Sistema','tabelaEmprestimo')">
+                    onclick="imprimir('Lista do estoque de EPIs','tabelaEmprestimo')">
                 <i class="bi bi-printer"></i>
             </button>
         </div>

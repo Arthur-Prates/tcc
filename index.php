@@ -36,7 +36,7 @@ if (!empty($_SESSION['idFuncionario'])) {
 </head>
 <body>
 <?php include_once('navbar.php') ?>
-<div class="container mt-4">
+<div class="container mt-4 mb-5">
     <div class="row mt-5 justify-content-md-center">
         <?php
         $tabelaProdutos = listarTabelaInnerJoinOrdenada('*', 'epi', 'estoque', 'idepi', 'idepi', 'a.idepi', 'ASC');
