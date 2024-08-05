@@ -592,7 +592,7 @@ include_once('nav.php');
                         <span>Nome do Epi</span>
                     </div>
                     <div class="formField mb-3">
-                        <input required="" type="text" class="form-control" id="certificadoEpiEdit"
+                        <input required="" type="number" class="form-control" id="certificadoEpiEdit"
                                name="certificadoEpiEdit" maxlength="7" minlength="5"/>
                         <span>Certificado</span>
                     </div>

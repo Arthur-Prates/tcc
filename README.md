@@ -15,7 +15,7 @@ O trabalho de conclusão de curso visa otimizar a gestão de EPIs na MáquinasTe
 - [Como testar o sistema](#ancora1)
 - [Instalando o XAMPP](#ancora2)
 - [Instalando o Query Browser](#ancora3)
-- [Baixando nosso sistema](#ancora4)
+- [Baixando o nosso sistema](#ancora4)
 - [Restaurando o banco](#ancora5)
 - [Acessando o sistema](#ancora6)
 - [Processo de desenvolvimento](#ancora7)
@@ -38,7 +38,7 @@ O trabalho de conclusão de curso visa otimizar a gestão de EPIs na MáquinasTe
 <br>
 
 <a id="ancora1"></a>
-<h2>Como testar nosso sistema</h2>
+<h2>Como testar o nosso sistema</h2>
 
 <p>Antes de começar o teste, certifique-se que tenha instalado o <b>XAMPP</b> e o <b>Query Browser MySQL</b>.</p>
 
@@ -87,11 +87,11 @@ https://downloads.mysql.com/archives/query/
 <br>
 
 <a id="ancora4"></a>
-<h2>Baixando nosso sistema</h2>
+<h2>Baixando o nosso sistema</h2>
 
-<p>Para baixar nosso sistema é simples. Na página inicial do repositório, clique em <b>"Code > Download ZIP"</b>, o download será iniciado.</p>
+<p>Para baixar o nosso sistema é simples. Na página inicial do repositório, clique em <b>"Code > Download ZIP"</b>, o download será iniciado.</p>
 
-<p>Após a conclusão do download extraia a o arquivo ZIP, agora recorte o arquivo e percorra o seguinte caminho pelas suas pastas.</p>
+<p>Após a conclusão do download extraia ao arquivo ZIP, agora recorte o arquivo e percorra o seguinte caminho pelas suas pastas.</p>
 
 <p> <b> C: xampp > htdocs> cole o arquivo que recortou aqui </b>.</p>
 
@@ -129,12 +129,13 @@ https://downloads.mysql.com/archives/query/
 
 <p>Para conseguir acessar o sistema você precisa digitar as credenciais do administrador.</p>
 <p>Existem 2 logins, o de usuario e o de Adminstrador, o primeiro login da permissão para os funcionário reservarem os seus respectivos EPI's e lista-los, já o adminstrador, acessa uma dashboard onde pode manipular mais dados, excluir reservas, confirmar reservar e muito mais.</p>
-<h4>Credencial Usuário:</h4>
+
 <br>
+<h4>Credencial Usuário:</h4>
 <h6>Email:</h6>
 
 ```
-usuario@gmail.com
+funcionario@gmail.com
 ```
 <h6>Senha:</h6>
 
@@ -154,16 +155,16 @@ adm@gmail.com
 ```
 12345678
 ```
-<p>Pronto, você já pode testar nosso sistema em seu computador.</p>
+<p>Pronto, você já pode testar o nosso sistema no seu computador.</p>
 
 <a id="ancora7"></a>
 <h2>Processo de desenvolvimento</h2>
 
 <p>Nós dividimos o nosso time em X equipes, a primeira equipe ficou responsável pela parte A e a outra equipe pelo B.</p>
 
-<p>Tentamos solucionar ao máximo os possíveis bugs no sistema, caso encontre um, por favor reporte-nos para que possamos continuar a evoluir o sistema X.</p>
+<p>Tentamos solucionar ao máximo os possíveis bugs no sistema, caso encontre um, por favor reporte-nos para podermos continuar a evoluir o sistema X.</p>
 
-<p>O tempo de desenvolvimento do site foi de aproximadamente X semanas, e descobrimos e solucionamos vários bugs nessa X semana. Adicionamos mensagens de erro, como por exemplo, X etc.</p>
+<p>O tempo de desenvolvimento do site foi de aproximadamente X semanas, e descobrimos e solucionamos vários bugs nessa X semana. Adicionamos mensagens de erro, como, por exemplo, X etc.</p>
 
 <p>Implementamos um sistema de impressão, caso queira o total de vendas ou a lista de vendas impressa no papel. Também temos a opção de ver o histórico de compras de cada usuário.</p>
 
@@ -181,4 +182,4 @@ adm@gmail.com
 
 - [Arthur Prates](https://github.com/Arthur-Prates) - Desenvolvedor(a) Back-end ;
 - [Marco Nobre](https://github.com/MarcoAntonioNobre) - Desenvolvedor(a) Back-end ;
-- [Clarisse Oliveira](https://github.com/cclar13) - Desenvolvedor(a) Back-end ;
+- [Clarisse Oliveira](https://github.com/cclar13) - Desenvolvedor(a) Front-end ;

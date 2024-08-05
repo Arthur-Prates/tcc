@@ -408,9 +408,9 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                     }
                     ModalInstancia.hide();
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
         }
 
         const btnFecharModalAddEpi = document.getElementById('btnFecharModalAddEpi');
@@ -1105,7 +1105,6 @@ function deletarEpi(id, addEditDel) {
                             text: `${data.message}`,
                             icon: "success"
                         });
-
                     } else {
                         Swal.fire({
                             title: "Erro!",

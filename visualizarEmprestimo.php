@@ -44,7 +44,7 @@ foreach ($cod as $itemCod) {
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -61,11 +61,11 @@ foreach ($cod as $itemCod) {
             Empréstimo - #<?php echo $codigoEmprestimo ?>
         </div>
     </div>
-    <div class="row mb-5 mt-5">
+    <div class="row mb-5">
         <div class="col-lg-5 col-12 d-flex justify-content-center">
-            <div class="card" style=" max-width: 250px!important">
+            <div class="card d-flex justify-content-center align-items-center">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $link ?>&amp;size=300x300"
-                     class="card-img-top" alt="...">
+                     class="card-img-top" alt="<?php echo $codigoEmprestimo ?>">
                 <div class="card-body text-center">
                     <p class="card-text"><?php echo $codigoEmprestimo ?></p>
 
@@ -102,22 +102,34 @@ foreach ($cod as $itemCod) {
                     $prioridade = 'Baixa';
                 }
 
-                if ($numero == '' || $numero == null){
+                if ($numero == '' || $numero == null) {
                     $numero = 'Nenhum telefone cadastrado';
                 }
             }
 
             ?>
-            <p class="mt-3"><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
-            <p><b>Email:</b> <?php echo $email ?></p>
-            <p><b>Telefone:</b> <?php echo $numero ?></p>
-            <p><b>CPF:</b> <?php echo $cpf ?></p>
-            <p><b>Data do aluguel:</b> <?php echo $dataEmprestimo ?></p>
-            <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
-            <p><b>Hora final do aluguel:</b> <?php echo $horaFinal ?></p>
-            <p><b>Nível de prioridade:</b> <?php echo $prioridade ?></p>
-            <p><b>Observação:</b> <?php echo $observacao ?></p>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p><b>Data do aluguel:</b> <br> <?php echo $dataEmprestimo ?></p>
+                </div>
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center align-items-center"
+                     style="flex-direction: column" style="flex-direction: column">
+                    <p><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
+                    <p><b>Email:</b> <?php echo $email ?></p>
+                    <p><b>Telefone:</b> <?php echo $numero ?></p>
+                    <p><b>CPF:</b> <?php echo $cpf ?></p>
 
+                </div>
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center align-items-center"
+                     style="flex-direction: column">
+
+                    <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
+                    <p><b>Hora final do aluguel:</b> <?php echo $horaFinal ?></p>
+                    <p><b>Nível de prioridade:</b> <?php echo $prioridade ?></p>
+                    <p><b>Observação:</b> <?php echo $observacao ?></p>
+
+                </div>
+            </div>
         </div>
     </div>
     <hr>
@@ -147,7 +159,7 @@ foreach ($cod as $itemCod) {
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#abrirTreco<?php echo $idepi ?>"
                                                 aria-expanded="true" aria-controls="abrirTreco<?php echo $idepi ?>">
-                                            <h5 class="card-title tituloCard nomeProduto"><?php echo $nome ?></h5>
+                                            <h5 class="card-title tituloCard"><?php echo $nome ?></h5>
                                         </button>
                                     </h2>
                                     <div id="abrirTreco<?php echo $idepi ?>"

@@ -9,7 +9,7 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (isset($dados) && !empty($dados)) {
     $idAluguel = isset($dados['idDeleteAluguel']) ? addslashes($dados['idDeleteAluguel']) : '';
 
-    $retornoDelete = deletarCadastro('aluguel', 'idaluguel', "$idAluguel");
+    $retornoDelete = deletarCadastro('emprestimo', 'idemprestimo', "$idAluguel");
 
     if ($retornoDelete) {
         echo json_encode(['success' => true, 'message' => "Empréstimo deletado com sucesso!"]);
