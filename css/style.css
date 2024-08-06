@@ -695,8 +695,20 @@ section .wave {
 .inpAlterarSenha {
     width: 100%;
     border: #656565 2px solid;
-    height: 35px;
+    /*height: 35px;*/
     border-radius: 5px;
+}
+
+.olhinhoPerfil{
+    position: absolute;
+    right: 2.6rem;
+    top: 7.1rem;
+}
+
+.olhinhoPerfil2{
+    position: absolute;
+    right: 2.6rem;
+    top: 12rem;
 }
 
 /*DASH ADM*/

@@ -27,7 +27,7 @@ if (!empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16"  href="./img/favicon/4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 </head>
@@ -119,7 +119,8 @@ if (!empty($_SESSION['idFuncionario'])) {
         echo 'erro';
     }
     ?>
-    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i
+                class="bi bi-arrow-up-short"></i></button>
 </div>
 
 <!-- Modal editar senha -->
@@ -129,20 +130,31 @@ if (!empty($_SESSION['idFuncionario'])) {
         <div class="modal-content">
             <form action="#" method="post" name="frmAlterarSenha" id="frmAlterarSenha">
                 <div class="modal-body">
-
                     <div class="card-body">
                         <h3 class="mb-5">Alterar senha</h3>
-                        <div class="">
-                            <label for="inpAlterarSenha" class="label-control">Digite sua nova senha:</label>
-                            <input type="password" name="inpAlterarSenha" id="inpAlterarSenha" class="inpAlterarSenha"
-                                   required="required">
+                        <div>
+                            <div class="formField">
+                                <input type="password" name="inpAlterarSenha" id="inpAlterarSenha"
+                                       class="form-control"
+                                       required="required">
+                                <span>Digite sua nova senha:</span>
+                            </div>
+                            <label for="inpAlterarSenha" class="olhinhoPerfil"
+                                   onclick="mostrarsenha('inpAlterarSenha')">
+                                <span id="btn-senha" class="bi bi-eye"></span>
+                            </label>
                         </div>
                         <div class="mt-4">
-                            <label for="confirmarAlteracaoDaSenha" class="label-control">
-                                Digite a senha novamente:
+                            <div class="formField">
+                                <input type="password" name="confirmarAlteracaoDaSenha" id="confirmarAlteracaoDaSenha"
+                                       class="form-control" required="required">
+                                <span>Digite a senha novamente:</span>
+                            </div>
+                            <label for="confirmarAlteracaoDaSenha" class="olhinhoPerfil2"
+                                   onclick="mostrarsenha('confirmarAlteracaoDaSenha')">
+                                <span id="btn-senha" class="bi bi-eye"></span>
                             </label>
-                            <input type="password" name="confirmarAlteracaoDaSenha" id="confirmarAlteracaoDaSenha"
-                                   class="inpAlterarSenha" required="required">
+
                         </div>
                     </div>
                     <div class="alert alert-danger" id="alertSenha" style="display: none">
@@ -168,19 +180,20 @@ if (!empty($_SESSION['idFuncionario'])) {
         <div class="modal-content">
             <form action="#" method="post" name="frmAlterarDados" id="frmAlterarDados">
                 <div class="modal-body">
-
                     <div class="card-body mb-4">
                         <h3 class="mb-5">Editar informações de contato</h3>
                         <div class="">
-                            <label for="inpAlterarEmail" class="label-control">Email:</label>
-                            <input type="email" name="inpAlterarEmail" id="inpAlterarEmail" class="inpAlterarSenha">
+                            <div class="formField">
+                                <input type="email" name="inpAlterarEmail" id="inpAlterarEmail" class="form-control">
+                                <span>Digite seu email:</span>
+                            </div>
                         </div>
                         <div class="mt-4">
-                            <label for="inpAlterarTelefone" class="label-control">
-                                Número de telefone:
-                            </label>
-                            <input type="text" name="inpAlterarTelefone" id="inpAlterarTelefone"
-                                   class="inpAlterarSenha celular">
+                            <div class="formField">
+                                <input type="text" name="inpAlterarTelefone" id="inpAlterarTelefone"
+                                       class="inpAlterarSenha celular">
+                                <span>Número de telefone:</span>
+                            </div>
                         </div>
                     </div>
                 </div>
