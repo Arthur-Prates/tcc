@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/carrinho.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logar.php" beforeDir="false" afterPath="$PROJECT_DIR$/logar.php" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
@@ -85,7 +86,7 @@
       <workItem from="1722786005939" duration="1439000" />
       <workItem from="1722805716148" duration="10132000" />
       <workItem from="1722858140049" duration="4521000" />
-      <workItem from="1722942137380" duration="6105000" />
+      <workItem from="1722942137380" duration="6427000" />
     </task>
     <servers />
   </component>

@@ -30,7 +30,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
     <link rel="stylesheet" href="css/carrinho.css">
     <link rel="stylesheet" href="./css/style.css">
     <meta name="theme-color" content="#ffffff">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#90bae0">
 </head>
