@@ -692,7 +692,9 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
         const btnFecharModalSenha = document.getElementById('btnFecharModalSenha');
         if (btnFecharModalSenha) {
             btnFecharModalSenha.addEventListener('click', function () {
+                alertSenha.style.display = 'none';
                 naTela = false;
+                formDados.reset()
                 modalInstancia.hide();
                 formDados.removeEventListener('submit', submitHandler);
                 inpAlterarSenha.removeEventListener('input', verificarSenha);
@@ -720,6 +722,19 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
 
     if (abrirModal === 'A') {
         ModalInstancia.show();
+
+        const inpEmail = document.getElementById('inpAlterarEmail')
+        const inpCelular = document.getElementById('inpAlterarTelefone')
+
+        function verficarTamanho() {
+            if (inpEmail.value.length === 0 && inpCelular.value.length === 0 ) {
+                botoes.setAttribute('disabled', 'disabled')
+            }else{
+                botoes.removeAttribute('disabled', 'disabled')
+            }
+        }
+
+        setInterval(verficarTamanho,100)
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -762,6 +777,7 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
         if (btnFecharModalDados) {
             btnFecharModalDados.addEventListener('click', function () {
                 ModalInstancia.hide();
+                formDados.reset()
                 formDados.removeEventListener('submit', submitHandler);
             });
         } else {
