@@ -5,13 +5,11 @@ function fazerLogin() {
 
     if (email === "") {
         alertlog.style.display = "block";
-        alertlog.innerHTML =
-            "Email não digitado.";
+        alertlog.innerHTML = "Email não digitado.";
         return;
     } else if (senha === "") {
         alertlog.style.display = "block";
-        alertlog.innerHTML =
-            "Senha não digitada.";
+        alertlog.innerHTML = "Senha não digitada.";
         return;
     } else if (senha.length < 8) {
         alertlog.style.display = "block";
@@ -22,15 +20,9 @@ function fazerLogin() {
     }
     mostrarProcessando();
     fetch("login.php", {
-        method: "POST",
-        headers: {
+        method: "POST", headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body:
-            "email=" +
-            encodeURIComponent(email) +
-            "&senha=" +
-            encodeURIComponent(senha),
+        }, body: "email=" + encodeURIComponent(email) + "&senha=" + encodeURIComponent(senha),
     })
         .then((response) => response.json())
         .then((data) => {
@@ -99,13 +91,11 @@ function fazerLoginAdm() {
 
     if (email === "") {
         alertlog.style.display = "block";
-        alertlog.innerHTML =
-            "Email não digitado.";
+        alertlog.innerHTML = "Email não digitado.";
         return;
     } else if (senha === "") {
         alertlog.style.display = "block";
-        alertlog.innerHTML =
-            "Senha não digitada.";
+        alertlog.innerHTML = "Senha não digitada.";
         return;
     } else if (senha.length < 8) {
         alertlog.style.display = "block";
@@ -116,15 +106,9 @@ function fazerLoginAdm() {
     }
     mostrarProcessandoAdm();
     fetch("../admin/login.php", {
-        method: "POST",
-        headers: {
+        method: "POST", headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body:
-            "email=" +
-            encodeURIComponent(email) +
-            "&senha=" +
-            encodeURIComponent(senha),
+        }, body: "email=" + encodeURIComponent(email) + "&senha=" + encodeURIComponent(senha),
     })
         .then((response) => response.json())
         .then((data) => {
@@ -254,8 +238,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
         formData.append('controle', addEditDel);
 
         fetch('controle.php', {
-            method: 'POST',
-            body: formData,
+            method: 'POST', body: formData,
         })
             .then(response => response.json())
             .then(data => {
@@ -263,8 +246,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
                 if (data.success) {
                     ModalInstancia.hide();
                     Swal.fire({
-                        title: `${data.message}`,
-                        // text: "You clicked the button!",
+                        title: `${data.message}`, // text: "You clicked the button!",
                         icon: "success"
                     });
                     formDados.removeEventListener('submit', submitHandler);
@@ -274,8 +256,7 @@ function abrirModalJsExcluirAluguel(id, inID, innome, idNome, nomeModal, dataTim
                 } else {
                     ModalInstancia.hide();
                     Swal.fire({
-                        title: `${data.message}`,
-                        // text: "You clicked the button!",
+                        title: `${data.message}`, // text: "You clicked the button!",
                         icon: "error"
                     });
                     formDados.removeEventListener('submit', submitHandler);
@@ -408,9 +389,9 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                     }
                     ModalInstancia.hide();
                 })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
         }
 
         const btnFecharModalAddEpi = document.getElementById('btnFecharModalAddEpi');
@@ -492,21 +473,33 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
         const confirmNovaSenhaUsuarioEdit = document.getElementById('confirmNovaSenhaUsuarioEdit');
         const alertaSenha = document.getElementById('alertaSenha');
 
+
         btnAlterarSenha.addEventListener('click', function () {
             dNone.style.display = 'block';
             alertaSenha.style.display = 'none';
             btnAlterarSenha.style.display = 'none';
             btnFecharAlterarSenha.style.display = 'block';
             const confirmaSenha = () => {
-                alertaSenha.style.display = 'none';
-                if (novaSenhaUsuarioEdit.value.length < 8) {
+                if (novaSenhaUsuarioEdit.value.length >= 1 && novaSenhaUsuarioEdit.value.length < 8) {
                     alertaSenha.classList.add('mt-4');
-                    alertaSenha.style.display = "block";
+                    if (novaSenhaUsuarioEdit.value.length >= 3) {
+                        alertaSenha.style.display = "block";
+                    }
+                    botoes.setAttribute('disabled', 'disabled');
                     alertaSenha.innerHTML = "A senha precisa ter no mínimo de 8 dígitos.";
                 } else if (novaSenhaUsuarioEdit.value !== confirmNovaSenhaUsuarioEdit.value) {
                     alertaSenha.classList.add('mt-4');
-                    alertaSenha.style.display = "block";
+                    if (novaSenhaUsuarioEdit.value.length >= 3 || confirmNovaSenhaUsuarioEdit.value.length >= 3) {
+                        alertaSenha.style.display = "block";
+                    }
+                    botoes.setAttribute('disabled', 'disabled');
                     alertaSenha.innerHTML = "As senhas não coincidem";
+                } else if (novaSenhaUsuarioEdit.value.length == 0 && confirmNovaSenhaUsuarioEdit.value.length == 0) {
+                    botoes.removeAttribute('disabled', 'disabled');
+                    alertaSenha.style.display = 'none';
+                } else {
+                    botoes.removeAttribute('disabled', 'disabled');
+                    alertaSenha.style.display = 'none';
                 }
             };
 
@@ -516,7 +509,7 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
             confirmNovaSenhaUsuarioEdit.addEventListener('input', function () {
                 alertaSenha.style.display = 'none';
             })
-            setInterval(confirmaSenha, 3500)
+            setInterval(confirmaSenha, 100)
         })
 
         btnFecharAlterarSenha.addEventListener('click', function () {
@@ -606,17 +599,19 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
 
 function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`);
-    const botoes = document.getElementById(`${botao}`);
+    var botoes = document.getElementById(`${botao}`);
     const modalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
+
 
     if (!formDados || !botoes || !modalInstancia) {
         console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
         return;
     }
 
+    var naTela = false;
     if (abrirModal === 'A') {
+        naTela = true;
         modalInstancia.show();
-
         const alertSenha = document.getElementById('alertSenha');
         const inpAlterarSenha = document.getElementById('inpAlterarSenha');
         const confirmarAlteracaoDaSenha = document.getElementById('confirmarAlteracaoDaSenha');
@@ -627,15 +622,22 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
         }
 
         const verificarSenha = () => {
-            alertSenha.style.display = 'none';
             if (inpAlterarSenha.value.length < 8) {
                 alertSenha.classList.add('mt-4');
-                alertSenha.style.display = "block";
+                if (inpAlterarSenha.value.length >= 3) {
+                    alertSenha.style.display = "block";
+                }
                 alertSenha.innerHTML = "Mínimo de 8 dígitos.";
+                botoes.setAttribute('disabled', 'disabled')
             } else if (inpAlterarSenha.value !== confirmarAlteracaoDaSenha.value) {
                 alertSenha.classList.add('mt-4');
                 alertSenha.style.display = "block";
                 alertSenha.innerHTML = "As senhas não coincidem";
+                botoes.setAttribute('disabled', 'disabled')
+            } else {
+                botoes.removeAttribute('disabled', 'disabled')
+                alertSenha.style.display = 'none';
+
             }
         };
         inpAlterarSenha.addEventListener('input', function () {
@@ -646,7 +648,9 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
             alertSenha.style.display = "none";
         });
 
-        setInterval(verificarSenha, 4000)
+        if (naTela) {
+            setInterval(verificarSenha, 100)
+        }
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -657,8 +661,7 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
             formData.append('controle', addEditDel);
 
             fetch('controle.php', {
-                method: 'POST',
-                body: formData,
+                method: 'POST', body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
@@ -668,8 +671,7 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         }, 2000)
                         formDados.removeEventListener('submit', submitHandler);
                         Swal.fire({
-                            title: data.message,
-                            icon: "success"
+                            title: data.message, icon: "success"
                         });
                         botoes.disabled = false;
                         modalInstancia.hide();
@@ -690,6 +692,7 @@ function abrirModalAlterarSenha(nomeModal, abrirModal = 'A', botao, addEditDel, 
         const btnFecharModalSenha = document.getElementById('btnFecharModalSenha');
         if (btnFecharModalSenha) {
             btnFecharModalSenha.addEventListener('click', function () {
+                naTela = false;
                 modalInstancia.hide();
                 formDados.removeEventListener('submit', submitHandler);
                 inpAlterarSenha.removeEventListener('input', verificarSenha);
@@ -727,8 +730,7 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
             formData.append('controle', addEditDel);
 
             fetch('controle.php', {
-                method: 'POST',
-                body: formData,
+                method: 'POST', body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
@@ -738,8 +740,7 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         }, 2000)
                         formDados.removeEventListener('submit', submitHandler);
                         Swal.fire({
-                            title: data.message,
-                            icon: "success"
+                            title: data.message, icon: "success"
                         });
                         botoes.disabled = false;
                         ModalInstancia.hide();
@@ -748,8 +749,7 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
                         formDados.removeEventListener('submit', submitHandler);
                         botoes.disabled = false;
                         Swal.fire({
-                            title: data.message,
-                            icon: "error"
+                            title: data.message, icon: "error"
                         });
                     }
                 })
@@ -778,16 +778,11 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
 function alertSuccess(msg, cor) {
 
     Toastify({
-        text: `${msg}`,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
+        text: `${msg}`, duration: 3000, newWindow: true, close: true, gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: `${cor}`,
-            color: 'white',
+            background: `${cor}`, color: 'white',
         },
     }).showToast();
 
@@ -795,16 +790,11 @@ function alertSuccess(msg, cor) {
 
 function alertError(msg) {
     Toastify({
-        text: `${msg}`,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
+        text: `${msg}`, duration: 3000, newWindow: true, close: true, gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "#F40000",
-            color: 'white',
+            background: "#F40000", color: 'white',
         },
     }).showToast();
 
@@ -832,8 +822,7 @@ function postCarrinho(produto) {
                 alertSuccess(`${data.message}`, '#008f34')
             } else {
                 Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
+                    title: `${data.message}`, // text: "You clicked the button!",
                     icon: "danger"
                 });
             }
@@ -856,8 +845,7 @@ function aumentarQuantidade(produto) {
                 alertSuccess(`${data.message}`, '#008f34')
             } else {
                 Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
+                    title: `${data.message}`, // text: "You clicked the button!",
                     icon: "danger"
                 });
             }
@@ -882,8 +870,7 @@ function diminuirQuantidade(produto) {
 
             } else {
                 Swal.fire({
-                    title: `${data.message}`,
-                    // text: "You clicked the button!",
+                    title: `${data.message}`, // text: "You clicked the button!",
                     icon: "warning"
                 });
             }
@@ -892,8 +879,7 @@ function diminuirQuantidade(produto) {
             console.error('Erro:', error);
             Swal.fire({
                 // title: `${data.message}`,
-                text: "Ocorreu um erro ao tentar remover o produto do carrinho.",
-                icon: "danger"
+                text: "Ocorreu um erro ao tentar remover o produto do carrinho.", icon: "danger"
             });
         });
 }
@@ -909,13 +895,11 @@ function excluirItem(id) {
             attCarrinho(data.qtd)
             if (data.success) {
                 Swal.fire({
-                    title: `${data.message}`,
-                    icon: "success"
+                    title: `${data.message}`, icon: "success"
                 });
             } else {
                 Swal.fire({
-                    title: `${data.message}`,
-                    icon: "error"
+                    title: `${data.message}`, icon: "error"
                 });
             }
         })
@@ -931,23 +915,19 @@ function excluirItem(id) {
 
 function limparCarrinho() {
     fetch('controle.php', {
-        method: 'POST',
-        headers: {
+        method: 'POST', headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'controle=' + encodeURIComponent('limparCarrinho'),
+        }, body: 'controle=' + encodeURIComponent('limparCarrinho'),
     })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 Swal.fire({
-                    title: `${data.message}`,
-                    icon: "success"
+                    title: `${data.message}`, icon: "success"
                 });
             } else {
                 Swal.fire({
-                    title: `${data.message}`,
-                    icon: "danger"
+                    title: `${data.message}`, icon: "danger"
                 });
             }
             setTimeout(function () {
@@ -995,8 +975,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
         formData.append('controle', addEditDel);
 
         fetch('controle.php', {
-            method: 'POST',
-            body: formData,
+            method: 'POST', body: formData,
         })
             .then(response => response.json())
             .then(data => {
@@ -1004,8 +983,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
                 formEnviado = true;
                 if (data.success) {
                     Swal.fire({
-                        title: `${data.message}`,
-                        // text: "You clicked the button!",
+                        title: `${data.message}`, // text: "You clicked the button!",
                         icon: "success"
                     });
                     formDados.removeEventListener('submit', submitHandler);
@@ -1087,13 +1065,9 @@ function deletarEpi(id, addEditDel) {
         if (result.isConfirmed) {
 
             fetch('controle.php', {
-                method: 'POST',
-                headers: {
+                method: 'POST', headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'controle=' + encodeURIComponent(`${addEditDel}`) +
-                    "&idDelete=" +
-                    encodeURIComponent(`${id}`),
+                }, body: 'controle=' + encodeURIComponent(`${addEditDel}`) + "&idDelete=" + encodeURIComponent(`${id}`),
             })
                 .then(response => response.json())
                 .then(data => {
@@ -1101,15 +1075,11 @@ function deletarEpi(id, addEditDel) {
                     console.log(data)
                     if (data.success) {
                         Swal.fire({
-                            title: "Deletado!",
-                            text: `${data.message}`,
-                            icon: "success"
+                            title: "Deletado!", text: `${data.message}`, icon: "success"
                         });
                     } else {
                         Swal.fire({
-                            title: "Erro!",
-                            text: `${data.message}`,
-                            icon: "warning"
+                            title: "Erro!", text: `${data.message}`, icon: "warning"
                         });
 
                     }
@@ -1135,13 +1105,9 @@ function deleletarUsuario(id, addEditDel) {
         if (result.isConfirmed) {
 
             fetch('controle.php', {
-                method: 'POST',
-                headers: {
+                method: 'POST', headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'controle=' + encodeURIComponent(`${addEditDel}`) +
-                    "&idDelete=" +
-                    encodeURIComponent(`${id}`),
+                }, body: 'controle=' + encodeURIComponent(`${addEditDel}`) + "&idDelete=" + encodeURIComponent(`${id}`),
             })
                 .then(response => response.json())
                 .then(data => {
@@ -1149,16 +1115,12 @@ function deleletarUsuario(id, addEditDel) {
                     if (data.success) {
 
                         Swal.fire({
-                            title: "Deletado!",
-                            text: `${data.message}`,
-                            icon: "success"
+                            title: "Deletado!", text: `${data.message}`, icon: "success"
                         });
 
                     } else {
                         Swal.fire({
-                            title: "Erro!",
-                            text: `${data.message}`,
-                            icon: "warning"
+                            title: "Erro!", text: `${data.message}`, icon: "warning"
                         });
 
                     }
@@ -1177,11 +1139,7 @@ function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevoluc
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&idDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) +
-            "&valor=" + encodeURIComponent(`${valor}`) +
-            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) +
-            "&qtdDevolucao=" + encodeURIComponent(`${qtdDevolucao}`),
+        body: 'controle=' + encodeURIComponent(`${controle}`) + "&idDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) + "&valor=" + encodeURIComponent(`${valor}`) + "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) + "&qtdDevolucao=" + encodeURIComponent(`${qtdDevolucao}`),
     })
         .then(response => response.json())
         .then(data => {
@@ -1190,15 +1148,11 @@ function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevoluc
             }, 2500)
             if (data.success) {
                 Swal.fire({
-                    title: "Sucesso!",
-                    text: `${data.message}`,
-                    icon: "success"
+                    title: "Sucesso!", text: `${data.message}`, icon: "success"
                 });
             } else {
                 Swal.fire({
-                    title: "Erro!",
-                    text: `${data.message}`,
-                    icon: "warning"
+                    title: "Erro!", text: `${data.message}`, icon: "warning"
                 });
             }
         })
@@ -1213,9 +1167,7 @@ function devolverEmprestimo(controle, codEmprestimo, valor) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'controle=' + encodeURIComponent(`${controle}`) +
-            "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) +
-            "&valor=" + encodeURIComponent(`${valor}`),
+        body: 'controle=' + encodeURIComponent(`${controle}`) + "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) + "&valor=" + encodeURIComponent(`${valor}`),
     })
         .then(response => response.json())
         .then(data => {
@@ -1225,16 +1177,12 @@ function devolverEmprestimo(controle, codEmprestimo, valor) {
 
             if (data.success) {
                 Swal.fire({
-                    title: "Sucesso!",
-                    text: `${data.message}`,
-                    icon: "success"
+                    title: "Sucesso!", text: `${data.message}`, icon: "success"
                 });
 
             } else {
                 Swal.fire({
-                    title: "Erro!",
-                    text: `${data.message}`,
-                    icon: "warning"
+                    title: "Erro!", text: `${data.message}`, icon: "warning"
                 });
 
             }
@@ -1269,9 +1217,7 @@ function imprimir(nomeTabela, tabela) {
     estilo += "th, td {border: solid 2px #000; border-collapse: collapse; padding: 4px 8px; text-align: center;}";
     estilo += "a {display:none !important;}";
     estilo += ".no-print {display: none !important;}";
-    estilo += "@media print { @page { size: landscape; margin: none; } .no-print {\n" +
-        "                display: none;\n" +
-        "            }}";
+    estilo += "@media print { @page { size: landscape; margin: none; } .no-print {\n" + "                display: none;\n" + "            }}";
     estilo += "</style>";
 
     const win = window.open('', '_blank', 'height=0,width=0');
@@ -1315,8 +1261,7 @@ function buscaUsuario(formulario, botoes, addEditDel) {
         formData.append('controle', addEditDel);
 
         fetch('controle.php', {
-            method: 'POST',
-            body: formData,
+            method: 'POST', body: formData,
         })
             .then(response => response.json())
             .then(data => {
