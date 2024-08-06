@@ -22,6 +22,7 @@ include_once('../func/funcoes.php');
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
 
 </head>
 

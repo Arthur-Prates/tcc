@@ -462,6 +462,11 @@ body {
     .btnConcluirAluguel {
         width: 50%;
     }
+
+    .nomeProduto {
+        height: 60px;
+    }
+
 }
 
 
@@ -475,7 +480,6 @@ body {
         white-space: nowrap;
         /*text-overflow: ellipsis !important;*/
         /*direction: ltr;*/
-
     }
 
     .qtdLG {
@@ -520,6 +524,33 @@ body {
 
 }
 
+@media (max-width: 900px) {
+    .olhinho2 {
+        left: 25rem;
+        top: 41rem;
+    }
+
+    .olhinho3 {
+        left: 25rem;
+        top: 46rem;
+    }
+
+    .vai{
+        display: flex;!important;
+    }
+}
+
+@media (max-width: 576px) {
+    .inputPesquisa {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .btnAluguelPesquisa {
+        width: 100%;
+        padding: 10px;
+    }
+}
 
 .nomeProduto {
     /*white-space: nowrap;*/
@@ -1407,33 +1438,4 @@ section.ondas-box {
 .listing-item b {
     color: #000;
     font-size: 16px;
-}
-
-
-@media (max-width: 900px) {
-    .olhinho2 {
-        left: 25rem;
-        top: 41rem;
-    }
-
-    .olhinho3 {
-        left: 25rem;
-        top: 46rem;
-    }
-
-    .vai{
-        display: flex;!important;
-    }
-}
-
-@media (max-width: 576px) {
-    .inputPesquisa {
-        margin-right: 0;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    .btnAluguelPesquisa {
-        width: 100%;
-        padding: 10px;
-    }
 }
