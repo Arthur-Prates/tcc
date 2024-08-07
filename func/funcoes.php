@@ -120,7 +120,7 @@ function pesquisaLikeDuplo($campos, $tabela, $campoDeBusca,$campoDeBusca2, $valo
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoDeBusca LIKE ? OR $campoDeBusca2 LIKE ?");
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoDeBusca LIKE ? OR $campoDeBusca2 LIKE ? ORDER BY nomeUsuario ASC");
         $sqlListaTabelas->bindValue(1, '%' . $valorDoCampo . '%', PDO::PARAM_STR);
         $sqlListaTabelas->bindValue(2, '%' . $valorDoCampo2 . '%', PDO::PARAM_STR);
         $sqlListaTabelas->execute();
