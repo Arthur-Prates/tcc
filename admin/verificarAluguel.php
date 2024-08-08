@@ -33,10 +33,10 @@ $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$c
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 
@@ -126,7 +126,7 @@ if ($contarNao !== 'Vazio') {
             $statusEmprestimo = $item->devolvido;
             $status = $statusEmprestimo;
 
-            if ($observacao == 'NAO'){
+            if ($observacao == 'NAO') {
                 $observacao = 'Não';
             }
 
@@ -279,14 +279,14 @@ if ($contarNao !== 'Vazio') {
                                                                         if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','S','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>')">
+                                                                                    onclick="abrirModalDevolucaoEpi('<?php echo $idepi ?>','idEpiDevolucao','<?php echo $codigoEmprestimo ?>','codigoDoEmprestimo','<?php echo $nome?>','S','<?php echo $quantidade?>','mdlDevolverEpi','A','btnDevolverEpi','devolverEpi','formDevolucaoEpi')">
                                                                                 Devolvido
                                                                             </button>
                                                                             <?php
                                                                         } else {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-secondary"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>','bomEstado')">
                                                                                 Não devolvido
                                                                             </button>
                                                                             <?php
@@ -328,6 +328,58 @@ if ($contarNao !== 'Vazio') {
     </div>
     <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i
                 class="bi bi-arrow-up-short"></i></button>
+</div>
+
+<!-- Modal devolucao do epi-->
+<div class="modal fade" id="mdlDevolverEpi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-black bg-info">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Devolução do EPI</h1>
+            </div>
+            <form action="#" name="formDevolucaoEpi" id="formDevolucaoEpi">
+                <div class="modal-body">
+                    <input type="hidden" name="idEpiDevolucao" id="idEpiDevolucao">
+                    <input type="hidden" name="codigoDoEmprestimo" id="codigoDoEmprestimo">
+                    <div class="">
+                        <p><b>Código do empréstimo:</b> <span id="codigoEmprestimo"></span></p>
+                        <p><b>Nome do EPI:</b> <span id="nomeEPI"></span></p>
+                    </div>
+                    <div class="mt-3">
+                        <label for="situacaoEpi">Selecione a condição do EPI</label>
+                        <select name="situacaoEpi" id="situacaoEpi" class="form-select">
+                            <option value="bomEstado">Bom estado</option>
+                            <option value="avariado">Com avarias</option>
+                        </select>
+                    </div>
+                    <div style="display: none" id="casoAvariado">
+                        <div class="mt-3">
+                            <label for="opcao">Selecione o que acontece com o EPI</label>
+                            <select name="opcao" id="opcao" class="form-select">
+                                <option value="">Selecione um opção</option>
+                                <option value="Substituido">Substituído</option>
+                                <option value="Reparado">Reparado</option>
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                      style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Descreva a situação do EPI</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalDevolucaoEpi">Fechar
+                    </button>
+                    <button type="submit" class="btn btn-info btn-sm" id="btnDevolverEpi">Devolver</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 

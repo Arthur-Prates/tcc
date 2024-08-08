@@ -77,8 +77,8 @@ $idFuncionario = $_SESSION['idadm'];
                 <?php } ?>
             </ul>
             <form action="#" method="post" class="d-flex mx-2" role="search" name="buscaUsuarios" id="buscaUsuarios">
-                <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"
-                       id="buscarUsuario" name="buscarUsuario">
+                <input class="form-control me-2 text-white inputAdm" type="search" placeholder="Pesquisar" aria-label="Search"
+                       id="buscarUsuario" name="buscarUsuario" style="background: transparent;border: 1px solid black;">
                 <button class="btn btn-outline-success" type="submit" id="btnBuscaUsuario"
                         onclick="buscaUsuario('buscaUsuarios','btnBuscaUsuario', 'buscaUsuarios')">
                     <i class="bi bi-search"></i>

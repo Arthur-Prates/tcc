@@ -727,14 +727,14 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
         const inpCelular = document.getElementById('inpAlterarTelefone')
 
         function verficarTamanho() {
-            if (inpEmail.value.length === 0 && inpCelular.value.length === 0 ) {
+            if (inpEmail.value.length === 0 && inpCelular.value.length === 0) {
                 botoes.setAttribute('disabled', 'disabled')
-            }else{
+            } else {
                 botoes.removeAttribute('disabled', 'disabled')
             }
         }
 
-        setInterval(verficarTamanho,100)
+        setInterval(verficarTamanho, 100)
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -778,6 +778,103 @@ function abrirModalAlterarDados(nomeModal, abrirModal = 'A', botao, addEditDel, 
             btnFecharModalDados.addEventListener('click', function () {
                 ModalInstancia.hide();
                 formDados.reset()
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+
+        formDados.addEventListener('submit', submitHandler);
+    } else {
+        ModalInstancia.hide();
+    }
+}
+
+function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devolvido, quantidade, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`);
+    const botoes = document.getElementById(`${botao}`);
+    const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
+
+    if (!formDados || !botoes || !ModalInstancia) {
+        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
+        return;
+    }
+
+    const inputID = document.getElementById(`${idINP}`)
+    if (idVALUE !== 'nao') {
+        inputID.value = idVALUE
+    }
+    const inputCod = document.getElementById(`${codINP}`)
+    if (codVALUE !== 'nao') {
+        inputCod.value = codVALUE
+    }
+
+
+    const codigoEmprestimo = document.getElementById('codigoEmprestimo')
+    const nomeEpi = document.getElementById('nomeEPI')
+
+    codigoEmprestimo.innerHTML = codVALUE;
+    nomeEpi.innerHTML = nomeEPI;
+
+    if (abrirModal === 'A') {
+        ModalInstancia.show();
+
+        const selectEstado = document.getElementById('situacaoEpi')
+        const casoAvariado = document.getElementById('casoAvariado')
+        selectEstado.addEventListener('change', function () {
+            var valueSelect = selectEstado.options[selectEstado.selectedIndex].value
+            if (valueSelect == 'avariado') {
+                casoAvariado.style.display = 'block'
+            } else {
+                casoAvariado.style.display = 'none'
+            }
+        })
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', addEditDel);
+            formData.append('devolvido', Devolvido);
+            formData.append('quantidade', quantidade);
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.success) {
+                        formDados.removeEventListener('submit', submitHandler);
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000)
+                        Swal.fire({
+                            title: data.message, icon: "success"
+                        });
+                        botoes.disabled = false;
+                        ModalInstancia.hide();
+                        form.reset();
+                    } else {
+                        formDados.removeEventListener('submit', submitHandler);
+                        botoes.disabled = false;
+                        Swal.fire({
+                            title: data.message, icon: "error"
+                        });
+                    }
+                })
+            // .catch(error => {
+            //     console.error('Erro na requisição:', error);
+            // });
+        };
+
+        const btnFecharModalDevolucaoEpi = document.getElementById('btnFecharModalDevolucaoEpi');
+        if (btnFecharModalDevolucaoEpi) {
+            btnFecharModalDevolucaoEpi.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.reset();
+                casoAvariado.style.display = 'none';
                 formDados.removeEventListener('submit', submitHandler);
             });
         } else {
@@ -1149,20 +1246,21 @@ function deleletarUsuario(id, addEditDel) {
     });
 }
 
-function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevolucao) {
+function devolverEpi(idEmprestimoEpi, controle, valor, codEmprestimo, qtdDevolucao, condicaoEPI) {
     fetch('controle.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'controle=' + encodeURIComponent(`${controle}`) + "&idDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) + "&valor=" + encodeURIComponent(`${valor}`) + "&codEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) + "&qtdDevolucao=" + encodeURIComponent(`${qtdDevolucao}`),
+        body: 'controle=' + encodeURIComponent(`${controle}`) + "&idEpiDevolucao=" + encodeURIComponent(`${idEmprestimoEpi}`) + "&devolvido=" + encodeURIComponent(`${valor}`) + "&codigoDoEmprestimo=" + encodeURIComponent(`${codEmprestimo}`) + "&quantidade=" + encodeURIComponent(`${qtdDevolucao}`) + "&situacaoEpi=" + encodeURIComponent(`${condicaoEPI}`),
     })
         .then(response => response.json())
         .then(data => {
-            setTimeout(function () {
-                window.location.reload();
-            }, 2500)
+            console.log(data)
             if (data.success) {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2500)
                 Swal.fire({
                     title: "Sucesso!", text: `${data.message}`, icon: "success"
                 });
@@ -1233,7 +1331,7 @@ function imprimir(nomeTabela, tabela) {
     estilo += "th, td {border: solid 2px #000; border-collapse: collapse; padding: 4px 8px; text-align: center;}";
     estilo += "a {display:none !important;}";
     estilo += ".no-print {display: none !important;}";
-    estilo += "@media print { @page { size: landscape; margin: none; } .no-print {\n" + "                display: none;\n" + "            }}";
+    estilo += "@media print { @page { size: landscape; margin: none; } .no-print {\n" + " display: none;\n" + "            }}";
     estilo += "</style>";
 
     const win = window.open('', '_blank', 'height=0,width=0');

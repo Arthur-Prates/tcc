@@ -5,58 +5,59 @@ include_once("../func/funcoes.php");
 
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+//echo json_encode($dados);
 
-$a = print_r($dados, true);
-
-//echo json_encode(['success' => false, 'message' => "$a"]);
 
 if (isset($dados) && !empty($dados)) {
-    $id = isset($dados['idDevolucao']) ? addslashes($dados['idDevolucao']) : '';
-    $valor = isset($dados['valor']) ? addslashes($dados['valor']) : '';
-    $codEmprestimo = isset($dados['codEmprestimo']) ? addslashes($dados['codEmprestimo']) : '';
-    $qtdDevolucao = isset($dados['qtdDevolucao']) ? addslashes($dados['qtdDevolucao']) : '';
+    $id = isset($dados['idEpiDevolucao']) ? addslashes($dados['idEpiDevolucao']) : '';
+    $valor = isset($dados['devolvido']) ? addslashes($dados['devolvido']) : '';
+    $codEmprestimo = isset($dados['codigoDoEmprestimo']) ? addslashes($dados['codigoDoEmprestimo']) : '';
+    $qtdDevolucao = isset($dados['quantidade']) ? addslashes($dados['quantidade']) : '';
+    $condicaoEpi = isset($dados['situacaoEpi']) ? addslashes($dados['situacaoEpi']) : '';
 
 
+    if ($condicaoEpi == 'bomEstado') {
+        $retornoInsert = alterar1ItemDuploWhere('produtoemprestimo', 'devolucao', "$valor", 'idepi', "$id", 'codEmprestimo', $codEmprestimo);
+        $listarItem = listarItemExpecifico('*', 'estoque', 'idepi', $id);
+        if ($valor == 'S') {
+            if ($listarItem !== 'Vazio') {
+                foreach ($listarItem as $item) {
+                    $qtdDisponivel = $item->disponivel;
 
-    $retornoInsert = alterar1ItemDuploWhere('produtoemprestimo', 'devolucao', "$valor", 'idepi', "$id", 'codEmprestimo', $codEmprestimo);
-    if ($valor == 'S') {
-        $listarItem = listarItemExpecifico('*','estoque','idepi',$id);
-        if ($listarItem !== 'Vazio'){
-            foreach ($listarItem as $item){
-                $qtdDisponivel = $item -> disponivel;
+                    $result = $qtdDisponivel + $qtdDevolucao;
 
-                $result = $qtdDisponivel + $qtdDevolucao;
-
-                $retornoUpdate = alterar1Item('estoque', 'disponivel', $result,'idepi', $id);
+                    $retornoUpdate = alterar1Item('estoque', 'disponivel', $result, 'idepi', $id);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Epi não encotrado']);
             }
-        }else{
-            echo json_encode(['success' => false, 'message' => 'Epi não encotrado']);
-        }
-        if ($retornoInsert > 0) {
-            echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso"]);
+            if ($retornoInsert > 0) {
+                echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso"]);
+            } else {
+                echo json_encode(['success' => false, 'message' => "Erro! O EPI já foi devolvido! Nenhuma alteracão feita"]);
+            }
         } else {
-            echo json_encode(['success' => false, 'message' => "Erro! O EPI já foi devolvido! Nenhuma alteracão feita"]);
+            if ($listarItem !== 'Vazio') {
+                foreach ($listarItem as $item) {
+                    $qtdDisponivel = $item->disponivel;
+
+                    $result = $qtdDisponivel - $qtdDevolucao;
+
+                    $retornoUpdate = alterar1Item('estoque', 'disponivel', $result, 'idepi', $id);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Epi não encotrado']);
+            }
+            if ($retornoInsert > 0) {
+                echo json_encode(['success' => true, 'message' => "O status do EPi foi alterado para NÃO DEVOLVIDO!"]);
+            } else {
+                echo json_encode(['success' => false, 'message' => "Erro! Nenhuma alteracão feita"]);
+            }
         }
+
     } else {
-        $listarItem = listarItemExpecifico('*','estoque','idepi',$id);
-        if ($listarItem !== 'Vazio'){
-            foreach ($listarItem as $item){
-                $qtdDisponivel = $item -> disponivel;
-
-                $result = $qtdDisponivel - $qtdDevolucao;
-
-                $retornoUpdate = alterar1Item('estoque', 'disponivel', $result,'idepi', $id);
-            }
-        }else{
-            echo json_encode(['success' => false, 'message' => 'Epi não encotrado']);
-        }
-        if ($retornoInsert > 0) {
-            echo json_encode(['success' => true, 'message' => "O status do EPi foi alterado para NÃO DEVOLVIDO!"]);
-        } else {
-            echo json_encode(['success' => false, 'message' => "Erro! Nenhuma alteracão feita"]);
-        }
+        echo json_encode('ta aqui hein');
     }
-
 } else {
     echo json_encode(['success' => false, 'message' => "Erro, nenhum dado encontrado!"]);
 }
