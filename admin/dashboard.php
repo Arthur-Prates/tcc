@@ -29,12 +29,12 @@ $listarEmprestimo = 'NAO';
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/4.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#90bae0">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -49,7 +49,8 @@ include_once('nav.php');
         <section class="ondas-box">
             <div class="container">
                 <div class="row vai">
-                    <form action="verificarAluguel.php" method="get" class="d-flex flex-wrap justify-content-center" id="emprestimoForm">
+                    <form action="verificarAluguel.php" method="get" class="d-flex flex-wrap justify-content-center"
+                          id="emprestimoForm">
                         <div class="col-12 col-sm-10 col-md-10 col-lg-10 p-0 d-flex align-items-center">
                             <input type="text" id="emprestimo" name="emprestimo"
                                    class="inputPesquisa text-center w-100 mt-2 text-dark" placeholder="Código">
@@ -64,10 +65,10 @@ include_once('nav.php');
                             ?>
                             <p class="text-danger">Código de empréstimo inexistente!</p>
                             <?php
-                        }else if (isset($_GET['error'])){
+                        } else if (isset($_GET['error'])) {
                             ?>
                             <p class="text-danger">O campo de pesquisa não pode ficar vazio!</p>
-                        <?php
+                            <?php
                         }
                         ?>
                     </div>
@@ -584,8 +585,8 @@ include_once('nav.php');
                         </label>
                     </div>
                     <div class="formField mb-3 mt-4">
-<!--                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">-->
-                            <span>Sua Foto</span>
+                        <!--                            <input type="file" class="form-control" id="fotoEpiEdit" name="fotoEpiEdit">-->
+                        <span>Sua Foto</span>
                     </div>
                     <div class="formField mb-3">
                         <input required="" type="text" class="form-control" id="nomeEpiEdit" name="nomeEpiEdit"/>
