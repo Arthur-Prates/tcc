@@ -1464,7 +1464,6 @@ function codificarUrl($url, $opcao)
 function valoresGraficoQuantidadeEpi($tipo)
 {
     $selectDisponivel = listarTabela('sum(disponivel) as totalDisponivel', 'estoque');
-
     $selectQuantidade = listarTabela('sum(quantidade) as totalItems', 'estoque');
     foreach ($selectQuantidade as $itemContar) {
         $quantidade = $itemContar->totalItems;
@@ -1472,8 +1471,8 @@ function valoresGraficoQuantidadeEpi($tipo)
     foreach ($selectDisponivel as $itemContar) {
         $disponivel = $itemContar->totalDisponivel;
     }
-    $indisponivel = $quantidade - $disponivel;
 
+    $indisponivel = $quantidade - $disponivel;
     if ($tipo == 'disponivel') {
         return $disponivel;
     } else if ($tipo == 'indisponivel') {

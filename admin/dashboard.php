@@ -614,6 +614,53 @@ include_once('nav.php');
     </div>
 </div>
 
+<!-- Modal Ver MAIS Avariados -->
+<div class="modal fade" id="modalUsuarioVermais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ver mais</h1>
+            </div>
+            <form action="#" method="post" name="frmAvariadosVermais" id="frmAvariadosVermais">
+                <div class="modal-body">
+                    <input type="text" name="idEpiVermais" id="idEpiVermais">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label for="input" class="text">Código do empréstimo</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input" id="codigoDoEmprestimo"
+                                       name="codigoDoEmprestimo" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="sobrenomeUsuarioVermais">Status</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input"
+                                       id="statusDoPedido"
+                                       name="statusDoPedido" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="coolinput mb-3">
+                                <label class="text" for="telefoneUsuarioVermais">Observação</label>
+                                <input type="text" class="form-control mdlVermaisUsuario input"
+                                       id="observacao"
+                                       name="observacao" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal"
+                            id="btnFecharModalAvariados">Fechar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

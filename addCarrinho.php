@@ -25,7 +25,7 @@ if ($produto !== false) {
         if ($estoque > 0) {
             foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
                 if ($produtoCarrinho['idproduto'] == $id) {
-                    $produtoCarrinho['quantidade'] += 1;
+                    $produtoCarrinho['quantidade'] = 1;
                     $produtoADD = true;
                     break;
                 }

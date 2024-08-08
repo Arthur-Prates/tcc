@@ -31,7 +31,7 @@
     color: white;
 }
 
-.IconContainer svg{
+.IconContainer svg {
     color: white;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .CartBtn:hover .text {
-    transform: translate(10px,0px);
+    transform: translate(10px, 0px);
     transition-duration: .5s;
 }
 
@@ -67,3 +67,4 @@
     transform: scale(0.95);
     transition-duration: .5s;
 }
+
