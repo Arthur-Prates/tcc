@@ -279,7 +279,7 @@ if ($contarNao !== 'Vazio') {
                                                                         if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
-                                                                                    onclick="abrirModalDevolucaoEpi('<?php echo $idepi ?>','idEpiDevolucao','<?php echo $codigoEmprestimo ?>','codigoDoEmprestimo','<?php echo $nome?>','S','<?php echo $quantidade?>','mdlDevolverEpi','A','btnDevolverEpi','devolverEpi','formDevolucaoEpi')">
+                                                                                    onclick="abrirModalDevolucaoEpi('<?php echo $idepi ?>','idEpiDevolucao','<?php echo $codigoEmprestimo ?>','codigoDoEmprestimo','<?php echo $nome ?>','S','<?php echo $quantidade ?>','mdlDevolverEpi','A','btnDevolverEpi','devolverEpi','formDevolucaoEpi')">
                                                                                 Devolvido
                                                                             </button>
                                                                             <?php
@@ -335,7 +335,7 @@ if ($contarNao !== 'Vazio') {
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header text-black bg-info">
+            <div class="modal-header text-black bg-success">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Devolução do EPI</h1>
             </div>
             <form action="#" name="formDevolucaoEpi" id="formDevolucaoEpi">
@@ -355,19 +355,22 @@ if ($contarNao !== 'Vazio') {
                     </div>
                     <div style="display: none" id="casoAvariado">
                         <div class="mt-3">
-                            <label for="opcao">Selecione o que acontece com o EPI</label>
+                            <label for="opcao">Selecione o procedimento necessário</label>
                             <select name="opcao" id="opcao" class="form-select">
                                 <option value="">Selecione um opção</option>
                                 <option value="2">Reparar EPI</option>
                                 <option value="3">Substituir EPI</option>
                             </select>
-                            <p class="text-danger text-center" id="errorOpcao" style="display: none;">É necessário escolher uma opção!</p>
+                            <p class="text-danger text-center" id="errorOpcao" style="display: none;">É necessário
+                                escolher uma opção!</p>
                         </div>
                         <div class="mt-3">
                             <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="observacaoSobreOEpi" name="observacaoSobreOEpi"
-                                      style="height: 100px"></textarea>
-                                <label for="floatingTextarea2">Descreva a situação do EPI</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="observacaoSobreOEpi"
+                                      name="observacaoSobreOEpi"
+                                      style="height: 100px">
+                            </textarea>
+                                <label for="observacaoSobreOEpi">Descreva a situação do EPI</label>
                             </div>
                         </div>
                     </div>
@@ -376,7 +379,7 @@ if ($contarNao !== 'Vazio') {
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
                             id="btnFecharModalDevolucaoEpi">Fechar
                     </button>
-                    <button type="submit" class="btn btn-info btn-sm" id="btnDevolverEpi">Devolver</button>
+                    <button type="submit" class="btn btn-success btn-sm" id="btnDevolverEpi">Devolver</button>
                 </div>
             </form>
         </div>
