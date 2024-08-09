@@ -19,7 +19,10 @@ if (!empty($controle) && isset($controle)) {
         case 'listaAvariados':
             include_once('listaAvariados.php');
             break;
-            case 'listaDevolvido':
+        case 'editAvariados':
+            include_once('editAvariados.php');
+            break;
+        case 'listaDevolvido':
             include_once('listaDevolvidos.php');
             break;
         case 'listarEpi':

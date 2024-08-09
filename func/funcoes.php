@@ -473,13 +473,13 @@ function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tab
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON a.$idA3 = d.$idD4 ORDER BY $ordem $tipoOrdem");
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON a.$idA3 = d.$idD4 ORDER BY $ordem $tipoOrdem, reparado ASC");
         $sqlLista->execute();
         $conn->commit();
         if ($sqlLista->rowCount() > 0) {
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         }
-        return false;
+        return 'Vazio';
 
     } catch (PDOException $e) {
         echo 'Exception -> ';

@@ -820,6 +820,8 @@ function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devol
 
         const selectEstado = document.getElementById('situacaoEpi')
         const casoAvariado = document.getElementById('casoAvariado')
+        const observacaoSobreOEpi = document.getElementById('observacaoSobreOEpi')
+
         selectEstado.addEventListener('change', function () {
             var valueSelect = selectEstado.options[selectEstado.selectedIndex].value
             if (valueSelect == 'avariado') {
@@ -894,6 +896,114 @@ function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devol
         ModalInstancia.hide();
     }
 }
+
+function abrirModalAvariados(idVALUE, idINP, codVALUE, codINP, nomeEPI, obsVALUE, obsINP, statusVALUE, statusINP, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(formulario);
+    const botoes = document.getElementById(`${botao}`);
+    const ModalInstancia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
+
+    if (!formDados || !botoes || !ModalInstancia) {
+        console.error('Revisar os IDs na chamada da função e chechar se a função está sendo chamada corretamente!');
+        return;
+    }
+
+    const inputID = document.getElementById(`${idINP}`)
+    if (idVALUE !== 'nao') {
+        inputID.value = idVALUE
+    }
+    const inputCod = document.getElementById(`${codINP}`)
+    if (codVALUE !== 'nao') {
+        inputCod.innerHTML = codVALUE
+    }
+    const inputProcedimento = document.getElementById(`${statusINP}`)
+    if (statusVALUE !== 'nao') {
+        inputProcedimento.innerHTML = statusVALUE
+    }
+    const obsDaSituacao = document.getElementById(`${obsINP}`)
+    if (obsVALUE !== 'nao') {
+        obsDaSituacao.innerHTML = obsVALUE
+    }
+
+    if (abrirModal === 'A') {
+        ModalInstancia.show();
+
+        const selectReparado = document.getElementById('selectReparado');
+        let botaoConfirm = document.getElementById('btnAvariadosEdit')
+
+        selectReparado.addEventListener('change', function () {
+        })
+
+        function verificaSelect() {
+            let valueSelect = selectReparado.options[selectReparado.selectedIndex].value
+            if (valueSelect === 'S') {
+                botaoConfirm.removeAttribute('disabled', 'disabled')
+            } else {
+                botaoConfirm.setAttribute('disabled', 'disabled')
+            }
+        }
+
+        setInterval(verificaSelect, 100)
+        const submitHandler = function (event) {
+            event.preventDefault();
+            botoes.disabled = true;
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', addEditDel);
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.success) {
+                        formDados.removeEventListener('submit', submitHandler);
+                        Swal.fire({
+                            title: data.message, icon: "success"
+                        });
+                        botoes.disabled = false;
+                        ModalInstancia.hide();
+                        form.reset();
+                        carregarConteudo('listaAvariados')
+                    } else {
+                        formDados.removeEventListener('submit', submitHandler);
+                        botoes.disabled = false;
+                        Swal.fire({
+                            title: data.message, icon: "error"
+                        });
+                    }
+                })
+
+        };
+
+        const btnFecharModalAvariados = document.getElementById('btnFecharModalAvariados');
+        if (btnFecharModalAvariados) {
+            btnFecharModalAvariados.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.reset();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+        const btnFecharModalAvariadosEdit = document.getElementById('btnFecharModalAvariadosEdit');
+        if (btnFecharModalAvariadosEdit) {
+            btnFecharModalAvariadosEdit.addEventListener('click', function () {
+                ModalInstancia.hide();
+                formDados.reset();
+                formDados.removeEventListener('submit', submitHandler);
+            });
+        } else {
+            console.error('ID do botão de fechar a modal está errado!');
+        }
+
+        formDados.addEventListener('submit', submitHandler);
+    } else {
+        ModalInstancia.hide();
+    }
+}
+
+
 function alertSuccess(msg, cor, CimaBaixo = 'top', posicao = 'right') {
 
     Toastify({
