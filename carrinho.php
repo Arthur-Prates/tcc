@@ -220,7 +220,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                     } else {
                         ?>
                         <div class="row">
-                            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center mt-5">
+                            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center">
                                 <dotlottie-player src="./img/carrinhoVazio.json"
                                                   background="transparent" speed="1"
                                                   style="width: 300px; height: 300px;"
@@ -229,7 +229,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
 
                                 </dotlottie-player>
                             </div>
-                            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center mt-5">
+                            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center">
                                 <p class="fs-1">O seu carrinho está vazio!</p>
                             </div>
                         </div>

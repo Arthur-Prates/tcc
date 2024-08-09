@@ -6,10 +6,9 @@
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Empréstimo(s) Devolvidos</h1>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button"  class="btn btnAmareloBos"  style="float: right" onclick="imprimir('Lista de empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i></button>
-            <button type="button" class="btn btn-dark" onclick="carregarConteudo('listaDevolvido')">Ver Devolvidos</button>
+            <button type="button" class="btn btn-dark" onclick="carregarConteudo('listarAluguel')">Ver Ativos</button>
         </div>
-          </div>
-
+    </div>
 
     <div class="overflowTable" id="tabelaEmprestimo">
         <table class="table table-hover table-bordered border-dark text-center rounded-table">
@@ -45,37 +44,37 @@
                     }else{
                         $prioridadeVisivel = 'Baixa';
                     }
-                    if($statusEmprestimo == 'N'){
+                    if($statusEmprestimo == 'S'){
 
 
-                    ?>
-                    <tr>
-                        <th scope="row"><?php echo $contar ?></th>
-                        <td><?php echo "$nomeUsuario $sobrenome" ?></td>
-                        <td><?php echo $codigoEmprestimo ?></td>
-                        <td><?php echo $prioridadeVisivel ?></td>
-                        <td><?php
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $contar ?></th>
+                            <td><?php echo "$nomeUsuario $sobrenome" ?></td>
+                            <td><?php echo $codigoEmprestimo ?></td>
+                            <td><?php echo $prioridadeVisivel ?></td>
+                            <td><?php
 
-                            if ($statusEmprestimo == 'S') {
-                                $statusEmprestimo = 'Devolvido';
-                                $bg = 'text-danger';
-                            } else {
-                                $statusEmprestimo = 'Ativo';
-                                $bg = 'text-success';
-                            }
-                            echo $statusEmprestimo;
-                            ?>
-                            <span class="mdi mdi-circle <?php echo $bg ?>"></span>
-                            <?php
-                            ?></td>
-                        <td class="no-print">
-                            <a href="verificarAluguel.php?emprestimo=<?php echo $codigoEmprestimo ?>"
-                               class="btn btn-sm btn-success">Visualizar</a>
-                        </td>
-                    </tr>
-                    <?php
-                    ++$contar;
-                }    }
+                                if ($statusEmprestimo == 'S') {
+                                    $statusEmprestimo = 'Devolvido';
+                                    $bg = 'text-danger';
+                                } else {
+                                    $statusEmprestimo = 'Ativo';
+                                    $bg = 'text-success';
+                                }
+                                echo $statusEmprestimo;
+                                ?>
+                                <span class="mdi mdi-circle <?php echo $bg ?>"></span>
+                                <?php
+                                ?></td>
+                            <td class="no-print">
+                                <a href="verificarAluguel.php?emprestimo=<?php echo $codigoEmprestimo ?>"
+                                   class="btn btn-sm btn-success">Visualizar</a>
+                            </td>
+                        </tr>
+                        <?php
+                        ++$contar;
+                    }    }
             } else {
                 ?>
                 <tr>

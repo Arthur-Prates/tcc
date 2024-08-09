@@ -286,7 +286,7 @@ if ($contarNao !== 'Vazio') {
                                                                         } else {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-secondary"
-                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','devolverEpi','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>','bomEstado')">
+                                                                                    onclick="devolverEpi('<?php echo $idItemEpi ?>','naoDevolvido','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>','bomEstado')">
                                                                                 Não devolvido
                                                                             </button>
                                                                             <?php
@@ -358,13 +358,14 @@ if ($contarNao !== 'Vazio') {
                             <label for="opcao">Selecione o que acontece com o EPI</label>
                             <select name="opcao" id="opcao" class="form-select">
                                 <option value="">Selecione um opção</option>
-                                <option value="Substituido">Substituído</option>
-                                <option value="Reparado">Reparado</option>
+                                <option value="2">Reparar EPI</option>
+                                <option value="3">Substituir EPI</option>
                             </select>
+                            <p class="text-danger text-center" id="errorOpcao" style="display: none;">É necessário escolher uma opção!</p>
                         </div>
                         <div class="mt-3">
                             <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                            <textarea class="form-control" placeholder="Leave a comment here" id="observacaoSobreOEpi" name="observacaoSobreOEpi"
                                       style="height: 100px"></textarea>
                                 <label for="floatingTextarea2">Descreva a situação do EPI</label>
                             </div>

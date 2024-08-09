@@ -13,19 +13,18 @@ if (isset($dados) && !empty($dados)) {
     $valor = isset($dados['devolvido']) ? addslashes($dados['devolvido']) : '';
     $codEmprestimo = isset($dados['codigoDoEmprestimo']) ? addslashes($dados['codigoDoEmprestimo']) : '';
     $qtdDevolucao = isset($dados['quantidade']) ? addslashes($dados['quantidade']) : '';
+    $observacao = isset($dados['observacaoSobreOEpi']) ? addslashes($dados['observacaoSobreOEpi']) : '';
     $condicaoEpi = isset($dados['situacaoEpi']) ? addslashes($dados['situacaoEpi']) : '';
+    $status = isset($dados['opcao']) ? addslashes($dados['opcao']) : '';
 
-
-    if ($condicaoEpi == 'bomEstado') {
+    if ($condicaoEpi === 'bomEstado') {
         $retornoInsert = alterar1ItemDuploWhere('produtoemprestimo', 'devolucao', "$valor", 'idepi', "$id", 'codEmprestimo', $codEmprestimo);
         $listarItem = listarItemExpecifico('*', 'estoque', 'idepi', $id);
-        if ($valor == 'S') {
+        if ($valor === 'S') {
             if ($listarItem !== 'Vazio') {
                 foreach ($listarItem as $item) {
                     $qtdDisponivel = $item->disponivel;
-
                     $result = $qtdDisponivel + $qtdDevolucao;
-
                     $retornoUpdate = alterar1Item('estoque', 'disponivel', $result, 'idepi', $id);
                 }
             } else {
@@ -36,27 +35,32 @@ if (isset($dados) && !empty($dados)) {
             } else {
                 echo json_encode(['success' => false, 'message' => "Erro! O EPI já foi devolvido! Nenhuma alteracão feita"]);
             }
+        }else{
+            echo json_encode(['success' => false, 'message' => "Erro!"]);
+        }
+    } else {
+        if ($status == '') {
+            echo json_encode(['success' => false, 'message' => 'erro']);
         } else {
-            if ($listarItem !== 'Vazio') {
-                foreach ($listarItem as $item) {
-                    $qtdDisponivel = $item->disponivel;
+            $retornoInsert = insert6Item('epidanificado', 'idepi, codigoDoEmprestimo, observacao, statusEpi, quantidade, cadastro', "$id", "$codEmprestimo", "$observacao", "$status", 1, DATATIMEATUAL);
 
-                    $result = $qtdDisponivel - $qtdDevolucao;
-
-                    $retornoUpdate = alterar1Item('estoque', 'disponivel', $result, 'idepi', $id);
-                }
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Epi não encotrado']);
+            $tabelaEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $id);
+            foreach ($tabelaEstoque as $itemEstoque) {
+                $quantidadeTotal = $itemEstoque->quantidade;
+                $disponivel = $itemEstoque->disponivel;
+                $qtdTotalResultado = $quantidadeTotal - 1;
+                $qtdDisponivelResultado = $disponivel - 1;
             }
-            if ($retornoInsert > 0) {
-                echo json_encode(['success' => true, 'message' => "O status do EPi foi alterado para NÃO DEVOLVIDO!"]);
-            } else {
-                echo json_encode(['success' => false, 'message' => "Erro! Nenhuma alteracão feita"]);
+
+            $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel', $qtdTotalResultado, $qtdDisponivelResultado, 'idepi', $id);
+            $retornoUpdatePE = alterar1ItemDuploWhere('produtoemprestimo', 'devolucao', "$valor", 'idepi', "$id", 'codEmprestimo', $codEmprestimo);
+
+            if ($retornoUpdate > 0 && $retornoInsert > 0){
+                echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso e será enviado para manutenção!"]);
+            }else {
+                echo json_encode(['success' => false, 'message' => 'DEU ERRO!']);
             }
         }
-
-    } else {
-        echo json_encode('ta aqui hein');
     }
 } else {
     echo json_encode(['success' => false, 'message' => "Erro, nenhum dado encontrado!"]);

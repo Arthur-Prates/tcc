@@ -389,9 +389,9 @@ function abrirModalEpiAdd(img1, nomeFoto, idEpi, inpIdEpi, idNome, inpIdNome, id
                     }
                     ModalInstancia.hide();
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
 
         const btnFecharModalAddEpi = document.getElementById('btnFecharModalAddEpi');
@@ -809,7 +809,6 @@ function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devol
         inputCod.value = codVALUE
     }
 
-
     const codigoEmprestimo = document.getElementById('codigoEmprestimo')
     const nomeEpi = document.getElementById('nomeEPI')
 
@@ -829,6 +828,9 @@ function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devol
                 casoAvariado.style.display = 'none'
             }
         })
+
+        const errorOpcao = document.getElementById('errorOpcao');
+
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -858,15 +860,21 @@ function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devol
                         form.reset();
                     } else {
                         formDados.removeEventListener('submit', submitHandler);
-                        botoes.disabled = false;
-                        Swal.fire({
-                            title: data.message, icon: "error"
-                        });
+                        if (data.message === 'erro') {
+                            errorOpcao.style.display = 'block';
+                            botoes.disabled = false;
+                        } else {
+                            botoes.disabled = false;
+                            Swal.fire({
+                                title: data.message, icon: "error"
+                            });
+                        }
+
                     }
                 })
-            // .catch(error => {
-            //     console.error('Erro na requisição:', error);
-            // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         };
 
         const btnFecharModalDevolucaoEpi = document.getElementById('btnFecharModalDevolucaoEpi');
@@ -886,13 +894,15 @@ function abrirModalDevolucaoEpi(idVALUE, idINP, codVALUE, codINP, nomeEPI, Devol
         ModalInstancia.hide();
     }
 }
-
-
-function alertSuccess(msg, cor) {
+function alertSuccess(msg, cor, CimaBaixo = 'top', posicao = 'right') {
 
     Toastify({
-        text: `${msg}`, duration: 3000, newWindow: true, close: true, gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
+        text: `${msg}`,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: CimaBaixo, // `top` or `bottom`
+        position: posicao, // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
             background: `${cor}`, color: 'white',
@@ -903,7 +913,11 @@ function alertSuccess(msg, cor) {
 
 function alertError(msg) {
     Toastify({
-        text: `${msg}`, duration: 3000, newWindow: true, close: true, gravity: "top", // `top` or `bottom`
+        text: `${msg}`,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
@@ -1007,13 +1021,16 @@ function excluirItem(id) {
         .then(data => {
             attCarrinho(data.qtd)
             if (data.success) {
-                Swal.fire({
-                    title: `${data.message}`, icon: "success"
-                });
+
+                alertSuccess(`${data.message}`, '#008F34', 'bottom')
+                // Swal.fire({
+                //     title: `${data.message}`, icon: "success"
+                // });
             } else {
-                Swal.fire({
-                    title: `${data.message}`, icon: "error"
-                });
+                alertError(`${data.message}`, '#008F34')
+                // Swal.fire({
+                //     title: `${data.message}`, icon: "error"
+                // });
             }
         })
         .catch(error => {
@@ -1036,11 +1053,16 @@ function limparCarrinho() {
         .then(data => {
             if (data.success) {
                 Swal.fire({
-                    title: `${data.message}`, icon: "success"
+                    title: `${data.message}`, icon: "success",
+                    showConfirmButton: false,
+                    timer: 1490,
+
                 });
             } else {
                 Swal.fire({
-                    title: `${data.message}`, icon: "danger"
+                    title: `${data.message}`, icon: "danger",
+                    showConfirmButton: false,
+                    timer: 1490
                 });
             }
             setTimeout(function () {

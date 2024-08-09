@@ -34,7 +34,7 @@ function atualizarCarrinhoAutomaticamente(data) {
             row.classList.add('row', 'g-0');
 
             const colImg = document.createElement('div');
-            colImg.classList.add('col-md-3');
+            colImg.classList.add('col-md-3','d-flex', 'justify-content-center', 'align-items-center');
 
             const imgEpiCarrinho = document.createElement('img');
             imgEpiCarrinho.classList.add('img-fluid', 'rounded-start');
@@ -82,7 +82,7 @@ function atualizarCarrinhoAutomaticamente(data) {
             });
 
             const btnRemover = document.createElement('button');
-            btnRemover.classList.add('btn', 'btn-sm', 'btnVermelhoRonan', 'px-4', 'rounded-4');
+            btnRemover.classList.add('btn', 'btn-sm', 'btnVermelhoRonan', 'px-5', 'rounded-2');
             btnRemover.innerHTML = '<i class="bi bi-trash"></i>';
             btnRemover.addEventListener('click', function () {
                 excluirItem(`${item.idproduto}`);
@@ -92,11 +92,8 @@ function atualizarCarrinhoAutomaticamente(data) {
             divQtdGrupo.classList.add('d-flex');
 
             const divBotoesCarrinho = document.createElement('div');
-            divBotoesCarrinho.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'margemTop');
+            divBotoesCarrinho.classList.add('d-flex','justify-content-center', 'align-items-center', 'margemTop');
 
-            divQtdGrupo.appendChild(botaoMais);
-            divQtdGrupo.appendChild(qtdLG);
-            divQtdGrupo.appendChild(botaoMenos);
 
             divBotoesCarrinho.appendChild(divQtdGrupo);
             divBotoesCarrinho.appendChild(btnRemover);

@@ -5,17 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/admin/listaAvariados.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/tirarODevolvido.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addCarrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/addCarrinho.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/controle.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controle.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/devolverEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/devolverEpi.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/nav.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/constantes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/constantes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/carrinho.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/carrinho.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/carrinho.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/fetchcarrinho.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/fetchcarrinho.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
-    <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
+    <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="">
+      <change beforePath="$PROJECT_DIR$/admin/listarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/testes.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/testes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/carrinho.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/carrinho.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/fetchcarrinho.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/fetchcarrinho.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +40,64 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IlluminatedCloudWorkspaceSettings">
+    <option name="projectWorkspaceSettings">
+      <ProjectWorkspaceSettings>
+        <option name="soqlQuerySettings">
+          <SoqlQuerySettings>
+            <option name="savedDocuments">
+              <list>
+                <SoqlQuerySavedDocument>
+                  <option name="name" value="SOQL Query 1" />
+                </SoqlQuerySavedDocument>
+              </list>
+            </option>
+          </SoqlQuerySettings>
+        </option>
+      </ProjectWorkspaceSettings>
+    </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/js/script.js">
+      <ranges>
+        <range start1="391" end1="394" start2="391" end2="394" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="811" end1="812" start2="811" end2="811" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="832" end1="832" start2="831" end2="834" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="860" end1="864" start2="862" end2="872" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="866" end1="869" start2="874" end2="877" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="888" end1="891" start2="896" end2="897" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="893" end1="895" start2="899" end2="905" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="905" end1="906" start2="915" end2="920" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="1009" end1="1012" start2="1023" end2="1028" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="1013" end1="1016" start2="1029" end2="1033" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="1038" end1="1039" start2="1055" end2="1059" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="1042" end1="1043" start2="1062" end2="1065" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/js/fetchcarrinho.js">
+      <ranges>
+        <range start1="36" end1="37" start2="36" end2="37" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="84" end1="85" start2="84" end2="85" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="94" end1="95" start2="94" end2="95" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="96" end1="99" start2="96" end2="96" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/css/carrinho.css">
+      <ranges>
+        <range start1="33" end1="34" start2="33" end2="34" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="61" end1="62" start2="61" end2="62" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="69" end1="69" start2="69" end2="71" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/admin/verificarAluguel.php">
+      <ranges>
+        <range start1="288" end1="289" start2="288" end2="289" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="360" end1="362" start2="360" end2="362" changelist="e94ba636-703f-4a88-98d3-ca7627b296ab" />
+        <range start1="363" end1="363" start2="363" end2="364" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+        <range start1="366" end1="367" start2="367" end2="368" changelist="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,28 +112,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "C:/xampp/htdocs/phpMarco/tcc",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.file-colors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/phpMarco/tcc&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.file-colors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -100,5 +172,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

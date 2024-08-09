@@ -60,6 +60,14 @@ $idFuncionario = $_SESSION['idadm'];
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
+                                        <li>
+                                            <button class="dropdown-item" onclick="carregarConteudo('listaAvariados')">
+                                                Avariados
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
                                         <?php
                                     }
                                 }
@@ -124,6 +132,9 @@ $idFuncionario = $_SESSION['idadm'];
                 </li>
                 <li class="list-group-item">
                     <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Estoque</button>
+                </li>
+                <li class="list-group-item">
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAvariados')">Avariados</button>
                 </li>
                 <?php
             }

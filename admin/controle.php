@@ -16,6 +16,12 @@ if (!empty($controle) && isset($controle)) {
             include_once('editEstoque.php');
             break;
 
+        case 'listaAvariados':
+            include_once('listaAvariados.php');
+            break;
+            case 'listaDevolvido':
+            include_once('listaDevolvidos.php');
+            break;
         case 'listarEpi':
             include_once('listarEpi.php');
             break;
@@ -30,6 +36,9 @@ if (!empty($controle) && isset($controle)) {
             break;
         case 'devolverEpi':
             include_once('devolverEpi.php');
+            break;
+        case 'naoDevolvido':
+            include_once('tirarODevolvido.php');
             break;
 
         case 'listarAluguel':
@@ -56,7 +65,7 @@ if (!empty($controle) && isset($controle)) {
             include_once('busca.php');
             break;
         case 'listarBusca':
-            include_once ('listaBusca.php');
+            include_once('listaBusca.php');
             break;
     }
 } else {
