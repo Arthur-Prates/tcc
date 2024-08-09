@@ -15,7 +15,9 @@ if (!empty($controle) && isset($controle)) {
         case 'editEstoque':
             include_once('editEstoque.php');
             break;
-
+        case 'listarReparados':
+            include_once('listarReparados.php');
+            break;
         case 'listaAvariados':
             include_once('listaAvariados.php');
             break;

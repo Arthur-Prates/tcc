@@ -3,7 +3,7 @@
 ?>
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Empréstimo(s) Devolvidos</h1>
+        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Empréstimo(s)</h1>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button"  class="btn btnAmareloBos"  style="float: right" onclick="imprimir('Lista de empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i></button>
             <button type="button" class="btn btn-dark" onclick="carregarConteudo('listaDevolvido')">Ver Devolvidos</button>
