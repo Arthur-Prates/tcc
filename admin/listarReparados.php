@@ -3,11 +3,12 @@
 ?>
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s) danificado(s)</h1>
+        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s) reparado(s)</h1>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button class="btn btnAmareloBos" style="float: right"
                     onclick="imprimir('Lista de Epi(s) do Sistema','tabelaEpi')"><i class="bi bi-printer"></i></button>
-            <button type="button" class="btn btn-dark" onclick="carregarConteudo('listarReparados')">Ver reparado(s)</button>
+            <button type="button" class="btn btn-dark" onclick="carregarConteudo('listaAvariados')">Ver danificado(s)</button>
+
         </div>
     </div>
     <div class="overflowTable" id="tabelaEpi">
@@ -24,7 +25,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaEpiDanificado = listarTabelaInnerJoinTriploOrdenadaExpecifica('a.idepiDanificado,a.idepi, a.codigoDoEmprestimo,a.observacao,a.statusEpi,a.reparado,b.nomeEpi', 'epidanificado', 'epi', 'emprestimo', 'idepi', 'idepi', 'codigoDoEmprestimo', 'codigoEmprestimo', 'reparado','N','statusEpi', 'ASC');
+            $listaEpiDanificado = listarTabelaInnerJoinTriploOrdenadaExpecifica('a.idepiDanificado,a.idepi, a.codigoDoEmprestimo,a.observacao,a.statusEpi,a.reparado,b.nomeEpi', 'epidanificado', 'epi', 'emprestimo', 'idepi', 'idepi', 'codigoDoEmprestimo', 'codigoEmprestimo', 'reparado','S','statusEpi', 'ASC');
 
             if ($listaEpiDanificado !== 'Vazio') {
                 foreach ($listaEpiDanificado as $item) {

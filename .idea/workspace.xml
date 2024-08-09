@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/editAvariados.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/listarReparados.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1dbbe0a4-d956-4331-825b-b26cdff4d82b/storage_v2/_src_/schema/tcc.1L8BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/controle.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/listaAvariados.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listaAvariados.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/listarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarAluguel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/nav.php" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
@@ -63,7 +60,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Marco&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/phpMarco/tcc&quot;,
@@ -114,7 +111,8 @@
       <workItem from="1722858140049" duration="4521000" />
       <workItem from="1722942137380" duration="6427000" />
       <workItem from="1723115271605" duration="7916000" />
-      <workItem from="1723222092083" duration="7471000" />
+      <workItem from="1723222092083" duration="7955000" />
+      <workItem from="1723230116443" duration="294000" />
     </task>
     <servers />
   </component>
