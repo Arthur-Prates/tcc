@@ -35,7 +35,7 @@ if (isset($dados) && !empty($dados)) {
             } else {
                 echo json_encode(['success' => false, 'message' => "Erro! O EPI já foi devolvido! Nenhuma alteracão feita"]);
             }
-        }else{
+        } else {
             echo json_encode(['success' => false, 'message' => "Erro!"]);
         }
     } else {
@@ -55,10 +55,14 @@ if (isset($dados) && !empty($dados)) {
             $retornoUpdate = alterar2Item('estoque', 'quantidade', 'disponivel', $qtdTotalResultado, $qtdDisponivelResultado, 'idepi', $id);
             $retornoUpdatePE = alterar1ItemDuploWhere('produtoemprestimo', 'devolucao', "$valor", 'idepi', "$id", 'codEmprestimo', $codEmprestimo);
 
-            if ($retornoUpdate > 0 && $retornoInsert > 0){
-                echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso e será enviado para manutenção!"]);
-            }else {
-                echo json_encode(['success' => false, 'message' => 'DEU ERRO!']);
+            if ($retornoUpdate > 0 && $retornoInsert > 0) {
+                if ($status == 2) {
+                    echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso e será enviado para manutenção!"]);
+                } else if ($status == 3) {
+                    echo json_encode(['success' => true, 'message' => "O EPI foi devolvido com sucesso e será substituído!"]);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Ocorreu um erro ao devolver o EPI, contate o suporte!']);
             }
         }
     }

@@ -64,7 +64,7 @@
                                 <?php
                                 if ($reparado == 'N'){
                                     ?>
-                                    <button type="button" class="btn btn-sm btn-success"
+                                    <button type="button" class="btn btn-sm btnVerdeBostrap"
                                             onclick="abrirModalAvariados('<?php echo $idAvaria ?>','idEpiEdit','nao','nao','nao','nao','nao','nao','nao','modalAvariadosEdit','A','btnAvariadosEdit','editAvariados','frmEditAvariados');">
                                         Reparado
                                     </button>
@@ -72,7 +72,7 @@
                                     <?php
                                 }else{
                                     ?>
-                                    <button type="button" class="btn btn-sm btn-success" disabled>
+                                    <button type="button" class="btn btn-sm btnVerdeBostrap" disabled>
                                         Reparado
                                     </button>
                                     <?php
@@ -82,7 +82,7 @@
                                 <?php
                             }else{
                                 ?>
-                                <button type="button" class="btn btn-sm btnAzul w-100"
+                                <button type="button" class="btn btn-sm btnAzul w-75"
                                         onclick="abrirModalAvariados('<?php echo $idepi ?>','idEpiVermais','<?php echo $codigoEpi ?>','codigoDoEmprestimo','<?php echo $observacao ?>','<?php echo $observacao ?>','observacao','<?php echo $statusEpi ?>','statusDoPedido','modalAvariadosVermais','A','btnFecharModalAvariados','verAvariados','frmVerMais');">
                                     Ver
                                 </button>
@@ -99,7 +99,7 @@
             } else {
                 ?>
                 <tr>
-                    <td colspan="4" class="text-center">
+                    <td colspan="5" class="text-center">
                         <h4>Nenhum EPI danificado!</h4>
                     </td>
                 </tr>

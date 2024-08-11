@@ -619,7 +619,7 @@ include_once('nav.php');
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header bgVerMaisAvariados text-white">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Ver mais</h1>
             </div>
             <form action="#" method="post" name="frmVerMais" id="frmVerMais">

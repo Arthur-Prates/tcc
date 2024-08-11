@@ -73,7 +73,7 @@
                                     <?php
                                 }else{
                                     ?>
-                                    <button type="button" class="btn btn-sm btn-success" disabled>
+                                    <button type="button" class="btn btn-sm btnVerdeBostrap" disabled>
                                         Reparado
                                     </button>
                                     <?php
@@ -100,8 +100,8 @@
             } else {
                 ?>
                 <tr>
-                    <td colspan="4" class="text-center">
-                        <h4>Nenhum EPI danificado!</h4>
+                    <td colspan="5" class="text-center">
+                        <h4>Nenhum EPI reparado!</h4>
                     </td>
                 </tr>
                 <?php
