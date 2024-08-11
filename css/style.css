@@ -159,9 +159,12 @@ body {
     color: #484646;
 }
 
+.bgVerMaisAvariados{
+    background-color: #0020cc !important;
+}
+
 .btnAzul {
-    background-color: #0020cc;
-!important;
+    background-color: #0020cc !important;
     transition: 0.3s;
     border: 1px solid #0020cc;
     color: white;

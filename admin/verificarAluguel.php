@@ -368,9 +368,8 @@ if ($contarNao !== 'Vazio') {
                             <div class="form-floating">
                             <textarea class="form-control" placeholder="Leave a comment here" id="observacaoSobreOEpi"
                                       name="observacaoSobreOEpi"
-                                      style="height: 100px">
-                            </textarea>
-                                <label for="observacaoSobreOEpi">Descreva a situação do EPI</label>
+                                      style="height: 100px"></textarea>
+                                <label for="">Descreva a situação do EPI</label>
                             </div>
                         </div>
                     </div>
