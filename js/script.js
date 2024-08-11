@@ -917,6 +917,11 @@ function abrirModalAvariados(idVALUE, idINP, codVALUE, codINP, nomeEPI, obsVALUE
     }
     const inputProcedimento = document.getElementById(`${statusINP}`)
     if (statusVALUE !== 'nao') {
+        if (statusVALUE == 2) {
+            statusVALUE = 'Reparar o EPI';
+        } else if (statusVALUE == 3) {
+            statusVALUE = 'Substituir o EPI';
+        }
         inputProcedimento.innerHTML = statusVALUE
     }
     const obsDaSituacao = document.getElementById(`${obsINP}`)
