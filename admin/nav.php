@@ -135,7 +135,7 @@ $idFuncionario = $_SESSION['idadm'];
                     <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarEstoque')">Estoque</button>
                 </li>
                 <li class="list-group-item">
-                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listarAvariados')">Avariados</button>
+                    <button class="linkNavbarAdminSM" onclick="carregarConteudo('listaAvariados')">Avariados</button>
                 </li>
                 <?php
             }
