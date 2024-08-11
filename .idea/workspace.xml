@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/devolverEpi.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/devolverEpi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/listaAvariados.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listaAvariados.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/listarReparados.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/listarReparados.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bd/Novo BD TCCMARCO 20240809 1557.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
@@ -115,6 +109,7 @@
       <workItem from="1723222092083" duration="7955000" />
       <workItem from="1723230116443" duration="686000" />
       <workItem from="1723376920089" duration="1908000" />
+      <workItem from="1723398207938" duration="1860000" />
     </task>
     <servers />
   </component>

@@ -164,7 +164,7 @@ body {
 }
 
 .btnAzul {
-    background-color: #0020cc !important;
+    background-color: #0020cc;
     transition: 0.3s;
     border: 1px solid #0020cc;
     color: white;
