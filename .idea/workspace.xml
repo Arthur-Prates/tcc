@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addEmprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/addEmprestimo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carrinho.php" beforeDir="false" afterPath="$PROJECT_DIR$/carrinho.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
-    </list>
+    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="" />
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +109,7 @@
       <workItem from="1723398207938" duration="1860000" />
       <workItem from="1723402315879" duration="59000" />
       <workItem from="1723402757788" duration="320000" />
-      <workItem from="1723465331733" duration="1088000" />
+      <workItem from="1723465331733" duration="1496000" />
     </task>
     <servers />
   </component>

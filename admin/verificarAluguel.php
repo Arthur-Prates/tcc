@@ -335,7 +335,7 @@ if ($contarNao !== 'Vazio') {
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header text-black bg-success">
+            <div class="modal-header bg-success">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Devolução do EPI</h1>
             </div>
             <form action="#" name="formDevolucaoEpi" id="formDevolucaoEpi">
