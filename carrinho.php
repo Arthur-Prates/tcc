@@ -182,7 +182,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                         <div class=" mt-4">
                                             <span class="">Observação:</span>
                                             <textarea class="form-control inputCarrinho" aria-label="With textarea"
-                                                      name="addObservacao "
+                                                      name="addObservacao"
                                                       id="addObservacao"></textarea>
                                         </div>
                                     </div>
