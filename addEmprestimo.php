@@ -15,7 +15,7 @@ if (isset($dados) && !empty($dados)) {
     $horaInicial = isset($dados['horaInicialAluguel']) ? addslashes($dados['horaInicialAluguel']) : '';
     $horaFim = isset($dados['horaFinalAluguel']) ? addslashes($dados['horaFinalAluguel']) : '';
     $prioridade = isset($dados['addPrioridade']) ? addslashes($dados['addPrioridade']) : '';
-    $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : 'NAO';
+    $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : '';
 
     if ($observacao == ''){
         $observacao = 'NAO';

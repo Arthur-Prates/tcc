@@ -177,7 +177,7 @@ function telaBemvindo(nome) {
     divBemvindo.style.top = "50%";
     divBemvindo.style.left = "50%";
     divBemvindo.style.transform = "translate(-50%, -50%)";
-    divBemvindo.innerHTML = '<h4>Bem-vindo, ' + nome + ' !</h4>';
+    divBemvindo.innerHTML = '<h4>Bem-vindo, ' + nome + '!</h4>';
     document.body.appendChild(divBemvindo);
 }
 
