@@ -1334,9 +1334,9 @@ function deletarEpi(id, addEditDel) {
 
                     }
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
         }
     });
 }
@@ -1439,9 +1439,9 @@ function devolverEmprestimo(controle, codEmprestimo, valor) {
             }
 
         })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-        });
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
 }
 
 function getdataFomartada() {

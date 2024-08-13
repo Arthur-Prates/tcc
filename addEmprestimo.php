@@ -17,7 +17,7 @@ if (isset($dados) && !empty($dados)) {
     $prioridade = isset($dados['addPrioridade']) ? addslashes($dados['addPrioridade']) : '';
     $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : '';
 
-    if ($observacao == ''){
+    if ($observacao == '') {
         $observacao = 'NAO';
     }
 
@@ -65,6 +65,7 @@ if (isset($dados) && !empty($dados)) {
             $qtdDoEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $idepi);
             foreach ($qtdDoEstoque as $item) {
                 $quantidadeEstoque = $item->disponivel;
+                $descartavel = $item->descartavel;
             }
             if ($quantidade <= $quantidadeEstoque) {
                 if ($limite == 1) {
@@ -73,7 +74,13 @@ if (isset($dados) && !empty($dados)) {
                 $qtdRestante = $quantidadeEstoque - $quantidade;
 
                 $mudandoEstoque = alterar1Item('estoque', 'disponivel', "$qtdRestante", 'idepi', "$idepi");
+                if($descartavel == 'N'){
                 $insertProdutoAluguel = insert5Item('produtoemprestimo', 'idepi, quantidade, codEmprestimo, devolucao, cadastro', "$idepi", "$quantidade", "$codigoAluguel", "N", DATATIMEATUAL);
+                }else{
+                $insertProdutoAluguel = insert5Item('produtoemprestimo', 'idepi, quantidade, codEmprestimo, devolucao, cadastro', "$idepi", "$quantidade", "$codigoAluguel", "S", DATATIMEATUAL);
+                    $result= $quantidadeEstoque - 1;
+                   $retornoUpdate = alterar1Item('estoque', 'quantidade', $result, 'idepi', $idepi);
+                }
                 $sucesso = true;
             } else {
                 $sucesso = false;

@@ -225,7 +225,11 @@ if ($contarNao !== 'Vazio') {
                             $quantidade = $item->quantidade;
                             $idItemEpi = $item->idepi;
                             $itemDevolvido = $item->devolucao;
+                            $SelectDescarte = listarItemExpecifico('descartavel', 'estoque', 'idepi', $idepi);
+                            foreach ($SelectDescarte as $desc) {
+                                $descartavel = $desc->descartavel;
 
+                            }
 
                             ?>
 
@@ -260,23 +264,38 @@ if ($contarNao !== 'Vazio') {
                                                                 <div class="text-center divBtn">
                                                                     <?php
                                                                     if ($status == 'S') {
-                                                                        if ($itemDevolvido == 'N') {
+                                                                        if ($descartavel == 'S') {
                                                                             ?>
-                                                                            <button class="btn btn-sm btn-success"
+                                                                            <button class="btn btn-sm btn-info text-black"
                                                                                     disabled>
-                                                                                Devolvido
+                                                                                DESCARTAVEL
                                                                             </button>
                                                                             <?php
-                                                                        } else {
-                                                                            ?>
-                                                                            <button class="btn btn-sm btn-secondary"
-                                                                                    disabled>
-                                                                                Não devolvido
-                                                                            </button>
-                                                                            <?php
-                                                                        }
+                                                                        } else
+                                                                            if ($itemDevolvido == 'N') {
+                                                                                ?>
+                                                                                <button class="btn btn-sm btn-success"
+                                                                                        disabled>
+                                                                                    Devolvido
+                                                                                </button>
+                                                                                <?php
+                                                                            } else {
+                                                                                ?>
+                                                                                <button class="btn btn-sm btn-secondary"
+                                                                                        disabled>
+                                                                                    Não devolvido
+                                                                                </button>
+                                                                                <?php
+                                                                            }
                                                                     } else {
-                                                                        if ($itemDevolvido == 'N') {
+                                                                        if ($descartavel == 'S') {
+                                                                            ?>
+                                                                            <button class="btn btn-sm btn-info text-black"
+                                                                                    disabled>
+                                                                                DESCARTAVEL
+                                                                            </button>
+                                                                            <?php
+                                                                        } else if ($itemDevolvido == 'N') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-success"
                                                                                     onclick="abrirModalDevolucaoEpi('<?php echo $idepi ?>','idEpiDevolucao','<?php echo $codigoEmprestimo ?>','codigoDoEmprestimo','<?php echo $nome ?>','S','<?php echo $quantidade ?>','mdlDevolverEpi','A','btnDevolverEpi','devolverEpi','formDevolucaoEpi')">
@@ -284,6 +303,7 @@ if ($contarNao !== 'Vazio') {
                                                                             </button>
                                                                             <?php
                                                                         } else {
+
                                                                             ?>
                                                                             <button class="btn btn-sm btn-secondary"
                                                                                     onclick="devolverEpi('<?php echo $idItemEpi ?>','naoDevolvido','N','<?php echo $codigoEmprestimo ?>','<?php echo $quantidade ?>','bomEstado')">

@@ -553,9 +553,18 @@ include_once('nav.php');
                     </div>
                     <div class="formField mb-3">
                         <input required="" type="number" class="form-control" id="quantidadeEpiAdd"
-                               name="quantidadeEpiAdd" maxlength="7" minlength="5"/>
+                               name="quantidadeEpiAdd" />
                         <span>Quantidade total</span>
                     </div>
+
+                        <div class="formField2 mb-3">
+                            <select required="required" class="form-select" aria-label="Default select example"
+                                    id="selectDescartavel" name="selectDescartavel">
+                                <option value="S">Sim</option>
+                                <option value="N" selected>Não</option>
+                            </select>
+                            <span>É Descartável?</span>
+                        </div>
                 </div>
                 <div class="modal-footer quasebranco ">
                     <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
