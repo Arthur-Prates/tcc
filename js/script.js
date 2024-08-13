@@ -1201,23 +1201,10 @@ function realizarAluguel(formulario, addEditDel, botoes) {
         event.preventDefault();
         botoes.disabled = true;
 
-        var dataAluguel = document.getElementById('dataAluguel');
-        var horaInicialAluguel = document.getElementById('horaInicialAluguel');
-        var horaFinalAluguel = document.getElementById('horaFinalAluguel');
+        var alertDataInicial = document.getElementById('alertDataInicial');
+        var alertDataFinal = document.getElementById('alertDataFinal');
 
-        var alertData = document.getElementById('alertData');
-        var horaInicial = document.getElementById('alertHoraInicial');
-        var horaFinal = document.getElementById('alertHoraFinal');
 
-        dataAluguel.addEventListener('change', function () {
-            alertData.style.display = 'none'
-        })
-        horaInicialAluguel.addEventListener('change', function () {
-            horaInicial.style.display = 'none'
-        })
-        horaFinalAluguel.addEventListener('change', function () {
-            horaFinal.style.display = 'none'
-        })
 
         const form = event.target;
         const formData = new FormData(form);
@@ -1229,7 +1216,7 @@ function realizarAluguel(formulario, addEditDel, botoes) {
         })
             .then(response => response.json())
             .then(data => {
-                // console.log(data)
+                console.log(data)
                 formEnviado = true;
                 if (data.success) {
                     Swal.fire({
@@ -1243,23 +1230,18 @@ function realizarAluguel(formulario, addEditDel, botoes) {
                 } else {
                     if (data.errodata) {
                         // console.log(data.errodata);
-                        if (data.msgData !== '') {
-                            alertData.style.color = 'red'
-                            alertData.style.display = 'block'
-                            alertData.innerHTML = data.msgData;
+                        if (data.msgDataInicial !== '') {
+                            alertDataInicial.style.color = 'red'
+                            alertDataInicial.style.display = 'block'
+                            alertDataInicial.innerHTML = data.msgDataInicial;
                         }
-                        if (data.msgHoraInicial !== '') {
-                            horaInicial.style.color = 'red'
-                            horaInicial.style.display = 'block'
+                        if (data.msgDataFinal !== '') {
+                            alertDataFinal.style.color = 'red'
+                            alertDataFinal.style.display = 'block'
 
-                            horaInicial.innerHTML = data.msgHoraInicial;
+                            alertDataFinal.innerHTML = data.msgDataFinal;
                         }
-                        if (data.msgHoraFinal !== '') {
-                            horaFinal.style.color = 'red'
-                            horaFinal.style.display = 'block'
 
-                            horaFinal.innerHTML = data.msgHoraFinal;
-                        }
 
                         formDados.removeEventListener('submit', submitHandler);
                     } else {
@@ -1334,9 +1316,9 @@ function deletarEpi(id, addEditDel) {
 
                     }
                 })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+                // .catch(error => {
+                //     console.error('Erro na requisição:', error);
+                // });
         }
     });
 }
@@ -1439,9 +1421,9 @@ function devolverEmprestimo(controle, codEmprestimo, valor) {
             }
 
         })
-        .catch(error => {
-            console.error('Erro na requisição:', error);
-        });
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
 }
 
 function getdataFomartada() {
@@ -1500,8 +1482,11 @@ function imprimir(nomeTabela, tabela) {
 
 function buscaUsuario(formulario, botoes, addEditDel) {
     const formDados = document.getElementById(formulario);
-
     let formEnviado = false;
+
+    let buscarUsuario = document.getElementById('buscarUsuario');
+
+
     const submitHandler = function (event) {
         event.preventDefault();
         botoes.disabled = true;
@@ -1531,6 +1516,9 @@ function buscaUsuario(formulario, botoes, addEditDel) {
             });
     };
     formDados.addEventListener('submit', submitHandler);
+    if (buscarUsuario.value === ''){
+        formDados.removeEventListener('submit', submitHandler);
+    }
 }
 
 window.onscroll = function () {

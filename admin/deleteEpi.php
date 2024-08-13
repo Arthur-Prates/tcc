@@ -17,7 +17,7 @@ if (isset($dados) && !empty($dados)) {
         foreach ($verificarVazio as $item) {
             $quantidade = $item->quantidade;
             $disponivel = $item->disponivel;
-
+            $descartavel = $item->descartavel;
             if ($quantidade > $disponivel) {
                 echo json_encode(['success' => false, 'message' => "Epi em Uso"]);
             } else {
@@ -41,7 +41,7 @@ if (isset($dados) && !empty($dados)) {
 
 
                     }
-                }else{
+                } else {
                     $retornoDelete = deletarCadastro('epi', 'idepi', "$id");
                     if ($retornoDelete) {
                         echo json_encode(['success' => true, 'message' => "Epi deletado com sucesso"]);

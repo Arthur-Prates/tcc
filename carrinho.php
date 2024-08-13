@@ -84,90 +84,30 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                         </div>
                         <hr>
                         <form action="#" name="frmCarrinho" id="frmCarrinho" method="post">
-                            <div class="row mb-5  ">
-
+                            <div class="row mb-5">
                                 <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center">
-                                    <div>
+                                    <div class="w-75">
                                         <div class="mt-4">
-                                            <label for="dataAluguel">Selecione a data do empréstimo:</label>
-                                            <input type="date" id="dataAluguel" name="dataAluguel"
+                                            <label for="dataInicialEmprestimo">Selecione a data inicial:</label>
+                                            <input type="date" id="dataInicialEmprestimo" name="dataInicialEmprestimo"
                                                    class="form-control inputCarrinho"
                                                    value="<?php echo DATAATUAL ?>" required="required"
                                                    autocomplete="off">
-                                            <p id="alertData" style="display: none"></p>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <label for="horaInicialAluguel">Selecione a hora de início do
-                                                empréstimo:</label>
-                                            <select name="horaInicialAluguel" id="horaInicialAluguel" autocomplete="off"
-                                                    class="form-control inputCarrinho"
-                                                    required="required">
-                                                <?php
-                                                $minuto = '0';
-                                                $hora = 0;
-                                                while ($hora < 24) {
-                                                    if ($hora < 10) {
-                                                        ?>
-                                                        <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
-                                                        <?php
-
-                                                    } else {
-
-                                                        ?>
-                                                        <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
-                                                        <?php
-                                                    }
-
-                                                    if ($minuto == '0') {
-                                                        $minuto = '3';
-                                                    } else {
-                                                        $minuto = '0';
-                                                        $hora = $hora + 1;
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                            <p id="alertHoraInicial" style="display: none"></p>
+                                            <p id="alertDataInicial" style="display: none"></p>
                                         </div>
                                         <div class="mt-4">
-                                            <label for="horaFinalAluguel">Selecione a hora de término do
-                                                empréstimo:</label>
-                                            <select name="horaFinalAluguel" id="horaFinalAluguel" autocomplete="off"
-                                                    class="form-control inputCarrinho"
-                                                    required="required">
-                                                <?php
-                                                $minuto = '0';
-                                                $hora = 0;
-                                                while ($hora < 24) {
-                                                    if ($hora < 10) {
-                                                        ?>
-                                                        <option value="<?php echo '0' . $hora . ':' . $minuto . '0'; ?>"><?php echo '0' . $hora . ':' . $minuto . '0'; ?></option>
-                                                        <?php
-
-                                                    } else {
-
-                                                        ?>
-                                                        <option value="<?php echo $hora . ':' . $minuto . '0'; ?>"><?php echo $hora . ':' . $minuto . '0'; ?></option>
-                                                        <?php
-                                                    }
-
-                                                    if ($minuto == '0') {
-                                                        $minuto = '3';
-                                                    } else {
-                                                        $minuto = '0';
-                                                        $hora = $hora + 1;
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                            <p id="alertHoraFinal" style="display: none"></p>
+                                            <label for="dataFinalEmprestimo">Selecione a data final:</label>
+                                            <input type="date" id="dataFinalEmprestimo" name="dataFinalEmprestimo"
+                                                   class="form-control inputCarrinho"
+                                                   value="<?php echo data7DiasNaFrente() ?>" required="required"
+                                                   autocomplete="off">
+                                            <p id="alertDataFinal" style="display: none"></p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center">
-                                    <div>
+                                    <div class="w-75">
                                         <div class="mt-4">
                                             <label for="addPrioridade" class="label-control">Selecione aqui a prioridade
                                                 do empréstimo:</label>
@@ -187,7 +127,7 @@ if (isset($_SESSION['idFuncionario']) && !empty($_SESSION['idFuncionario'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-12 col-sm-12 ">
+                                <div class="col-12 col-md-12 col-sm-12">
                                     <div class="text-center mt-4">
                                         <?php
                                         if (isset($_SESSION['idFuncionario'])) {

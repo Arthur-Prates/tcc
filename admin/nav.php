@@ -86,7 +86,7 @@ $idFuncionario = $_SESSION['idadm'];
             </ul>
             <form action="#" method="post" class="d-flex mx-2" role="search" name="buscaUsuarios" id="buscaUsuarios">
                 <input class="form-control me-2 text-white inputAdm" type="search" placeholder="Pesquisar"
-                       aria-label="Search"
+                       aria-label="Search" required="required"
                        id="buscarUsuario" name="buscarUsuario" style="background: transparent;border: 1px solid black;">
                 <button class="btn btn-outline-success" type="submit" id="btnBuscaUsuario"
                         onclick="buscaUsuario('buscaUsuarios','btnBuscaUsuario', 'buscaUsuarios')">
@@ -109,7 +109,7 @@ $idFuncionario = $_SESSION['idadm'];
     <div class="offcanvas-body">
         <form action="#" method="post" class="d-flex mx-2 mb-5" role="search" name="buscaUsuarioSM" id="buscaUsuarioSM">
             <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"
-                   id="buscarUsuarioSM" name="buscarUsuario">
+                   id="buscarUsuarioSM" name="buscarUsuario" required="required">
             <button class="btn btn-outline-success" type="submit" id="btnBuscaUsuarioSM"
                     onclick="buscaUsuario('buscaUsuarioSM','btnBuscaUsuarioSM', 'buscaUsuarios')">
                 <i class="bi bi-search"></i>

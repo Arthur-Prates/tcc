@@ -83,13 +83,13 @@ foreach ($cod as $itemCod) {
                 $email = $item->email;
                 $numero = $item->numero;
                 $cpf = $item->cpf;
-                $dataEmprestimo = $item->dataEmprestimo;
-                $horaInicial = $item->horaInicial;
-                $horaFinal = $item->horaFim;
+                $dataInicial = $item->dataInicialEmprestimo;
+                $dataFinal = $item->dataFinalEmprestimo;
                 $prioridade = $item->prioridade;
                 $observacao = $item->observacao;
 
-                $dataEmprestimo = implode("/", array_reverse(explode("-", $dataEmprestimo)));
+                $dataInicial = implode("/", array_reverse(explode("-", $dataInicial)));
+                $dataFinal = implode("/", array_reverse(explode("-", $dataFinal)));
 
                 if ($observacao == 'NAO' || $observacao == '') {
                     $observacao = 'Nenhuma observação foi feita';
@@ -108,10 +108,10 @@ foreach ($cod as $itemCod) {
             }
 
             ?>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p><b>Data do aluguel:</b> <br> <?php echo $dataEmprestimo ?></p>
-                </div>
+            <div class="row mt-5">
+<!--                <div class="col-12 text-center">-->
+<!--                    <p><b>Data inicial do aluguel:</b> <br> --><?php //echo $dataInicial ?><!--</p>-->
+<!--                </div>-->
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center align-items-center"
                      style="flex-direction: column" style="flex-direction: column">
                     <p><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
@@ -122,9 +122,8 @@ foreach ($cod as $itemCod) {
                 </div>
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center align-items-center"
                      style="flex-direction: column">
-
-                    <p><b>Hora inicial do aluguel:</b> <?php echo $horaInicial ?></p>
-                    <p><b>Hora final do aluguel:</b> <?php echo $horaFinal ?></p>
+                    <p><b>Data inicial do aluguel:</b> <?php echo $dataInicial ?></p>
+                    <p><b>Data final do aluguel:</b> <?php echo $dataFinal ?></p>
                     <p><b>Nível de prioridade:</b> <?php echo $prioridade ?></p>
                     <p><b>Observação:</b> <?php echo $observacao ?></p>
 
@@ -205,7 +204,7 @@ foreach ($cod as $itemCod) {
             </div>
         </div>
     </div>
-
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

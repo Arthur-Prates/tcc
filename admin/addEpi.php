@@ -11,7 +11,7 @@ if (isset($dados) && !empty($dados)) {
     $nome = isset($dados['nomeEpiAdd']) ? addslashes($dados['nomeEpiAdd']) : '';
     $certificado = isset($dados['certificadoEpiAdd']) ? addslashes($dados['certificadoEpiAdd']) : '';
     $quantidade = isset($dados['quantidadeEpiAdd']) ? addslashes($dados['quantidadeEpiAdd']) : '';
-
+    $descartavel = isset($dados['selectDescartavel']) ? addslashes($dados['selectDescartavel']) : 'N';
 
     if (isset($_FILES["fotoEpiAdd"]) && $_FILES["fotoEpiAdd"]['error'] === UPLOAD_ERR_OK) {
         $fotoTmpName = $_FILES["fotoEpiAdd"]['tmp_name'];
@@ -29,7 +29,7 @@ if (isset($dados) && !empty($dados)) {
             foreach ($teste as $row) {
                 $idepi = $row->idepi;
             }
-            $insertNoEstoque = insert4Item('estoque','idepi, quantidade, disponivel, cadastro',"$idepi","$quantidade","$quantidade",DATATIMEATUAL);
+            $insertNoEstoque = insert5Item('estoque','idepi, quantidade, disponivel,descartavel, cadastro',"$idepi","$quantidade","$quantidade",$descartavel,DATATIMEATUAL);
 
             if ($retornoInsert > 0) {
                 $listarEpi = listarTabelaOrdenadaLimite('idepi','epi','idepi','DESC',1);

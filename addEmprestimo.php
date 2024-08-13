@@ -6,57 +6,51 @@ include_once('./func/funcoes.php');
 $idFuncionario = $_SESSION['idFuncionario'];
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
+//echo json_encode($dados);
 $hora = date('H:i:s');
 
 
 if (isset($dados) && !empty($dados)) {
-    $dataEmprestimo = isset($dados['dataAluguel']) ? addslashes($dados['dataAluguel']) : '';
-    $horaInicial = isset($dados['horaInicialAluguel']) ? addslashes($dados['horaInicialAluguel']) : '';
-    $horaFim = isset($dados['horaFinalAluguel']) ? addslashes($dados['horaFinalAluguel']) : '';
+    $dataInicial = isset($dados['dataInicialEmprestimo']) ? addslashes($dados['dataInicialEmprestimo']) : '';
+    $dataFinal = isset($dados['dataFinalEmprestimo']) ? addslashes($dados['dataFinalEmprestimo']) : '';
     $prioridade = isset($dados['addPrioridade']) ? addslashes($dados['addPrioridade']) : '';
     $observacao = isset($dados['addObservacao']) ? addslashes($dados['addObservacao']) : '';
-
-    if ($observacao == ''){
+    $observacao = isset($dados['addObservacao']) ? trim(strip_tags($dados['addObservacao'])) : '';
+    $observacao = preg_replace('/[^a-zA-Z0-9\s]/', '', $observacao);
+    if ($observacao == '') {
         $observacao = 'NAO';
     }
 
-    $data = $dataEmprestimo;
-    $verificaData = validarData($data);
+    $data = $dataInicial;
+    $verificaDataInicial = validarData($data);
+    $data2 = $dataFinal;
+    $verificaDataFinal = validarData($data2);
 
-    if ($verificaData != 1 || $dataEmprestimo < date('Y-m-d')) {
-        $dataVerificada = false;
-        $msgData = 'Data inválida, favor selecionar uma data válida.';
+    //Bloco data inicial
+    if ($verificaDataInicial != 1 || $dataInicial < date('Y-m-d')) {
+        $dataInicialVerificada = false;
+        $msgDataInicial = 'Data inválida, favor selecionar uma data válida.';
     } else {
-        $dataVerificada = true;
-        $msgData = '';
+        $dataInicialVerificada = true;
+        $msgDataInicial = '';
     }
-
-    if ($horaInicial < $hora && $dataEmprestimo == date('Y-m-d')) {
-        $horaInicialVerificada = false;
-        $msgHoraInicial = 'A hora inicial não pode ser menor que a atual.';
-    } else if ($dataEmprestimo > date('Y-m-d')) {
-        $horaInicialVerificada = true;
-        $msgHoraInicial = '';
+    //----------------------------------
+    //bloco data final//////////////
+    if ($verificaDataFinal != 1 || $dataFinal < date('Y-m-d') || $dataFinal < $dataInicial) {
+        $dataFinalVerificada = false;
+        $msgDataFinal = 'Data inválida, favor selecionar uma data válida.';
     } else {
-        $horaInicialVerificada = true;
-        $msgHoraInicial = '';
+        $dataFinalVerificada = true;
+        $msgDataFinal = '';
     }
+    //---------------------------------
 
-    if ($horaFim <= $horaInicial) {
-        $horaFimVerificada = false;
-        $msgHoraFim = 'A hora final deve ser maior que a inicial.';
-    } else {
-        $horaFimVerificada = true;
-        $msgHoraFim = '';
-    }
-
-    if ($dataVerificada == false || $horaInicialVerificada == false || $horaFimVerificada == false) {
-        echo json_encode(['success' => false, 'errodata' => true, 'msgData' => $msgData, 'msgHoraInicial' => $msgHoraInicial, 'msgHoraFinal' => $msgHoraFim]);
+    if ($dataInicialVerificada == false || $dataFinalVerificada == false) {
+        echo json_encode(['success' => false, 'errodata' => true, 'msgDataInicial' => $msgDataInicial, 'msgDataFinal' => $msgDataFinal]);
     }
 
 
-    if ($dataVerificada == true && $horaInicialVerificada == true && $horaFimVerificada == true) {
+    if ($dataInicialVerificada == true && $dataFinalVerificada == true) {
         $codigoAluguel = uniqid();
         $limite = 1;
         foreach ($_SESSION['pedidoscarrinho'] as &$produtoCarrinho) {
@@ -65,15 +59,22 @@ if (isset($dados) && !empty($dados)) {
             $qtdDoEstoque = listarItemExpecifico('*', 'estoque', 'idepi', $idepi);
             foreach ($qtdDoEstoque as $item) {
                 $quantidadeEstoque = $item->disponivel;
+                $descartavel = $item->descartavel;
             }
             if ($quantidade <= $quantidadeEstoque) {
                 if ($limite == 1) {
-                    $insert = insert9Item('emprestimo', 'idusuario, dataEmprestimo, horaInicial, horaFim, codigoEmprestimo, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$dataEmprestimo", "$horaInicial", "$horaFim", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
+                    $insert = insert8Item('emprestimo', 'idusuario, dataInicialEmprestimo, dataFinalEmprestimo, codigoEmprestimo, devolvido, prioridade, observacao, cadastro', "$idFuncionario", "$dataInicial", "$dataFinal", "$codigoAluguel", "N", "$prioridade", "$observacao", DATATIMEATUAL);
                 }
                 $qtdRestante = $quantidadeEstoque - $quantidade;
 
                 $mudandoEstoque = alterar1Item('estoque', 'disponivel', "$qtdRestante", 'idepi', "$idepi");
-                $insertProdutoAluguel = insert5Item('produtoemprestimo', 'idepi, quantidade, codEmprestimo, devolucao, cadastro', "$idepi", "$quantidade", "$codigoAluguel", "N", DATATIMEATUAL);
+                if ($descartavel == 'N') {
+                    $insertProdutoAluguel = insert5Item('produtoemprestimo', 'idepi, quantidade, codEmprestimo, devolucao, cadastro', "$idepi", "$quantidade", "$codigoAluguel", "N", DATATIMEATUAL);
+                } else {
+                    $insertProdutoAluguel = insert5Item('produtoemprestimo', 'idepi, quantidade, codEmprestimo, devolucao, cadastro', "$idepi", "$quantidade", "$codigoAluguel", "S", DATATIMEATUAL);
+                    $result = $quantidadeEstoque - 1;
+                    $retornoUpdate = alterar1Item('estoque', 'quantidade', $result, 'idepi', $idepi);
+                }
                 $sucesso = true;
             } else {
                 $sucesso = false;
@@ -89,4 +90,6 @@ if (isset($dados) && !empty($dados)) {
 
     }
 
+}else{
+    echo json_encode(['success' => false,'message' => "Nenhum dado recebido!"]);
 }

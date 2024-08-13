@@ -27,7 +27,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaEmprestimo = listarTabelaInnerJoinOrdenadaDuplo('*','emprestimo','usuario','idusuario','idusuario','prioridade', 'DESC','a.devolvido','ASC');
+            $listaEmprestimo = listarTabelaInnerJoinOrdenadaDuplo('*','emprestimo','usuario','idusuario','idusuario','prioridade', 'DESC','a.cadastro','DESC');
             if ($listaEmprestimo) {
                 foreach ($listaEmprestimo as $itemEmprestimo) {
                     $idemprestimo = $itemEmprestimo->idemprestimo;
@@ -80,7 +80,7 @@
                 ?>
                 <tr>
                     <td colspan="5" class="text-center">
-                        <h4>Nenhum Emprestimo cadastrado no banco</h4>
+                        <h4>Nenhum Empréstimo cadastrado no banco</h4>
                     </td>
                 </tr>
                 <?php

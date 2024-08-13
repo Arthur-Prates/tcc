@@ -1435,21 +1435,23 @@ function valoresGraficoTopFuncionarios()
 
 function Data18AnosAtras()
 {
-    // Obtém a data atual
-    $today = new DateTime();
+    $hoje = new DateTime();
+    $date18YearsAgo = $hoje->sub(new DateInterval('P18Y'));
+    return $date18YearsAgo->format('Y-m-d');
+}
 
-    // Subtrai 18 anos da data atual
-    $date18YearsAgo = $today->sub(new DateInterval('P18Y'));
-
-    // Formata a data no formato desejado (YYYY-MM-DD)
+function data7DiasNaFrente()
+{
+    $hoje = new DateTime();
+    $date18YearsAgo = $hoje->add(new DateInterval('P7D'));
     return $date18YearsAgo->format('Y-m-d');
 }
 
 
 function validarData($data, $formato = 'Y-m-d')
 {
-    $d = DateTime::createFromFormat($formato, $data);
-    return $d && $d->format($formato) == $data;
+    $date = DateTime::createFromFormat($formato, $data);
+    return $date && $date->format($formato) == $data;
 }
 
 function codificarUrl($url, $opcao)

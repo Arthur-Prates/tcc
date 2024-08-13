@@ -4,9 +4,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Usuário(s)</h1>
-
         <div class="d-flex align-items-center">
-
             <button class="btn btnAmareloBos mx-1 " onclick="imprimir('Lista de usuários do Sistema','tabelaUser')"><i
                         class="bi bi-printer"></i></button>
             <button type="button" class="btn btnDark"

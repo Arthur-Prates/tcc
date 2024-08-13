@@ -4,8 +4,8 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
         <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Epi(s)</h1>
-        <div>
-            <button class="btn btnAmareloBos mx-1" style="float: right"
+        <div >
+            <button class="btn btnAmareloBos mx-1"
                     onclick="imprimir('Lista de Epi(s) do Sistema','tabelaEpi')"><i class="bi bi-printer"></i></button>
             <button type="button" class="btn btnDark mb-3 " style="float: right"
                     onclick="abrirModalEpiAdd('fotoEpiAdd','nao','nao','nao','nao','nao','nao','nao','nao','nao', 'modalEpiAdd','A', 'btnEpiAdd', 'addEpi', 'frmEpiAdd')">

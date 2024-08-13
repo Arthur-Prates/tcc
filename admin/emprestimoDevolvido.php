@@ -12,8 +12,7 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (isset($dados) && !empty($dados)) {
     $codEmprestimo = isset($dados['codEmprestimo']) ? addslashes($dados['codEmprestimo']) : '';
     $valor = isset($dados['valor']) ? addslashes($dados['valor']) : '';
-
-    $retornoUpdate = alterar1Item('emprestimo', 'devolvido', "$valor",  'codigoEmprestimo', $codEmprestimo);
+    $retornoUpdate = alterar1Item('emprestimo', 'devolvido', "$valor", 'codigoEmprestimo', $codEmprestimo);
     if ($valor == 'S') {
         if ($retornoUpdate > 0) {
             echo json_encode(['success' => true, 'message' => "O empréstimo foi devolvido com sucesso"]);

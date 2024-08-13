@@ -54,7 +54,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Código do empréstimo</th>
-                    <th scope="col">Data do empréstimo</th>
+                    <th scope="col">Data inicial do empréstimo</th>
+                    <th scope="col">Data final do empréstimo</th>
                     <th scope="col">Prioridade</th>
                     <th scope="col" width="15%">Ações</th>
                 </tr>
@@ -67,7 +68,8 @@ if (!empty($_SESSION['idFuncionario'])) {
                     foreach ($emprestimos as $emprestimo) {
                         $id = $emprestimo->idemprestimo;
                         $codigoEmprestimo = $emprestimo->codigoEmprestimo;
-                        $dataEmprestimo = $emprestimo->dataEmprestimo;
+                        $dataInicial = $emprestimo->dataInicialEmprestimo;
+                        $dataFinal = $emprestimo->dataFinalEmprestimo;
                         $devolvido = $emprestimo->devolvido;
                         $prioridade = $emprestimo-> prioridade;
 
@@ -79,12 +81,14 @@ if (!empty($_SESSION['idFuncionario'])) {
                             $prioridadeVisivel = 'Baixa';
                         }
 
-                        $dataEmprestimo = implode("/", array_reverse(explode("-", $dataEmprestimo)));
+                        $dataInicial = implode("/", array_reverse(explode("-", $dataInicial)));
+                        $dataFinal = implode("/", array_reverse(explode("-", $dataFinal)));
                         ?>
                         <tr>
                             <th scope="row"><?php echo $cont ?></th>
                             <td><?php echo $codigoEmprestimo ?></td>
-                            <td><?php echo $dataEmprestimo ?></td>
+                            <td><?php echo $dataInicial ?></td>
+                            <td><?php echo $dataFinal ?></td>
                             <td><?php echo $prioridadeVisivel ?></td>
                             <td class="d-flex">
                                 <form action="visualizar-emprestimo" name="frmCodAluguel" id="frmCodAluguel"
