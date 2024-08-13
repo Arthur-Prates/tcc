@@ -1,15 +1,22 @@
 <?php
+include_once('../config/conexao.php');
+include_once('../config/constantes.php');
+include_once('../func/funcoes.php');
+
+$id = 2;
 
 ?>
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Empréstimo(s) Devolvidos</h1>
+        <h1 style="margin-top: 20px;margin-bottom: 20px;font-family: Bahnschrift">Empréstimo(s)</h1>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button"  class="btn btnAmareloBos"  style="float: right" onclick="imprimir('Lista de empréstimo(s) do Sistema','tabelaEmprestimo')"><i class="bi bi-printer"></i></button>
-            <button type="button" class="btn btn-dark" onclick="carregarConteudo('listarAluguel')">Ver Ativos</button>
+            <button type="button" class="btn btnAmareloBos" style="float: right"
+                    onclick="imprimir('Lista de empréstimo(s) do Sistema','tabelaEmprestimo')"><i
+                        class="bi bi-printer"></i></button>
+            <button type="button" class="btn btn-dark" onclick="carregarConteudo('listaDevolvido')">Ver Devolvidos
+            </button>
         </div>
     </div>
-
     <div class="overflowTable" id="tabelaEmprestimo">
         <table class="table table-hover table-bordered border-dark text-center rounded-table">
             <thead class="table-dark">
@@ -26,7 +33,7 @@
             <tbody>
             <?php
             $contar = 1;
-            $listaEmprestimo = listarTabelaInnerJoinOrdenadaDuplo('*','emprestimo','usuario','idusuario','idusuario','prioridade', 'DESC','a.cadastro','DESC');
+            $listaEmprestimo = listarTabelaInnerJoinOrdenadaDuploExpecifica('*', 'emprestimo', 'usuario', 'idusuario', 'idusuario', 'b.idusuario',$id,'prioridade', 'DESC', 'a.cadastro', 'DESC');
             if ($listaEmprestimo) {
                 foreach ($listaEmprestimo as $itemEmprestimo) {
                     $idemprestimo = $itemEmprestimo->idemprestimo;
@@ -35,16 +42,16 @@
                     $sobrenome = $itemEmprestimo->sobrenome;
                     $codigoEmprestimo = $itemEmprestimo->codigoEmprestimo;
                     $statusEmprestimo = $itemEmprestimo->devolvido;
-                    $prioridade = $itemEmprestimo-> prioridade;
-                    $cadastro = $itemEmprestimo-> cadastro;
-                    if ($prioridade == '3'){
+                    $prioridade = $itemEmprestimo->prioridade;
+                    $cadastro = $itemEmprestimo->cadastro;
+                    if ($prioridade == '3') {
                         $prioridadeVisivel = 'Alta';
-                    }else if ($prioridade == '2'){
+                    } else if ($prioridade == '2') {
                         $prioridadeVisivel = 'Média';
-                    }else{
+                    } else {
                         $prioridadeVisivel = 'Baixa';
                     }
-                    if($statusEmprestimo == 'S'){
+                    if ($statusEmprestimo == 'N') {
 
 
                         ?>
@@ -74,7 +81,8 @@
                         </tr>
                         <?php
                         ++$contar;
-                    }    }
+                    }
+                }
             } else {
                 ?>
                 <tr>

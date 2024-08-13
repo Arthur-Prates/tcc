@@ -41,6 +41,7 @@ $link = "https://exclusivyweb.com.br/05/admin/verificarAluguel.php?emprestimo=$c
 
 
 <body>
+
 <?php
 $listarEmprestimo = 'SIM';
 include_once('nav.php');
@@ -72,6 +73,10 @@ if ($contarNao !== 'Vazio') {
 <div class="container  listing-container mb-4">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="mt-1">Empréstimo - <b> #<?php echo $codigoEmprestimo ?></b></h1>
+        <form action="assinar.php" method="post" name="frmAssinar">
+            <input type="text" value="<?php echo $codigoEmprestimo?>" name="CodigoDoEmprestimo" id="CodigoDoEmprestimo" hidden="hidden" >
+        <button type="submit" class="btn btn-sm btn-dark" onclick="redireciona('assinar.php')">Assinar</button>
+        </form>
         <?php
 
         if ($nao >= 1) {

@@ -1446,3 +1446,6 @@ section.ondas-box {
 .inputAdm::-webkit-input-placeholder {
     color: #767f86 !important;
 }
+#dataContrato{
+    text-decoration: underline black !important;
+}

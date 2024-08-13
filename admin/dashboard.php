@@ -437,78 +437,80 @@ include_once('nav.php');
             <div class="modal-header bg-success text-white">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Ver mais</h1>
             </div>
-            <form action="#" method="post" name="frmUsuarioVermais" id="frmUsuarioVermais">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="coolinput mb-3">
-                                <label for="input" class="text">Name</label>
-                                <input type="text" class="form-control mdlVermaisUsuario input" id="nomeUsuarioVermais"
-                                       name="nomeUsuarioVermais" disabled>
-                            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="coolinput mb-3">
+                            <label for="nomeUsuarioVermais" class="text">Nome</label>
+                            <input type="text" class="form-control mdlVermaisUsuario input" id="nomeUsuarioVermais"
+                                   name="nomeUsuarioVermais" disabled>
                         </div>
-                        <div class="col-md-6">
-                            <div class="coolinput mb-3">
-                                <label class="text" for="sobrenomeUsuarioVermais">Sobrenome</label>
-                                <input type="text" class="form-control mdlVermaisUsuario input"
-                                       id="sobrenomeUsuarioVermais"
-                                       name="sobrenomeUsuarioVermais" disabled>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="coolinput mb-3">
+                            <label class="text" for="sobrenomeUsuarioVermais">Sobrenome</label>
+                            <input type="text" class="form-control mdlVermaisUsuario input"
+                                   id="sobrenomeUsuarioVermais"
+                                   name="sobrenomeUsuarioVermais" disabled>
                         </div>
-                        <div class="col-md-6">
-                            <div class="coolinput mb-3">
-                                <label class="text" for="telefoneUsuarioVermais">Celular</label>
-                                <input type="text" class="form-control mdlVermaisUsuario input"
-                                       id="telefoneUsuarioVermais"
-                                       name="telefoneUsuarioVermais" disabled>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="coolinput mb-3">
+                            <label class="text" for="telefoneUsuarioVermais">Celular</label>
+                            <input type="text" class="form-control mdlVermaisUsuario input"
+                                   id="telefoneUsuarioVermais"
+                                   name="telefoneUsuarioVermais" disabled>
                         </div>
-                        <div class="col-md-6">
-                            <div class="coolinput mb-3">
-                                <label class="text" for="CPFUsuarioVermais">CPF</label>
-                                <input type="text" class="form-control mdlVermaisUsuario cpf input"
-                                       id="CPFUsuarioVermais"
-                                       name="CPFUsuarioVermais" disabled>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="coolinput mb-3">
+                            <label class="text" for="CPFUsuarioVermais">CPF</label>
+                            <input type="text" class="form-control mdlVermaisUsuario cpf input"
+                                   id="CPFUsuarioVermais"
+                                   name="CPFUsuarioVermais" disabled>
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <div class="coolinput mb-3">
-                                <label class="text" for="nascimentoUsuarioVermais">Data de Nascimento</label>
-                                <input type="date" class="form-control mdlVermaisUsuario input"
-                                       id="nascimentoUsuarioVermais"
-                                       name="nascimentoUsuarioVermais"
-                                       value='<?php echo Data18AnosAtras() ?>' disabled>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="coolinput mb-3">
+                            <label class="text" for="nascimentoUsuarioVermais">Data de Nascimento</label>
+                            <input type="date" class="form-control mdlVermaisUsuario input"
+                                   id="nascimentoUsuarioVermais"
+                                   name="nascimentoUsuarioVermais"
+                                   value='<?php echo Data18AnosAtras() ?>' disabled>
                         </div>
-                        <div class="col-md-6">
-                            <div class="coolinput mb-3">
-                                <label class="text" for="cargoUsuarioVermais">Cargo</label>
-                                <select class="form-select mdlVermaisUsuario select" aria-label="Default select example"
-                                        id="cargoUsuarioVermais"
-                                        name="cargoUsuarioVermais" disabled>
-                                    <option value="adm">Adminstrador</option>
-                                    <option value="almoxarife">Almoxarife</option>
-                                    <option value="funcionario">Funcionário</option>
-                                    <option value="rh">Recursos Humanos</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="coolinput mb-3">
+                            <label class="text" for="cargoUsuarioVermais">Cargo</label>
+                            <select class="form-select mdlVermaisUsuario select" aria-label="Default select example"
+                                    id="cargoUsuarioVermais"
+                                    name="cargoUsuarioVermais" disabled>
+                                <option value="adm">Adminstrador</option>
+                                <option value="almoxarife">Almoxarife</option>
+                                <option value="funcionario">Funcionário</option>
+                                <option value="rh">Recursos Humanos</option>
+                            </select>
                         </div>
-                        <div class="col-md-12">
-                            <div class="coolinput mb-3">
-                                <label class="text" for="emailUsuarioVermais">Email de acesso</label>
-                                <input type="text" class="form-control mdlVermaisUsuario input" id="emailUsuarioVermais"
-                                       name="emailUsuarioVermais" disabled>
-                            </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="coolinput mb-3">
+                            <label class="text" for="emailUsuarioVermais">Email de acesso</label>
+                            <input type="text" class="form-control mdlVermaisUsuario input" id="emailUsuarioVermais"
+                                   name="emailUsuarioVermais" disabled>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal"
-                            id="btnFecharModalVermaisUsuario">Fechar
-                    </button>
-                </div>
+            </div>
+            <form action="emprestimoUsuario.php" method="post" name="frmUsuarioVermais" id="frmUsuarioVermais">
+                <input type="hidden" name="idUsuarioVermais" id="idUsuarioVermais">
+                <button type="submit">Clica</button>
             </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal"
+                        id="btnFecharModalVermaisUsuario">Fechar
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -553,18 +555,18 @@ include_once('nav.php');
                     </div>
                     <div class="formField mb-3">
                         <input required="" type="number" class="form-control" id="quantidadeEpiAdd"
-                               name="quantidadeEpiAdd" />
+                               name="quantidadeEpiAdd"/>
                         <span>Quantidade total</span>
                     </div>
 
-                        <div class="formField2 mb-3">
-                            <select required="required" class="form-select" aria-label="Default select example"
-                                    id="selectDescartavel" name="selectDescartavel">
-                                <option value="S">Sim</option>
-                                <option value="N" selected>Não</option>
-                            </select>
-                            <span>É Descartável?</span>
-                        </div>
+                    <div class="formField2 mb-3">
+                        <select required="required" class="form-select" aria-label="Default select example"
+                                id="selectDescartavel" name="selectDescartavel">
+                            <option value="S">Sim</option>
+                            <option value="N" selected>Não</option>
+                        </select>
+                        <span>É Descartável?</span>
+                    </div>
                 </div>
                 <div class="modal-footer quasebranco ">
                     <button type="button" class="btn btnCinza btn-sm" data-bs-dismiss="modal" id="btnFecharModalAddEpi">
@@ -684,7 +686,6 @@ include_once('nav.php');
         </div>
     </div>
 </div>
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

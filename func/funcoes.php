@@ -21,7 +21,9 @@ function listarTabela($campos, $tabela)
         $conn = null;
     }
 }
-function listarTabelaPaginada($campos, $tabela, $pagina, $limit) {
+
+function listarTabelaPaginada($campos, $tabela, $pagina, $limit)
+{
     $conn = conectar();
     try {
         $conn->beginTransaction();
@@ -54,7 +56,9 @@ function listarTabelaPaginada($campos, $tabela, $pagina, $limit) {
         $conn = null;
     }
 }
-function contarRegistros($tabela) {
+
+function contarRegistros($tabela)
+{
     $conn = conectar();
     try {
         $sql = $conn->prepare("SELECT COUNT(*) as total FROM $tabela");
@@ -115,7 +119,7 @@ function pesquisaLike($campos, $tabela, $campoDeBusca, $valorDoCampo)
     }
 }
 
-function pesquisaLikeDuplo($campos, $tabela, $campoDeBusca,$campoDeBusca2, $valorDoCampo, $valorDoCampo2)
+function pesquisaLikeDuplo($campos, $tabela, $campoDeBusca, $campoDeBusca2, $valorDoCampo, $valorDoCampo2)
 {
     $conn = conectar();
     try {
@@ -237,7 +241,7 @@ function listarTabelaOrdenada($campos, $tabela, $campoOrdem, $ASCouDESC)
     }
 }
 
-function listarTabelaOrdenadaLimitada($campos, $tabela, $campoOrdem, $ASCouDESC,$qtdLimite)
+function listarTabelaOrdenadaLimitada($campos, $tabela, $campoOrdem, $ASCouDESC, $qtdLimite)
 {
     $conn = conectar();
     try {
@@ -282,6 +286,7 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
         $conn = null;
     }
 }
+
 function listarTabelaInnerJoinOrdenadaDuplo($campos, $tabela1, $tabela2, $id1, $id2, $ordem1, $tipoOrdem1, $ordem2, $tipoOrdem2)
 {
     $conn = conectar();
@@ -304,6 +309,30 @@ function listarTabelaInnerJoinOrdenadaDuplo($campos, $tabela1, $tabela2, $id1, $
         $conn = null;
     }
 }
+
+function listarTabelaInnerJoinOrdenadaDuploExpecifica($campos, $tabela1, $tabela2, $id1, $id2, $campoQuando,$idQuando, $ordem1, $tipoOrdem1, $ordem2, $tipoOrdem2)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 WHERE $campoQuando = $idQuando  ORDER BY $ordem1 $tipoOrdem1 , $ordem2 $tipoOrdem2");
+        //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'VAZIO';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
+
 function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem)
 {
     $conn = conectar();
@@ -326,7 +355,8 @@ function listarTabelaInnerJoinOrdenadaLimitada($campos, $tabela1, $tabela2, $id1
         $conn = null;
     }
 }
-function paginacao($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem,$limite )
+
+function paginacao($campos, $tabela1, $tabela2, $id1, $id2, $ordem, $tipoOrdem, $limite)
 {
     $conn = conectar();
     try {

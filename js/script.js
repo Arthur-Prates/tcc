@@ -463,7 +463,6 @@ function abrirModalUsuario(INPid, IDid, INPnomeUsuario, IDnomeUsuario, INPsobren
         INPemailu.value = IDemail
     }
 
-
     if (abrirModal === 'A') {
         ModalInstancia.show();
         const btnFecharAlterarSenha = document.getElementById('btnFecharAlterarSenha')
@@ -1316,9 +1315,9 @@ function deletarEpi(id, addEditDel) {
 
                     }
                 })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
         }
     });
 }
@@ -1440,6 +1439,19 @@ function getdataFomartada() {
     }
 
     return day + '/' + month + '/' + year;
+}
+function getdataFomartadaEmContratos() {
+    let day = new Date().getDate();
+    let month = new Date().getMonth() + 1; // Janeiro é 0
+    let year = new Date().getFullYear();
+
+    if (day < 10) {
+        day = '0' + day;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+    console.log (`Governador Valadares  ${day} de ${month} de ${year}`);
 }
 
 function imprimir(nomeTabela, tabela) {
