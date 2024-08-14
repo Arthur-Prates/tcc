@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/gerar_pdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assinar.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assinar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/salvar_assinatura.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/salvar_assinatura.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd/BD Atual COM DATAINICIO E DATAFIM 20240813 1128.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd/BD OFFLINE FUNCIONAL 1000GRAUS 20240812 1317.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd/DB com descartaveis - arthur.sql" beforeDir="false" />
     </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
@@ -138,7 +137,7 @@
       <workItem from="1723497695845" duration="11204000" />
       <workItem from="1723548523814" duration="9773000" />
       <workItem from="1723580285281" duration="159000" />
-      <workItem from="1723632963949" duration="11768000" />
+      <workItem from="1723632963949" duration="12192000" />
     </task>
     <servers />
   </component>
