@@ -63,16 +63,14 @@ include_once('../func/funcoes.php');
 <body onload="exibirData()" class="mt-5 mb-5 ">
 
 
-<div class="container show bg-white p-5 " id="show"
+<div class="container show bg-white p-5" id="show"
      style="max-width: 1000px;border:1px solid black; border-radius: 10px">
 
     <div class="d-flex justify-content-center align-items-center ">
         <img src="../img/logo/logologin.png" alt="SAFETECH" title="SAFETECH" class="img-fluid" style="max-width: 250px">
     </div>
-
     <?php
-    $emprestimo = $_POST['CodigoDoEmprestimo'];
-
+    $emprestimo = $_POST['CodigoEmprestimo'];
 
     $listaEmprestimo = listarItemExpecifico('*', 'emprestimo', 'codigoEmprestimo', $emprestimo);
     foreach ($listaEmprestimo as $item) {
@@ -81,7 +79,6 @@ include_once('../func/funcoes.php');
     }
     $listaUsuario = listarItemExpecifico('*', 'usuario', 'idusuario', $idusuario);
     ?>
-
 
     <h1 class="text-center">TERMO DE RESPONSABILIDADE DE EMPRÉSTIMO DE EPI</h1>
     <?php

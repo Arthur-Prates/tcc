@@ -74,8 +74,12 @@ if ($contarNao !== 'Vazio') {
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="mt-1">Empréstimo - <b> #<?php echo $codigoEmprestimo ?></b></h1>
         <form action="assinar.php" method="post" name="frmAssinar">
-            <input type="text" value="<?php echo $codigoEmprestimo?>" name="CodigoDoEmprestimo" id="CodigoDoEmprestimo" hidden="hidden" >
-        <button type="submit" class="btn btn-sm btn-dark" onclick="redireciona('assinar.php')">Assinar</button>
+            <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="CodigoEmprestimo" id="CodigoEmprestimo">
+            <button type="submit" class="btn btn-sm btn-dark" onclick="redireciona('assinar.php')">Assinar</button>
+        </form>
+        <form action="gerar_pdf.php" method="post" name="frmGerarPDF" id="frmGerarPDF">
+            <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="codigoEmprestimoPdf" id="codigoEmprestimoPdf">
+            <button type="submit" class="btn btn-sm btn-secondary">Baixar PDF</button>
         </form>
         <?php
 

@@ -287,6 +287,30 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
     }
 }
 
+function listarTabelaInnerJoinOrdenadaExpecifiica($campos, $tabela1, $tabela2, $id1, $id2, $campoQuando, $idquando, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela1 a INNER JOIN $tabela2 b ON a.$id1 = b.$id2 WHERE $campoQuando = ? ORDER BY $ordem $tipoOrdem");
+        $sqlLista->bindValue(1, $idquando, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'VAZIO';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
+
+
 function listarTabelaInnerJoinOrdenadaDuplo($campos, $tabela1, $tabela2, $id1, $id2, $ordem1, $tipoOrdem1, $ordem2, $tipoOrdem2)
 {
     $conn = conectar();
@@ -310,7 +334,7 @@ function listarTabelaInnerJoinOrdenadaDuplo($campos, $tabela1, $tabela2, $id1, $
     }
 }
 
-function listarTabelaInnerJoinOrdenadaDuploExpecifica($campos, $tabela1, $tabela2, $id1, $id2, $campoQuando,$idQuando, $ordem1, $tipoOrdem1, $ordem2, $tipoOrdem2)
+function listarTabelaInnerJoinOrdenadaDuploExpecifica($campos, $tabela1, $tabela2, $id1, $id2, $campoQuando, $idQuando, $ordem1, $tipoOrdem1, $ordem2, $tipoOrdem2)
 {
     $conn = conectar();
     try {
@@ -595,6 +619,29 @@ function listarTabelaInnerJoinQuadruploWhere($campos, $tabelaA1, $tabelaB2, $tab
     try {
         $conn->beginTransaction();
         $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON a.$idA3 = d.$idD3 INNER JOIN $tabelaF5 f ON d.$idA5 = f.$idF5 WHERE $quando = ? ORDER BY $ordem $tipoOrdem");
+        $sqlLista->bindValue(1, $idquando, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return 'Vazio';
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    } finally {
+        $conn = null;
+    }
+}
+
+function listarTabelaInnerJoinQuadruploWherePdf($campos, $tabelaA1, $tabelaB2, $tabelaD3, $tabelaF5, $idA1, $idB2, $idB3, $idD3, $idA5, $idF5, $quando, $idquando, $ordem, $tipoOrdem)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabelaA1 a INNER JOIN $tabelaB2 b ON a.$idA1 = b.$idB2 INNER JOIN $tabelaD3 d ON b.$idB3 = d.$idD3 INNER JOIN $tabelaF5 f ON a.$idA5 = f.$idF5 WHERE $quando = ? ORDER BY $ordem $tipoOrdem");
         $sqlLista->bindValue(1, $idquando, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
