@@ -1,7 +1,7 @@
 <?php
-//include_once('../config/conexao.php');
-//include_once('../config/constantes.php');
-//include_once('../func/funcoes.php');
+include_once('../config/conexao.php');
+include_once('../config/constantes.php');
+include_once('../func/funcoes.php');
 //require '../dompdf/vendor/autoload.php';
 //
 //    $listarUsuario = listarTabelaInnerJoinOrdenadaExpecifiica('*', 'emprestimo', 'usuario', 'idusuario', 'idusuario', 'codigoEmprestimo', "66b0fbabe5360", 'b.nomeUsuario', 'ASC');
@@ -126,3 +126,14 @@
 //    $pdf .= "</html>";
 //
 //echo $pdf;
+
+$testeCpf = listarTabela('*', 'usuario');
+foreach ($testeCpf as $cpf) {
+    $nome = $cpf -> nomeUsuario;
+    $numCpf = $cpf->cpf;
+    $validarCpf = validaCPF($numCpf);
+
+    echo 'Usuário:'. $nome . ' ========= Cpf válido: ' . $validarCpf . '<br>';
+}
+
+
