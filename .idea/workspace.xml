@@ -4,53 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723655433.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723657236.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723657426.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723658215.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723658278.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723659630.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723661753.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723661959.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723661961.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723661988.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723661999.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662198.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662378.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662406.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662418.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662420.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662421.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662430.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662587.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662667.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662699.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662762.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662822.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723662867.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723663053.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723663867.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723664724.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/assinaturas/logologin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bd/Backup AAA 20240814 1657.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bd/Backup offline 20240814 1659.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dompdf/vendor/dompdf/dompdf/lib/fonts/Helvetica-Bold.afm.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dompdf/vendor/dompdf/dompdf/lib/fonts/Helvetica.afm.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gerar_pdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assinar.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assinar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assinaturas/assinatura_1723580421.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/gerar_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/gerar_pdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/salvar_assinatura.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/salvar_assinatura.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/testes.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/testes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/verificarAluguel.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/verificarAluguel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/func/funcoes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualizarEmprestimo.php" beforeDir="false" afterPath="$PROJECT_DIR$/visualizarEmprestimo.php" afterDir="false" />
-    </list>
+    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="" />
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +133,7 @@
       <workItem from="1723548523814" duration="9773000" />
       <workItem from="1723580285281" duration="159000" />
       <workItem from="1723632963949" duration="12284000" />
-      <workItem from="1723720442801" duration="1316000" />
+      <workItem from="1723720442801" duration="1950000" />
     </task>
     <servers />
   </component>
