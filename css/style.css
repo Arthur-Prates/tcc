@@ -497,6 +497,17 @@ body {
     .btnRemover {
         width: 85%;
     }
+
+    .botoesVisualizarEmprestimoResponsivo{
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+    }
+    .codigoEmprestimoResponsivo{
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+    }
 }
 
 @media (min-width: 992px) {
@@ -523,6 +534,17 @@ body {
 
     .nomeProduto {
         height: 60px;
+    }
+
+    .botoesVisualizarEmprestimoResponsivo{
+        display: flex;
+        justify-content: end !important;
+        align-items: center;
+    }
+    .codigoEmprestimoResponsivo{
+        display: flex;
+        justify-content: start !important;
+        align-items: center;
     }
 
 }

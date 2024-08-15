@@ -1064,15 +1064,16 @@ function alterar2Item($tabela, $campo, $campo2, $valor, $valor2, $identificar, $
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("UPDATE $tabela SET $campo = ? ,$campo2 = ? WHERE  $identificar = $id ;");
+        $sqlLista = $conn->prepare("UPDATE $tabela SET $campo = ? ,$campo2 = ? WHERE  $identificar = ? ;");
         $sqlLista->bindValue(1, $valor, PDO::PARAM_STR);
         $sqlLista->bindValue(2, $valor2, PDO::PARAM_STR);
+        $sqlLista->bindValue(3, $id, PDO::PARAM_STR);
         $sqlLista->execute();
         $conn->commit();
         if ($sqlLista->rowCount() > 0) {
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         }
-        return False;
+        return $sqlLista->fetchAll(PDO::FETCH_OBJ);
 
     } catch (PDOException $e) {
         echo 'Exception -> ';
@@ -1515,6 +1516,30 @@ function Data18AnosAtras()
     $hoje = new DateTime();
     $date18YearsAgo = $hoje->sub(new DateInterval('P18Y'));
     return $date18YearsAgo->format('Y-m-d');
+}
+function datadeContrato()
+{
+    $meses = [
+        1 => 'Janeiro',
+        2 => 'Fevereiro',
+        3 => 'Março',
+        4 => 'Abril',
+        5 => 'Maio',
+        6 => 'Junho',
+        7 => 'Julho',
+        8 => 'Agosto',
+        9 => 'Setembro',
+        10 => 'Outubro',
+        11 => 'Novembro',
+        12 => 'Dezembro'
+    ];
+
+    $data = new DateTime();
+
+    $dia = $data->format('d');
+    $mes = $data->format('n');
+    $ano = $data->format('Y');
+    return "$dia de " . $meses[$mes] . " de $ano";
 }
 
 function data7DiasNaFrente()

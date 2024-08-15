@@ -1,8 +1,8 @@
 <?php
-include_once('../config/conexao.php');
-include_once('../config/constantes.php');
-include_once('../func/funcoes.php');
-require '../dompdf/vendor/autoload.php';
+include_once('./config/conexao.php');
+include_once('./config/constantes.php');
+include_once('./func/funcoes.php');
+require './dompdf/vendor/autoload.php';
 
 //Se quiser ver o código da classe, clique Ctrl + Botão esquerdo do mouse sobre a classe ou o método desejado
 //Faz a referência ao namespace/package Dompdf
@@ -14,9 +14,6 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (isset($dados) && !empty($dados)) {
 
 // Cria um array com os nomes dos meses em português
-
-
-
 
     $codigoEmprestimo = isset($dados['codigoEmprestimoPdf']) ? addslashes($dados['codigoEmprestimoPdf']) : '';
 
@@ -53,13 +50,13 @@ if (isset($dados) && !empty($dados)) {
     $pdf .= "<html lang='pt-br'>";
     $pdf .= "<head>";
     $pdf .= "<meta charset='utf-8'>";
-    $pdf .= '<link rel="stylesheet" href="../css/style.css">';
+    $pdf .= '<link rel="stylesheet" href="./css/style.css">';
     $pdf .= $estilo;
     $pdf .= "</head>";
     $pdf .= "<body>";
     $pdf .= "<div id='show' style='background-color: white; max-width: 1000px;'>";
     $pdf .= "<div class='' style='justify-content: center; align-items: center; display: flex;text-align: center;'>";
-    $caminhoAbsolutoImagem = __DIR__ . '/assinaturas/logologin.png';
+    $caminhoAbsolutoImagem = __DIR__ . '/admin/assinaturas/logologin.png';
     if (file_exists($caminhoAbsolutoImagem)) {
         $pdf .= "<img src='data:image/png;base64," . base64_encode(file_get_contents($caminhoAbsolutoImagem)) . "' alt='SAFETECH' title='SAFETECH' style='max-width: 200px'>";
     } else {
@@ -127,7 +124,7 @@ if (isset($dados) && !empty($dados)) {
     </p>";
     $pdf .= "<br>";
     $pdf .= "<p>Assinatura do Funcionário:</p>";
-    $caminhoAbsolutoImagem = __DIR__ . '/assinaturas/' . $assinatura;
+    $caminhoAbsolutoImagem = __DIR__ . '/admin/assinaturas/' . $assinatura;
     if (file_exists($caminhoAbsolutoImagem)) {
         $pdf .= "<img src='data:image/png;base64," . base64_encode(file_get_contents($caminhoAbsolutoImagem)) . "' alt='Assinatura_do_funcionario' style='width: 100%;'>";
     } else {

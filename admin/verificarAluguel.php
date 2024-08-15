@@ -70,93 +70,101 @@ if ($contarNao !== 'Vazio') {
 
 ?>
 
-<div class="container  listing-container mb-4">
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="mt-1">Empréstimo - <b> #<?php echo $codigoEmprestimo ?></b></h1>
-        <form action="assinar.php" method="post" name="frmAssinar">
-            <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="CodigoEmprestimo" id="CodigoEmprestimo">
-            <button type="submit" class="btn btn-sm btn-dark" onclick="redireciona('assinar.php')">Assinar</button>
-        </form>
-        <form action="gerar_pdf.php" method="post" name="frmGerarPDF" id="frmGerarPDF">
-            <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="codigoEmprestimoPdf" id="codigoEmprestimoPdf">
-            <button type="submit" class="btn btn-sm btn-secondary">Baixar PDF</button>
-        </form>
-        <?php
-
-        if ($nao >= 1) {
-            ?>
-            <div>
-                <button class="btn btn-sm btn-success" disabled>Fechar Empréstimo</button>
+<div class="container listing-container mb-4">
+    <div class="row">
+        <div class="col-lg-8 col-12 codigoEmprestimoResponsivo">
+            <h1 class="mt-1">Empréstimo - <b> #<?php echo $codigoEmprestimo ?></b></h1>
+        </div>
+        <div class="col-lg-4 col-12 botoesVisualizarEmprestimoResponsivo">
+            <div class="d-flex">
+                <?php
+                $listaEmprestimo = listarItemExpecifico('*', 'emprestimo', 'codigoEmprestimo', $codigoEmprestimo);
+                foreach ($listaEmprestimo as $assinatura) {
+                    $ass = $assinatura->assinatura;
+                    if ($ass == '') {
+                        ?>
+                        <form action="assinar.php" method="post" name="frmAssinar">
+                            <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="CodigoEmprestimo"
+                                   id="CodigoEmprestimo">
+                            <button type="submit" class="btn btn-sm btn-dark" onclick="redireciona('assinar.php')">
+                                Assinar
+                            </button>
+                        </form>
+                        <?php
+                    } else {
+                        ?>
+                        <form action="gerar_pdf.php" method="post" name="frmGerarPDF" id="frmGerarPDF">
+                            <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="codigoEmprestimoPdf"
+                                   id="codigoEmprestimoPdf">
+                            <button type="submit" class="btn btn-sm btn-warning">Baixar PDF</button>
+                        </form>
+                        <?php
+                    }
+                }
+                if ($nao >= 1) {
+                    ?>
+                    <button class="btn btn-sm btn-success mx-1" disabled>Fechar Empréstimo</button>
+                    <?php
+                } else {
+                    ?>
+                    <button class="btn btn-sm btn-success mx-1" id="fecharEmprestimo"
+                            onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoEmprestimo ?>','S')">
+                        Fechar Empréstimo
+                    </button>
+                    <button class="btn btn-sm btn-primary mx-1" id="editarEmprestimo"
+                            onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoEmprestimo ?>','N')">
+                        Editar
+                    </button>
+                    <?php
+                }
+                ?>
             </div>
-            <?php
-        } else {
-            ?>
-
-            <div>
-                <button class="btn btn-sm btn-success" id="fecharEmprestimo"
-                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoEmprestimo ?>','S')">
-                    Fechar Empréstimo
-                </button>
-                <button class="btn btn-sm btn-primary" id="editarEmprestimo"
-                        onclick="devolverEmprestimo('emprestimoDevolvido','<?php echo $codigoEmprestimo ?>','N')">
-                    Editar
-                </button>
-            </div>
-
-            <?php
-        }
-        ?>
+        </div>
     </div>
 
 
     <?php
 
-    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('*', 'emprestimo', 'usuario', 'produtoEmprestimo', 'epi', 'idusuario', 'idusuario', 'codigoEmprestimo', 'codEmprestimo', 'idepi', 'idepi', 'd.codEmprestimo', "$codigoEmprestimo", 'horaFim', 'DESC');
+    $listaAlguel = listarTabelaInnerJoinQuadruploWhere('a.idusuario,b.nomeUsuario,b.numero,f.idepi,f.nomeEpi,d.quantidade,a.prioridade,a.dataInicialEmprestimo,a.dataFinalEmprestimo,b.email,a.observacao,a.devolvido,a.ativo', 'emprestimo', 'usuario', 'produtoEmprestimo', 'epi', 'idusuario', 'idusuario', 'codigoEmprestimo', 'codEmprestimo', 'idepi', 'idepi', 'd.codEmprestimo', "$codigoEmprestimo", 'horaFim', 'DESC');
     if ($listaAlguel !== 'Vazio') {
     $nomeEpi = array();
     $idepi = array();
     $quantidade = array();
 
     foreach ($listaAlguel as $item) {
+        $id = $item->idusuario;
+        $nomeUsuario = $item->nomeUsuario;
+        $telefone = $item->numero;
+        array_push($idepi, $item->idepi);
+        array_push($nomeEpi, $item->nomeEpi);
+        $epi = array_combine($idepi, $nomeEpi);
+        array_push($quantidade, $item->quantidade);
+        $prioridade = $item->prioridade;
+        $dataInicial = $item->dataInicialEmprestimo;
+        $dataFinal = $item->dataFinalEmprestimo;
+        $email = $item->email;
+        $observacao = $item->observacao;
+        $statusEmprestimo = $item->devolvido;
+        $status = $statusEmprestimo;
         $ativo = $item->ativo;
-        if ($ativo === 'A') {
-            $id = $item->idusuario;
-            $nomeUsuario = $item->nomeUsuario;
-            $telefone = $item->numero;
-            array_push($idepi, $item->idepi);
-            array_push($nomeEpi, $item->nomeEpi);
-            $epi = array_combine($idepi, $nomeEpi);
-            array_push($quantidade, $item->quantidade);
-            $prioridade = $item->prioridade;
-            $dataInicial = $item->dataInicialEmprestimo;
-            $dataFinal = $item->dataFinalEmprestimo;
-            $email = $item->email;
-            $telefone = $item->numero;
-            $observacao = $item->observacao;
-            $statusEmprestimo = $item->devolvido;
-            $status = $statusEmprestimo;
 
-            if ($observacao == 'NAO') {
-                $observacao = 'Nenhuma observação foi feita!';
-            }
-
-            if ($statusEmprestimo == 'S') {
-                $statusEmprestimo = 'Empréstimo devolvido';
-                ?>
-
-
-                <?php
-            } else {
-                $statusEmprestimo = 'EPI(s) pendente(s)';
-                $statusEmprestimo = "$nao $statusEmprestimo";
-            }
-
-            if ($telefone == '' || $telefone == null) {
-                $telefone = 'Nenhum telefone cadastrado!';
-            }
-
-            $dataInicial = implode("/", array_reverse(explode("-", $dataInicial)));
+        if ($observacao == 'NAO') {
+            $observacao = 'Nenhuma observação foi feita!';
         }
+
+        if ($statusEmprestimo == 'S') {
+            $statusEmprestimo = 'Empréstimo devolvido';
+        } else {
+            $statusEmprestimo = 'EPI(s) pendente(s)';
+            $statusEmprestimo = "$nao $statusEmprestimo";
+        }
+
+        if ($telefone == '' || $telefone == null) {
+            $telefone = 'Nenhum telefone cadastrado!';
+        }
+
+        $dataInicial = implode("/", array_reverse(explode("-", $dataInicial)));
+        $dataFinal = implode("/", array_reverse(explode("-", $dataFinal)));
     }
     if ($status == 'S') {
         ?>
@@ -236,6 +244,7 @@ if ($contarNao !== 'Vazio') {
                             $quantidade = $item->quantidade;
                             $idItemEpi = $item->idepi;
                             $itemDevolvido = $item->devolucao;
+
                             $SelectDescarte = listarItemExpecifico('descartavel', 'estoque', 'idepi', $idepi);
                             foreach ($SelectDescarte as $desc) {
                                 $descartavel = $desc->descartavel;
@@ -274,12 +283,12 @@ if ($contarNao !== 'Vazio') {
                                                                 <hr>
                                                                 <div class="text-center divBtn">
                                                                     <?php
-                                                                    if ($status == 'S') {
+                                                                    if ($status == 'S' || $ativo == 'D') {
                                                                         if ($descartavel == 'S') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-info text-black"
                                                                                     disabled>
-                                                                                DESCARTAVEL
+                                                                                DESCARTÁVEL
                                                                             </button>
                                                                             <?php
                                                                         } else
@@ -303,7 +312,7 @@ if ($contarNao !== 'Vazio') {
                                                                             ?>
                                                                             <button class="btn btn-sm btn-info text-black"
                                                                                     disabled>
-                                                                                DESCARÁVEL
+                                                                                DESCARTÁVEL
                                                                             </button>
                                                                             <?php
                                                                         } else if ($itemDevolvido == 'N') {

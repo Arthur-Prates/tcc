@@ -2,7 +2,9 @@
 include_once('../config/conexao.php');
 include_once('../config/constantes.php');
 include_once('../func/funcoes.php');
-
+if (isset($_SESSION['idadm']) & !empty($_SESSION['idadm'])) {
+    header('location: dashboard.php');
+}
 ?>
 
 <!doctype html>

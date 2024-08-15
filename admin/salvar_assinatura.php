@@ -7,6 +7,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if (isset($data['image'])) {
     $image = $data['image'];
+    $codigoEmprestimo = $data['codEmprestimo'];
 
     // Decodifica o Base64 da imagem
     $image = str_replace('data:image/png;base64,', '', $image);
@@ -17,14 +18,17 @@ if (isset($data['image'])) {
     $fileName = 'assinatura_' . time() . '.png';
     $filePath = 'assinaturas/' . $fileName;
 
-//    $alterarAssinatura = alterar1Item('emprestimo','assinatura',$fileName,'codigoEmprestimo',$data['codigoEmprestimo']);
 
     // Salva a imagem no diretório 'assinaturas'
     if (file_put_contents($filePath, $imageData)) {
-        echo 'Assinatura salva em: ' . $filePath;
-
+        $alterarAssinatura = alterar2Item('emprestimo', 'assinatura','ativo', "$fileName",'A', 'codigoEmprestimo', "$codigoEmprestimo");
+        if ($alterarAssinatura > 0) {
+            echo json_encode(['success' => true, 'message' => 'Documento assinado com sucesso!']);
+        }else{
+            echo json_encode(['success' => true, 'message' => 'Ocorreu um erro ao assinar o documento!']);
+        }
     } else {
-        echo 'Erro ao salvar a assinatura.';
+        echo json_encode(['success' => false, 'message' => 'Erro ao assinar o documento!']);
     }
 } else {
     echo 'Nenhuma imagem recebida.';

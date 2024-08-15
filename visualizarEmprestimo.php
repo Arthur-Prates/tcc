@@ -56,9 +56,29 @@ foreach ($cod as $itemCod) {
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 fs-2">
+        <div class="col-lg-6 fs-2">
             <a href="meus-emprestimos" class="btn btn-sm btn-outline-secondary">Voltar</a>
             Empréstimo - #<?php echo $codigoEmprestimo ?>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-end align-items-center">
+            <?php
+            $listaEmprestimo = listarItemExpecifico('*', 'emprestimo', 'codigoEmprestimo', $codigoEmprestimo);
+            foreach ($listaEmprestimo as $assinatura) {
+                $ass = $assinatura->assinatura;
+                if ($ass == '') {
+                    ?>
+                    <?php
+                } else {
+                    ?>
+                    <form action="gerar_pdf.php" method="post" name="frmGerarPDF" id="frmGerarPDF">
+                        <input type="hidden" value="<?php echo $codigoEmprestimo ?>" name="codigoEmprestimoPdf"
+                               id="codigoEmprestimoPdf">
+                        <button type="submit" class="btn btn-sm btn-warning">Baixar PDF</button>
+                    </form>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </div>
     <div class="row mb-5">
@@ -109,11 +129,12 @@ foreach ($cod as $itemCod) {
 
             ?>
             <div class="row mt-5">
-<!--                <div class="col-12 text-center">-->
-<!--                    <p><b>Data inicial do aluguel:</b> <br> --><?php //echo $dataInicial ?><!--</p>-->
-<!--                </div>-->
+                <!--                <div class="col-12 text-center">-->
+                <!--                    <p><b>Data inicial do aluguel:</b> <br> -->
+                <?php //echo $dataInicial ?><!--</p>-->
+                <!--                </div>-->
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center align-items-center"
-                     style="flex-direction: column" style="flex-direction: column">
+                     style="flex-direction: column">
                     <p><b>Locatário:</b> <?php echo $locatario . ' ' . $sobrenome ?></p>
                     <p><b>Email:</b> <?php echo $email ?></p>
                     <p><b>Telefone:</b> <?php echo $numero ?></p>
@@ -204,7 +225,8 @@ foreach ($cod as $itemCod) {
             </div>
         </div>
     </div>
-    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i class="bi bi-arrow-up-short"></i></button>
+    <button onclick="voltarAoTopo()" id="btnTopo" class="btnTopo" title="Voltar ao Topo"><i
+                class="bi bi-arrow-up-short"></i></button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

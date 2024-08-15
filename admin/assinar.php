@@ -29,7 +29,7 @@ include_once('../func/funcoes.php');
         #signature-pad {
             border: 1px solid #000;
             width: 100%;
-            height: 200px;
+            height: 100px;
         }
 
         .button {
@@ -194,9 +194,12 @@ include_once('../func/funcoes.php');
 
     Assinatura do Funcionário Devedor:
     <canvas id="signature-pad"></canvas>
+    <p class="text-center text-danger" style="display: none" id="msgErroAssinatura">Por favor, assine antes de
+        confirmar!</p>
     <button id="clear" class="btn btn-danger"><span class="bi bi-trash"></span> Limpar</button>
     <div class="d-flex justify-content-center align-items-center ">
-        <input type="text" value="<?php echo $emprestimo?>" name="valorEmprestimo" id="valorEmprestimo" hidden="hidden" >
+        <input type="text" value="<?php echo $emprestimo ?>" name="valorEmprestimo" id="valorEmprestimo"
+               hidden="hidden">
         <button id="save" class="btn btn-dark">Salvar Assinatura</button>
     </div>
 
@@ -218,8 +221,8 @@ include_once('../func/funcoes.php');
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src="../js/script.js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+<script src="../js/script.js"></script>
 
 <script>
     const canvas = document.getElementById('signature-pad');
@@ -229,44 +232,89 @@ include_once('../func/funcoes.php');
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
-    canvas.addEventListener('mousedown', (e) => {
+    function iniciarDesenho(x, y) {
         isDrawing = true;
-        ctx.moveTo(e.offsetX, e.offsetY);
-    });
+        ctx.moveTo(x, y);
+    }
 
-    canvas.addEventListener('mousemove', (e) => {
+    function desenhar(x, y) {
         if (isDrawing) {
-            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.lineTo(x, y);
             ctx.stroke();
         }
+    }
+
+    function finalizarDesenho() {
+        isDrawing = false;
+    }
+
+    canvas.addEventListener('mousedown', (e) => iniciarDesenho(e.offsetX, e.offsetY));
+    canvas.addEventListener('mousemove', (e) => desenhar(e.offsetX, e.offsetY));
+    canvas.addEventListener('mouseup', finalizarDesenho);
+    canvas.addEventListener('mouseleave', finalizarDesenho);
+
+    canvas.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        iniciarDesenho(touch.clientX - rect.left, touch.clientY - rect.top);
     });
 
-    canvas.addEventListener('mouseup', () => {
-        isDrawing = false;
+    canvas.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        desenhar(touch.clientX - rect.left, touch.clientY - rect.top);
+        e.preventDefault();
     });
+
+    canvas.addEventListener('touchend', finalizarDesenho);
+
+    function verificarSeNaoTaAssinado(canvas) {
+        const blank = document.createElement('canvas');
+        blank.width = canvas.width;
+        blank.height = canvas.height;
+        return canvas.toDataURL() === blank.toDataURL();
+    }
 
     document.getElementById('clear').addEventListener('click', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        window.location.reload()
+        window.location.reload();
     });
 
     document.getElementById('save').addEventListener('click', () => {
+        const msgErroAssinatura = document.getElementById('msgErroAssinatura');
+        if (verificarSeNaoTaAssinado(canvas)) {
+            msgErroAssinatura.style.display = 'block';
+            return;
+        } else {
+            msgErroAssinatura.style.display = 'none';
+        }
+
         const dataURL = canvas.toDataURL('image/png');
-        const valorEmprestimo = document.getElementById('valorEmprestimo').value
+        const valorEmprestimo = document.getElementById('valorEmprestimo').value;
         fetch('salvar_assinatura.php', {
             method: 'POST',
-            body: JSON.stringify({image: dataURL}),
+            body: JSON.stringify({image: dataURL, codEmprestimo: valorEmprestimo}),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(response => response.text())
+        })
+            .then(response => response.json())
             .then(data => {
-                alert(`Assinatura salva com sucesso!`);
-                redireciona(`verificarAluguel.php?emprestimo=${valorEmprestimo}`)
-            }).catch(error => {
-            console.error('Erro ao salvar assinatura:', error);
-        });
+                console.log(data);
+                if (data.success) {
+                    setTimeout(function () {
+                        redireciona(`verificarAluguel.php?emprestimo=${valorEmprestimo}`);
+                    }, 1900);
+                    alertSuccess(data.message);
+                } else {
+                    alertError(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao salvar assinatura:', error);
+            });
     });
+
 </script>
 
 </body>
