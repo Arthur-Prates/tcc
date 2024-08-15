@@ -70,7 +70,8 @@ include_once('../func/funcoes.php');
         <img src="../img/logo/logologin.png" alt="SAFETECH" title="SAFETECH" class="img-fluid" style="max-width: 250px">
     </div>
     <?php
-    $emprestimo = $_POST['CodigoEmprestimo'];
+    $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    $emprestimo = $dados['CodigoEmprestimo'];
 
     $listaEmprestimo = listarItemExpecifico('*', 'emprestimo', 'codigoEmprestimo', $emprestimo);
     foreach ($listaEmprestimo as $item) {
@@ -277,7 +278,8 @@ include_once('../func/funcoes.php');
 
     document.getElementById('clear').addEventListener('click', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        window.location.reload();
+        ctx.beginPath();
+        // window.location.reload();
     });
 
     document.getElementById('save').addEventListener('click', () => {

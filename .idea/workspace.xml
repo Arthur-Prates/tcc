@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="" />
+    <list default="true" id="4ebe2744-1a87-4b8d-8702-bea1d2fe2eb5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/assinar.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assinar.php" afterDir="false" />
+    </list>
     <list id="d44bc9c2-15bd-42f3-b844-f0f49fabf5be" name="Changes by Clarisse" comment="" />
     <list id="e94ba636-703f-4a88-98d3-ca7627b296ab" name="Changes by P" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +136,7 @@
       <workItem from="1723548523814" duration="9773000" />
       <workItem from="1723580285281" duration="159000" />
       <workItem from="1723632963949" duration="12284000" />
-      <workItem from="1723720442801" duration="1950000" />
+      <workItem from="1723720442801" duration="3096000" />
     </task>
     <servers />
   </component>
